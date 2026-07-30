@@ -1,0 +1,21 @@
+import 'package:test/test.dart';
+import 'package:mudbase_sdk/mudbase_sdk.dart';
+
+// tests for TestWalletWebhook200Response
+void main() {
+  final instance = TestWalletWebhook200ResponseBuilder();
+  // TODO add properties to the builder and call build()
+
+  group(TestWalletWebhook200Response, () {
+    // bool success
+    test('to test the property `success`', () async {
+      // TODO
+    });
+
+    // JsonObject data
+    test('to test the property `data`', () async {
+      // TODO
+    });
+
+  });
+}

@@ -1,0 +1,49 @@
+# MudbaseSDK::EmailRequestTo
+
+## Class instance methods
+
+### `openapi_one_of`
+
+Returns the list of classes defined in oneOf.
+
+#### Example
+
+```ruby
+require 'mudbase_sdk'
+
+MudbaseSDK::EmailRequestTo.openapi_one_of
+# =>
+# [
+#   :'Array<String>',
+#   :'String'
+# ]
+```
+
+### build
+
+Find the appropriate object from the `openapi_one_of` list and casts the data into it.
+
+#### Example
+
+```ruby
+require 'mudbase_sdk'
+
+MudbaseSDK::EmailRequestTo.build(data)
+# => #<Array<String>:0x00007fdd4aab02a0>
+
+MudbaseSDK::EmailRequestTo.build(data_that_doesnt_match)
+# => nil
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| **data** | **Mixed** | data to be matched against the list of oneOf items |
+
+#### Return type
+
+- `Array<String>`
+- `String`
+- `nil` (if no type matches)
+

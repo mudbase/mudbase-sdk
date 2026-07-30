@@ -1,0 +1,24 @@
+# MudbaseSDK::UsageResponse
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **usage** | [**Usage**](Usage.md) |  | [optional] |
+| **limits** | [**Limits**](Limits.md) |  | [optional] |
+| **plan** | [**Plan**](Plan.md) |  | [optional] |
+| **billing** | [**Billing**](Billing.md) |  | [optional] |
+
+## Example
+
+```ruby
+require 'mudbase_sdk'
+
+instance = MudbaseSDK::UsageResponse.new(
+  usage: null,
+  limits: null,
+  plan: null,
+  billing: null
+)
+```
+

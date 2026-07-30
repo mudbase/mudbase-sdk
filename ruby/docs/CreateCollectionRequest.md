@@ -1,0 +1,26 @@
+# MudbaseSDK::CreateCollectionRequest
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **name** | **String** |  |  |
+| **slug** | **String** |  | [optional] |
+| **fields** | [**Array&lt;Field&gt;**](Field.md) |  |  |
+| **permissions** | [**Array&lt;Permission&gt;**](Permission.md) |  | [optional] |
+| **settings** | **Object** |  | [optional] |
+
+## Example
+
+```ruby
+require 'mudbase_sdk'
+
+instance = MudbaseSDK::CreateCollectionRequest.new(
+  name: null,
+  slug: null,
+  fields: null,
+  permissions: null,
+  settings: null
+)
+```
+

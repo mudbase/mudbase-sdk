@@ -1,0 +1,162 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+
+// ignore_for_file: unused_element
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'get_integrations200_response_integrations_inner.g.dart';
+
+/// GetIntegrations200ResponseIntegrationsInner
+///
+/// Properties:
+/// * [id] 
+/// * [name] 
+/// * [provider] 
+/// * [status] 
+@BuiltValue()
+abstract class GetIntegrations200ResponseIntegrationsInner implements Built<GetIntegrations200ResponseIntegrationsInner, GetIntegrations200ResponseIntegrationsInnerBuilder> {
+  @BuiltValueField(wireName: r'_id')
+  String? get id;
+
+  @BuiltValueField(wireName: r'name')
+  String? get name;
+
+  @BuiltValueField(wireName: r'provider')
+  String? get provider;
+
+  @BuiltValueField(wireName: r'status')
+  String? get status;
+
+  GetIntegrations200ResponseIntegrationsInner._();
+
+  factory GetIntegrations200ResponseIntegrationsInner([void updates(GetIntegrations200ResponseIntegrationsInnerBuilder b)]) = _$GetIntegrations200ResponseIntegrationsInner;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(GetIntegrations200ResponseIntegrationsInnerBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<GetIntegrations200ResponseIntegrationsInner> get serializer => _$GetIntegrations200ResponseIntegrationsInnerSerializer();
+}
+
+class _$GetIntegrations200ResponseIntegrationsInnerSerializer implements PrimitiveSerializer<GetIntegrations200ResponseIntegrationsInner> {
+  @override
+  final Iterable<Type> types = const [GetIntegrations200ResponseIntegrationsInner, _$GetIntegrations200ResponseIntegrationsInner];
+
+  @override
+  final String wireName = r'GetIntegrations200ResponseIntegrationsInner';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    GetIntegrations200ResponseIntegrationsInner object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'_id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.provider != null) {
+      yield r'provider';
+      yield serializers.serialize(
+        object.provider,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.status != null) {
+      yield r'status';
+      yield serializers.serialize(
+        object.status,
+        specifiedType: const FullType(String),
+      );
+    }
+  }
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    GetIntegrations200ResponseIntegrationsInner object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required GetIntegrations200ResponseIntegrationsInnerBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'provider':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.provider = valueDes;
+          break;
+        case r'status':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.status = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  GetIntegrations200ResponseIntegrationsInner deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GetIntegrations200ResponseIntegrationsInnerBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
+}
+

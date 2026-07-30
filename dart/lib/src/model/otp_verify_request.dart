@@ -1,0 +1,140 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+
+// ignore_for_file: unused_element
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'otp_verify_request.g.dart';
+
+/// OTPVerifyRequest
+///
+/// Properties:
+/// * [identifier] 
+/// * [otp] 
+/// * [projectId] 
+@BuiltValue()
+abstract class OTPVerifyRequest implements Built<OTPVerifyRequest, OTPVerifyRequestBuilder> {
+  @BuiltValueField(wireName: r'identifier')
+  String? get identifier;
+
+  @BuiltValueField(wireName: r'otp')
+  String get otp;
+
+  @BuiltValueField(wireName: r'projectId')
+  String get projectId;
+
+  OTPVerifyRequest._();
+
+  factory OTPVerifyRequest([void updates(OTPVerifyRequestBuilder b)]) = _$OTPVerifyRequest;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(OTPVerifyRequestBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<OTPVerifyRequest> get serializer => _$OTPVerifyRequestSerializer();
+}
+
+class _$OTPVerifyRequestSerializer implements PrimitiveSerializer<OTPVerifyRequest> {
+  @override
+  final Iterable<Type> types = const [OTPVerifyRequest, _$OTPVerifyRequest];
+
+  @override
+  final String wireName = r'OTPVerifyRequest';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    OTPVerifyRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.identifier != null) {
+      yield r'identifier';
+      yield serializers.serialize(
+        object.identifier,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'otp';
+    yield serializers.serialize(
+      object.otp,
+      specifiedType: const FullType(String),
+    );
+    yield r'projectId';
+    yield serializers.serialize(
+      object.projectId,
+      specifiedType: const FullType(String),
+    );
+  }
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    OTPVerifyRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required OTPVerifyRequestBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'identifier':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.identifier = valueDes;
+          break;
+        case r'otp':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.otp = valueDes;
+          break;
+        case r'projectId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.projectId = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  OTPVerifyRequest deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = OTPVerifyRequestBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
+}
+

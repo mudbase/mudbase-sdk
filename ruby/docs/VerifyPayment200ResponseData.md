@@ -1,0 +1,18 @@
+# MudbaseSDK::VerifyPayment200ResponseData
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **subscription** | [**VerifyPayment200ResponseDataSubscription**](VerifyPayment200ResponseDataSubscription.md) |  | [optional] |
+
+## Example
+
+```ruby
+require 'mudbase_sdk'
+
+instance = MudbaseSDK::VerifyPayment200ResponseData.new(
+  subscription: null
+)
+```
+

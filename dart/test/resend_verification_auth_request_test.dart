@@ -1,0 +1,22 @@
+import 'package:test/test.dart';
+import 'package:mudbase_sdk/mudbase_sdk.dart';
+
+// tests for ResendVerificationAuthRequest
+void main() {
+  final instance = ResendVerificationAuthRequestBuilder();
+  // TODO add properties to the builder and call build()
+
+  group(ResendVerificationAuthRequest, () {
+    // String email
+    test('to test the property `email`', () async {
+      // TODO
+    });
+
+    // Optional; for project-scoped signup (sends link with project context)
+    // String projectId
+    test('to test the property `projectId`', () async {
+      // TODO
+    });
+
+  });
+}

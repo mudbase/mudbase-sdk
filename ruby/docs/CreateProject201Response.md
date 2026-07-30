@@ -1,0 +1,20 @@
+# MudbaseSDK::CreateProject201Response
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **message** | **String** |  | [optional] |
+| **project** | [**Project**](Project.md) |  | [optional] |
+
+## Example
+
+```ruby
+require 'mudbase_sdk'
+
+instance = MudbaseSDK::CreateProject201Response.new(
+  message: null,
+  project: null
+)
+```
+

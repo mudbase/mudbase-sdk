@@ -1,0 +1,17 @@
+# mudbase_sdk.model.UpdateFunctionRequestRetryPolicy
+
+## Load the model package
+```dart
+import 'package:mudbase_sdk/api.dart';
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**enabled** | **bool** |  | [optional] 
+**maxRetries** | **int** |  | [optional] 
+**backoffMs** | **int** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

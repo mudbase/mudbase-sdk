@@ -1,0 +1,21 @@
+import 'package:test/test.dart';
+import 'package:mudbase_sdk/mudbase_sdk.dart';
+
+// tests for GetPaymentRecords200ResponseData
+void main() {
+  final instance = GetPaymentRecords200ResponseDataBuilder();
+  // TODO add properties to the builder and call build()
+
+  group(GetPaymentRecords200ResponseData, () {
+    // BuiltList<GetPaymentRecords200ResponseDataRecordsInner> records
+    test('to test the property `records`', () async {
+      // TODO
+    });
+
+    // GetPaymentRecords200ResponseDataPagination pagination
+    test('to test the property `pagination`', () async {
+      // TODO
+    });
+
+  });
+}

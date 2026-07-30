@@ -1,0 +1,16 @@
+# mudbase_sdk.model.EditMessageRequest
+
+## Load the model package
+```dart
+import 'package:mudbase_sdk/api.dart';
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**content** | **String** | New plaintext (non-E2EE messages only) | [optional] 
+**e2ee** | [**EditMessageRequestE2ee**](EditMessageRequestE2ee.md) |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

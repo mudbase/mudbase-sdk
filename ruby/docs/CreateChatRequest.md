@@ -1,0 +1,26 @@
+# MudbaseSDK::CreateChatRequest
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **name** | **String** |  |  |
+| **description** | **String** |  | [optional] |
+| **type** | **String** |  |  |
+| **participants** | **Array&lt;String&gt;** |  |  |
+| **settings** | **Object** |  | [optional] |
+
+## Example
+
+```ruby
+require 'mudbase_sdk'
+
+instance = MudbaseSDK::CreateChatRequest.new(
+  name: null,
+  description: null,
+  type: null,
+  participants: null,
+  settings: null
+)
+```
+

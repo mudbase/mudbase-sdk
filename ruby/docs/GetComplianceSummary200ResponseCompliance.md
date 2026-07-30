@@ -1,0 +1,22 @@
+# MudbaseSDK::GetComplianceSummary200ResponseCompliance
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **gdpr** | [**GetComplianceSummary200ResponseComplianceGdpr**](GetComplianceSummary200ResponseComplianceGdpr.md) |  | [optional] |
+| **soc2** | [**GetComplianceSummary200ResponseComplianceSoc2**](GetComplianceSummary200ResponseComplianceSoc2.md) |  | [optional] |
+| **security** | [**GetComplianceSummary200ResponseComplianceSecurity**](GetComplianceSummary200ResponseComplianceSecurity.md) |  | [optional] |
+
+## Example
+
+```ruby
+require 'mudbase_sdk'
+
+instance = MudbaseSDK::GetComplianceSummary200ResponseCompliance.new(
+  gdpr: null,
+  soc2: null,
+  security: null
+)
+```
+

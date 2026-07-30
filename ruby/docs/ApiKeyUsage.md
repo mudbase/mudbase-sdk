@@ -1,0 +1,20 @@
+# MudbaseSDK::ApiKeyUsage
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **requests** | **Integer** |  | [optional] |
+| **last_used** | **Time** |  | [optional] |
+
+## Example
+
+```ruby
+require 'mudbase_sdk'
+
+instance = MudbaseSDK::ApiKeyUsage.new(
+  requests: null,
+  last_used: null
+)
+```
+

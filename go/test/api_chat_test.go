@@ -11,7 +11,7 @@ package mudbase
 
 import (
 	"context"
-	. "github.com/mudbase/mudbase-go-sdk"
+	. "github.com/mudbase/mudbase-sdk/go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"

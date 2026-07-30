@@ -1,4 +1,4 @@
-module github.com/mudbase/mudbase-go-sdk
+module github.com/mudbase/mudbase-sdk/go
 
 go 1.23
 

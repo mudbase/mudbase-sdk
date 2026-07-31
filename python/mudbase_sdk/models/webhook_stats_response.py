@@ -24,6 +24,7 @@ from mudbase_sdk.models.webhook_stats_response_event_stats_inner import WebhookS
 from mudbase_sdk.models.webhook_stats_response_status_stats_inner import WebhookStatsResponseStatusStatsInner
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class WebhookStatsResponse(BaseModel):
     """
@@ -31,11 +32,12 @@ class WebhookStatsResponse(BaseModel):
     """ # noqa: E501
     status_stats: List[WebhookStatsResponseStatusStatsInner] = Field(description="Grouped by delivery status", alias="statusStats")
     event_stats: List[WebhookStatsResponseEventStatsInner] = Field(description="Grouped by event name", alias="eventStats")
-    period: StrictStr
+    period: StrictStr = Field(json_schema_extra={"examples": ["7 days"]})
     __properties: ClassVar[List[str]] = ["statusStats", "eventStats", "period"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class WebhookStatsResponse(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

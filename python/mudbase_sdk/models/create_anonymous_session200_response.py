@@ -23,20 +23,22 @@ from typing import Any, ClassVar, Dict, List, Optional
 from mudbase_sdk.models.create_anonymous_session200_response_user import CreateAnonymousSession200ResponseUser
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateAnonymousSession200Response(BaseModel):
     """
     CreateAnonymousSession200Response
     """ # noqa: E501
-    message: Optional[StrictStr] = None
-    token: Optional[StrictStr] = None
+    message: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Anonymous session created"]})
+    token: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."]})
     refresh_token: Optional[StrictStr] = Field(default=None, description="Refresh token for POST /api/auth/refresh", alias="refreshToken")
-    expires_in: Optional[StrictInt] = Field(default=None, alias="expiresIn")
+    expires_in: Optional[StrictInt] = Field(default=None, alias="expiresIn", json_schema_extra={"examples": [86400]})
     user: Optional[CreateAnonymousSession200ResponseUser] = None
     __properties: ClassVar[List[str]] = ["message", "token", "refreshToken", "expiresIn", "user"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -48,8 +50,7 @@ class CreateAnonymousSession200Response(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

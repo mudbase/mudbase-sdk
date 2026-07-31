@@ -25,20 +25,22 @@ from mudbase_sdk.models.create_role_request_collection_permissions_value import 
 from mudbase_sdk.models.create_role_request_permissions_inner import CreateRoleRequestPermissionsInner
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateRoleRequest(BaseModel):
     """
     CreateRoleRequest
     """ # noqa: E501
-    name: StrictStr
-    description: Optional[StrictStr] = None
+    name: StrictStr = Field(json_schema_extra={"examples": ["Support Agent"]})
+    description: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Customer support team member"]})
     permissions: Optional[List[CreateRoleRequestPermissionsInner]] = Field(default=None, description="Legacy resource-level permissions. For data CRUD, prefer `collectionPermissions` below.")
-    hierarchy: Optional[Union[Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]]] = None
+    hierarchy: Optional[Union[Annotated[float, Field(le=100, strict=True, ge=0)], Annotated[int, Field(le=100, strict=True, ge=0)]]] = Field(default=None, json_schema_extra={"examples": [40]})
     collection_permissions: Optional[Dict[str, CreateRoleRequestCollectionPermissionsValue]] = Field(default=None, description="Per-collection CRUD map. Keys are collection slugs; value can be action array or object with actions + conditions.", alias="collectionPermissions")
     __properties: ClassVar[List[str]] = ["name", "description", "permissions", "hierarchy", "collectionPermissions"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -50,8 +52,7 @@ class CreateRoleRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

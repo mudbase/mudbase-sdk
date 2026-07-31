@@ -23,19 +23,21 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class WalletWebhookStats(BaseModel):
     """
     WalletWebhookStats
     """ # noqa: E501
-    total_deliveries: Optional[StrictInt] = Field(default=None, alias="totalDeliveries")
-    successful_deliveries: Optional[StrictInt] = Field(default=None, alias="successfulDeliveries")
-    failed_deliveries: Optional[StrictInt] = Field(default=None, alias="failedDeliveries")
-    last_delivery_at: Optional[datetime] = Field(default=None, alias="lastDeliveryAt")
+    total_deliveries: Optional[StrictInt] = Field(default=None, alias="totalDeliveries", json_schema_extra={"examples": [150]})
+    successful_deliveries: Optional[StrictInt] = Field(default=None, alias="successfulDeliveries", json_schema_extra={"examples": [148]})
+    failed_deliveries: Optional[StrictInt] = Field(default=None, alias="failedDeliveries", json_schema_extra={"examples": [2]})
+    last_delivery_at: Optional[datetime] = Field(default=None, alias="lastDeliveryAt", json_schema_extra={"examples": ["2026-01-22T10:05:00Z"]})
     __properties: ClassVar[List[str]] = ["totalDeliveries", "successfulDeliveries", "failedDeliveries", "lastDeliveryAt"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class WalletWebhookStats(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

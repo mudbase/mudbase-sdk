@@ -22,17 +22,18 @@ from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, Stric
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class GetSubscriptionTiers200ResponsePlansInner(BaseModel):
     """
     GetSubscriptionTiers200ResponsePlansInner
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    name: Optional[StrictStr] = None
+    id: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["starter"]})
+    name: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Starter"]})
     description: Optional[StrictStr] = None
-    price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Monthly price in cents")
+    price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Monthly price in cents", json_schema_extra={"examples": [2900]})
     price_yearly: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Yearly price in cents (8% off)", alias="priceYearly")
-    currency: Optional[StrictStr] = None
+    currency: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["USD"]})
     price_id: Optional[StrictStr] = Field(default=None, alias="priceId")
     limits: Optional[Dict[str, Any]] = None
     overages: Optional[Dict[str, Any]] = None
@@ -40,7 +41,8 @@ class GetSubscriptionTiers200ResponsePlansInner(BaseModel):
     __properties: ClassVar[List[str]] = ["id", "name", "description", "price", "priceYearly", "currency", "priceId", "limits", "overages", "enforcement"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -52,8 +54,7 @@ class GetSubscriptionTiers200ResponsePlansInner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

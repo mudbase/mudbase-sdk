@@ -137,7 +137,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mudbase_sdk.UsageApi(api_client)
     project_id = 'project_id_example' # str | 
-    period = month # str |  (optional) (default to month)
+    period = 'month' # str |  (optional) (default to 'month')
 
     try:
         # Get project usage
@@ -156,7 +156,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **period** | **str**|  | [optional] [default to month]
+ **period** | **str**|  | [optional] [default to &#39;month&#39;]
 
 ### Return type
 
@@ -316,7 +316,7 @@ configuration = mudbase_sdk.Configuration(
 with mudbase_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mudbase_sdk.UsageApi(api_client)
-    period = month # str |  (optional) (default to month)
+    period = 'month' # str |  (optional) (default to 'month')
     start_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     end_date = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
@@ -336,7 +336,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **period** | **str**|  | [optional] [default to month]
+ **period** | **str**|  | [optional] [default to &#39;month&#39;]
  **start_date** | **datetime**|  | [optional] 
  **end_date** | **datetime**|  | [optional] 
 

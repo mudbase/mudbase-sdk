@@ -147,7 +147,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mudbase_sdk.RoleElevationApi(api_client)
     org_id = 'org_id_example' # str | 
-    status = pending # str |  (optional) (default to pending)
+    status = 'pending' # str |  (optional) (default to 'pending')
     page = 1 # int |  (optional) (default to 1)
     limit = 50 # int |  (optional) (default to 50)
 
@@ -168,7 +168,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **org_id** | **str**|  | 
- **status** | **str**|  | [optional] [default to pending]
+ **status** | **str**|  | [optional] [default to &#39;pending&#39;]
  **page** | **int**|  | [optional] [default to 1]
  **limit** | **int**|  | [optional] [default to 50]
 

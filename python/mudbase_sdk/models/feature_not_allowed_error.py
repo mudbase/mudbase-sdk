@@ -18,24 +18,26 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class FeatureNotAllowedError(BaseModel):
     """
     Returned when an app-role feature gate denies access (HTTP 403)
     """ # noqa: E501
-    success: StrictBool
-    error: StrictStr
-    resource: Optional[StrictStr] = None
-    action: Optional[StrictStr] = None
-    message: Optional[StrictStr] = None
+    success: StrictBool = Field(json_schema_extra={"examples": [False]})
+    error: StrictStr = Field(json_schema_extra={"examples": ["feature_not_allowed"]})
+    resource: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["messaging"]})
+    action: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["email"]})
+    message: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Your role does not have permission to send email for this project."]})
     __properties: ClassVar[List[str]] = ["success", "error", "resource", "action", "message"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class FeatureNotAllowedError(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

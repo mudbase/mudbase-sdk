@@ -24,26 +24,28 @@ from mudbase_sdk.models.add_custom_role_request_default_permissions_inner import
 from mudbase_sdk.models.create_role_request_collection_permissions_value import CreateRoleRequestCollectionPermissionsValue
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class AddCustomRoleRequest(BaseModel):
     """
     AddCustomRoleRequest
     """ # noqa: E501
-    slug: StrictStr
-    name: StrictStr
-    description: Optional[StrictStr] = None
-    signup_endpoint: StrictStr = Field(alias="signupEndpoint")
-    requires_approval: Optional[StrictBool] = Field(default=None, alias="requiresApproval")
-    requires_payment: Optional[StrictBool] = Field(default=None, alias="requiresPayment")
-    requires_kyc: Optional[StrictBool] = Field(default=None, alias="requiresKYC")
+    slug: StrictStr = Field(json_schema_extra={"examples": ["seller"]})
+    name: StrictStr = Field(json_schema_extra={"examples": ["Seller"]})
+    description: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Seller role with CRUD on seller-owned collections"]})
+    signup_endpoint: StrictStr = Field(alias="signupEndpoint", json_schema_extra={"examples": ["seller"]})
+    requires_approval: Optional[StrictBool] = Field(default=None, alias="requiresApproval", json_schema_extra={"examples": [False]})
+    requires_payment: Optional[StrictBool] = Field(default=None, alias="requiresPayment", json_schema_extra={"examples": [False]})
+    requires_kyc: Optional[StrictBool] = Field(default=None, alias="requiresKYC", json_schema_extra={"examples": [False]})
     default_permissions: Optional[List[AddCustomRoleRequestDefaultPermissionsInner]] = Field(default=None, description="Optional global/base permissions. For collection-level CRUD use `collectionPermissions`.", alias="defaultPermissions")
     collection_permissions: Optional[Dict[str, CreateRoleRequestCollectionPermissionsValue]] = Field(default=None, description="Per-collection CRUD map (collection slug => actions or {actions,conditions}).", alias="collectionPermissions")
     metadata: Optional[Dict[str, Any]] = None
-    feature_permissions: Optional[Dict[str, Dict[str, StrictBool]]] = Field(default=None, description="App JWT feature toggles stored on `MultiRoleFeature.roles[].featurePermissions`. Structure: `{ [resource: string]: { [action: string]: boolean } }`. Only **explicit `false`** on a key that matches the resolved gate denies; missing resources/actions imply no extra denial.  **Canonical map** of `(resource, action)` pairs enforced at runtime: `services/appRoleFeatureMap.js` (`RULES`). Regenerate inventory: `node scripts/verify-app-role-feature-map.js`.  **Messaging** also accepts legacy keys (`email`, `sms`, `push`, `history`, `stats`) alongside `send_email`, `send_sms`, `send_push`, `read_history`, `read_stats` — see `services/appRoleFeatureService.js` (`MESSAGING_SYNONYMS`).  | Resource | Actions (boolean keys under the resource object) | |----------|--------------------------------------------------| | `messaging` | `send_email`, `send_sms`, `send_push`, `read_history`, `read_stats` (legacy: `email`, `sms`, `push`, `history`, `stats`) | | `integration` | `read`, `create`, `update`, `delete`, `execute`, `test`, `export`, `read_usage` | | `functions` | `create`, `read`, `update`, `delete`, `execute`, `simulate` | | `data` | `create`, `read`, `update`, `delete` | | `search` | `query`, `suggestions`, `read_analytics` | | `usage` | `read` | | `storage` | `read`, `create`, `update`, `delete`, `upload` | | `chat` | `read`, `create`, `update`, `delete` | | `realtime` | `read_analytics`, `read_active_users`, `presence`, `read_throughput`, `read_history` | | `roleElevation` | `request`, `status`, `documents` | | `webhooks` | `config_read`, `config_update`, `test_transformation` | ", alias="featurePermissions")
+    feature_permissions: Optional[Dict[str, Dict[str, StrictBool]]] = Field(default=None, description="App JWT feature toggles stored on `MultiRoleFeature.roles[].featurePermissions`. Structure: `{ [resource: string]: { [action: string]: boolean } }`. Only **explicit `false`** on a key that matches the resolved gate denies; missing resources/actions imply no extra denial.  **Canonical map** of `(resource, action)` pairs enforced at runtime: `services/appRoleFeatureMap.js` (`RULES`). Regenerate inventory: `node scripts/verify-app-role-feature-map.js`.  **Messaging** also accepts legacy keys (`email`, `sms`, `push`, `history`, `stats`) alongside `send_email`, `send_sms`, `send_push`, `read_history`, `read_stats` — see `services/appRoleFeatureService.js` (`MESSAGING_SYNONYMS`).  | Resource | Actions (boolean keys under the resource object) | |----------|--------------------------------------------------| | `messaging` | `send_email`, `send_sms`, `send_push`, `read_history`, `read_stats` (legacy: `email`, `sms`, `push`, `history`, `stats`) | | `integration` | `read`, `create`, `update`, `delete`, `execute`, `test`, `export`, `read_usage` | | `functions` | `create`, `read`, `update`, `delete`, `execute`, `simulate` | | `data` | `create`, `read`, `update`, `delete` | | `search` | `query`, `suggestions`, `read_analytics` | | `usage` | `read` | | `storage` | `read`, `create`, `update`, `delete`, `upload` | | `chat` | `read`, `create`, `update`, `delete` | | `realtime` | `read_analytics`, `read_active_users`, `presence`, `read_throughput`, `read_history` | | `roleElevation` | `request`, `status`, `documents` | | `webhooks` | `config_read`, `config_update`, `test_transformation` | ", alias="featurePermissions", json_schema_extra={"examples": [{"messaging": {"email": True, "sms": True, "push": False, "history": True, "stats": True}, "integration": {"read": True, "execute": True}, "storage": {"read": True, "upload": True}}]})
     __properties: ClassVar[List[str]] = ["slug", "name", "description", "signupEndpoint", "requiresApproval", "requiresPayment", "requiresKYC", "defaultPermissions", "collectionPermissions", "metadata", "featurePermissions"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -55,8 +57,7 @@ class AddCustomRoleRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

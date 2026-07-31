@@ -1119,7 +1119,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mudbase_sdk.ProjectsApi(api_client)
     id = 'id_example' # str | Project ID
-    logo = None # bytearray | Logo image (PNG, JPEG, GIF, or WebP; max 2MB)
+    logo = None # bytes | Logo image (PNG, JPEG, GIF, or WebP; max 2MB)
 
     try:
         # Upload project logo (by project ID)
@@ -1138,7 +1138,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project ID | 
- **logo** | **bytearray**| Logo image (PNG, JPEG, GIF, or WebP; max 2MB) | 
+ **logo** | **bytes**| Logo image (PNG, JPEG, GIF, or WebP; max 2MB) | 
 
 ### Return type
 
@@ -1210,7 +1210,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     api_instance = mudbase_sdk.ProjectsApi(api_client)
     org_id = 'org_id_example' # str | Organization ID
     id = 'id_example' # str | Project ID
-    logo = None # bytearray | Logo image (PNG, JPEG, GIF, or WebP; max 2MB)
+    logo = None # bytes | Logo image (PNG, JPEG, GIF, or WebP; max 2MB)
 
     try:
         # Upload project logo (by org and project ID)
@@ -1230,7 +1230,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **org_id** | **str**| Organization ID | 
  **id** | **str**| Project ID | 
- **logo** | **bytearray**| Logo image (PNG, JPEG, GIF, or WebP; max 2MB) | 
+ **logo** | **bytes**| Logo image (PNG, JPEG, GIF, or WebP; max 2MB) | 
 
 ### Return type
 

@@ -25,6 +25,7 @@ from mudbase_sdk.models.create_plan_request_limits import CreatePlanRequestLimit
 from mudbase_sdk.models.create_plan_request_trial import CreatePlanRequestTrial
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreatePlanRequest(BaseModel):
     """
@@ -33,7 +34,7 @@ class CreatePlanRequest(BaseModel):
     name: StrictStr = Field(description="Display name; also used to generate a unique slug per project.")
     description: Optional[StrictStr] = None
     price: Union[StrictFloat, StrictInt] = Field(description="Amount for the chosen interval. The server fills the other billing period (e.g. yearly ≈ monthly × 12 × 0.8 when interval is month). ")
-    currency: StrictStr = Field(description="ISO currency code (stored lowercased).")
+    currency: StrictStr = Field(description="ISO currency code (stored lowercased).", json_schema_extra={"examples": ["USD"]})
     interval: StrictStr = Field(description="Which period `price` applies to; drives pricing.monthly vs pricing.yearly.")
     features: Optional[List[CreatePlanRequestFeaturesInner]] = Field(default=None, description="Strings become `{ name, included: true }`. You may send full feature objects instead. ")
     limits: Optional[CreatePlanRequestLimits] = None
@@ -52,7 +53,8 @@ class CreatePlanRequest(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -64,8 +66,7 @@ class CreatePlanRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

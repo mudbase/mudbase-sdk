@@ -22,13 +22,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class UpdateCollectionPermissionsRequest(BaseModel):
     """
     UpdateCollectionPermissionsRequest
     """ # noqa: E501
-    actions: Optional[List[StrictStr]] = None
-    conditions: Optional[Dict[str, Any]] = None
+    actions: Optional[List[StrictStr]] = Field(default=None, json_schema_extra={"examples": [["create", "read", "update", "delete"]]})
+    conditions: Optional[Dict[str, Any]] = Field(default=None, json_schema_extra={"examples": [{"status": "active"}]})
     data_scope: Optional[StrictStr] = Field(default=None, description="`all` = no automatic row-owner filter. `own` = only documents where the owner field matches the authenticated app user.", alias="dataScope")
     owner_field: Optional[StrictStr] = Field(default=None, description="Optional override for the document field when dataScope is `own` (default `settings.dataOwnerField`, usually `createdBy`).", alias="ownerField")
     __properties: ClassVar[List[str]] = ["actions", "conditions", "dataScope", "ownerField"]
@@ -55,7 +56,8 @@ class UpdateCollectionPermissionsRequest(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -67,8 +69,7 @@ class UpdateCollectionPermissionsRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

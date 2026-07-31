@@ -55,7 +55,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mudbase_sdk.SearchApi(api_client)
     project_id = '685ad30be129932fbb7a1047' # str | 
-    timeframe = 7d # str |  (optional) (default to 7d)
+    timeframe = '7d' # str |  (optional) (default to '7d')
 
     try:
         # Get search analytics
@@ -74,7 +74,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **timeframe** | **str**|  | [optional] [default to 7d]
+ **timeframe** | **str**|  | [optional] [default to &#39;7d&#39;]
 
 ### Return type
 

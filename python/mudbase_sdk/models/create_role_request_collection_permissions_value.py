@@ -18,23 +18,24 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from mudbase_sdk.models.create_role_request_collection_permissions_value_one_of import CreateRoleRequestCollectionPermissionsValueOneOf
+from mudbase_sdk.models.collection_action import CollectionAction
+from mudbase_sdk.models.collection_permission_rule import CollectionPermissionRule
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-CREATEROLEREQUESTCOLLECTIONPERMISSIONSVALUE_ONE_OF_SCHEMAS = ["CreateRoleRequestCollectionPermissionsValueOneOf", "List[str]"]
+CREATEROLEREQUESTCOLLECTIONPERMISSIONSVALUE_ONE_OF_SCHEMAS = ["CollectionPermissionRule", "List[CollectionAction]"]
 
 class CreateRoleRequestCollectionPermissionsValue(BaseModel):
     """
     CreateRoleRequestCollectionPermissionsValue
     """
-    # data type: List[str]
-    oneof_schema_1_validator: Optional[List[StrictStr]] = None
-    # data type: CreateRoleRequestCollectionPermissionsValueOneOf
-    oneof_schema_2_validator: Optional[CreateRoleRequestCollectionPermissionsValueOneOf] = None
-    actual_instance: Optional[Union[CreateRoleRequestCollectionPermissionsValueOneOf, List[str]]] = None
-    one_of_schemas: Set[str] = { "CreateRoleRequestCollectionPermissionsValueOneOf", "List[str]" }
+    # data type: List[CollectionAction]
+    oneof_schema_1_validator: Optional[List[CollectionAction]] = Field(default=None, description="List of CRUD actions granted on a collection")
+    # data type: CollectionPermissionRule
+    oneof_schema_2_validator: Optional[CollectionPermissionRule] = None
+    actual_instance: Optional[Union[CollectionPermissionRule, List[CollectionAction]]] = None
+    one_of_schemas: Set[str] = { "CollectionPermissionRule", "List[CollectionAction]" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -57,23 +58,23 @@ class CreateRoleRequestCollectionPermissionsValue(BaseModel):
         instance = CreateRoleRequestCollectionPermissionsValue.model_construct()
         error_messages = []
         match = 0
-        # validate data type: List[str]
+        # validate data type: List[CollectionAction]
         try:
             instance.oneof_schema_1_validator = v
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # validate data type: CreateRoleRequestCollectionPermissionsValueOneOf
-        if not isinstance(v, CreateRoleRequestCollectionPermissionsValueOneOf):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `CreateRoleRequestCollectionPermissionsValueOneOf`")
+        # validate data type: CollectionPermissionRule
+        if not isinstance(v, CollectionPermissionRule):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CollectionPermissionRule`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CreateRoleRequestCollectionPermissionsValueOneOf, List[str]. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CollectionPermissionRule, List[CollectionAction]. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CreateRoleRequestCollectionPermissionsValueOneOf, List[str]. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CollectionPermissionRule, List[CollectionAction]. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -88,7 +89,7 @@ class CreateRoleRequestCollectionPermissionsValue(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into List[str]
+        # deserialize data into List[CollectionAction]
         try:
             # validation
             instance.oneof_schema_1_validator = json.loads(json_str)
@@ -97,19 +98,19 @@ class CreateRoleRequestCollectionPermissionsValue(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into CreateRoleRequestCollectionPermissionsValueOneOf
+        # deserialize data into CollectionPermissionRule
         try:
-            instance.actual_instance = CreateRoleRequestCollectionPermissionsValueOneOf.from_json(json_str)
+            instance.actual_instance = CollectionPermissionRule.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CreateRoleRequestCollectionPermissionsValueOneOf, List[str]. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CollectionPermissionRule, List[CollectionAction]. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CreateRoleRequestCollectionPermissionsValueOneOf, List[str]. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CollectionPermissionRule, List[CollectionAction]. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -123,7 +124,7 @@ class CreateRoleRequestCollectionPermissionsValue(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateRoleRequestCollectionPermissionsValueOneOf, List[str]]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], CollectionPermissionRule, List[CollectionAction]]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

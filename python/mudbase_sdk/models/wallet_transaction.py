@@ -24,32 +24,33 @@ from typing import Any, ClassVar, Dict, List, Optional
 from mudbase_sdk.models.wallet_transaction_token_transfers_inner import WalletTransactionTokenTransfersInner
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class WalletTransaction(BaseModel):
     """
     WalletTransaction
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, alias="_id")
-    tx_hash: Optional[StrictStr] = Field(default=None, alias="txHash")
-    main_tx_hash: Optional[StrictStr] = Field(default=None, alias="mainTxHash")
-    address: Optional[StrictStr] = None
-    chain: Optional[StrictStr] = None
-    var_from: Optional[StrictStr] = Field(default=None, alias="from")
-    to: Optional[StrictStr] = None
-    from_address: Optional[StrictStr] = Field(default=None, alias="fromAddress")
-    to_address: Optional[StrictStr] = Field(default=None, alias="toAddress")
-    amount: Optional[StrictStr] = Field(default=None, description="Transaction amount (string to handle large numbers)")
-    currency: Optional[StrictStr] = None
-    type: Optional[StrictStr] = None
-    status: Optional[StrictStr] = None
-    main_tx_status: Optional[StrictStr] = Field(default=None, alias="mainTxStatus")
-    confirmations: Optional[StrictInt] = None
-    block_number: Optional[StrictInt] = Field(default=None, alias="blockNumber")
-    block_hash: Optional[StrictStr] = Field(default=None, alias="blockHash")
-    network_fee: Optional[StrictStr] = Field(default=None, description="Network fee (string to handle large numbers)", alias="networkFee")
-    main_tx_confirmed_at: Optional[datetime] = Field(default=None, alias="mainTxConfirmedAt")
-    created_at: Optional[datetime] = Field(default=None, alias="createdAt")
-    updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
+    id: Optional[StrictStr] = Field(default=None, alias="_id", json_schema_extra={"examples": ["65a1b2c3d4e5f6789012345b"]})
+    tx_hash: Optional[StrictStr] = Field(default=None, alias="txHash", json_schema_extra={"examples": ["0xabc123def4567890123456789012345678901234567890123456789012345678"]})
+    main_tx_hash: Optional[StrictStr] = Field(default=None, alias="mainTxHash", json_schema_extra={"examples": ["0xabc123def4567890123456789012345678901234567890123456789012345678"]})
+    address: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"]})
+    chain: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["ethereum"]})
+    var_from: Optional[StrictStr] = Field(default=None, alias="from", json_schema_extra={"examples": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"]})
+    to: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["0xdef4567890123456789012345678901234567890"]})
+    from_address: Optional[StrictStr] = Field(default=None, alias="fromAddress", json_schema_extra={"examples": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"]})
+    to_address: Optional[StrictStr] = Field(default=None, alias="toAddress", json_schema_extra={"examples": ["0xdef4567890123456789012345678901234567890"]})
+    amount: Optional[StrictStr] = Field(default=None, description="Transaction amount (string to handle large numbers)", json_schema_extra={"examples": ["0.1"]})
+    currency: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["ETH"]})
+    type: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["transfer"]})
+    status: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["completed"]})
+    main_tx_status: Optional[StrictStr] = Field(default=None, alias="mainTxStatus", json_schema_extra={"examples": ["confirmed"]})
+    confirmations: Optional[StrictInt] = Field(default=None, json_schema_extra={"examples": [12]})
+    block_number: Optional[StrictInt] = Field(default=None, alias="blockNumber", json_schema_extra={"examples": [12345678]})
+    block_hash: Optional[StrictStr] = Field(default=None, alias="blockHash", json_schema_extra={"examples": ["0xdef7890123456789012345678901234567890123456789012345678901234567"]})
+    network_fee: Optional[StrictStr] = Field(default=None, description="Network fee (string to handle large numbers)", alias="networkFee", json_schema_extra={"examples": ["0.00021"]})
+    main_tx_confirmed_at: Optional[datetime] = Field(default=None, alias="mainTxConfirmedAt", json_schema_extra={"examples": ["2026-01-22T10:00:00Z"]})
+    created_at: Optional[datetime] = Field(default=None, alias="createdAt", json_schema_extra={"examples": ["2026-01-22T10:00:00Z"]})
+    updated_at: Optional[datetime] = Field(default=None, alias="updatedAt", json_schema_extra={"examples": ["2026-01-22T10:00:00Z"]})
     token_transfers: Optional[List[WalletTransactionTokenTransfersInner]] = Field(default=None, description="Parsed token transfer list (incoming and outgoing) when available", alias="tokenTransfers")
     __properties: ClassVar[List[str]] = ["_id", "txHash", "mainTxHash", "address", "chain", "from", "to", "fromAddress", "toAddress", "amount", "currency", "type", "status", "mainTxStatus", "confirmations", "blockNumber", "blockHash", "networkFee", "mainTxConfirmedAt", "createdAt", "updatedAt", "tokenTransfers"]
 
@@ -74,7 +75,8 @@ class WalletTransaction(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -86,8 +88,7 @@ class WalletTransaction(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

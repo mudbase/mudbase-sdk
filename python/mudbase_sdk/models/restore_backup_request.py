@@ -22,14 +22,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RestoreBackupRequest(BaseModel):
     """
     RestoreBackupRequest
     """ # noqa: E501
-    restore_mode: Optional[StrictStr] = Field(default=None, alias="restoreMode")
-    collections: Optional[List[StrictStr]] = Field(default=None, description="Optional: specific collections to restore")
-    confirmation: StrictStr
+    restore_mode: Optional[StrictStr] = Field(default=None, alias="restoreMode", json_schema_extra={"examples": ["replace"]})
+    collections: Optional[List[StrictStr]] = Field(default=None, description="Optional: specific collections to restore", json_schema_extra={"examples": [["products", "orders"]]})
+    confirmation: StrictStr = Field(json_schema_extra={"examples": ["RESTORE_DATA"]})
     __properties: ClassVar[List[str]] = ["restoreMode", "collections", "confirmation"]
 
     @field_validator('restore_mode')
@@ -50,7 +51,8 @@ class RestoreBackupRequest(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -62,8 +64,7 @@ class RestoreBackupRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -22,23 +22,25 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class WalletTransactionTokenTransfersInner(BaseModel):
     """
     WalletTransactionTokenTransfersInner
     """ # noqa: E501
-    token_address: Optional[StrictStr] = Field(default=None, alias="tokenAddress")
-    var_from: Optional[StrictStr] = Field(default=None, alias="from")
-    to: Optional[StrictStr] = None
-    value: Optional[StrictStr] = Field(default=None, description="Raw token units (string to preserve precision)")
-    formatted_amount: Optional[StrictStr] = Field(default=None, description="Human-readable token amount (units)", alias="formattedAmount")
-    token_symbol: Optional[StrictStr] = Field(default=None, alias="tokenSymbol")
-    token_decimals: Optional[StrictInt] = Field(default=None, alias="tokenDecimals")
-    is_incoming: Optional[StrictBool] = Field(default=None, alias="isIncoming")
+    token_address: Optional[StrictStr] = Field(default=None, alias="tokenAddress", json_schema_extra={"examples": ["0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e"]})
+    var_from: Optional[StrictStr] = Field(default=None, alias="from", json_schema_extra={"examples": ["0x1194d844f5c5a9adc488835e1f506dafbb579341"]})
+    to: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["0x000000000000000000000000000000000ce106a5"]})
+    value: Optional[StrictStr] = Field(default=None, description="Raw token units (string to preserve precision)", json_schema_extra={"examples": ["80"]})
+    formatted_amount: Optional[StrictStr] = Field(default=None, description="Human-readable token amount (units)", alias="formattedAmount", json_schema_extra={"examples": ["0.000076"]})
+    token_symbol: Optional[StrictStr] = Field(default=None, alias="tokenSymbol", json_schema_extra={"examples": ["USDT"]})
+    token_decimals: Optional[StrictInt] = Field(default=None, alias="tokenDecimals", json_schema_extra={"examples": [6]})
+    is_incoming: Optional[StrictBool] = Field(default=None, alias="isIncoming", json_schema_extra={"examples": [True]})
     __properties: ClassVar[List[str]] = ["tokenAddress", "from", "to", "value", "formattedAmount", "tokenSymbol", "tokenDecimals", "isIncoming"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -50,8 +52,7 @@ class WalletTransactionTokenTransfersInner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

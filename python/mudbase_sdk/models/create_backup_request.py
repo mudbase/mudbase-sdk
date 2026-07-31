@@ -22,18 +22,20 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateBackupRequest(BaseModel):
     """
     CreateBackupRequest
     """ # noqa: E501
-    description: Optional[StrictStr] = None
-    include_files: Optional[StrictBool] = Field(default=True, alias="includeFiles")
-    include_wallets: Optional[StrictBool] = Field(default=False, alias="includeWallets")
+    description: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Pre-deployment backup"]})
+    include_files: Optional[StrictBool] = Field(default=True, alias="includeFiles", json_schema_extra={"examples": [True]})
+    include_wallets: Optional[StrictBool] = Field(default=False, alias="includeWallets", json_schema_extra={"examples": [False]})
     __properties: ClassVar[List[str]] = ["description", "includeFiles", "includeWallets"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -45,8 +47,7 @@ class CreateBackupRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -24,6 +24,7 @@ from mudbase_sdk.models.org_cloudflare_edge_hints import OrgCloudflareEdgeHints
 from mudbase_sdk.models.org_dns_record import OrgDnsRecord
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class OrgVerifyCustomDomainDnsSuccessResponse(BaseModel):
     """
@@ -47,7 +48,8 @@ class OrgVerifyCustomDomainDnsSuccessResponse(BaseModel):
     __properties: ClassVar[List[str]] = ["success", "hostname", "status", "verificationToken", "challengeHost", "expectedTxt", "dnsTxtHost", "dnsTxtValue", "cloudflare", "dnsRecords", "flyCertificateStatus", "flyAcmeEnabled", "flyAcmeDisabledReason", "flyProvisionError", "flyLegacyStaffPipeline"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -59,8 +61,7 @@ class OrgVerifyCustomDomainDnsSuccessResponse(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

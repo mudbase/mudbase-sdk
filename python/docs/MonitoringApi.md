@@ -133,8 +133,8 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mudbase_sdk.MonitoringApi(api_client)
     project_id = 'project_id_example' # str |  (optional)
-    period = month # str |  (optional) (default to month)
-    granularity = day # str |  (optional) (default to day)
+    period = 'month' # str |  (optional) (default to 'month')
+    granularity = 'day' # str |  (optional) (default to 'day')
     days = 56 # int | Rolling window in days (1–90); when set, period becomes last_N_days (optional)
 
     try:
@@ -154,8 +154,8 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | [optional] 
- **period** | **str**|  | [optional] [default to month]
- **granularity** | **str**|  | [optional] [default to day]
+ **period** | **str**|  | [optional] [default to &#39;month&#39;]
+ **granularity** | **str**|  | [optional] [default to &#39;day&#39;]
  **days** | **int**| Rolling window in days (1–90); when set, period becomes last_N_days | [optional] 
 
 ### Return type
@@ -464,7 +464,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mudbase_sdk.MonitoringApi(api_client)
     project_id = 'project_id_example' # str |  (optional)
-    period = hour # str |  (optional) (default to hour)
+    period = 'hour' # str |  (optional) (default to 'hour')
 
     try:
         # Get performance metrics
@@ -483,7 +483,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | [optional] 
- **period** | **str**|  | [optional] [default to hour]
+ **period** | **str**|  | [optional] [default to &#39;hour&#39;]
 
 ### Return type
 

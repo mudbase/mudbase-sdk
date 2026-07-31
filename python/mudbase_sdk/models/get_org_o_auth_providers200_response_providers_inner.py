@@ -22,20 +22,22 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class GetOrgOAuthProviders200ResponseProvidersInner(BaseModel):
     """
     GetOrgOAuthProviders200ResponseProvidersInner
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    display_name: Optional[StrictStr] = Field(default=None, alias="displayName")
-    strategy: Optional[StrictStr] = None
-    default_scope: Optional[List[StrictStr]] = Field(default=None, alias="defaultScope")
-    auth_url: Optional[StrictStr] = Field(default=None, alias="authUrl")
+    name: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["google"]})
+    display_name: Optional[StrictStr] = Field(default=None, alias="displayName", json_schema_extra={"examples": ["Google"]})
+    strategy: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["google"]})
+    default_scope: Optional[List[StrictStr]] = Field(default=None, alias="defaultScope", json_schema_extra={"examples": [["profile", "email"]]})
+    auth_url: Optional[StrictStr] = Field(default=None, alias="authUrl", json_schema_extra={"examples": ["/api/auth/oauth-org/google"]})
     __properties: ClassVar[List[str]] = ["name", "displayName", "strategy", "defaultScope", "authUrl"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class GetOrgOAuthProviders200ResponseProvidersInner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

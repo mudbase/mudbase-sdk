@@ -22,20 +22,22 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class UpdateOAuthProviderConfigRequest(BaseModel):
     """
     UpdateOAuthProviderConfigRequest
     """ # noqa: E501
-    enabled: Optional[StrictBool] = Field(default=None, description="Whether the OAuth provider is enabled")
-    client_id: Optional[StrictStr] = Field(default=None, description="OAuth client ID from the provider", alias="clientId")
-    client_secret: Optional[StrictStr] = Field(default=None, description="OAuth client secret from the provider", alias="clientSecret")
-    scope: Optional[List[StrictStr]] = Field(default=None, description="OAuth scopes to request")
-    display_name: Optional[StrictStr] = Field(default=None, description="Custom display name for the provider", alias="displayName")
+    enabled: Optional[StrictBool] = Field(default=None, description="Whether the OAuth provider is enabled", json_schema_extra={"examples": [True]})
+    client_id: Optional[StrictStr] = Field(default=None, description="OAuth client ID from the provider", alias="clientId", json_schema_extra={"examples": ["123456789-abcdefghijklmnop.apps.googleusercontent.com"]})
+    client_secret: Optional[StrictStr] = Field(default=None, description="OAuth client secret from the provider", alias="clientSecret", json_schema_extra={"examples": ["GOCSPX-abcdefghijklmnopqrstuvwxyz"]})
+    scope: Optional[List[StrictStr]] = Field(default=None, description="OAuth scopes to request", json_schema_extra={"examples": [["profile", "email"]]})
+    display_name: Optional[StrictStr] = Field(default=None, description="Custom display name for the provider", alias="displayName", json_schema_extra={"examples": ["Sign in with Google"]})
     __properties: ClassVar[List[str]] = ["enabled", "clientId", "clientSecret", "scope", "displayName"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class UpdateOAuthProviderConfigRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

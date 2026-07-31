@@ -22,18 +22,19 @@ from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, Stric
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class EstimateNonCustodialGas200ResponseData(BaseModel):
     """
     EstimateNonCustodialGas200ResponseData
     """ # noqa: E501
     chain: Optional[StrictStr] = Field(default=None, description="Chain id (e.g. bsc, ethereum, bitcoin)")
-    gas_limit: Optional[StrictStr] = Field(default=None, description="(EVM only) Estimated gas limit from RPC eth_estimateGas", alias="gasLimit")
-    gas_price: Optional[StrictStr] = Field(default=None, description="(EVM only) Gas price in wei", alias="gasPrice")
-    gas_price_gwei: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="(EVM only) Gas price in Gwei", alias="gasPriceGwei")
-    estimated_cost: Optional[StrictStr] = Field(default=None, description="(EVM only) Total cost in wei (gasLimit * gasPrice)", alias="estimatedCost")
-    network_fee: Optional[StrictStr] = Field(default=None, description="Human-readable network fee from blockchain (e.g. \"0.00063 ETH\", \"0.00001 BTC\")", alias="networkFee")
-    estimated_time: Optional[StrictStr] = Field(default=None, description="Estimated confirmation time when available", alias="estimatedTime")
+    gas_limit: Optional[StrictStr] = Field(default=None, description="(EVM only) Estimated gas limit from RPC eth_estimateGas", alias="gasLimit", json_schema_extra={"examples": ["21000"]})
+    gas_price: Optional[StrictStr] = Field(default=None, description="(EVM only) Gas price in wei", alias="gasPrice", json_schema_extra={"examples": ["3000000000"]})
+    gas_price_gwei: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="(EVM only) Gas price in Gwei", alias="gasPriceGwei", json_schema_extra={"examples": [3]})
+    estimated_cost: Optional[StrictStr] = Field(default=None, description="(EVM only) Total cost in wei (gasLimit * gasPrice)", alias="estimatedCost", json_schema_extra={"examples": ["63000000000000"]})
+    network_fee: Optional[StrictStr] = Field(default=None, description="Human-readable network fee from blockchain (e.g. \"0.00063 ETH\", \"0.00001 BTC\")", alias="networkFee", json_schema_extra={"examples": ["0.00063 ETH"]})
+    estimated_time: Optional[StrictStr] = Field(default=None, description="Estimated confirmation time when available", alias="estimatedTime", json_schema_extra={"examples": ["15 seconds"]})
     currency: Optional[StrictStr] = Field(default=None, description="Native currency for the chain (ETH, BNB, MATIC, BTC, SOL, TRX, etc.)")
     sat_per_vb: Optional[StrictInt] = Field(default=None, description="(UTXO only) Satoshis per virtual byte", alias="satPerVb")
     fee_sat: Optional[StrictInt] = Field(default=None, description="(UTXO only) Estimated fee in satoshis", alias="feeSat")
@@ -41,7 +42,8 @@ class EstimateNonCustodialGas200ResponseData(BaseModel):
     __properties: ClassVar[List[str]] = ["chain", "gasLimit", "gasPrice", "gasPriceGwei", "estimatedCost", "networkFee", "estimatedTime", "currency", "satPerVb", "feeSat", "lamports"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -53,8 +55,7 @@ class EstimateNonCustodialGas200ResponseData(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

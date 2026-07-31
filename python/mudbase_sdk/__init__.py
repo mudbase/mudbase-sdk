@@ -131,6 +131,8 @@ __all__ = [
     "CheckUserPresence200ResponsePresenceValue",
     "CheckUserPresenceRequest",
     "Collection",
+    "CollectionAction",
+    "CollectionPermissionRule",
     "ConfigureOAuthProvider200Response",
     "ConfigureOAuthProvider200ResponseProvider",
     "ConfigureOAuthProviderRequest",
@@ -189,7 +191,6 @@ __all__ = [
     "CreateRole201ResponseRolePermissionsInner",
     "CreateRoleRequest",
     "CreateRoleRequestCollectionPermissionsValue",
-    "CreateRoleRequestCollectionPermissionsValueOneOf",
     "CreateRoleRequestPermissionsInner",
     "CreateWallet201Response",
     "CreateWallet201ResponseData",
@@ -578,6 +579,9 @@ __all__ = [
     "RegisterNonCustodialAddressRequest",
     "RegisterRequest",
     "RegisterUser429Response",
+    "RegisterWithRole201Response",
+    "RegisterWithRole201ResponseRole",
+    "RegisterWithRole201ResponseUser",
     "RegisterWithRoleRequest",
     "RemoveParticipantRequest",
     "RemoveReaction200Response",
@@ -844,6 +848,8 @@ from mudbase_sdk.models.check_user_presence200_response import CheckUserPresence
 from mudbase_sdk.models.check_user_presence200_response_presence_value import CheckUserPresence200ResponsePresenceValue as CheckUserPresence200ResponsePresenceValue
 from mudbase_sdk.models.check_user_presence_request import CheckUserPresenceRequest as CheckUserPresenceRequest
 from mudbase_sdk.models.collection import Collection as Collection
+from mudbase_sdk.models.collection_action import CollectionAction as CollectionAction
+from mudbase_sdk.models.collection_permission_rule import CollectionPermissionRule as CollectionPermissionRule
 from mudbase_sdk.models.configure_o_auth_provider200_response import ConfigureOAuthProvider200Response as ConfigureOAuthProvider200Response
 from mudbase_sdk.models.configure_o_auth_provider200_response_provider import ConfigureOAuthProvider200ResponseProvider as ConfigureOAuthProvider200ResponseProvider
 from mudbase_sdk.models.configure_o_auth_provider_request import ConfigureOAuthProviderRequest as ConfigureOAuthProviderRequest
@@ -902,7 +908,6 @@ from mudbase_sdk.models.create_role201_response_role import CreateRole201Respons
 from mudbase_sdk.models.create_role201_response_role_permissions_inner import CreateRole201ResponseRolePermissionsInner as CreateRole201ResponseRolePermissionsInner
 from mudbase_sdk.models.create_role_request import CreateRoleRequest as CreateRoleRequest
 from mudbase_sdk.models.create_role_request_collection_permissions_value import CreateRoleRequestCollectionPermissionsValue as CreateRoleRequestCollectionPermissionsValue
-from mudbase_sdk.models.create_role_request_collection_permissions_value_one_of import CreateRoleRequestCollectionPermissionsValueOneOf as CreateRoleRequestCollectionPermissionsValueOneOf
 from mudbase_sdk.models.create_role_request_permissions_inner import CreateRoleRequestPermissionsInner as CreateRoleRequestPermissionsInner
 from mudbase_sdk.models.create_wallet201_response import CreateWallet201Response as CreateWallet201Response
 from mudbase_sdk.models.create_wallet201_response_data import CreateWallet201ResponseData as CreateWallet201ResponseData
@@ -1291,6 +1296,9 @@ from mudbase_sdk.models.register_local_user_request import RegisterLocalUserRequ
 from mudbase_sdk.models.register_non_custodial_address_request import RegisterNonCustodialAddressRequest as RegisterNonCustodialAddressRequest
 from mudbase_sdk.models.register_request import RegisterRequest as RegisterRequest
 from mudbase_sdk.models.register_user429_response import RegisterUser429Response as RegisterUser429Response
+from mudbase_sdk.models.register_with_role201_response import RegisterWithRole201Response as RegisterWithRole201Response
+from mudbase_sdk.models.register_with_role201_response_role import RegisterWithRole201ResponseRole as RegisterWithRole201ResponseRole
+from mudbase_sdk.models.register_with_role201_response_user import RegisterWithRole201ResponseUser as RegisterWithRole201ResponseUser
 from mudbase_sdk.models.register_with_role_request import RegisterWithRoleRequest as RegisterWithRoleRequest
 from mudbase_sdk.models.remove_participant_request import RemoveParticipantRequest as RemoveParticipantRequest
 from mudbase_sdk.models.remove_reaction200_response import RemoveReaction200Response as RemoveReaction200Response

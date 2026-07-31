@@ -26,6 +26,7 @@ from mudbase_sdk.models.api_key_permission import ApiKeyPermission
 from mudbase_sdk.models.rate_limit import RateLimit
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateApiKeyRequest(BaseModel):
     """
@@ -38,15 +39,16 @@ class CreateApiKeyRequest(BaseModel):
     expires_at: Optional[datetime] = Field(default=None, description="Optional. When provided, must be a valid ISO 8601 date-time in the future. Omit for no expiration.", alias="expiresAt")
     __properties: ClassVar[List[str]] = ["name", "projectId", "permissions", "rateLimit", "expiresAt"]
 
-    @field_validator('project_id')
+    @field_validator('project_id', mode="before")
     def project_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[0-9a-fA-F]{24}$", value):
+        if isinstance(value, str) and not re.match(r"^[0-9a-fA-F]{24}$", value):
             raise ValueError(r"must validate the regular expression /^[0-9a-fA-F]{24}$/")
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -58,8 +60,7 @@ class CreateApiKeyRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

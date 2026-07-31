@@ -23,23 +23,24 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class NonCustodialAddress(BaseModel):
     """
     NonCustodialAddress
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, alias="_id")
-    address: Optional[StrictStr] = None
+    id: Optional[StrictStr] = Field(default=None, alias="_id", json_schema_extra={"examples": ["65a1b2c3d4e5f6789012345a"]})
+    address: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"]})
     chain: Optional[StrictStr] = None
-    org: Optional[StrictStr] = None
-    project: Optional[StrictStr] = None
-    derivation_path: Optional[StrictStr] = Field(default=None, alias="derivationPath")
-    label: Optional[StrictStr] = None
-    is_active: Optional[StrictBool] = Field(default=None, alias="isActive")
-    registered_at: Optional[datetime] = Field(default=None, alias="registeredAt")
-    last_synced_at: Optional[datetime] = Field(default=None, alias="lastSyncedAt")
-    created_at: Optional[datetime] = Field(default=None, alias="createdAt")
-    updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
+    org: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["685acbe0e129932fbb7a0fc3"]})
+    project: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["685ad30be129932fbb7a1047"]})
+    derivation_path: Optional[StrictStr] = Field(default=None, alias="derivationPath", json_schema_extra={"examples": ["m/44'/60'/0'/0/5"]})
+    label: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["User Wallet 5"]})
+    is_active: Optional[StrictBool] = Field(default=None, alias="isActive", json_schema_extra={"examples": [True]})
+    registered_at: Optional[datetime] = Field(default=None, alias="registeredAt", json_schema_extra={"examples": ["2026-01-22T10:00:00Z"]})
+    last_synced_at: Optional[datetime] = Field(default=None, alias="lastSyncedAt", json_schema_extra={"examples": ["2026-01-22T10:05:00Z"]})
+    created_at: Optional[datetime] = Field(default=None, alias="createdAt", json_schema_extra={"examples": ["2026-01-22T10:00:00Z"]})
+    updated_at: Optional[datetime] = Field(default=None, alias="updatedAt", json_schema_extra={"examples": ["2026-01-22T10:00:00Z"]})
     __properties: ClassVar[List[str]] = ["_id", "address", "chain", "org", "project", "derivationPath", "label", "isActive", "registeredAt", "lastSyncedAt", "createdAt", "updatedAt"]
 
     @field_validator('chain')
@@ -53,7 +54,8 @@ class NonCustodialAddress(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -65,8 +67,7 @@ class NonCustodialAddress(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

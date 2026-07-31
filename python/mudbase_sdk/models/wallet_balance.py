@@ -23,22 +23,24 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class WalletBalance(BaseModel):
     """
     WalletBalance
     """ # noqa: E501
-    address: Optional[StrictStr] = None
-    chain: Optional[StrictStr] = None
-    confirmed: Optional[StrictStr] = Field(default=None, description="Confirmed balance (string to handle large numbers)")
-    unconfirmed: Optional[StrictStr] = Field(default=None, description="Unconfirmed balance (string to handle large numbers)")
-    total: Optional[StrictStr] = Field(default=None, description="Total balance (string to handle large numbers)")
-    currency: Optional[StrictStr] = None
-    last_updated: Optional[datetime] = Field(default=None, alias="lastUpdated")
+    address: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"]})
+    chain: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["ethereum"]})
+    confirmed: Optional[StrictStr] = Field(default=None, description="Confirmed balance (string to handle large numbers)", json_schema_extra={"examples": ["1.5"]})
+    unconfirmed: Optional[StrictStr] = Field(default=None, description="Unconfirmed balance (string to handle large numbers)", json_schema_extra={"examples": ["0.0"]})
+    total: Optional[StrictStr] = Field(default=None, description="Total balance (string to handle large numbers)", json_schema_extra={"examples": ["1.5"]})
+    currency: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["ETH"]})
+    last_updated: Optional[datetime] = Field(default=None, alias="lastUpdated", json_schema_extra={"examples": ["2026-01-22T10:05:00Z"]})
     __properties: ClassVar[List[str]] = ["address", "chain", "confirmed", "unconfirmed", "total", "currency", "lastUpdated"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -50,8 +52,7 @@ class WalletBalance(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

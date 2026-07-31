@@ -22,19 +22,21 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class EraseUserData200ResponseData(BaseModel):
     """
     EraseUserData200ResponseData
     """ # noqa: E501
-    already_erased: Optional[StrictBool] = Field(default=None, alias="alreadyErased")
-    subject_id: Optional[StrictStr] = Field(default=None, alias="subjectId")
-    anonymized: Optional[StrictBool] = None
-    sessions_revoked: Optional[StrictBool] = Field(default=None, alias="sessionsRevoked")
+    already_erased: Optional[StrictBool] = Field(default=None, alias="alreadyErased", json_schema_extra={"examples": [False]})
+    subject_id: Optional[StrictStr] = Field(default=None, alias="subjectId", json_schema_extra={"examples": ["685acbe0e129932fbb7a0fc2"]})
+    anonymized: Optional[StrictBool] = Field(default=None, json_schema_extra={"examples": [True]})
+    sessions_revoked: Optional[StrictBool] = Field(default=None, alias="sessionsRevoked", json_schema_extra={"examples": [True]})
     __properties: ClassVar[List[str]] = ["alreadyErased", "subjectId", "anonymized", "sessionsRevoked"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -46,8 +48,7 @@ class EraseUserData200ResponseData(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

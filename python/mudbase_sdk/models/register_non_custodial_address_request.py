@@ -22,15 +22,16 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RegisterNonCustodialAddressRequest(BaseModel):
     """
     RegisterNonCustodialAddressRequest
     """ # noqa: E501
-    address: StrictStr = Field(description="Public wallet address")
+    address: StrictStr = Field(description="Public wallet address", json_schema_extra={"examples": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"]})
     chain: StrictStr = Field(description="Blockchain network (EVM, UTXO, or chain-specific). Use bsc or binance for BNB Smart Chain; avalanche for Avalanche C-Chain.")
-    derivation_path: Optional[StrictStr] = Field(default=None, description="HD wallet derivation path (metadata only)", alias="derivationPath")
-    label: Optional[StrictStr] = Field(default=None, description="Optional label for the address")
+    derivation_path: Optional[StrictStr] = Field(default=None, description="HD wallet derivation path (metadata only)", alias="derivationPath", json_schema_extra={"examples": ["m/44'/60'/0'/0/5"]})
+    label: Optional[StrictStr] = Field(default=None, description="Optional label for the address", json_schema_extra={"examples": ["User Wallet 5"]})
     project_id: Optional[StrictStr] = Field(default=None, description="Optional project ID", alias="projectId")
     __properties: ClassVar[List[str]] = ["address", "chain", "derivationPath", "label", "projectId"]
 
@@ -42,7 +43,8 @@ class RegisterNonCustodialAddressRequest(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -54,8 +56,7 @@ class RegisterNonCustodialAddressRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

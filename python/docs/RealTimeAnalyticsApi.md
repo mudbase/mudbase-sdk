@@ -402,7 +402,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mudbase_sdk.RealTimeAnalyticsApi(api_client)
     project_id = 'project_id_example' # str | 
-    period = hour # str | Time period for historical data (optional) (default to hour)
+    period = 'hour' # str | Time period for historical data (optional) (default to 'hour')
 
     try:
         # Get historical analytics
@@ -421,7 +421,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
- **period** | **str**| Time period for historical data | [optional] [default to hour]
+ **period** | **str**| Time period for historical data | [optional] [default to &#39;hour&#39;]
 
 ### Return type
 

@@ -23,19 +23,21 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class ListOAuthProviders200ResponseProvidersInner(BaseModel):
     """
     ListOAuthProviders200ResponseProvidersInner
     """ # noqa: E501
-    provider: Optional[StrictStr] = None
-    provider_id: Optional[StrictStr] = Field(default=None, alias="providerId")
-    email: Optional[StrictStr] = None
+    provider: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["google"]})
+    provider_id: Optional[StrictStr] = Field(default=None, alias="providerId", json_schema_extra={"examples": ["google-user-id-123"]})
+    email: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["user@gmail.com"]})
     linked_at: Optional[datetime] = Field(default=None, alias="linkedAt")
     __properties: ClassVar[List[str]] = ["provider", "providerId", "email", "linkedAt"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class ListOAuthProviders200ResponseProvidersInner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

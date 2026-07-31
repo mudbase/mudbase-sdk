@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     MUDBASESDK
 
@@ -11,6 +9,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -26,6 +25,7 @@ from mudbase_sdk.models.apply_role_feature_preset_request import ApplyRoleFeatur
 from mudbase_sdk.models.get_available_roles200_response import GetAvailableRoles200Response
 from mudbase_sdk.models.get_multi_role_config200_response import GetMultiRoleConfig200Response
 from mudbase_sdk.models.get_permissions_matrix200_response import GetPermissionsMatrix200Response
+from mudbase_sdk.models.register_with_role201_response import RegisterWithRole201Response
 from mudbase_sdk.models.register_with_role_request import RegisterWithRoleRequest
 from mudbase_sdk.models.simulate_app_permissions200_response import SimulateAppPermissions200Response
 from mudbase_sdk.models.simulate_app_permissions_request import SimulateAppPermissionsRequest
@@ -1770,7 +1770,7 @@ class MultiRoleFeatureApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
+    ) -> RegisterWithRole201Response:
         """Register user with specific role (Local Auth)
 
         Public endpoint for user registration with a specific role. The path segment must match a role's `signupEndpoint` (default starter is `customer`; add more roles via multi-role API). No authentication required - this is a public signup endpoint. 
@@ -1811,7 +1811,9 @@ class MultiRoleFeatureApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': None,
+            '201': "RegisterWithRole201Response",
+            '400': None,
+            '403': None,
             '404': None,
         }
         response_data = self.api_client.call_api(
@@ -1842,7 +1844,7 @@ class MultiRoleFeatureApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
+    ) -> ApiResponse[RegisterWithRole201Response]:
         """Register user with specific role (Local Auth)
 
         Public endpoint for user registration with a specific role. The path segment must match a role's `signupEndpoint` (default starter is `customer`; add more roles via multi-role API). No authentication required - this is a public signup endpoint. 
@@ -1883,7 +1885,9 @@ class MultiRoleFeatureApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': None,
+            '201': "RegisterWithRole201Response",
+            '400': None,
+            '403': None,
             '404': None,
         }
         response_data = self.api_client.call_api(
@@ -1955,7 +1959,9 @@ class MultiRoleFeatureApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': None,
+            '201': "RegisterWithRole201Response",
+            '400': None,
+            '403': None,
             '404': None,
         }
         response_data = self.api_client.call_api(
@@ -2000,6 +2006,13 @@ class MultiRoleFeatureApi:
             _body_params = register_with_role_request
 
 
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
         # set the HTTP header `Content-Type`
         if _content_type:

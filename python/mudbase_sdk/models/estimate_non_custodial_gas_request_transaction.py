@@ -22,21 +22,23 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class EstimateNonCustodialGasRequestTransaction(BaseModel):
     """
     Required for EVM chains. Optional for non-EVM (ignored). Supports 1) Token transfer { from, tokenAddress, to, amount }, 2) Native transfer { from, to, value }, 3) Raw { from, to, value, data }. 
     """ # noqa: E501
-    var_from: StrictStr = Field(description="Sender address", alias="from")
-    to: Optional[StrictStr] = Field(default=None, description="For native transfers: recipient address. For token transfers: recipient address (tokenAddress must be provided separately). For raw format: contract or recipient address. ")
-    value: Optional[StrictStr] = Field(default=None, description="Amount in native currency (ETH/BNB/MATIC). Can be provided as decimal string (e.g., \"1.0\") or wei string. Required for native transfers. ")
-    data: Optional[StrictStr] = Field(default=None, description="Raw transaction data (hex string starting with 0x). Used for raw format or contract calls. For token transfers, this is auto-generated from tokenAddress, to, and amount. ")
-    token_address: Optional[StrictStr] = Field(default=None, description="Token contract address (for token transfers). When provided with 'amount', automatically encodes the transfer. ", alias="tokenAddress")
-    amount: Optional[StrictStr] = Field(default=None, description="Token amount in human-readable format (e.g., \"1.0\" for 1 token). Used with tokenAddress for user-friendly token transfers. Automatically converted to token units based on token decimals. ")
+    var_from: StrictStr = Field(description="Sender address", alias="from", json_schema_extra={"examples": ["0x742d35Cc6634C0532925a3b844Bc454e4438f44e"]})
+    to: Optional[StrictStr] = Field(default=None, description="For native transfers: recipient address. For token transfers: recipient address (tokenAddress must be provided separately). For raw format: contract or recipient address. ", json_schema_extra={"examples": ["0x53d284357ec70cE289D6D64134DfAc8E511c8a3D"]})
+    value: Optional[StrictStr] = Field(default=None, description="Amount in native currency (ETH/BNB/MATIC). Can be provided as decimal string (e.g., \"1.0\") or wei string. Required for native transfers. ", json_schema_extra={"examples": ["1.0"]})
+    data: Optional[StrictStr] = Field(default=None, description="Raw transaction data (hex string starting with 0x). Used for raw format or contract calls. For token transfers, this is auto-generated from tokenAddress, to, and amount. ", json_schema_extra={"examples": ["0xa9059cbb000000000000000000000000..."]})
+    token_address: Optional[StrictStr] = Field(default=None, description="Token contract address (for token transfers). When provided with 'amount', automatically encodes the transfer. ", alias="tokenAddress", json_schema_extra={"examples": ["0xdAC17F958D2ee523a2206206994597C13D831ec7"]})
+    amount: Optional[StrictStr] = Field(default=None, description="Token amount in human-readable format (e.g., \"1.0\" for 1 token). Used with tokenAddress for user-friendly token transfers. Automatically converted to token units based on token decimals. ", json_schema_extra={"examples": ["1.0"]})
     __properties: ClassVar[List[str]] = ["from", "to", "value", "data", "tokenAddress", "amount"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -48,8 +50,7 @@ class EstimateNonCustodialGasRequestTransaction(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -22,14 +22,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class EraseUserDataRequest(BaseModel):
     """
     EraseUserDataRequest
     """ # noqa: E501
-    confirm: StrictStr
-    current_password: Optional[StrictStr] = Field(default=None, description="Required unless the account has no password set (OAuth-only)", alias="currentPassword")
-    totp_token: Optional[StrictStr] = Field(default=None, description="Required only if the account has 2FA enabled", alias="totpToken")
+    confirm: StrictStr = Field(json_schema_extra={"examples": ["DELETE"]})
+    current_password: Optional[StrictStr] = Field(default=None, description="Required unless the account has no password set (OAuth-only)", alias="currentPassword", json_schema_extra={"examples": ["CurrentPassword123!"]})
+    totp_token: Optional[StrictStr] = Field(default=None, description="Required only if the account has 2FA enabled", alias="totpToken", json_schema_extra={"examples": ["123456"]})
     __properties: ClassVar[List[str]] = ["confirm", "currentPassword", "totpToken"]
 
     @field_validator('confirm')
@@ -40,7 +41,8 @@ class EraseUserDataRequest(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -52,8 +54,7 @@ class EraseUserDataRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

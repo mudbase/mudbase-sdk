@@ -22,18 +22,20 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class DashboardOverviewDataRequestVolume14dInner(BaseModel):
     """
     DashboardOverviewDataRequestVolume14dInner
     """ # noqa: E501
-    var_date: Optional[StrictStr] = Field(default=None, alias="date")
+    var_date: Optional[StrictStr] = Field(default=None, alias="date", json_schema_extra={"examples": ["2025-03-18"]})
     api_calls: Optional[StrictInt] = Field(default=None, alias="apiCalls")
     latency_tracked: Optional[StrictInt] = Field(default=None, description="Middleware-metered responses that day (UsageStat latencyCount)", alias="latencyTracked")
     __properties: ClassVar[List[str]] = ["date", "apiCalls", "latencyTracked"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -45,8 +47,7 @@ class DashboardOverviewDataRequestVolume14dInner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

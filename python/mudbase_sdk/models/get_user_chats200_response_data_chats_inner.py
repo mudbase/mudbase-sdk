@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from mudbase_sdk.models.get_user_chats200_response_data_chats_inner_last_message import GetUserChats200ResponseDataChatsInnerLastMessage
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class GetUserChats200ResponseDataChatsInner(BaseModel):
     """
@@ -36,7 +37,8 @@ class GetUserChats200ResponseDataChatsInner(BaseModel):
     __properties: ClassVar[List[str]] = ["_id", "name", "type", "lastMessage", "unreadCount"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -48,8 +50,7 @@ class GetUserChats200ResponseDataChatsInner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

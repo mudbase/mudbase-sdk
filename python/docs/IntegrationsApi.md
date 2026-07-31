@@ -780,7 +780,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     api_instance = mudbase_sdk.IntegrationsApi(api_client)
     project_id = 'project_id_example' # str | 
     integration_id = 'integration_id_example' # str | 
-    period = month # str |  (optional) (default to month)
+    period = 'month' # str |  (optional) (default to 'month')
 
     try:
         # Get integration usage statistics
@@ -800,7 +800,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
  **integration_id** | **str**|  | 
- **period** | **str**|  | [optional] [default to month]
+ **period** | **str**|  | [optional] [default to &#39;month&#39;]
 
 ### Return type
 

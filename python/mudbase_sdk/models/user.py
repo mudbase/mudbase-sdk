@@ -24,6 +24,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from mudbase_sdk.models.organization_summary import OrganizationSummary
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class User(BaseModel):
     """
@@ -36,6 +37,8 @@ class User(BaseModel):
     full_name: Optional[StrictStr] = Field(default=None, alias="fullName")
     avatar: Optional[StrictStr] = None
     role: Optional[StrictStr] = None
+    custom_role: Optional[StrictStr] = Field(default=None, description="Application-level role slug from the project's Multi-Role feature (e.g. \"customer\", \"seller\"). Null for org-level (org/admin/member/viewer) users who aren't project end-users.", alias="customRole")
+    is_anonymous: Optional[StrictBool] = Field(default=None, description="True for a guest session created via POST /api/auth/anonymous that hasn't been converted to a full account yet.", alias="isAnonymous")
     email_verified: Optional[StrictBool] = Field(default=None, alias="emailVerified")
     phone_verified: Optional[StrictBool] = Field(default=None, alias="phoneVerified")
     two_factor_enabled: Optional[StrictBool] = Field(default=None, alias="twoFactorEnabled")
@@ -43,7 +46,7 @@ class User(BaseModel):
     created_at: Optional[datetime] = Field(default=None, alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
     org: Optional[OrganizationSummary] = None
-    __properties: ClassVar[List[str]] = ["_id", "email", "firstName", "lastName", "fullName", "avatar", "role", "emailVerified", "phoneVerified", "twoFactorEnabled", "lastLogin", "createdAt", "updatedAt", "org"]
+    __properties: ClassVar[List[str]] = ["_id", "email", "firstName", "lastName", "fullName", "avatar", "role", "customRole", "isAnonymous", "emailVerified", "phoneVerified", "twoFactorEnabled", "lastLogin", "createdAt", "updatedAt", "org"]
 
     @field_validator('role')
     def role_validate_enum(cls, value):
@@ -56,7 +59,8 @@ class User(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -68,8 +72,7 @@ class User(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -97,6 +100,11 @@ class User(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of org
         if self.org:
             _dict['org'] = self.org.to_dict()
+        # set to None if custom_role (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom_role is None and "custom_role" in self.model_fields_set:
+            _dict['customRole'] = None
+
         return _dict
 
     @classmethod
@@ -116,6 +124,8 @@ class User(BaseModel):
             "fullName": obj.get("fullName"),
             "avatar": obj.get("avatar"),
             "role": obj.get("role"),
+            "customRole": obj.get("customRole"),
+            "isAnonymous": obj.get("isAnonymous"),
             "emailVerified": obj.get("emailVerified"),
             "phoneVerified": obj.get("phoneVerified"),
             "twoFactorEnabled": obj.get("twoFactorEnabled"),

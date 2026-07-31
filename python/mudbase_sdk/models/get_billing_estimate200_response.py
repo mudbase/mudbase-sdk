@@ -24,6 +24,7 @@ from mudbase_sdk.models.get_billing_estimate200_response_line_items_inner import
 from mudbase_sdk.models.get_billing_estimate200_response_spend_limits import GetBillingEstimate200ResponseSpendLimits
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class GetBillingEstimate200Response(BaseModel):
     """
@@ -32,15 +33,16 @@ class GetBillingEstimate200Response(BaseModel):
     period: Optional[StrictStr] = Field(default=None, description="Current month YYYY-MM")
     line_items: Optional[List[GetBillingEstimate200ResponseLineItemsInner]] = Field(default=None, alias="lineItems")
     estimated_overage_cents: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="estimatedOverageCents")
-    estimated_overage: Optional[StrictStr] = Field(default=None, alias="estimatedOverage")
+    estimated_overage: Optional[StrictStr] = Field(default=None, alias="estimatedOverage", json_schema_extra={"examples": ["$12.50"]})
     forecast_overage_cents: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="forecastOverageCents")
-    forecast_overage: Optional[StrictStr] = Field(default=None, alias="forecastOverage")
+    forecast_overage: Optional[StrictStr] = Field(default=None, alias="forecastOverage", json_schema_extra={"examples": ["$38.00"]})
     message: Optional[StrictStr] = Field(default=None, description="Human-readable forecast when applicable")
     spend_limits: Optional[GetBillingEstimate200ResponseSpendLimits] = Field(default=None, alias="spendLimits")
     __properties: ClassVar[List[str]] = ["period", "lineItems", "estimatedOverageCents", "estimatedOverage", "forecastOverageCents", "forecastOverage", "message", "spendLimits"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -52,8 +54,7 @@ class GetBillingEstimate200Response(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

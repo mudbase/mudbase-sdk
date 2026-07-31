@@ -23,20 +23,22 @@ from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class GetEventThroughput200Response(BaseModel):
     """
     GetEventThroughput200Response
     """ # noqa: E501
-    window_ms: Optional[StrictInt] = Field(default=None, alias="windowMs")
-    total_events: Optional[StrictInt] = Field(default=None, alias="totalEvents")
-    events_per_second: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="eventsPerSecond")
+    window_ms: Optional[StrictInt] = Field(default=None, alias="windowMs", json_schema_extra={"examples": [60000]})
+    total_events: Optional[StrictInt] = Field(default=None, alias="totalEvents", json_schema_extra={"examples": [523]})
+    events_per_second: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="eventsPerSecond", json_schema_extra={"examples": [8.72]})
     by_type: Optional[Dict[str, StrictInt]] = Field(default=None, alias="byType")
     timestamp: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["windowMs", "totalEvents", "eventsPerSecond", "byType", "timestamp"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -48,8 +50,7 @@ class GetEventThroughput200Response(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

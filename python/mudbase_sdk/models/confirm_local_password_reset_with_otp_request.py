@@ -23,26 +23,28 @@ from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class ConfirmLocalPasswordResetWithOtpRequest(BaseModel):
     """
     ConfirmLocalPasswordResetWithOtpRequest
     """ # noqa: E501
-    email: StrictStr
-    project_id: StrictStr = Field(alias="projectId")
-    otp: Annotated[str, Field(min_length=6, strict=True, max_length=6)]
-    new_password: Annotated[str, Field(min_length=8, strict=True)] = Field(alias="newPassword")
+    email: StrictStr = Field(json_schema_extra={"examples": ["user@example.com"]})
+    project_id: StrictStr = Field(alias="projectId", json_schema_extra={"examples": ["685ad30be129932fbb7a1047"]})
+    otp: Annotated[str, Field(min_length=6, strict=True, max_length=6)] = Field(json_schema_extra={"examples": ["123456"]})
+    new_password: Annotated[str, Field(min_length=8, strict=True)] = Field(alias="newPassword", json_schema_extra={"examples": ["NewSecurePass123!"]})
     __properties: ClassVar[List[str]] = ["email", "projectId", "otp", "newPassword"]
 
-    @field_validator('otp')
+    @field_validator('otp', mode="before")
     def otp_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[0-9]+$", value):
+        if isinstance(value, str) and not re.match(r"^[0-9]+$", value):
             raise ValueError(r"must validate the regular expression /^[0-9]+$/")
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -54,8 +56,7 @@ class ConfirmLocalPasswordResetWithOtpRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -247,8 +247,8 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     is_active = 'is_active_example' # str |  (optional)
     page = 1 # int |  (optional) (default to 1)
     limit = 50 # int | When present, enables pagination (optional) (default to 50)
-    sort = name # str |  (optional) (default to name)
-    sort_dir = asc # str |  (optional) (default to asc)
+    sort = 'name' # str |  (optional) (default to 'name')
+    sort_dir = 'asc' # str |  (optional) (default to 'asc')
 
     try:
         # List all organizations (Admin)
@@ -271,8 +271,8 @@ Name | Type | Description  | Notes
  **is_active** | **str**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **limit** | **int**| When present, enables pagination | [optional] [default to 50]
- **sort** | **str**|  | [optional] [default to name]
- **sort_dir** | **str**|  | [optional] [default to asc]
+ **sort** | **str**|  | [optional] [default to &#39;name&#39;]
+ **sort_dir** | **str**|  | [optional] [default to &#39;asc&#39;]
 
 ### Return type
 
@@ -920,7 +920,7 @@ configuration = mudbase_sdk.Configuration(
 with mudbase_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = mudbase_sdk.AdminApi(api_client)
-    window = 24h # str |  (optional) (default to 24h)
+    window = '24h' # str |  (optional) (default to '24h')
     type = 'type_example' # str |  (optional)
     limit = 200 # int |  (optional) (default to 200)
 
@@ -938,7 +938,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **window** | **str**|  | [optional] [default to 24h]
+ **window** | **str**|  | [optional] [default to &#39;24h&#39;]
  **type** | **str**|  | [optional] 
  **limit** | **int**|  | [optional] [default to 200]
 

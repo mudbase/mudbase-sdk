@@ -22,14 +22,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class BroadcastNonCustodialTransactionRequest(BaseModel):
     """
     BroadcastNonCustodialTransactionRequest
     """ # noqa: E501
     chain: StrictStr = Field(description="Blockchain for broadcast (EVM, UTXO, or chain-specific)")
-    signed_tx: StrictStr = Field(description="Fully signed transaction (hex string)", alias="signedTx")
-    from_address: StrictStr = Field(description="Address that signed the transaction (must be registered)", alias="fromAddress")
+    signed_tx: StrictStr = Field(description="Fully signed transaction (hex string)", alias="signedTx", json_schema_extra={"examples": ["0x02f8..."]})
+    from_address: StrictStr = Field(description="Address that signed the transaction (must be registered)", alias="fromAddress", json_schema_extra={"examples": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"]})
     __properties: ClassVar[List[str]] = ["chain", "signedTx", "fromAddress"]
 
     @field_validator('chain')
@@ -40,7 +41,8 @@ class BroadcastNonCustodialTransactionRequest(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -52,8 +54,7 @@ class BroadcastNonCustodialTransactionRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

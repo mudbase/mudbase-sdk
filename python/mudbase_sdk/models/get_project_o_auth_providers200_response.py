@@ -18,22 +18,24 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from mudbase_sdk.models.get_project_o_auth_providers200_response_providers_inner import GetProjectOAuthProviders200ResponseProvidersInner
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class GetProjectOAuthProviders200Response(BaseModel):
     """
     GetProjectOAuthProviders200Response
     """ # noqa: E501
     providers: Optional[List[GetProjectOAuthProviders200ResponseProvidersInner]] = None
-    total: Optional[StrictInt] = None
+    total: Optional[StrictInt] = Field(default=None, json_schema_extra={"examples": [3]})
     __properties: ClassVar[List[str]] = ["providers", "total"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -45,8 +47,7 @@ class GetProjectOAuthProviders200Response(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

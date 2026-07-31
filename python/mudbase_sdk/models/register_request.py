@@ -23,20 +23,22 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RegisterRequest(BaseModel):
     """
     RegisterRequest
     """ # noqa: E501
-    email: StrictStr
-    password: Annotated[str, Field(min_length=8, strict=True)]
-    first_name: StrictStr = Field(alias="firstName")
-    last_name: StrictStr = Field(alias="lastName")
-    org_name: Optional[StrictStr] = Field(default=None, alias="orgName")
+    email: StrictStr = Field(json_schema_extra={"examples": ["john.doe@mudbase.dev"]})
+    password: Annotated[str, Field(min_length=8, strict=True)] = Field(json_schema_extra={"examples": ["SecurePass123!"]})
+    first_name: StrictStr = Field(alias="firstName", json_schema_extra={"examples": ["John"]})
+    last_name: StrictStr = Field(alias="lastName", json_schema_extra={"examples": ["Doe"]})
+    org_name: Optional[StrictStr] = Field(default=None, alias="orgName", json_schema_extra={"examples": ["Mudbase"]})
     __properties: ClassVar[List[str]] = ["email", "password", "firstName", "lastName", "orgName"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -48,8 +50,7 @@ class RegisterRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

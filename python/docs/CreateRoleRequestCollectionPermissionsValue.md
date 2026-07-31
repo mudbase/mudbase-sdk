@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**actions** | **List[str]** |  | [optional] 
+**actions** | [**List[CollectionAction]**](CollectionAction.md) |  | [optional] 
 **conditions** | **object** |  | [optional] 
 
 ## Example

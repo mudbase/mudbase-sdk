@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **download_bucket_file**
-> bytearray download_bucket_file(file_id, token=token)
+> bytes download_bucket_file(file_id, token=token)
 
 Download file from bucket
 
@@ -347,7 +347,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**bytearray**
+**bytes**
 
 ### Authorization
 
@@ -916,7 +916,7 @@ with mudbase_sdk.ApiClient(configuration) as api_client:
     api_instance = mudbase_sdk.FilesApi(api_client)
     project_id = 'project_id_example' # str | 
     bucket_id = 'bucket_id_example' # str | 
-    files = None # List[bytearray] | 
+    files = None # List[bytes] | 
 
     try:
         # Upload files to bucket
@@ -936,7 +936,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  | 
  **bucket_id** | **str**|  | 
- **files** | **List[bytearray]**|  | 
+ **files** | **List[bytes]**|  | 
 
 ### Return type
 

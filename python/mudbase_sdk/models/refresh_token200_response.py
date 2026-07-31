@@ -22,19 +22,21 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class RefreshToken200Response(BaseModel):
     """
     RefreshToken200Response
     """ # noqa: E501
-    message: Optional[StrictStr] = None
+    message: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Token refreshed successfully"]})
     token: Optional[StrictStr] = Field(default=None, description="New JWT access token")
     refresh_token: Optional[StrictStr] = Field(default=None, description="New refresh token (store and use for next refresh)", alias="refreshToken")
-    expires_in: Optional[StrictInt] = Field(default=None, description="Access token TTL in seconds", alias="expiresIn")
+    expires_in: Optional[StrictInt] = Field(default=None, description="Access token TTL in seconds", alias="expiresIn", json_schema_extra={"examples": [1800]})
     __properties: ClassVar[List[str]] = ["message", "token", "refreshToken", "expiresIn"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -46,8 +48,7 @@ class RefreshToken200Response(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

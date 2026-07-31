@@ -18,23 +18,25 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from mudbase_sdk.models.non_custodial_address import NonCustodialAddress
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class NonCustodialAddressResponse(BaseModel):
     """
     NonCustodialAddressResponse
     """ # noqa: E501
-    success: Optional[StrictBool] = None
-    message: Optional[StrictStr] = None
+    success: Optional[StrictBool] = Field(default=None, json_schema_extra={"examples": [True]})
+    message: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["Address registered successfully"]})
     data: Optional[NonCustodialAddress] = None
     __properties: ClassVar[List[str]] = ["success", "message", "data"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -46,8 +48,7 @@ class NonCustodialAddressResponse(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

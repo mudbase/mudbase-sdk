@@ -22,17 +22,19 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class CreateAnonymousSessionRequest(BaseModel):
     """
     CreateAnonymousSessionRequest
     """ # noqa: E501
-    project_id: Optional[StrictStr] = Field(default=None, description="Project ID for the anonymous session", alias="projectId")
-    device_id: Optional[StrictStr] = Field(default=None, description="Optional device identifier", alias="deviceId")
+    project_id: Optional[StrictStr] = Field(default=None, description="Project ID for the anonymous session", alias="projectId", json_schema_extra={"examples": ["685ad30be129932fbb7a1047"]})
+    device_id: Optional[StrictStr] = Field(default=None, description="Optional device identifier", alias="deviceId", json_schema_extra={"examples": ["device-uuid-123"]})
     __properties: ClassVar[List[str]] = ["projectId", "deviceId"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -44,8 +46,7 @@ class CreateAnonymousSessionRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

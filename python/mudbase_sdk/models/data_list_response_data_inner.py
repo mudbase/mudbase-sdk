@@ -23,19 +23,21 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class DataListResponseDataInner(BaseModel):
     """
     Document from the collection (includes _id, createdAt, updatedAt, and all collection fields). Additional fields are defined in the collection schema.
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Document ID (MongoDB ObjectId) - use this as documentId in API calls", alias="_id")
+    id: Optional[StrictStr] = Field(default=None, description="Document ID (MongoDB ObjectId) - use this as documentId in API calls", alias="_id", json_schema_extra={"examples": ["696bbe5b99eeb7f929a93e0b"]})
     created_at: Optional[datetime] = Field(default=None, description="Document creation timestamp", alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, description="Document last update timestamp", alias="updatedAt")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["_id", "createdAt", "updatedAt"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class DataListResponseDataInner(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -75,8 +75,9 @@ class _$GetFunctionVersions200ResponseDataSerializer implements PrimitiveSeriali
         case r'versions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetFunctionVersions200ResponseDataVersionsInner)]),
-          ) as BuiltList<GetFunctionVersions200ResponseDataVersionsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetFunctionVersions200ResponseDataVersionsInner)]),
+          ) as BuiltList<GetFunctionVersions200ResponseDataVersionsInner>?;
+          if (valueDes == null) continue;
           result.versions.replace(valueDes);
           break;
         default:

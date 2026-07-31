@@ -111,8 +111,9 @@ class _$GetBillingEstimate200ResponseSpendLimitsSerializer implements PrimitiveS
         case r'spendBlocked':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.spendBlocked = valueDes;
           break;
         default:

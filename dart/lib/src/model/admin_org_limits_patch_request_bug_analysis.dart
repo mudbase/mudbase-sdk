@@ -143,8 +143,9 @@ class _$AdminOrgLimitsPatchRequestBugAnalysisSerializer implements PrimitiveSeri
         case r'queueType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AdminOrgLimitsPatchRequestBugAnalysisQueueTypeEnum),
-          ) as AdminOrgLimitsPatchRequestBugAnalysisQueueTypeEnum;
+            specifiedType: const FullType.nullable(AdminOrgLimitsPatchRequestBugAnalysisQueueTypeEnum),
+          ) as AdminOrgLimitsPatchRequestBugAnalysisQueueTypeEnum?;
+          if (valueDes == null) continue;
           result.queueType = valueDes;
           break;
         case r'logRetentionDays':

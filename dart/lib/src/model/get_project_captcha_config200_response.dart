@@ -74,8 +74,9 @@ class _$GetProjectCaptchaConfig200ResponseSerializer implements PrimitiveSeriali
         case r'captcha':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetProjectCaptchaConfig200ResponseCaptcha),
-          ) as GetProjectCaptchaConfig200ResponseCaptcha;
+            specifiedType: const FullType.nullable(GetProjectCaptchaConfig200ResponseCaptcha),
+          ) as GetProjectCaptchaConfig200ResponseCaptcha?;
+          if (valueDes == null) continue;
           result.captcha.replace(valueDes);
           break;
         default:

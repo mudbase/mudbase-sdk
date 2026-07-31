@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .swiftformat
 Cartfile
 MudbaseSDK.podspec
@@ -120,6 +119,8 @@ Sources/MudbaseSDK/Models/CheckUserPresence200Response.swift
 Sources/MudbaseSDK/Models/CheckUserPresence200ResponsePresenceValue.swift
 Sources/MudbaseSDK/Models/CheckUserPresenceRequest.swift
 Sources/MudbaseSDK/Models/Collection.swift
+Sources/MudbaseSDK/Models/CollectionAction.swift
+Sources/MudbaseSDK/Models/CollectionPermissionRule.swift
 Sources/MudbaseSDK/Models/ConfigureOAuthProvider200Response.swift
 Sources/MudbaseSDK/Models/ConfigureOAuthProvider200ResponseProvider.swift
 Sources/MudbaseSDK/Models/ConfigureOAuthProviderRequest.swift
@@ -178,7 +179,6 @@ Sources/MudbaseSDK/Models/CreateRole201ResponseRole.swift
 Sources/MudbaseSDK/Models/CreateRole201ResponseRolePermissionsInner.swift
 Sources/MudbaseSDK/Models/CreateRoleRequest.swift
 Sources/MudbaseSDK/Models/CreateRoleRequestCollectionPermissionsValue.swift
-Sources/MudbaseSDK/Models/CreateRoleRequestCollectionPermissionsValueOneOf.swift
 Sources/MudbaseSDK/Models/CreateRoleRequestPermissionsInner.swift
 Sources/MudbaseSDK/Models/CreateWallet201Response.swift
 Sources/MudbaseSDK/Models/CreateWallet201ResponseData.swift
@@ -567,6 +567,9 @@ Sources/MudbaseSDK/Models/RegisterLocalUserRequest.swift
 Sources/MudbaseSDK/Models/RegisterNonCustodialAddressRequest.swift
 Sources/MudbaseSDK/Models/RegisterRequest.swift
 Sources/MudbaseSDK/Models/RegisterUser429Response.swift
+Sources/MudbaseSDK/Models/RegisterWithRole201Response.swift
+Sources/MudbaseSDK/Models/RegisterWithRole201ResponseRole.swift
+Sources/MudbaseSDK/Models/RegisterWithRole201ResponseUser.swift
 Sources/MudbaseSDK/Models/RegisterWithRoleRequest.swift
 Sources/MudbaseSDK/Models/RemoveParticipantRequest.swift
 Sources/MudbaseSDK/Models/RemoveReaction200Response.swift
@@ -793,6 +796,8 @@ docs/CheckUserPresence200Response.md
 docs/CheckUserPresence200ResponsePresenceValue.md
 docs/CheckUserPresenceRequest.md
 docs/Collection.md
+docs/CollectionAction.md
+docs/CollectionPermissionRule.md
 docs/CollectionsAPI.md
 docs/ComplianceAPI.md
 docs/ConfigureOAuthProvider200Response.md
@@ -853,7 +858,6 @@ docs/CreateRole201ResponseRole.md
 docs/CreateRole201ResponseRolePermissionsInner.md
 docs/CreateRoleRequest.md
 docs/CreateRoleRequestCollectionPermissionsValue.md
-docs/CreateRoleRequestCollectionPermissionsValueOneOf.md
 docs/CreateRoleRequestPermissionsInner.md
 docs/CreateWallet201Response.md
 docs/CreateWallet201ResponseData.md
@@ -1256,6 +1260,9 @@ docs/RegisterLocalUserRequest.md
 docs/RegisterNonCustodialAddressRequest.md
 docs/RegisterRequest.md
 docs/RegisterUser429Response.md
+docs/RegisterWithRole201Response.md
+docs/RegisterWithRole201ResponseRole.md
+docs/RegisterWithRole201ResponseUser.md
 docs/RegisterWithRoleRequest.md
 docs/RemoveParticipantRequest.md
 docs/RemoveReaction200Response.md

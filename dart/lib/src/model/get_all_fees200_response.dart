@@ -85,15 +85,17 @@ class _$GetAllFees200ResponseSerializer implements PrimitiveSerializer<GetAllFee
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetAllFees200ResponseData),
-          ) as GetAllFees200ResponseData;
+            specifiedType: const FullType.nullable(GetAllFees200ResponseData),
+          ) as GetAllFees200ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

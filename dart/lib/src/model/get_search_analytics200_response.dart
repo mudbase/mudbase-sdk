@@ -109,29 +109,33 @@ class _$GetSearchAnalytics200ResponseSerializer implements PrimitiveSerializer<G
         case r'totalSearches':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalSearches = valueDes;
           break;
         case r'topQueries':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetSearchAnalytics200ResponseTopQueriesInner)]),
-          ) as BuiltList<GetSearchAnalytics200ResponseTopQueriesInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetSearchAnalytics200ResponseTopQueriesInner)]),
+          ) as BuiltList<GetSearchAnalytics200ResponseTopQueriesInner>?;
+          if (valueDes == null) continue;
           result.topQueries.replace(valueDes);
           break;
         case r'searchesByCollection':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.searchesByCollection = valueDes;
           break;
         case r'averageResponseTime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.averageResponseTime = valueDes;
           break;
         default:

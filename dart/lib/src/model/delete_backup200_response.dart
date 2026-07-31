@@ -73,8 +73,9 @@ class _$DeleteBackup200ResponseSerializer implements PrimitiveSerializer<DeleteB
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         default:

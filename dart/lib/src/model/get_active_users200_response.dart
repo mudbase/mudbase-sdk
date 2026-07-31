@@ -97,22 +97,25 @@ class _$GetActiveUsers200ResponseSerializer implements PrimitiveSerializer<GetAc
         case r'users':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetActiveUsers200ResponseUsersInner)]),
-          ) as BuiltList<GetActiveUsers200ResponseUsersInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetActiveUsers200ResponseUsersInner)]),
+          ) as BuiltList<GetActiveUsers200ResponseUsersInner>?;
+          if (valueDes == null) continue;
           result.users.replace(valueDes);
           break;
         case r'count':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.count = valueDes;
           break;
         case r'timestamp':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.timestamp = valueDes;
           break;
         default:

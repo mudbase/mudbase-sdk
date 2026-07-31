@@ -87,15 +87,17 @@ class _$FileListResponseSerializer implements PrimitiveSerializer<FileListRespon
         case r'files':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FileMetadata)]),
-          ) as BuiltList<FileMetadata>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FileMetadata)]),
+          ) as BuiltList<FileMetadata>?;
+          if (valueDes == null) continue;
           result.files.replace(valueDes);
           break;
         case r'pagination':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Pagination),
-          ) as Pagination;
+            specifiedType: const FullType.nullable(Pagination),
+          ) as Pagination?;
+          if (valueDes == null) continue;
           result.pagination.replace(valueDes);
           break;
         default:

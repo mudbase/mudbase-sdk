@@ -85,15 +85,17 @@ class _$CheckSubscription200ResponseSerializer implements PrimitiveSerializer<Ch
         case r'hasSubscription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.hasSubscription = valueDes;
           break;
         case r'subscription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CheckSubscription200ResponseSubscription),
-          ) as CheckSubscription200ResponseSubscription;
+            specifiedType: const FullType.nullable(CheckSubscription200ResponseSubscription),
+          ) as CheckSubscription200ResponseSubscription?;
+          if (valueDes == null) continue;
           result.subscription.replace(valueDes);
           break;
         default:

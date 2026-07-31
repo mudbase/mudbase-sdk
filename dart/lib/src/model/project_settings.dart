@@ -152,50 +152,57 @@ class _$ProjectSettingsSerializer implements PrimitiveSerializer<ProjectSettings
         case r'allowAnonymousAuth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.allowAnonymousAuth = valueDes;
           break;
         case r'requireEmailVerification':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.requireEmailVerification = valueDes;
           break;
         case r'requirePhoneVerification':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.requirePhoneVerification = valueDes;
           break;
         case r'defaultUserAccountStatus':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectSettingsDefaultUserAccountStatusEnum),
-          ) as ProjectSettingsDefaultUserAccountStatusEnum;
+            specifiedType: const FullType.nullable(ProjectSettingsDefaultUserAccountStatusEnum),
+          ) as ProjectSettingsDefaultUserAccountStatusEnum?;
+          if (valueDes == null) continue;
           result.defaultUserAccountStatus = valueDes;
           break;
         case r'enableRealtime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.enableRealtime = valueDes;
           break;
         case r'enableStorage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.enableStorage = valueDes;
           break;
         case r'enableFunctions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.enableFunctions = valueDes;
           break;
         default:

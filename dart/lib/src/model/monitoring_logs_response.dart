@@ -130,43 +130,49 @@ class _$MonitoringLogsResponseSerializer implements PrimitiveSerializer<Monitori
         case r'logs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(MonitoringLogsResponseLogsInner)]),
-          ) as BuiltList<MonitoringLogsResponseLogsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(MonitoringLogsResponseLogsInner)]),
+          ) as BuiltList<MonitoringLogsResponseLogsInner>?;
+          if (valueDes == null) continue;
           result.logs.replace(valueDes);
           break;
         case r'count':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.count = valueDes;
           break;
         case r'page':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.page = valueDes;
           break;
         case r'limit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.limit = valueDes;
           break;
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.total = valueDes;
           break;
         case r'totalPages':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalPages = valueDes;
           break;
         default:

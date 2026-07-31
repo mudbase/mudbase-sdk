@@ -96,22 +96,25 @@ class _$VerifyOrgPlanPayment200ResponseDataSerializer implements PrimitiveSerial
         case r'plan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.plan = valueDes;
           break;
         case r'billingCycle':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.billingCycle = valueDes;
           break;
         case r'orgId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.orgId = valueDes;
           break;
         default:

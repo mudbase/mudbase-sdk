@@ -111,29 +111,33 @@ class _$UpdateMultiRoleSettingsRequestSettingsSerializer implements PrimitiveSer
         case r'allowMultipleRoles':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.allowMultipleRoles = valueDes;
           break;
         case r'requireRoleSelection':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.requireRoleSelection = valueDes;
           break;
         case r'autoAssignDefault':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.autoAssignDefault = valueDes;
           break;
         case r'dataOwnerField':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dataOwnerField = valueDes;
           break;
         default:

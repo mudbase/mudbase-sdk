@@ -74,8 +74,9 @@ class _$GenerateSignedUrlRequestSerializer implements PrimitiveSerializer<Genera
         case r'expiresIn':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.expiresIn = valueDes;
           break;
         default:

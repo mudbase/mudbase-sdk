@@ -107,15 +107,17 @@ class _$InitializeOrgPlanCheckoutRequestSerializer implements PrimitiveSerialize
         case r'billingCycle':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(InitializeOrgPlanCheckoutRequestBillingCycleEnum),
-          ) as InitializeOrgPlanCheckoutRequestBillingCycleEnum;
+            specifiedType: const FullType.nullable(InitializeOrgPlanCheckoutRequestBillingCycleEnum),
+          ) as InitializeOrgPlanCheckoutRequestBillingCycleEnum?;
+          if (valueDes == null) continue;
           result.billingCycle = valueDes;
           break;
         case r'redirectUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.redirectUrl = valueDes;
           break;
         default:

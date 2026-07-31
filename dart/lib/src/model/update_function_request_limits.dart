@@ -108,29 +108,33 @@ class _$UpdateFunctionRequestLimitsSerializer implements PrimitiveSerializer<Upd
         case r'timeout':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.timeout = valueDes;
           break;
         case r'maxPayloadSize':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxPayloadSize = valueDes;
           break;
         case r'maxExecutionsPerMinute':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxExecutionsPerMinute = valueDes;
           break;
         case r'maxExecutionsPerHour':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxExecutionsPerHour = valueDes;
           break;
         default:

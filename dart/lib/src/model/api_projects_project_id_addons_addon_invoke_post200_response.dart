@@ -74,8 +74,9 @@ class _$ApiProjectsProjectIdAddonsAddonInvokePost200ResponseSerializer implement
         case r'job':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.job = valueDes;
           break;
         default:

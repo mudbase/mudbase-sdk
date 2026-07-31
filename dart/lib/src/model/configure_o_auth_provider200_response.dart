@@ -85,15 +85,17 @@ class _$ConfigureOAuthProvider200ResponseSerializer implements PrimitiveSerializ
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'provider':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ConfigureOAuthProvider200ResponseProvider),
-          ) as ConfigureOAuthProvider200ResponseProvider;
+            specifiedType: const FullType.nullable(ConfigureOAuthProvider200ResponseProvider),
+          ) as ConfigureOAuthProvider200ResponseProvider?;
+          if (valueDes == null) continue;
           result.provider.replace(valueDes);
           break;
         default:

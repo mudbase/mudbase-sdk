@@ -130,43 +130,49 @@ class _$GetUserOverview200ResponseFootprintSerializer implements PrimitiveSerial
         case r'fileCount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.fileCount = valueDes;
           break;
         case r'storageUsed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.storageUsed = valueDes;
           break;
         case r'sessionCount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.sessionCount = valueDes;
           break;
         case r'apiKeyCount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.apiKeyCount = valueDes;
           break;
         case r'collectionsInProject':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.collectionsInProject = valueDes;
           break;
         case r'collections':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetOrganizationUsers200ResponseUsersInnerProject)]),
-          ) as BuiltList<GetOrganizationUsers200ResponseUsersInnerProject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetOrganizationUsers200ResponseUsersInnerProject)]),
+          ) as BuiltList<GetOrganizationUsers200ResponseUsersInnerProject>?;
+          if (valueDes == null) continue;
           result.collections.replace(valueDes);
           break;
         default:

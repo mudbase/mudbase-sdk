@@ -131,43 +131,49 @@ class _$GetDashboardOrganizations200ResponseSerializer implements PrimitiveSeria
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'organizations':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetDashboardOrganizations200ResponseOrganizationsInner)]),
-          ) as BuiltList<GetDashboardOrganizations200ResponseOrganizationsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetDashboardOrganizations200ResponseOrganizationsInner)]),
+          ) as BuiltList<GetDashboardOrganizations200ResponseOrganizationsInner>?;
+          if (valueDes == null) continue;
           result.organizations.replace(valueDes);
           break;
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.total = valueDes;
           break;
         case r'page':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.page = valueDes;
           break;
         case r'limit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.limit = valueDes;
           break;
         case r'pages':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.pages = valueDes;
           break;
         default:

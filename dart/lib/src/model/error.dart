@@ -162,43 +162,49 @@ class _$$ErrorSerializer implements PrimitiveSerializer<$Error> {
         case r'error':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.error = valueDes;
           break;
         case r'code':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.code = valueDes;
           break;
         case r'details':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ErrorDetails),
-          ) as ErrorDetails;
+            specifiedType: const FullType.nullable(ErrorDetails),
+          ) as ErrorDetails?;
+          if (valueDes == null) continue;
           result.details.replace(valueDes);
           break;
         case r'timestamp':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.timestamp = valueDes;
           break;
         case r'path':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.path = valueDes;
           break;
         case r'requestId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.requestId = valueDes;
           break;
         default:

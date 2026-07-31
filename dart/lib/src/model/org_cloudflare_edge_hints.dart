@@ -175,15 +175,17 @@ class _$OrgCloudflareEdgeHintsSerializer implements PrimitiveSerializer<OrgCloud
         case r'saasIntegrationEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.saasIntegrationEnabled = valueDes;
           break;
         case r'skipped':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.skipped = valueDes;
           break;
         case r'reason':
@@ -229,8 +231,9 @@ class _$OrgCloudflareEdgeHintsSerializer implements PrimitiveSerializer<OrgCloud
         case r'sslValidationRecords':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(OrgCloudflareSslValidationRecord)]),
-          ) as BuiltList<OrgCloudflareSslValidationRecord>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(OrgCloudflareSslValidationRecord)]),
+          ) as BuiltList<OrgCloudflareSslValidationRecord>?;
+          if (valueDes == null) continue;
           result.sslValidationRecords.replace(valueDes);
           break;
         case r'lastError':

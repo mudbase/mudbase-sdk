@@ -270,92 +270,105 @@ class _$OrganizationSerializer implements PrimitiveSerializer<Organization> {
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'slug':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.slug = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'logo':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.logo = valueDes;
           break;
         case r'website':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.website = valueDes;
           break;
         case r'plan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Plan),
-          ) as Plan;
+            specifiedType: const FullType.nullable(Plan),
+          ) as Plan?;
+          if (valueDes == null) continue;
           result.plan.replace(valueDes);
           break;
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Usage),
-          ) as Usage;
+            specifiedType: const FullType.nullable(Usage),
+          ) as Usage?;
+          if (valueDes == null) continue;
           result.usage.replace(valueDes);
           break;
         case r'limits':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Limits),
-          ) as Limits;
+            specifiedType: const FullType.nullable(Limits),
+          ) as Limits?;
+          if (valueDes == null) continue;
           result.limits.replace(valueDes);
           break;
         case r'billing':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Billing),
-          ) as Billing;
+            specifiedType: const FullType.nullable(Billing),
+          ) as Billing?;
+          if (valueDes == null) continue;
           result.billing.replace(valueDes);
           break;
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.settings = valueDes;
           break;
         case r'deploymentType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(OrganizationDeploymentTypeEnum),
-          ) as OrganizationDeploymentTypeEnum;
+            specifiedType: const FullType.nullable(OrganizationDeploymentTypeEnum),
+          ) as OrganizationDeploymentTypeEnum?;
+          if (valueDes == null) continue;
           result.deploymentType = valueDes;
           break;
         case r'dedicated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.dedicated = valueDes;
           break;
         case r'preferredRegion':
@@ -369,29 +382,33 @@ class _$OrganizationSerializer implements PrimitiveSerializer<Organization> {
         case r'infrastructureEnvironments':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.infrastructureEnvironments.replace(valueDes);
           break;
         case r'allowedDomains':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.allowedDomains.replace(valueDes);
           break;
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'updatedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.updatedAt = valueDes;
           break;
         default:

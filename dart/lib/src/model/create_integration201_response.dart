@@ -74,8 +74,9 @@ class _$CreateIntegration201ResponseSerializer implements PrimitiveSerializer<Cr
         case r'integration':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.integration = valueDes;
           break;
         default:

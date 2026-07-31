@@ -95,22 +95,25 @@ class _$GetComplianceSummary200ResponseComplianceSecuritySerializer implements P
         case r'passwordPolicy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.passwordPolicy = valueDes;
           break;
         case r'virusScanning':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.virusScanning = valueDes;
           break;
         case r'encryptionAtRest':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.encryptionAtRest = valueDes;
           break;
         default:

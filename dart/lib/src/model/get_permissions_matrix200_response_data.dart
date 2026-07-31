@@ -98,22 +98,25 @@ class _$GetPermissionsMatrix200ResponseDataSerializer implements PrimitiveSerial
         case r'collections':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.collections.replace(valueDes);
           break;
         case r'roles':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.roles.replace(valueDes);
           break;
         case r'features':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.features.replace(valueDes);
           break;
         default:

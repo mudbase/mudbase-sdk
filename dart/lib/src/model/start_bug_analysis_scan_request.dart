@@ -96,22 +96,25 @@ class _$StartBugAnalysisScanRequestSerializer implements PrimitiveSerializer<Sta
         case r'projectId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.projectId = valueDes;
           break;
         case r'uploadSize':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.uploadSize = valueDes;
           break;
         case r'runtimeMinutes':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.runtimeMinutes = valueDes;
           break;
         default:

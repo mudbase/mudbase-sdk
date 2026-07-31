@@ -353,36 +353,41 @@ class _$GetDashboardOrganizationDetail200ResponseOrganizationSerializer implemen
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'slug':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.slug = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'plan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.plan = valueDes;
           break;
         case r'txPlan':
@@ -396,15 +401,17 @@ class _$GetDashboardOrganizationDetail200ResponseOrganizationSerializer implemen
         case r'deploymentType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetDashboardOrganizationDetail200ResponseOrganizationDeploymentTypeEnum),
-          ) as GetDashboardOrganizationDetail200ResponseOrganizationDeploymentTypeEnum;
+            specifiedType: const FullType.nullable(GetDashboardOrganizationDetail200ResponseOrganizationDeploymentTypeEnum),
+          ) as GetDashboardOrganizationDetail200ResponseOrganizationDeploymentTypeEnum?;
+          if (valueDes == null) continue;
           result.deploymentType = valueDes;
           break;
         case r'dedicated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.dedicated = valueDes;
           break;
         case r'preferredRegion':
@@ -426,43 +433,49 @@ class _$GetDashboardOrganizationDetail200ResponseOrganizationSerializer implemen
         case r'infrastructureEnvironments':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.infrastructureEnvironments.replace(valueDes);
           break;
         case r'isPlatformShell':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isPlatformShell = valueDes;
           break;
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.settings = valueDes;
           break;
         case r'limits':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.limits = valueDes;
           break;
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.usage = valueDes;
           break;
         case r'effective':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.effective = valueDes;
           break;
         case r'billing':
@@ -476,64 +489,73 @@ class _$GetDashboardOrganizationDetail200ResponseOrganizationSerializer implemen
         case r'customDomains':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.customDomains.replace(valueDes);
           break;
         case r'isActive':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isActive = valueDes;
           break;
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'createdBy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.createdBy = valueDes;
           break;
         case r'members':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.members.replace(valueDes);
           break;
         case r'projectCount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.projectCount = valueDes;
           break;
         case r'userCount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.userCount = valueDes;
           break;
         case r'projects':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner)]),
-          ) as BuiltList<GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner)]),
+          ) as BuiltList<GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner>?;
+          if (valueDes == null) continue;
           result.projects.replace(valueDes);
           break;
         case r'users':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetDashboardOrganizationDetail200ResponseOrganizationUsersInner)]),
-          ) as BuiltList<GetDashboardOrganizationDetail200ResponseOrganizationUsersInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetDashboardOrganizationDetail200ResponseOrganizationUsersInner)]),
+          ) as BuiltList<GetDashboardOrganizationDetail200ResponseOrganizationUsersInner>?;
+          if (valueDes == null) continue;
           result.users.replace(valueDes);
           break;
         default:

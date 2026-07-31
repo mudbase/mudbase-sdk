@@ -85,15 +85,17 @@ class _$FunctionLogsResponseSerializer implements PrimitiveSerializer<FunctionLo
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FunctionLogsResponseData),
-          ) as FunctionLogsResponseData;
+            specifiedType: const FullType.nullable(FunctionLogsResponseData),
+          ) as FunctionLogsResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

@@ -143,50 +143,57 @@ class _$DashboardOverviewDataRequestsSerializer implements PrimitiveSerializer<D
         case r'today':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.today = valueDes;
           break;
         case r'yesterday':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.yesterday = valueDes;
           break;
         case r'latencyTrackedToday':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.latencyTrackedToday = valueDes;
           break;
         case r'latencyTrackedYesterday':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.latencyTrackedYesterday = valueDes;
           break;
         case r'meteringNote':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.meteringNote = valueDes;
           break;
         case r'changePct':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.changePct = valueDes;
           break;
         case r'direction':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DashboardOverviewDataRequestsDirectionEnum),
-          ) as DashboardOverviewDataRequestsDirectionEnum;
+            specifiedType: const FullType.nullable(DashboardOverviewDataRequestsDirectionEnum),
+          ) as DashboardOverviewDataRequestsDirectionEnum?;
+          if (valueDes == null) continue;
           result.direction = valueDes;
           break;
         default:

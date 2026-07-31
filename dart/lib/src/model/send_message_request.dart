@@ -126,29 +126,33 @@ class _$SendMessageRequestSerializer implements PrimitiveSerializer<SendMessageR
         case r'content':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.content = valueDes;
           break;
         case r'e2ee':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SendMessageRequestE2ee),
-          ) as SendMessageRequestE2ee;
+            specifiedType: const FullType.nullable(SendMessageRequestE2ee),
+          ) as SendMessageRequestE2ee?;
+          if (valueDes == null) continue;
           result.e2ee.replace(valueDes);
           break;
         case r'replyTo':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.replyTo = valueDes;
           break;
         case r'mentions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.mentions.replace(valueDes);
           break;
         default:

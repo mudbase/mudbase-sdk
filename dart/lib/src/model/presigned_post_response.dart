@@ -137,43 +137,49 @@ class _$PresignedPostResponseSerializer implements PrimitiveSerializer<Presigned
         case r'key':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.key = valueDes;
           break;
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.url = valueDes;
           break;
         case r'method':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PresignedPostResponseMethodEnum),
-          ) as PresignedPostResponseMethodEnum;
+            specifiedType: const FullType.nullable(PresignedPostResponseMethodEnum),
+          ) as PresignedPostResponseMethodEnum?;
+          if (valueDes == null) continue;
           result.method = valueDes;
           break;
         case r'headers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.headers = valueDes;
           break;
         case r'expiresIn':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.expiresIn = valueDes;
           break;
         case r'maxFileUploadBytes':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxFileUploadBytes = valueDes;
           break;
         default:

@@ -85,15 +85,17 @@ class _$GetAdminPayoutDashboard200ResponseSerializer implements PrimitiveSeriali
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetAdminPayoutDashboard200ResponseData),
-          ) as GetAdminPayoutDashboard200ResponseData;
+            specifiedType: const FullType.nullable(GetAdminPayoutDashboard200ResponseData),
+          ) as GetAdminPayoutDashboard200ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

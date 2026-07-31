@@ -84,15 +84,17 @@ class _$InternalDomainDnsRecheckBatchRequestSerializer implements PrimitiveSeria
         case r'maxOrgs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxOrgs = valueDes;
           break;
         case r'recheckOlderThanHours':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.recheckOlderThanHours = valueDes;
           break;
         default:

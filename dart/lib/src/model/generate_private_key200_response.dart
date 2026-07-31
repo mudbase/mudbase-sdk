@@ -85,15 +85,17 @@ class _$GeneratePrivateKey200ResponseSerializer implements PrimitiveSerializer<G
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GeneratePrivateKey200ResponseData),
-          ) as GeneratePrivateKey200ResponseData;
+            specifiedType: const FullType.nullable(GeneratePrivateKey200ResponseData),
+          ) as GeneratePrivateKey200ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

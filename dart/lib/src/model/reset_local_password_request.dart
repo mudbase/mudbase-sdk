@@ -89,8 +89,9 @@ class _$ResetLocalPasswordRequestSerializer implements PrimitiveSerializer<Reset
         case r'projectId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.projectId = valueDes;
           break;
         default:

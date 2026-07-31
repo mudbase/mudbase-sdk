@@ -127,29 +127,33 @@ class _$CreateRoleRequestSerializer implements PrimitiveSerializer<CreateRoleReq
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'permissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CreateRoleRequestPermissionsInner)]),
-          ) as BuiltList<CreateRoleRequestPermissionsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CreateRoleRequestPermissionsInner)]),
+          ) as BuiltList<CreateRoleRequestPermissionsInner>?;
+          if (valueDes == null) continue;
           result.permissions.replace(valueDes);
           break;
         case r'hierarchy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.hierarchy = valueDes;
           break;
         case r'collectionPermissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(CreateRoleRequestCollectionPermissionsValue)]),
-          ) as BuiltMap<String, CreateRoleRequestCollectionPermissionsValue>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(CreateRoleRequestCollectionPermissionsValue)]),
+          ) as BuiltMap<String, CreateRoleRequestCollectionPermissionsValue>?;
+          if (valueDes == null) continue;
           result.collectionPermissions.replace(valueDes);
           break;
         default:

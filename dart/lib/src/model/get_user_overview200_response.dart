@@ -87,15 +87,17 @@ class _$GetUserOverview200ResponseSerializer implements PrimitiveSerializer<GetU
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.user = valueDes;
           break;
         case r'footprint':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetUserOverview200ResponseFootprint),
-          ) as GetUserOverview200ResponseFootprint;
+            specifiedType: const FullType.nullable(GetUserOverview200ResponseFootprint),
+          ) as GetUserOverview200ResponseFootprint?;
+          if (valueDes == null) continue;
           result.footprint.replace(valueDes);
           break;
         default:

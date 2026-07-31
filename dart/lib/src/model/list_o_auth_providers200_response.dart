@@ -75,8 +75,9 @@ class _$ListOAuthProviders200ResponseSerializer implements PrimitiveSerializer<L
         case r'providers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ListOAuthProviders200ResponseProvidersInner)]),
-          ) as BuiltList<ListOAuthProviders200ResponseProvidersInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ListOAuthProviders200ResponseProvidersInner)]),
+          ) as BuiltList<ListOAuthProviders200ResponseProvidersInner>?;
+          if (valueDes == null) continue;
           result.providers.replace(valueDes);
           break;
         default:

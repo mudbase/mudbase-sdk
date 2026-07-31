@@ -95,22 +95,25 @@ class _$GetComplianceSummary200ResponseComplianceGdprSerializer implements Primi
         case r'dataExportEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.dataExportEnabled = valueDes;
           break;
         case r'dataErasureEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.dataErasureEnabled = valueDes;
           break;
         case r'consentManagement':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.consentManagement = valueDes;
           break;
         default:

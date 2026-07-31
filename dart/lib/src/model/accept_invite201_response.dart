@@ -97,22 +97,25 @@ class _$AcceptInvite201ResponseSerializer implements PrimitiveSerializer<AcceptI
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.token = valueDes;
           break;
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AcceptInvite201ResponseUser),
-          ) as AcceptInvite201ResponseUser;
+            specifiedType: const FullType.nullable(AcceptInvite201ResponseUser),
+          ) as AcceptInvite201ResponseUser?;
+          if (valueDes == null) continue;
           result.user.replace(valueDes);
           break;
         default:

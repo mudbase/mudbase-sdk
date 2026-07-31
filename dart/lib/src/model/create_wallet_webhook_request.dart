@@ -132,22 +132,25 @@ class _$CreateWalletWebhookRequestSerializer implements PrimitiveSerializer<Crea
         case r'secret':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.secret = valueDes;
           break;
         case r'filters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateWalletWebhookRequestFilters),
-          ) as CreateWalletWebhookRequestFilters;
+            specifiedType: const FullType.nullable(CreateWalletWebhookRequestFilters),
+          ) as CreateWalletWebhookRequestFilters?;
+          if (valueDes == null) continue;
           result.filters.replace(valueDes);
           break;
         case r'projectId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.projectId = valueDes;
           break;
         default:

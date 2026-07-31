@@ -88,15 +88,17 @@ class _$GetWebhookConfig200ResponseDataTransformationsInnerSerializer implements
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetWebhookConfig200ResponseDataTransformationsInnerTypeEnum),
-          ) as GetWebhookConfig200ResponseDataTransformationsInnerTypeEnum;
+            specifiedType: const FullType.nullable(GetWebhookConfig200ResponseDataTransformationsInnerTypeEnum),
+          ) as GetWebhookConfig200ResponseDataTransformationsInnerTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'config':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.config = valueDes;
           break;
         default:

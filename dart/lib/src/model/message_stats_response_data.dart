@@ -120,36 +120,41 @@ class _$MessageStatsResponseDataSerializer implements PrimitiveSerializer<Messag
         case r'totalMessages':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalMessages = valueDes;
           break;
         case r'byType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageStatsResponseDataByType),
-          ) as MessageStatsResponseDataByType;
+            specifiedType: const FullType.nullable(MessageStatsResponseDataByType),
+          ) as MessageStatsResponseDataByType?;
+          if (valueDes == null) continue;
           result.byType.replace(valueDes);
           break;
         case r'byStatus':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageStatsResponseDataByStatus),
-          ) as MessageStatsResponseDataByStatus;
+            specifiedType: const FullType.nullable(MessageStatsResponseDataByStatus),
+          ) as MessageStatsResponseDataByStatus?;
+          if (valueDes == null) continue;
           result.byStatus.replace(valueDes);
           break;
         case r'successRate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.successRate = valueDes;
           break;
         case r'period':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MessageStatsResponseDataPeriod),
-          ) as MessageStatsResponseDataPeriod;
+            specifiedType: const FullType.nullable(MessageStatsResponseDataPeriod),
+          ) as MessageStatsResponseDataPeriod?;
+          if (valueDes == null) continue;
           result.period.replace(valueDes);
           break;
         default:

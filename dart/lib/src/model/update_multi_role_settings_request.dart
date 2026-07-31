@@ -96,22 +96,25 @@ class _$UpdateMultiRoleSettingsRequestSerializer implements PrimitiveSerializer<
         case r'isEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isEnabled = valueDes;
           break;
         case r'defaultRole':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.defaultRole = valueDes;
           break;
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateMultiRoleSettingsRequestSettings),
-          ) as UpdateMultiRoleSettingsRequestSettings;
+            specifiedType: const FullType.nullable(UpdateMultiRoleSettingsRequestSettings),
+          ) as UpdateMultiRoleSettingsRequestSettings?;
+          if (valueDes == null) continue;
           result.settings.replace(valueDes);
           break;
         default:

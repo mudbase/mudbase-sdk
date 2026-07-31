@@ -86,15 +86,17 @@ class _$CreateAnonymousSessionRequestSerializer implements PrimitiveSerializer<C
         case r'projectId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.projectId = valueDes;
           break;
         case r'deviceId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.deviceId = valueDes;
           break;
         default:

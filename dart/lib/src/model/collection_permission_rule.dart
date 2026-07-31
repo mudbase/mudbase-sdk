@@ -87,15 +87,17 @@ class _$CollectionPermissionRuleSerializer implements PrimitiveSerializer<Collec
         case r'actions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CollectionAction)]),
-          ) as BuiltList<CollectionAction>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CollectionAction)]),
+          ) as BuiltList<CollectionAction>?;
+          if (valueDes == null) continue;
           result.actions.replace(valueDes);
           break;
         case r'conditions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.conditions = valueDes;
           break;
         default:

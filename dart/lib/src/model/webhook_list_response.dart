@@ -119,36 +119,41 @@ class _$WebhookListResponseSerializer implements PrimitiveSerializer<WebhookList
         case r'webhooks':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(WebhookLog)]),
-          ) as BuiltList<WebhookLog>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(WebhookLog)]),
+          ) as BuiltList<WebhookLog>?;
+          if (valueDes == null) continue;
           result.webhooks.replace(valueDes);
           break;
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.total = valueDes;
           break;
         case r'page':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.page = valueDes;
           break;
         case r'limit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.limit = valueDes;
           break;
         case r'totalPages':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalPages = valueDes;
           break;
         default:

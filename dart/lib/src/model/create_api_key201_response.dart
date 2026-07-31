@@ -85,15 +85,17 @@ class _$CreateApiKey201ResponseSerializer implements PrimitiveSerializer<CreateA
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'apiKey':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ApiKeyWithSecret),
-          ) as ApiKeyWithSecret;
+            specifiedType: const FullType.nullable(ApiKeyWithSecret),
+          ) as ApiKeyWithSecret?;
+          if (valueDes == null) continue;
           result.apiKey.replace(valueDes);
           break;
         default:

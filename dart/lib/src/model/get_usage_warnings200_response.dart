@@ -75,8 +75,9 @@ class _$GetUsageWarnings200ResponseSerializer implements PrimitiveSerializer<Get
         case r'warnings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetUsageWarnings200ResponseWarningsInner)]),
-          ) as BuiltList<GetUsageWarnings200ResponseWarningsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetUsageWarnings200ResponseWarningsInner)]),
+          ) as BuiltList<GetUsageWarnings200ResponseWarningsInner>?;
+          if (valueDes == null) continue;
           result.warnings.replace(valueDes);
           break;
         default:

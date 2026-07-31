@@ -85,15 +85,17 @@ class _$SendMessage201ResponseSerializer implements PrimitiveSerializer<SendMess
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SendMessage201ResponseData),
-          ) as SendMessage201ResponseData;
+            specifiedType: const FullType.nullable(SendMessage201ResponseData),
+          ) as SendMessage201ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

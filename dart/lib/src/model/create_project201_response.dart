@@ -85,15 +85,17 @@ class _$CreateProject201ResponseSerializer implements PrimitiveSerializer<Create
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'project':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Project),
-          ) as Project;
+            specifiedType: const FullType.nullable(Project),
+          ) as Project?;
+          if (valueDes == null) continue;
           result.project.replace(valueDes);
           break;
         default:

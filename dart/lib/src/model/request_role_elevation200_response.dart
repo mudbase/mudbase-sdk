@@ -131,43 +131,49 @@ class _$RequestRoleElevation200ResponseSerializer implements PrimitiveSerializer
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'requestId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.requestId = valueDes;
           break;
         case r'workflow':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RequestRoleElevation200ResponseWorkflowEnum),
-          ) as RequestRoleElevation200ResponseWorkflowEnum;
+            specifiedType: const FullType.nullable(RequestRoleElevation200ResponseWorkflowEnum),
+          ) as RequestRoleElevation200ResponseWorkflowEnum?;
+          if (valueDes == null) continue;
           result.workflow = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RequestRoleElevation200ResponseStatusEnum),
-          ) as RequestRoleElevation200ResponseStatusEnum;
+            specifiedType: const FullType.nullable(RequestRoleElevation200ResponseStatusEnum),
+          ) as RequestRoleElevation200ResponseStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'nextSteps':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.nextSteps.replace(valueDes);
           break;
         case r'estimatedApprovalTime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.estimatedApprovalTime = valueDes;
           break;
         default:

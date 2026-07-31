@@ -145,50 +145,57 @@ class _$ProjectEmailSendRequestSerializer implements PrimitiveSerializer<Project
         case r'template':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.template = valueDes;
           break;
         case r'to':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EmailRequestTo),
-          ) as EmailRequestTo;
+            specifiedType: const FullType.nullable(EmailRequestTo),
+          ) as EmailRequestTo?;
+          if (valueDes == null) continue;
           result.to.replace(valueDes);
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-          ) as BuiltMap<String, JsonObject?>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         case r'subject':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.subject = valueDes;
           break;
         case r'html':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.html = valueDes;
           break;
         case r'idempotencyKey':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.idempotencyKey = valueDes;
           break;
         case r'brandingScope':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectEmailSendRequestBrandingScopeEnum),
-          ) as ProjectEmailSendRequestBrandingScopeEnum;
+            specifiedType: const FullType.nullable(ProjectEmailSendRequestBrandingScopeEnum),
+          ) as ProjectEmailSendRequestBrandingScopeEnum?;
+          if (valueDes == null) continue;
           result.brandingScope = valueDes;
           break;
         default:

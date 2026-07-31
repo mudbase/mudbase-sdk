@@ -74,8 +74,9 @@ class _$GetUsageStats200ResponseSerializer implements PrimitiveSerializer<GetUsa
         case r'stats':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetUsageStats200ResponseStats),
-          ) as GetUsageStats200ResponseStats;
+            specifiedType: const FullType.nullable(GetUsageStats200ResponseStats),
+          ) as GetUsageStats200ResponseStats?;
+          if (valueDes == null) continue;
           result.stats.replace(valueDes);
           break;
         default:

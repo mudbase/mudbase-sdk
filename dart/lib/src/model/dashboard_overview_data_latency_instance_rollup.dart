@@ -141,8 +141,9 @@ class _$DashboardOverviewDataLatencyInstanceRollupSerializer implements Primitiv
         case r'scope':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DashboardOverviewDataLatencyInstanceRollupScopeEnum),
-          ) as DashboardOverviewDataLatencyInstanceRollupScopeEnum;
+            specifiedType: const FullType.nullable(DashboardOverviewDataLatencyInstanceRollupScopeEnum),
+          ) as DashboardOverviewDataLatencyInstanceRollupScopeEnum?;
+          if (valueDes == null) continue;
           result.scope = valueDes;
           break;
         case r'p50Ms':
@@ -180,15 +181,17 @@ class _$DashboardOverviewDataLatencyInstanceRollupSerializer implements Primitiv
         case r'samplesApprox':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.samplesApprox = valueDes;
           break;
         case r'templatesTracked':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.templatesTracked = valueDes;
           break;
         default:

@@ -86,15 +86,17 @@ class _$UsageTrendsResponseSerializer implements PrimitiveSerializer<UsageTrends
         case r'trends':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(UsageTrendsResponseTrendsInner)]),
-          ) as BuiltList<UsageTrendsResponseTrendsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(UsageTrendsResponseTrendsInner)]),
+          ) as BuiltList<UsageTrendsResponseTrendsInner>?;
+          if (valueDes == null) continue;
           result.trends.replace(valueDes);
           break;
         case r'period':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.period = valueDes;
           break;
         default:

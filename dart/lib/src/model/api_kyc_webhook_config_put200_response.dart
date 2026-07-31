@@ -104,15 +104,17 @@ class _$ApiKycWebhookConfigPut200ResponseSerializer implements PrimitiveSerializ
         case r'secretSet':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.secretSet = valueDes;
           break;
         case r'webhookSecret':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.webhookSecret = valueDes;
           break;
         default:

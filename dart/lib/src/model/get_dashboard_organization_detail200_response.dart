@@ -85,15 +85,17 @@ class _$GetDashboardOrganizationDetail200ResponseSerializer implements Primitive
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'organization':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetDashboardOrganizationDetail200ResponseOrganization),
-          ) as GetDashboardOrganizationDetail200ResponseOrganization;
+            specifiedType: const FullType.nullable(GetDashboardOrganizationDetail200ResponseOrganization),
+          ) as GetDashboardOrganizationDetail200ResponseOrganization?;
+          if (valueDes == null) continue;
           result.organization.replace(valueDes);
           break;
         default:

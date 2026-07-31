@@ -121,8 +121,9 @@ class _$CreateChatRequestSerializer implements PrimitiveSerializer<CreateChatReq
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'type':
@@ -142,8 +143,9 @@ class _$CreateChatRequestSerializer implements PrimitiveSerializer<CreateChatReq
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.settings = valueDes;
           break;
         default:

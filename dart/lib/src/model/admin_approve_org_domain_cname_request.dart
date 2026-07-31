@@ -74,8 +74,9 @@ class _$AdminApproveOrgDomainCnameRequestSerializer implements PrimitiveSerializ
         case r'verifyDns':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.verifyDns = valueDes;
           break;
         default:

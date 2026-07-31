@@ -91,8 +91,9 @@ class _$OTPVerifyRequestSerializer implements PrimitiveSerializer<OTPVerifyReque
         case r'identifier':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.identifier = valueDes;
           break;
         case r'otp':

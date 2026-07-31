@@ -96,22 +96,25 @@ class _$BillingSerializer implements PrimitiveSerializer<Billing> {
         case r'nextBillingDate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.nextBillingDate = valueDes;
           break;
         case r'paymentMethod':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.paymentMethod = valueDes;
           break;
         case r'lastPayment':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BillingLastPayment),
-          ) as BillingLastPayment;
+            specifiedType: const FullType.nullable(BillingLastPayment),
+          ) as BillingLastPayment?;
+          if (valueDes == null) continue;
           result.lastPayment.replace(valueDes);
           break;
         default:

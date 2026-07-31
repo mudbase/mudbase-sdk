@@ -105,8 +105,9 @@ class _$MagicLinkRequestSerializer implements PrimitiveSerializer<MagicLinkReque
         case r'redirectUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.redirectUrl = valueDes;
           break;
         default:

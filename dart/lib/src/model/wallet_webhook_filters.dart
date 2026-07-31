@@ -86,15 +86,17 @@ class _$WalletWebhookFiltersSerializer implements PrimitiveSerializer<WalletWebh
         case r'addresses':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.addresses.replace(valueDes);
           break;
         case r'chains':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(WalletWebhookFiltersChainsEnum)]),
-          ) as BuiltList<WalletWebhookFiltersChainsEnum>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(WalletWebhookFiltersChainsEnum)]),
+          ) as BuiltList<WalletWebhookFiltersChainsEnum>?;
+          if (valueDes == null) continue;
           result.chains.replace(valueDes);
           break;
         default:

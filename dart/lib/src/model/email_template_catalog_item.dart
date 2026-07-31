@@ -132,29 +132,33 @@ class _$EmailTemplateCatalogItemSerializer implements PrimitiveSerializer<EmailT
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'isCustomized':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isCustomized = valueDes;
           break;
         case r'effectiveSource':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EmailTemplateCatalogItemEffectiveSourceEnum),
-          ) as EmailTemplateCatalogItemEffectiveSourceEnum;
+            specifiedType: const FullType.nullable(EmailTemplateCatalogItemEffectiveSourceEnum),
+          ) as EmailTemplateCatalogItemEffectiveSourceEnum?;
+          if (valueDes == null) continue;
           result.effectiveSource = valueDes;
           break;
         case r'subjectSnippet':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.subjectSnippet = valueDes;
           break;
         case r'updatedAt':

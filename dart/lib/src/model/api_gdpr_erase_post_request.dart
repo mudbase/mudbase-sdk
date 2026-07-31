@@ -105,15 +105,17 @@ class _$ApiGdprErasePostRequestSerializer implements PrimitiveSerializer<ApiGdpr
         case r'currentPassword':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.currentPassword = valueDes;
           break;
         case r'totpToken':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.totpToken = valueDes;
           break;
         default:

@@ -84,15 +84,17 @@ class _$RateLimitSerializer implements PrimitiveSerializer<RateLimit> {
         case r'requests':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.requests = valueDes;
           break;
         case r'window':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.window = valueDes;
           break;
         default:

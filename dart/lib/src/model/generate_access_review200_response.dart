@@ -74,8 +74,9 @@ class _$GenerateAccessReview200ResponseSerializer implements PrimitiveSerializer
         case r'report':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GenerateAccessReview200ResponseReport),
-          ) as GenerateAccessReview200ResponseReport;
+            specifiedType: const FullType.nullable(GenerateAccessReview200ResponseReport),
+          ) as GenerateAccessReview200ResponseReport?;
+          if (valueDes == null) continue;
           result.report.replace(valueDes);
           break;
         default:

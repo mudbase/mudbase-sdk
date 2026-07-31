@@ -118,36 +118,41 @@ class _$GetUserChats200ResponseDataChatsInnerSerializer implements PrimitiveSeri
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'lastMessage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetUserChats200ResponseDataChatsInnerLastMessage),
-          ) as GetUserChats200ResponseDataChatsInnerLastMessage;
+            specifiedType: const FullType.nullable(GetUserChats200ResponseDataChatsInnerLastMessage),
+          ) as GetUserChats200ResponseDataChatsInnerLastMessage?;
+          if (valueDes == null) continue;
           result.lastMessage.replace(valueDes);
           break;
         case r'unreadCount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.unreadCount = valueDes;
           break;
         default:

@@ -74,8 +74,9 @@ class _$ApiKycSessionsPostRequestSerializer implements PrimitiveSerializer<ApiKy
         case r'language':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.language = valueDes;
           break;
         default:

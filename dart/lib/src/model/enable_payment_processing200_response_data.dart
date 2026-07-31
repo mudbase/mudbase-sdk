@@ -84,15 +84,17 @@ class _$EnablePaymentProcessing200ResponseDataSerializer implements PrimitiveSer
         case r'subaccountId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.subaccountId = valueDes;
           break;
         case r'alreadyEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.alreadyEnabled = valueDes;
           break;
         default:

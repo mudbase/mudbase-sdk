@@ -99,22 +99,25 @@ class _$GetScannerMetrics200ResponseSerializer implements PrimitiveSerializer<Ge
         case r'metrics':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GetScannerMetrics200ResponseMetricsValue)]),
-          ) as BuiltMap<String, GetScannerMetrics200ResponseMetricsValue>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(GetScannerMetrics200ResponseMetricsValue)]),
+          ) as BuiltMap<String, GetScannerMetrics200ResponseMetricsValue>?;
+          if (valueDes == null) continue;
           result.metrics.replace(valueDes);
           break;
         case r'lagAlertThreshold':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.lagAlertThreshold = valueDes;
           break;
         case r'alerts':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetScannerMetrics200ResponseAlertsInner)]),
-          ) as BuiltList<GetScannerMetrics200ResponseAlertsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetScannerMetrics200ResponseAlertsInner)]),
+          ) as BuiltList<GetScannerMetrics200ResponseAlertsInner>?;
+          if (valueDes == null) continue;
           result.alerts.replace(valueDes);
           break;
         default:

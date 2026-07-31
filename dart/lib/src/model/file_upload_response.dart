@@ -85,15 +85,17 @@ class _$FileUploadResponseSerializer implements PrimitiveSerializer<FileUploadRe
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'file':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FileMetadata),
-          ) as FileMetadata;
+            specifiedType: const FullType.nullable(FileMetadata),
+          ) as FileMetadata?;
+          if (valueDes == null) continue;
           result.file.replace(valueDes);
           break;
         default:

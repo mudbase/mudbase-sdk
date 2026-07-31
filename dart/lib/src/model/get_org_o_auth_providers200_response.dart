@@ -86,15 +86,17 @@ class _$GetOrgOAuthProviders200ResponseSerializer implements PrimitiveSerializer
         case r'providers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetOrgOAuthProviders200ResponseProvidersInner)]),
-          ) as BuiltList<GetOrgOAuthProviders200ResponseProvidersInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetOrgOAuthProviders200ResponseProvidersInner)]),
+          ) as BuiltList<GetOrgOAuthProviders200ResponseProvidersInner>?;
+          if (valueDes == null) continue;
           result.providers.replace(valueDes);
           break;
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.total = valueDes;
           break;
         default:

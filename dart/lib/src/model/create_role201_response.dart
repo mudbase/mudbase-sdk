@@ -85,15 +85,17 @@ class _$CreateRole201ResponseSerializer implements PrimitiveSerializer<CreateRol
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'role':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateRole201ResponseRole),
-          ) as CreateRole201ResponseRole;
+            specifiedType: const FullType.nullable(CreateRole201ResponseRole),
+          ) as CreateRole201ResponseRole?;
+          if (valueDes == null) continue;
           result.role.replace(valueDes);
           break;
         default:

@@ -111,8 +111,9 @@ class _$EstimateNetworkFeeRequestSerializer implements PrimitiveSerializer<Estim
         case r'network':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EstimateNetworkFeeRequestNetworkEnum),
-          ) as EstimateNetworkFeeRequestNetworkEnum;
+            specifiedType: const FullType.nullable(EstimateNetworkFeeRequestNetworkEnum),
+          ) as EstimateNetworkFeeRequestNetworkEnum?;
+          if (valueDes == null) continue;
           result.network = valueDes;
           break;
         default:

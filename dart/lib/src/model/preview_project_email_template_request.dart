@@ -75,8 +75,9 @@ class _$PreviewProjectEmailTemplateRequestSerializer implements PrimitiveSeriali
         case r'sampleData':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-          ) as BuiltMap<String, JsonObject?>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>?;
+          if (valueDes == null) continue;
           result.sampleData.replace(valueDes);
           break;
         default:

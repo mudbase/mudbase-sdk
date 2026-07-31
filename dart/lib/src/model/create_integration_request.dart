@@ -122,8 +122,9 @@ class _$CreateIntegrationRequestSerializer implements PrimitiveSerializer<Create
         case r'credentials':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.credentials = valueDes;
           break;
         default:

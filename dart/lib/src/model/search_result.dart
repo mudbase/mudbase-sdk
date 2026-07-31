@@ -97,22 +97,25 @@ class _$SearchResultSerializer implements PrimitiveSerializer<SearchResult> {
         case r'collection':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.collection = valueDes;
           break;
         case r'item':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SearchResultItem),
-          ) as SearchResultItem;
+            specifiedType: const FullType.nullable(SearchResultItem),
+          ) as SearchResultItem?;
+          if (valueDes == null) continue;
           result.item.replace(valueDes);
           break;
         case r'highlight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.highlight = valueDes;
           break;
         default:

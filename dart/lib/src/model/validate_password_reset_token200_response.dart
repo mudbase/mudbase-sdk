@@ -73,8 +73,9 @@ class _$ValidatePasswordResetToken200ResponseSerializer implements PrimitiveSeri
         case r'valid':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.valid = valueDes;
           break;
         default:

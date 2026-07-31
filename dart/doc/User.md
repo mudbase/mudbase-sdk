@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **fullName** | **String** |  | [optional] 
 **avatar** | **String** |  | [optional] 
 **role** | **String** |  | [optional] 
+**customRole** | **String** | Application-level role slug from the project's Multi-Role feature (e.g. \"customer\", \"seller\"). Null for org-level (org/admin/member/viewer) users who aren't project end-users. | [optional] 
+**isAnonymous** | **bool** | True for a guest session created via POST /api/auth/anonymous that hasn't been converted to a full account yet. | [optional] 
 **emailVerified** | **bool** |  | [optional] 
 **phoneVerified** | **bool** |  | [optional] 
 **twoFactorEnabled** | **bool** |  | [optional] 

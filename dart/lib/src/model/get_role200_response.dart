@@ -74,8 +74,9 @@ class _$GetRole200ResponseSerializer implements PrimitiveSerializer<GetRole200Re
         case r'role':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.role = valueDes;
           break;
         default:

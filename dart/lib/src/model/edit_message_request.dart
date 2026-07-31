@@ -86,15 +86,17 @@ class _$EditMessageRequestSerializer implements PrimitiveSerializer<EditMessageR
         case r'content':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.content = valueDes;
           break;
         case r'e2ee':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EditMessageRequestE2ee),
-          ) as EditMessageRequestE2ee;
+            specifiedType: const FullType.nullable(EditMessageRequestE2ee),
+          ) as EditMessageRequestE2ee?;
+          if (valueDes == null) continue;
           result.e2ee.replace(valueDes);
           break;
         default:

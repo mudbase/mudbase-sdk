@@ -86,15 +86,17 @@ class _$ListCollections200ResponseSerializer implements PrimitiveSerializer<List
         case r'collections':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Collection)]),
-          ) as BuiltList<Collection>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(Collection)]),
+          ) as BuiltList<Collection>?;
+          if (valueDes == null) continue;
           result.collections.replace(valueDes);
           break;
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.total = valueDes;
           break;
         default:

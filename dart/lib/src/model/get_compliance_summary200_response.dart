@@ -74,8 +74,9 @@ class _$GetComplianceSummary200ResponseSerializer implements PrimitiveSerializer
         case r'compliance':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetComplianceSummary200ResponseCompliance),
-          ) as GetComplianceSummary200ResponseCompliance;
+            specifiedType: const FullType.nullable(GetComplianceSummary200ResponseCompliance),
+          ) as GetComplianceSummary200ResponseCompliance?;
+          if (valueDes == null) continue;
           result.compliance.replace(valueDes);
           break;
         default:

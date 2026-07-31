@@ -177,71 +177,81 @@ class _$UpdateProjectRoleRequestSerializer implements PrimitiveSerializer<Update
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'signupEndpoint':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.signupEndpoint = valueDes;
           break;
         case r'requiresApproval':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.requiresApproval = valueDes;
           break;
         case r'requiresPayment':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.requiresPayment = valueDes;
           break;
         case r'requiresKYC':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.requiresKYC = valueDes;
           break;
         case r'defaultPermissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.defaultPermissions.replace(valueDes);
           break;
         case r'collectionPermissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(CreateRoleRequestCollectionPermissionsValue)]),
-          ) as BuiltMap<String, CreateRoleRequestCollectionPermissionsValue>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(CreateRoleRequestCollectionPermissionsValue)]),
+          ) as BuiltMap<String, CreateRoleRequestCollectionPermissionsValue>?;
+          if (valueDes == null) continue;
           result.collectionPermissions.replace(valueDes);
           break;
         case r'metadata':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.metadata = valueDes;
           break;
         case r'featurePermissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(BuiltMap, [FullType(String), FullType(bool)])]),
-          ) as BuiltMap<String, BuiltMap<String, bool>>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(BuiltMap, [FullType(String), FullType(bool)])]),
+          ) as BuiltMap<String, BuiltMap<String, bool>>?;
+          if (valueDes == null) continue;
           result.featurePermissions.replace(valueDes);
           break;
         default:

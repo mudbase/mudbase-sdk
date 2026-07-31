@@ -85,15 +85,17 @@ class _$UpdateApiKey200ResponseSerializer implements PrimitiveSerializer<UpdateA
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'apiKey':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ApiKey),
-          ) as ApiKey;
+            specifiedType: const FullType.nullable(ApiKey),
+          ) as ApiKey?;
+          if (valueDes == null) continue;
           result.apiKey = valueDes;
           break;
         default:

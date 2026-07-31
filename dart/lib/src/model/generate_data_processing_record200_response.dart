@@ -74,8 +74,9 @@ class _$GenerateDataProcessingRecord200ResponseSerializer implements PrimitiveSe
         case r'record':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GenerateDataProcessingRecord200ResponseRecord),
-          ) as GenerateDataProcessingRecord200ResponseRecord;
+            specifiedType: const FullType.nullable(GenerateDataProcessingRecord200ResponseRecord),
+          ) as GenerateDataProcessingRecord200ResponseRecord?;
+          if (valueDes == null) continue;
           result.record.replace(valueDes);
           break;
         default:

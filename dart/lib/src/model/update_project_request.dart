@@ -120,36 +120,41 @@ class _$UpdateProjectRequestSerializer implements PrimitiveSerializer<UpdateProj
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'logoUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.logoUrl = valueDes;
           break;
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectSettings),
-          ) as ProjectSettings;
+            specifiedType: const FullType.nullable(ProjectSettings),
+          ) as ProjectSettings?;
+          if (valueDes == null) continue;
           result.settings.replace(valueDes);
           break;
         case r'auth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuthConfig),
-          ) as AuthConfig;
+            specifiedType: const FullType.nullable(AuthConfig),
+          ) as AuthConfig?;
+          if (valueDes == null) continue;
           result.auth.replace(valueDes);
           break;
         default:

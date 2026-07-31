@@ -109,29 +109,33 @@ class _$SimulateAppPermissions200ResponseSerializer implements PrimitiveSerializ
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'allowed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.allowed = valueDes;
           break;
         case r'reason':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SimulateAppPermissions200ResponseReasonEnum),
-          ) as SimulateAppPermissions200ResponseReasonEnum;
+            specifiedType: const FullType.nullable(SimulateAppPermissions200ResponseReasonEnum),
+          ) as SimulateAppPermissions200ResponseReasonEnum?;
+          if (valueDes == null) continue;
           result.reason = valueDes;
           break;
         case r'evaluated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SimulateAppPermissions200ResponseEvaluated),
-          ) as SimulateAppPermissions200ResponseEvaluated;
+            specifiedType: const FullType.nullable(SimulateAppPermissions200ResponseEvaluated),
+          ) as SimulateAppPermissions200ResponseEvaluated?;
+          if (valueDes == null) continue;
           result.evaluated.replace(valueDes);
           break;
         default:

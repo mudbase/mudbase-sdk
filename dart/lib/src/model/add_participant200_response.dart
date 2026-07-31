@@ -85,15 +85,17 @@ class _$AddParticipant200ResponseSerializer implements PrimitiveSerializer<AddPa
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AddParticipant200ResponseData),
-          ) as AddParticipant200ResponseData;
+            specifiedType: const FullType.nullable(AddParticipant200ResponseData),
+          ) as AddParticipant200ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

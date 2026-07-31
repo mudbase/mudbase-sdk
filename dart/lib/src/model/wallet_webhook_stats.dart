@@ -106,22 +106,25 @@ class _$WalletWebhookStatsSerializer implements PrimitiveSerializer<WalletWebhoo
         case r'totalDeliveries':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalDeliveries = valueDes;
           break;
         case r'successfulDeliveries':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.successfulDeliveries = valueDes;
           break;
         case r'failedDeliveries':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.failedDeliveries = valueDes;
           break;
         case r'lastDeliveryAt':

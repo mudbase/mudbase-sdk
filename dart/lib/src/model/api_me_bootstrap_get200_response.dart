@@ -108,15 +108,17 @@ class _$ApiMeBootstrapGet200ResponseSerializer implements PrimitiveSerializer<Ap
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.user = valueDes;
           break;
         case r'organizations':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.organizations.replace(valueDes);
           break;
         case r'defaultOrg':
@@ -130,8 +132,9 @@ class _$ApiMeBootstrapGet200ResponseSerializer implements PrimitiveSerializer<Ap
         case r'projects':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.projects.replace(valueDes);
           break;
         default:

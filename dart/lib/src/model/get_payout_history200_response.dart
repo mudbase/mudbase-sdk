@@ -98,22 +98,25 @@ class _$GetPayoutHistory200ResponseSerializer implements PrimitiveSerializer<Get
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetPayoutHistory200ResponseDataInner)]),
-          ) as BuiltList<GetPayoutHistory200ResponseDataInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetPayoutHistory200ResponseDataInner)]),
+          ) as BuiltList<GetPayoutHistory200ResponseDataInner>?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         case r'pagination':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetTransactionHistory200ResponsePagination),
-          ) as GetTransactionHistory200ResponsePagination;
+            specifiedType: const FullType.nullable(GetTransactionHistory200ResponsePagination),
+          ) as GetTransactionHistory200ResponsePagination?;
+          if (valueDes == null) continue;
           result.pagination.replace(valueDes);
           break;
         default:

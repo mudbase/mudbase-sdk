@@ -97,22 +97,25 @@ class _$ProjectUsageStatsResponseSerializer implements PrimitiveSerializer<Proje
         case r'project':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectUsageStatsResponseProject),
-          ) as ProjectUsageStatsResponseProject;
+            specifiedType: const FullType.nullable(ProjectUsageStatsResponseProject),
+          ) as ProjectUsageStatsResponseProject?;
+          if (valueDes == null) continue;
           result.project.replace(valueDes);
           break;
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectUsage),
-          ) as ProjectUsage;
+            specifiedType: const FullType.nullable(ProjectUsage),
+          ) as ProjectUsage?;
+          if (valueDes == null) continue;
           result.usage.replace(valueDes);
           break;
         case r'period':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.period = valueDes;
           break;
         default:

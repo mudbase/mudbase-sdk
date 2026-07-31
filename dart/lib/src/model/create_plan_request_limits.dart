@@ -151,8 +151,9 @@ class _$CreatePlanRequestLimitsSerializer implements PrimitiveSerializer<CreateP
         case r'customLimits':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CreatePlanRequestLimitsCustomLimitsInner)]),
-          ) as BuiltList<CreatePlanRequestLimitsCustomLimitsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CreatePlanRequestLimitsCustomLimitsInner)]),
+          ) as BuiltList<CreatePlanRequestLimitsCustomLimitsInner>?;
+          if (valueDes == null) continue;
           result.customLimits.replace(valueDes);
           break;
         default:

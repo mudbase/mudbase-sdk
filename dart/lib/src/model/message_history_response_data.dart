@@ -87,15 +87,17 @@ class _$MessageHistoryResponseDataSerializer implements PrimitiveSerializer<Mess
         case r'messages':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Message)]),
-          ) as BuiltList<Message>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(Message)]),
+          ) as BuiltList<Message>?;
+          if (valueDes == null) continue;
           result.messages.replace(valueDes);
           break;
         case r'pagination':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Pagination),
-          ) as Pagination;
+            specifiedType: const FullType.nullable(Pagination),
+          ) as Pagination?;
+          if (valueDes == null) continue;
           result.pagination.replace(valueDes);
           break;
         default:

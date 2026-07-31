@@ -128,22 +128,25 @@ class _$OrgPlatformDnsVerificationCustomerSerializer implements PrimitiveSeriali
         case r'recordType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.recordType = valueDes;
           break;
         case r'recordName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.recordName = valueDes;
           break;
         case r'recordValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.recordValue = valueDes;
           break;
         case r'ttlSeconds':

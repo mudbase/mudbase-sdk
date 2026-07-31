@@ -98,22 +98,25 @@ class _$ConfirmUploadResponseSerializer implements PrimitiveSerializer<ConfirmUp
         case r'fileId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fileId = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ConfirmUploadResponseStatusEnum),
-          ) as ConfirmUploadResponseStatusEnum;
+            specifiedType: const FullType.nullable(ConfirmUploadResponseStatusEnum),
+          ) as ConfirmUploadResponseStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'scan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ConfirmUploadResponseScan),
-          ) as ConfirmUploadResponseScan;
+            specifiedType: const FullType.nullable(ConfirmUploadResponseScan),
+          ) as ConfirmUploadResponseScan?;
+          if (valueDes == null) continue;
           result.scan.replace(valueDes);
           break;
         default:

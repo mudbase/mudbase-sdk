@@ -108,29 +108,33 @@ class _$ProjectSmsByoPublicSerializer implements PrimitiveSerializer<ProjectSmsB
         case r'enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.enabled = valueDes;
           break;
         case r'provider':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectSmsByoPublicProviderEnum),
-          ) as ProjectSmsByoPublicProviderEnum;
+            specifiedType: const FullType.nullable(ProjectSmsByoPublicProviderEnum),
+          ) as ProjectSmsByoPublicProviderEnum?;
+          if (valueDes == null) continue;
           result.provider = valueDes;
           break;
         case r'defaultFrom':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.defaultFrom = valueDes;
           break;
         case r'hasCredentials':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.hasCredentials = valueDes;
           break;
         default:

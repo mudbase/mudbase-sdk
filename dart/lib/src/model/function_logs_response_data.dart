@@ -87,15 +87,17 @@ class _$FunctionLogsResponseDataSerializer implements PrimitiveSerializer<Functi
         case r'executions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FunctionExecution)]),
-          ) as BuiltList<FunctionExecution>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FunctionExecution)]),
+          ) as BuiltList<FunctionExecution>?;
+          if (valueDes == null) continue;
           result.executions.replace(valueDes);
           break;
         case r'stats':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FunctionStats),
-          ) as FunctionStats;
+            specifiedType: const FullType.nullable(FunctionStats),
+          ) as FunctionStats?;
+          if (valueDes == null) continue;
           result.stats.replace(valueDes);
           break;
         default:

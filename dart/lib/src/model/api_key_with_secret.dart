@@ -160,78 +160,89 @@ class _$ApiKeyWithSecretSerializer implements PrimitiveSerializer<ApiKeyWithSecr
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'rateLimit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RateLimit),
-          ) as RateLimit;
+            specifiedType: const FullType.nullable(RateLimit),
+          ) as RateLimit?;
+          if (valueDes == null) continue;
           result.rateLimit.replace(valueDes);
           break;
         case r'createdBy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UserSummary),
-          ) as UserSummary;
+            specifiedType: const FullType.nullable(UserSummary),
+          ) as UserSummary?;
+          if (valueDes == null) continue;
           result.createdBy.replace(valueDes);
           break;
         case r'permissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ApiKeyPermission)]),
-          ) as BuiltList<ApiKeyPermission>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ApiKeyPermission)]),
+          ) as BuiltList<ApiKeyPermission>?;
+          if (valueDes == null) continue;
           result.permissions.replace(valueDes);
           break;
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ApiKeyUsage),
-          ) as ApiKeyUsage;
+            specifiedType: const FullType.nullable(ApiKeyUsage),
+          ) as ApiKeyUsage?;
+          if (valueDes == null) continue;
           result.usage.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'project':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectSummary),
-          ) as ProjectSummary;
+            specifiedType: const FullType.nullable(ProjectSummary),
+          ) as ProjectSummary?;
+          if (valueDes == null) continue;
           result.project.replace(valueDes);
           break;
         case r'secret':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.secret = valueDes;
           break;
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'isActive':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isActive = valueDes;
           break;
         case r'expiresAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.expiresAt = valueDes;
           break;
         default:

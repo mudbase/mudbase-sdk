@@ -74,8 +74,9 @@ class _$GetSubscriptionTierById200ResponseSerializer implements PrimitiveSeriali
         case r'plan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetSubscriptionTierById200ResponsePlan),
-          ) as GetSubscriptionTierById200ResponsePlan;
+            specifiedType: const FullType.nullable(GetSubscriptionTierById200ResponsePlan),
+          ) as GetSubscriptionTierById200ResponsePlan?;
+          if (valueDes == null) continue;
           result.plan.replace(valueDes);
           break;
         default:

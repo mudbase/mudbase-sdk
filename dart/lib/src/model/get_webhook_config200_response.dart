@@ -85,15 +85,17 @@ class _$GetWebhookConfig200ResponseSerializer implements PrimitiveSerializer<Get
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetWebhookConfig200ResponseData),
-          ) as GetWebhookConfig200ResponseData;
+            specifiedType: const FullType.nullable(GetWebhookConfig200ResponseData),
+          ) as GetWebhookConfig200ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

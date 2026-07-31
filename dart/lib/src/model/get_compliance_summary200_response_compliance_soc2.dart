@@ -95,22 +95,25 @@ class _$GetComplianceSummary200ResponseComplianceSoc2Serializer implements Primi
         case r'accessReviewsEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.accessReviewsEnabled = valueDes;
           break;
         case r'auditLoggingEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.auditLoggingEnabled = valueDes;
           break;
         case r'encryptionEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.encryptionEnabled = valueDes;
           break;
         default:

@@ -95,22 +95,25 @@ class _$GetUsageStats200ResponseStatsSerializer implements PrimitiveSerializer<G
         case r'totalCalls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalCalls = valueDes;
           break;
         case r'successCalls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.successCalls = valueDes;
           break;
         case r'failedCalls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.failedCalls = valueDes;
           break;
         default:

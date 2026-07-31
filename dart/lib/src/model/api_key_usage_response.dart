@@ -108,29 +108,33 @@ class _$ApiKeyUsageResponseSerializer implements PrimitiveSerializer<ApiKeyUsage
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ApiKeyUsage),
-          ) as ApiKeyUsage;
+            specifiedType: const FullType.nullable(ApiKeyUsage),
+          ) as ApiKeyUsage?;
+          if (valueDes == null) continue;
           result.usage.replace(valueDes);
           break;
         case r'rateLimit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RateLimit),
-          ) as RateLimit;
+            specifiedType: const FullType.nullable(RateLimit),
+          ) as RateLimit?;
+          if (valueDes == null) continue;
           result.rateLimit.replace(valueDes);
           break;
         case r'isActive':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isActive = valueDes;
           break;
         case r'expiresAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.expiresAt = valueDes;
           break;
         default:

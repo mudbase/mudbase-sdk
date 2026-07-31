@@ -276,43 +276,49 @@ class _$OrgDomainEntryOrgConsoleSerializer implements PrimitiveSerializer<OrgDom
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'hostname':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.hostname = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'isPrimary':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isPrimary = valueDes;
           break;
         case r'source':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(OrgDomainEntryOrgConsoleSource_Enum),
-          ) as OrgDomainEntryOrgConsoleSource_Enum;
+            specifiedType: const FullType.nullable(OrgDomainEntryOrgConsoleSource_Enum),
+          ) as OrgDomainEntryOrgConsoleSource_Enum?;
+          if (valueDes == null) continue;
           result.source_ = valueDes;
           break;
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'verifiedAt':
@@ -366,29 +372,33 @@ class _$OrgDomainEntryOrgConsoleSerializer implements PrimitiveSerializer<OrgDom
         case r'dnsRecords':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(OrgDnsRecord)]),
-          ) as BuiltList<OrgDnsRecord>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(OrgDnsRecord)]),
+          ) as BuiltList<OrgDnsRecord>?;
+          if (valueDes == null) continue;
           result.dnsRecords.replace(valueDes);
           break;
         case r'platformActivationPending':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.platformActivationPending = valueDes;
           break;
         case r'customDomainLiveForApiTraffic':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.customDomainLiveForApiTraffic = valueDes;
           break;
         case r'cloudflareEdge':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(OrgCloudflareEdgeHints),
-          ) as OrgCloudflareEdgeHints;
+            specifiedType: const FullType.nullable(OrgCloudflareEdgeHints),
+          ) as OrgCloudflareEdgeHints?;
+          if (valueDes == null) continue;
           result.cloudflareEdge.replace(valueDes);
           break;
         case r'flyCertificateStatus':

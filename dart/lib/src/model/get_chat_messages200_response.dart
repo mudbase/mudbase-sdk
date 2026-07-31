@@ -85,15 +85,17 @@ class _$GetChatMessages200ResponseSerializer implements PrimitiveSerializer<GetC
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetChatMessages200ResponseData),
-          ) as GetChatMessages200ResponseData;
+            specifiedType: const FullType.nullable(GetChatMessages200ResponseData),
+          ) as GetChatMessages200ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

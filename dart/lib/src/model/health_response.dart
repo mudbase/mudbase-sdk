@@ -120,36 +120,41 @@ class _$HealthResponseSerializer implements PrimitiveSerializer<HealthResponse> 
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(HealthResponseStatusEnum),
-          ) as HealthResponseStatusEnum;
+            specifiedType: const FullType.nullable(HealthResponseStatusEnum),
+          ) as HealthResponseStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'timestamp':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.timestamp = valueDes;
           break;
         case r'services':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(HealthResponseServices),
-          ) as HealthResponseServices;
+            specifiedType: const FullType.nullable(HealthResponseServices),
+          ) as HealthResponseServices?;
+          if (valueDes == null) continue;
           result.services.replace(valueDes);
           break;
         case r'version':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.version = valueDes;
           break;
         case r'uptime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.uptime = valueDes;
           break;
         default:

@@ -89,8 +89,9 @@ class _$GenerateDataProcessingRecordRequestSerializer implements PrimitiveSerial
         case r'recordDate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.recordDate = valueDes;
           break;
         default:

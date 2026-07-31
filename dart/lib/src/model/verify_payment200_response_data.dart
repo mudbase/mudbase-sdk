@@ -74,8 +74,9 @@ class _$VerifyPayment200ResponseDataSerializer implements PrimitiveSerializer<Ve
         case r'subscription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VerifyPayment200ResponseDataSubscription),
-          ) as VerifyPayment200ResponseDataSubscription;
+            specifiedType: const FullType.nullable(VerifyPayment200ResponseDataSubscription),
+          ) as VerifyPayment200ResponseDataSubscription?;
+          if (valueDes == null) continue;
           result.subscription.replace(valueDes);
           break;
         default:

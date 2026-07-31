@@ -122,8 +122,9 @@ class _$CreateFunctionRequestSerializer implements PrimitiveSerializer<CreateFun
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'code':
@@ -143,8 +144,9 @@ class _$CreateFunctionRequestSerializer implements PrimitiveSerializer<CreateFun
         case r'environment':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)]),
-          ) as BuiltMap<String, String>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(String)]),
+          ) as BuiltMap<String, String>?;
+          if (valueDes == null) continue;
           result.environment.replace(valueDes);
           break;
         default:

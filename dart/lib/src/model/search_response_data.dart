@@ -109,29 +109,33 @@ class _$SearchResponseDataSerializer implements PrimitiveSerializer<SearchRespon
         case r'results':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(SearchResult)]),
-          ) as BuiltList<SearchResult>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(SearchResult)]),
+          ) as BuiltList<SearchResult>?;
+          if (valueDes == null) continue;
           result.results.replace(valueDes);
           break;
         case r'pagination':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Pagination),
-          ) as Pagination;
+            specifiedType: const FullType.nullable(Pagination),
+          ) as Pagination?;
+          if (valueDes == null) continue;
           result.pagination.replace(valueDes);
           break;
         case r'query':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.query = valueDes;
           break;
         case r'searchTime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.searchTime = valueDes;
           break;
         default:

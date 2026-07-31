@@ -95,22 +95,25 @@ class _$TwoFASetupResponseSerializer implements PrimitiveSerializer<TwoFASetupRe
         case r'secret':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.secret = valueDes;
           break;
         case r'qrCode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.qrCode = valueDes;
           break;
         case r'manualEntryKey':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.manualEntryKey = valueDes;
           break;
         default:

@@ -86,15 +86,17 @@ class _$ProjectUsageResponseSerializer implements PrimitiveSerializer<ProjectUsa
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectUsage),
-          ) as ProjectUsage;
+            specifiedType: const FullType.nullable(ProjectUsage),
+          ) as ProjectUsage?;
+          if (valueDes == null) continue;
           result.usage.replace(valueDes);
           break;
         case r'limits':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Limits),
-          ) as Limits;
+            specifiedType: const FullType.nullable(Limits),
+          ) as Limits?;
+          if (valueDes == null) continue;
           result.limits.replace(valueDes);
           break;
         default:

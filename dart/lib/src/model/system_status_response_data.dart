@@ -133,43 +133,49 @@ class _$SystemStatusResponseDataSerializer implements PrimitiveSerializer<System
         case r'uptime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.uptime = valueDes;
           break;
         case r'memory':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SystemStatusResponseDataMemory),
-          ) as SystemStatusResponseDataMemory;
+            specifiedType: const FullType.nullable(SystemStatusResponseDataMemory),
+          ) as SystemStatusResponseDataMemory?;
+          if (valueDes == null) continue;
           result.memory.replace(valueDes);
           break;
         case r'cpu':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SystemStatusResponseDataCpu),
-          ) as SystemStatusResponseDataCpu;
+            specifiedType: const FullType.nullable(SystemStatusResponseDataCpu),
+          ) as SystemStatusResponseDataCpu?;
+          if (valueDes == null) continue;
           result.cpu.replace(valueDes);
           break;
         case r'requests':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SystemStatusResponseDataRequests),
-          ) as SystemStatusResponseDataRequests;
+            specifiedType: const FullType.nullable(SystemStatusResponseDataRequests),
+          ) as SystemStatusResponseDataRequests?;
+          if (valueDes == null) continue;
           result.requests.replace(valueDes);
           break;
         case r'database':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SystemStatusResponseDataDatabase),
-          ) as SystemStatusResponseDataDatabase;
+            specifiedType: const FullType.nullable(SystemStatusResponseDataDatabase),
+          ) as SystemStatusResponseDataDatabase?;
+          if (valueDes == null) continue;
           result.database.replace(valueDes);
           break;
         case r'storage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SystemStatusResponseDataStorage),
-          ) as SystemStatusResponseDataStorage;
+            specifiedType: const FullType.nullable(SystemStatusResponseDataStorage),
+          ) as SystemStatusResponseDataStorage?;
+          if (valueDes == null) continue;
           result.storage.replace(valueDes);
           break;
         default:

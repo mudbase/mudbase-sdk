@@ -14,13 +14,16 @@ public struct RegisterWithRoleRequest: Sendable, Codable, Hashable {
     public var firstName: String
     public var lastName: String
     public var projectId: String
+    /** Must be `true` - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy. */
+    public var agreedToTerms: Bool
 
-    public init(email: String, password: String, firstName: String, lastName: String, projectId: String) {
+    public init(email: String, password: String, firstName: String, lastName: String, projectId: String, agreedToTerms: Bool) {
         self.email = email
         self.password = password
         self.firstName = firstName
         self.lastName = lastName
         self.projectId = projectId
+        self.agreedToTerms = agreedToTerms
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -29,6 +32,7 @@ public struct RegisterWithRoleRequest: Sendable, Codable, Hashable {
         case firstName
         case lastName
         case projectId
+        case agreedToTerms
     }
 
     // Encodable protocol methods
@@ -40,6 +44,7 @@ public struct RegisterWithRoleRequest: Sendable, Codable, Hashable {
         try container.encode(firstName, forKey: .firstName)
         try container.encode(lastName, forKey: .lastName)
         try container.encode(projectId, forKey: .projectId)
+        try container.encode(agreedToTerms, forKey: .agreedToTerms)
     }
 }
 

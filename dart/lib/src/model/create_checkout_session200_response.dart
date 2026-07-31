@@ -85,15 +85,17 @@ class _$CreateCheckoutSession200ResponseSerializer implements PrimitiveSerialize
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateCheckoutSession200ResponseData),
-          ) as CreateCheckoutSession200ResponseData;
+            specifiedType: const FullType.nullable(CreateCheckoutSession200ResponseData),
+          ) as CreateCheckoutSession200ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

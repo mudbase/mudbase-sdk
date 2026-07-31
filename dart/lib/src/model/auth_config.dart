@@ -88,15 +88,17 @@ class _$AuthConfigSerializer implements PrimitiveSerializer<AuthConfig> {
         case r'providers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(AuthProvider)]),
-          ) as BuiltList<AuthProvider>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(AuthProvider)]),
+          ) as BuiltList<AuthProvider>?;
+          if (valueDes == null) continue;
           result.providers.replace(valueDes);
           break;
         case r'notifyOnNewSignIn':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.notifyOnNewSignIn = valueDes;
           break;
         default:

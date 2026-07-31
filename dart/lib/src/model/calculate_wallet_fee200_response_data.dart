@@ -254,8 +254,9 @@ class _$CalculateWalletFee200ResponseDataSerializer implements PrimitiveSerializ
         case r'currency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.currency = valueDes;
           break;
         case r'network':
@@ -269,99 +270,113 @@ class _$CalculateWalletFee200ResponseDataSerializer implements PrimitiveSerializ
         case r'amount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.amount = valueDes;
           break;
         case r'chain':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.chain = valueDes;
           break;
         case r'networkFee':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.networkFee = valueDes;
           break;
         case r'estimatedTime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.estimatedTime = valueDes;
           break;
         case r'congestion':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CalculateWalletFee200ResponseDataCongestionEnum),
-          ) as CalculateWalletFee200ResponseDataCongestionEnum;
+            specifiedType: const FullType.nullable(CalculateWalletFee200ResponseDataCongestionEnum),
+          ) as CalculateWalletFee200ResponseDataCongestionEnum?;
+          if (valueDes == null) continue;
           result.congestion = valueDes;
           break;
         case r'gasLimit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.gasLimit = valueDes;
           break;
         case r'gasPrice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.gasPrice = valueDes;
           break;
         case r'gasPriceGwei':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.gasPriceGwei = valueDes;
           break;
         case r'estimatedCost':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.estimatedCost = valueDes;
           break;
         case r'satPerVb':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.satPerVb = valueDes;
           break;
         case r'feeSat':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.feeSat = valueDes;
           break;
         case r'lamports':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.lamports = valueDes;
           break;
         case r'feeTiers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(CalculateWalletFee200ResponseDataFeeTiersValue)]),
-          ) as BuiltMap<String, CalculateWalletFee200ResponseDataFeeTiersValue>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(CalculateWalletFee200ResponseDataFeeTiersValue)]),
+          ) as BuiltMap<String, CalculateWalletFee200ResponseDataFeeTiersValue>?;
+          if (valueDes == null) continue;
           result.feeTiers.replace(valueDes);
           break;
         case r'gasSpikeWarning':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.gasSpikeWarning = valueDes;
           break;
         default:

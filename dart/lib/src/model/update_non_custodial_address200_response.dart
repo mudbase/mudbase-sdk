@@ -96,22 +96,25 @@ class _$UpdateNonCustodialAddress200ResponseSerializer implements PrimitiveSeria
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(NonCustodialAddressResponse),
-          ) as NonCustodialAddressResponse;
+            specifiedType: const FullType.nullable(NonCustodialAddressResponse),
+          ) as NonCustodialAddressResponse?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

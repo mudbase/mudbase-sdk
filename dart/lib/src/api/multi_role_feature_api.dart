@@ -14,6 +14,7 @@ import 'package:mudbase_sdk/src/model/apply_role_feature_preset_request.dart';
 import 'package:mudbase_sdk/src/model/get_available_roles200_response.dart';
 import 'package:mudbase_sdk/src/model/get_multi_role_config200_response.dart';
 import 'package:mudbase_sdk/src/model/get_permissions_matrix200_response.dart';
+import 'package:mudbase_sdk/src/model/register_with_role201_response.dart';
 import 'package:mudbase_sdk/src/model/register_with_role_request.dart';
 import 'package:mudbase_sdk/src/model/simulate_app_permissions200_response.dart';
 import 'package:mudbase_sdk/src/model/simulate_app_permissions_request.dart';
@@ -573,9 +574,9 @@ class MultiRoleFeatureApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [RegisterWithRole201Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> registerWithRole({ 
+  Future<Response<RegisterWithRole201Response>> registerWithRole({ 
     required String role,
     required RegisterWithRoleRequest registerWithRoleRequest,
     CancelToken? cancelToken,
@@ -626,7 +627,35 @@ class MultiRoleFeatureApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    RegisterWithRole201Response? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(RegisterWithRole201Response),
+      ) as RegisterWithRole201Response;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<RegisterWithRole201Response>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// Simulate app-role feature permission for a path

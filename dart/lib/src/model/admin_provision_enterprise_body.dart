@@ -175,8 +175,9 @@ class _$AdminProvisionEnterpriseBodySerializer implements PrimitiveSerializer<Ad
         case r'forceOverride':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.forceOverride = valueDes;
           break;
         default:

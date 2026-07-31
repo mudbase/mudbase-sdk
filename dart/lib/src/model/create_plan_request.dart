@@ -209,8 +209,9 @@ class _$CreatePlanRequestSerializer implements PrimitiveSerializer<CreatePlanReq
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'price':
@@ -237,50 +238,57 @@ class _$CreatePlanRequestSerializer implements PrimitiveSerializer<CreatePlanReq
         case r'features':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CreatePlanRequestFeaturesInner)]),
-          ) as BuiltList<CreatePlanRequestFeaturesInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CreatePlanRequestFeaturesInner)]),
+          ) as BuiltList<CreatePlanRequestFeaturesInner>?;
+          if (valueDes == null) continue;
           result.features.replace(valueDes);
           break;
         case r'limits':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreatePlanRequestLimits),
-          ) as CreatePlanRequestLimits;
+            specifiedType: const FullType.nullable(CreatePlanRequestLimits),
+          ) as CreatePlanRequestLimits?;
+          if (valueDes == null) continue;
           result.limits.replace(valueDes);
           break;
         case r'trial':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreatePlanRequestTrial),
-          ) as CreatePlanRequestTrial;
+            specifiedType: const FullType.nullable(CreatePlanRequestTrial),
+          ) as CreatePlanRequestTrial?;
+          if (valueDes == null) continue;
           result.trial.replace(valueDes);
           break;
         case r'isActive':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isActive = valueDes;
           break;
         case r'isDefault':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isDefault = valueDes;
           break;
         case r'sortOrder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.sortOrder = valueDes;
           break;
         case r'metadata':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-          ) as BuiltMap<String, JsonObject?>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>?;
+          if (valueDes == null) continue;
           result.metadata.replace(valueDes);
           break;
         default:

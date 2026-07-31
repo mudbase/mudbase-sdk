@@ -75,8 +75,9 @@ class _$GetSubscriptions200ResponseSerializer implements PrimitiveSerializer<Get
         case r'subscriptions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetSubscriptions200ResponseSubscriptionsInner)]),
-          ) as BuiltList<GetSubscriptions200ResponseSubscriptionsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetSubscriptions200ResponseSubscriptionsInner)]),
+          ) as BuiltList<GetSubscriptions200ResponseSubscriptionsInner>?;
+          if (valueDes == null) continue;
           result.subscriptions.replace(valueDes);
           break;
         default:

@@ -86,15 +86,17 @@ class _$GetOrganizationMembers200ResponseSerializer implements PrimitiveSerializ
         case r'members':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(User)]),
-          ) as BuiltList<User>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(User)]),
+          ) as BuiltList<User>?;
+          if (valueDes == null) continue;
           result.members.replace(valueDes);
           break;
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.total = valueDes;
           break;
         default:

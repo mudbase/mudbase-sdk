@@ -86,15 +86,17 @@ class _$GetChatE2eeParticipantKeys200ResponseSerializer implements PrimitiveSeri
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetChatE2eeParticipantKeys200ResponseDataInner)]),
-          ) as BuiltList<GetChatE2eeParticipantKeys200ResponseDataInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetChatE2eeParticipantKeys200ResponseDataInner)]),
+          ) as BuiltList<GetChatE2eeParticipantKeys200ResponseDataInner>?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

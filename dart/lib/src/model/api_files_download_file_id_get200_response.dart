@@ -109,8 +109,9 @@ class _$ApiFilesDownloadFileIdGet200ResponseSerializer implements PrimitiveSeria
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.url = valueDes;
           break;
         case r'expiresIn':
@@ -124,15 +125,17 @@ class _$ApiFilesDownloadFileIdGet200ResponseSerializer implements PrimitiveSeria
         case r'isPublic':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isPublic = valueDes;
           break;
         case r'warning':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.warning = valueDes;
           break;
         default:

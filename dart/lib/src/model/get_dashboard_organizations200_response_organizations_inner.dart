@@ -209,43 +209,49 @@ class _$GetDashboardOrganizations200ResponseOrganizationsInnerSerializer impleme
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'slug':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.slug = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'plan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.plan = valueDes;
           break;
         case r'deploymentType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetDashboardOrganizations200ResponseOrganizationsInnerDeploymentTypeEnum),
-          ) as GetDashboardOrganizations200ResponseOrganizationsInnerDeploymentTypeEnum;
+            specifiedType: const FullType.nullable(GetDashboardOrganizations200ResponseOrganizationsInnerDeploymentTypeEnum),
+          ) as GetDashboardOrganizations200ResponseOrganizationsInnerDeploymentTypeEnum?;
+          if (valueDes == null) continue;
           result.deploymentType = valueDes;
           break;
         case r'dedicatedApiBaseUrl':
@@ -259,43 +265,49 @@ class _$GetDashboardOrganizations200ResponseOrganizationsInnerSerializer impleme
         case r'isActive':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isActive = valueDes;
           break;
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'createdBy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetDashboardOrganizations200ResponseOrganizationsInnerCreatedBy),
-          ) as GetDashboardOrganizations200ResponseOrganizationsInnerCreatedBy;
+            specifiedType: const FullType.nullable(GetDashboardOrganizations200ResponseOrganizationsInnerCreatedBy),
+          ) as GetDashboardOrganizations200ResponseOrganizationsInnerCreatedBy?;
+          if (valueDes == null) continue;
           result.createdBy.replace(valueDes);
           break;
         case r'projectCount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.projectCount = valueDes;
           break;
         case r'userCount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.userCount = valueDes;
           break;
         case r'projects':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetOrganizationUsers200ResponseUsersInnerProject)]),
-          ) as BuiltList<GetOrganizationUsers200ResponseUsersInnerProject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetOrganizationUsers200ResponseUsersInnerProject)]),
+          ) as BuiltList<GetOrganizationUsers200ResponseUsersInnerProject>?;
+          if (valueDes == null) continue;
           result.projects.replace(valueDes);
           break;
         default:

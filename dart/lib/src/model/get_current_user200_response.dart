@@ -74,8 +74,9 @@ class _$GetCurrentUser200ResponseSerializer implements PrimitiveSerializer<GetCu
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(User),
-          ) as User;
+            specifiedType: const FullType.nullable(User),
+          ) as User?;
+          if (valueDes == null) continue;
           result.user.replace(valueDes);
           break;
         default:

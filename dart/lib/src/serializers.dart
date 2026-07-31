@@ -532,6 +532,9 @@ import 'package:mudbase_sdk/src/model/register_local_user_request.dart';
 import 'package:mudbase_sdk/src/model/register_non_custodial_address_request.dart';
 import 'package:mudbase_sdk/src/model/register_request.dart';
 import 'package:mudbase_sdk/src/model/register_user429_response.dart';
+import 'package:mudbase_sdk/src/model/register_with_role201_response.dart';
+import 'package:mudbase_sdk/src/model/register_with_role201_response_role.dart';
+import 'package:mudbase_sdk/src/model/register_with_role201_response_user.dart';
 import 'package:mudbase_sdk/src/model/register_with_role_request.dart';
 import 'package:mudbase_sdk/src/model/remove_participant_request.dart';
 import 'package:mudbase_sdk/src/model/remove_reaction200_response.dart';
@@ -1201,6 +1204,9 @@ part 'serializers.g.dart';
   RegisterNonCustodialAddressRequest,
   RegisterRequest,
   RegisterUser429Response,
+  RegisterWithRole201Response,
+  RegisterWithRole201ResponseRole,
+  RegisterWithRole201ResponseUser,
   RegisterWithRoleRequest,
   RemoveParticipantRequest,
   RemoveReaction200Response,
@@ -1351,8 +1357,396 @@ part 'serializers.g.dart';
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetScannerMetrics200ResponseAlertsInner)]),
+        () => ListBuilder<GetScannerMetrics200ResponseAlertsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CollectionAction)]),
+        () => ListBuilder<CollectionAction>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ListBackups200ResponseBackupsInner)]),
+        () => ListBuilder<ListBackups200ResponseBackupsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetSubscriptions200ResponseSubscriptionsInner)]),
+        () => ListBuilder<GetSubscriptions200ResponseSubscriptionsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AddReaction200ResponseDataInner)]),
+        () => ListBuilder<AddReaction200ResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetInvoices200ResponseInvoicesInner)]),
+        () => ListBuilder<GetInvoices200ResponseInvoicesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UsageTrendsResponseTrendsInner)]),
+        () => ListBuilder<UsageTrendsResponseTrendsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(JsonObject)])]),
+        () => ListBuilder<BuiltMap<String, JsonObject>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UploadVerificationDocumentsRequestDocumentsInner)]),
+        () => ListBuilder<UploadVerificationDocumentsRequestDocumentsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(DashboardActivityItem)]),
+        () => ListBuilder<DashboardActivityItem>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetDashboardOrganizationDetail200ResponseOrganizationUsersInner)]),
+        () => ListBuilder<GetDashboardOrganizationDetail200ResponseOrganizationUsersInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetPaymentRecords200ResponseDataRecordsInner)]),
+        () => ListBuilder<GetPaymentRecords200ResponseDataRecordsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FunctionExecution)]),
+        () => ListBuilder<FunctionExecution>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(NonCustodialAddress)]),
+        () => ListBuilder<NonCustodialAddress>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateRoleRequestPermissionsInner)]),
+        () => ListBuilder<CreateRoleRequestPermissionsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(WebhookStatsResponseEventStatsInner)]),
+        () => ListBuilder<WebhookStatsResponseEventStatsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OrgCloudflareSslValidationRecord)]),
+        () => ListBuilder<OrgCloudflareSslValidationRecord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetUsageWarnings200ResponseWarningsInner)]),
+        () => ListBuilder<GetUsageWarnings200ResponseWarningsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OrgDnsRecord)]),
+        () => ListBuilder<OrgDnsRecord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetProjectFeeDashboard200ResponseDataRecentPayoutsInner)]),
+        () => ListBuilder<GetProjectFeeDashboard200ResponseDataRecentPayoutsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(WalletWebhook)]),
+        () => ListBuilder<WalletWebhook>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetUserChats200ResponseDataChatsInner)]),
+        () => ListBuilder<GetUserChats200ResponseDataChatsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetSubscriptionTiers200ResponsePlansInner)]),
+        () => ListBuilder<GetSubscriptionTiers200ResponsePlansInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Plan)]),
+        () => ListBuilder<Plan>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(String)]),
+        () => MapBuilder<String, String>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AuthProvider)]),
+        () => ListBuilder<AuthProvider>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreatePlanRequestFeaturesInner)]),
+        () => ListBuilder<CreatePlanRequestFeaturesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(WalletTransaction)]),
+        () => ListBuilder<WalletTransaction>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ApiKeyPermission)]),
+        () => ListBuilder<ApiKeyPermission>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetOrganizationUsage200ResponseAllOfSuborgsInner)]),
+        () => ListBuilder<GetOrganizationUsage200ResponseAllOfSuborgsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ConfigureWebhook200ResponseDataTransformationsInner)]),
+        () => ListBuilder<ConfigureWebhook200ResponseDataTransformationsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetTemplates200ResponseTemplatesInner)]),
+        () => ListBuilder<GetTemplates200ResponseTemplatesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerUsersInner)]),
+        () => ListBuilder<GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerUsersInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetDashboardOrganizations200ResponseOrganizationsInner)]),
+        () => ListBuilder<GetDashboardOrganizations200ResponseOrganizationsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ApiKey)]),
+        () => ListBuilder<ApiKey>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetPayoutHistory200ResponseDataInner)]),
+        () => ListBuilder<GetPayoutHistory200ResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetWebhookConfig200ResponseDataTransformationsInner)]),
+        () => ListBuilder<GetWebhookConfig200ResponseDataTransformationsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Organization)]),
+        () => ListBuilder<Organization>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FileMetadata)]),
+        () => ListBuilder<FileMetadata>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(BuiltMap, [FullType(String), FullType(bool)])]),
+        () => MapBuilder<String, BuiltMap<String, bool>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(GetNetworkStatus200ResponseDataValue)]),
+        () => MapBuilder<String, GetNetworkStatus200ResponseDataValue>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(JsonObject)]),
+        () => ListBuilder<JsonObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetPendingPayouts200ResponseDataInner)]),
+        () => ListBuilder<GetPendingPayouts200ResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(SearchResult)]),
+        () => ListBuilder<SearchResult>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetFunctionVersions200ResponseDataVersionsInner)]),
+        () => ListBuilder<GetFunctionVersions200ResponseDataVersionsInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+        () => MapBuilder<String, JsonObject?>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(String)]),
+        () => ListBuilder<String>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MonitoringLogsResponseLogsInner)]),
+        () => ListBuilder<MonitoringLogsResponseLogsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetChatE2eeParticipantKeys200ResponseDataInner)]),
+        () => ListBuilder<GetChatE2eeParticipantKeys200ResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(CreateRoleRequestCollectionPermissionsValue)]),
+        () => MapBuilder<String, CreateRoleRequestCollectionPermissionsValue>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(RemoveReaction200ResponseDataInner)]),
+        () => ListBuilder<RemoveReaction200ResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetAdminPayoutDashboard200ResponseDataByCurrencyInner)]),
+        () => ListBuilder<GetAdminPayoutDashboard200ResponseDataByCurrencyInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetProjectOAuthProviders200ResponseProvidersInner)]),
+        () => ListBuilder<GetProjectOAuthProviders200ResponseProvidersInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(DataListResponseDataInner)]),
+        () => ListBuilder<DataListResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(DashboardOverviewDataLatencyTopRoutesByImpactHintInner)]),
+        () => ListBuilder<DashboardOverviewDataLatencyTopRoutesByImpactHintInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(CalculateWalletFee200ResponseDataFeeTiersValue)]),
+        () => MapBuilder<String, CalculateWalletFee200ResponseDataFeeTiersValue>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetSupportedCurrencies200ResponseDataCurrenciesInner)]),
+        () => ListBuilder<GetSupportedCurrencies200ResponseDataCurrenciesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(DashboardOverviewDataRequestVolume14dInner)]),
+        () => ListBuilder<DashboardOverviewDataRequestVolume14dInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetOrganizationUsers200ResponseUsersInnerProject)]),
+        () => ListBuilder<GetOrganizationUsers200ResponseUsersInnerProject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetProjectFeeDashboard200ResponseDataBalancesInner)]),
+        () => ListBuilder<GetProjectFeeDashboard200ResponseDataBalancesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Bucket)]),
+        () => ListBuilder<Bucket>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Message)]),
+        () => ListBuilder<Message>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetOrgOAuthProviders200ResponseProvidersInner)]),
+        () => ListBuilder<GetOrgOAuthProviders200ResponseProvidersInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(User)]),
+        () => ListBuilder<User>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetChatMessages200ResponseDataMessagesInner)]),
+        () => ListBuilder<GetChatMessages200ResponseDataMessagesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AddCustomRoleRequestDefaultPermissionsInner)]),
+        () => ListBuilder<AddCustomRoleRequestDefaultPermissionsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetAvailableRoles200ResponseDataInner)]),
+        () => ListBuilder<GetAvailableRoles200ResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateRole201ResponseRolePermissionsInner)]),
+        () => ListBuilder<CreateRole201ResponseRolePermissionsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetActiveUsers200ResponseUsersInner)]),
+        () => ListBuilder<GetActiveUsers200ResponseUsersInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner)]),
+        () => ListBuilder<GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(OrgDomainEntryOrgConsole)]),
+        () => ListBuilder<OrgDomainEntryOrgConsole>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(WalletTransactionTokenTransfersInner)]),
+        () => ListBuilder<WalletTransactionTokenTransfersInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetChatDetails200ResponseDataParticipantsInner)]),
+        () => ListBuilder<GetChatDetails200ResponseDataParticipantsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(JsonObject)]),
         () => MapBuilder<String, JsonObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AddParticipant200ResponseDataParticipantsInner)]),
+        () => ListBuilder<AddParticipant200ResponseDataParticipantsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetSearchAnalytics200ResponseTopQueriesInner)]),
+        () => ListBuilder<GetSearchAnalytics200ResponseTopQueriesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetAvailableOAuthProviders200ResponseProvidersInner)]),
+        () => ListBuilder<GetAvailableOAuthProviders200ResponseProvidersInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetBillingEstimate200ResponseLineItemsInner)]),
+        () => ListBuilder<GetBillingEstimate200ResponseLineItemsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Collection)]),
+        () => ListBuilder<Collection>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetOverage200ResponseOverageInner)]),
+        () => ListBuilder<GetOverage200ResponseOverageInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(EmailTemplateCatalogItem)]),
+        () => ListBuilder<EmailTemplateCatalogItem>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Project)]),
+        () => ListBuilder<Project>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(int)]),
+        () => MapBuilder<String, int>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetHistoricalAnalytics200ResponseDataInner)]),
+        () => ListBuilder<GetHistoricalAnalytics200ResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ModelFunction)]),
+        () => ListBuilder<ModelFunction>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetOrganizationUsers200ResponseUsersInner)]),
+        () => ListBuilder<GetOrganizationUsers200ResponseUsersInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(WebhookStatsResponseStatusStatsInner)]),
+        () => ListBuilder<WebhookStatsResponseStatusStatsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(WebhookLog)]),
+        () => ListBuilder<WebhookLog>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreatePlanRequestLimitsCustomLimitsInner)]),
+        () => ListBuilder<CreatePlanRequestLimitsCustomLimitsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CreateWallet201ResponseData)]),
+        () => ListBuilder<CreateWallet201ResponseData>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetFeeBalances200ResponseDataInner)]),
+        () => ListBuilder<GetFeeBalances200ResponseDataInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ListOAuthProviders200ResponseProvidersInner)]),
+        () => ListBuilder<ListOAuthProviders200ResponseProvidersInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MonitoringAnalyticsResponseStatsInner)]),
+        () => ListBuilder<MonitoringAnalyticsResponseStatsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(CheckUserPresence200ResponsePresenceValue)]),
+        () => MapBuilder<String, CheckUserPresence200ResponsePresenceValue>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(GetScannerMetrics200ResponseMetricsValue)]),
+        () => MapBuilder<String, GetScannerMetrics200ResponseMetricsValue>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Field)]),
+        () => ListBuilder<Field>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GetIntegrations200ResponseIntegrationsInner)]),
+        () => ListBuilder<GetIntegrations200ResponseIntegrationsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Permission)]),
+        () => ListBuilder<Permission>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(bool)]),

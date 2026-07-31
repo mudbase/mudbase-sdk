@@ -98,22 +98,25 @@ class _$BucketListResponseSerializer implements PrimitiveSerializer<BucketListRe
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'buckets':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Bucket)]),
-          ) as BuiltList<Bucket>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(Bucket)]),
+          ) as BuiltList<Bucket>?;
+          if (valueDes == null) continue;
           result.buckets.replace(valueDes);
           break;
         case r'pagination':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Pagination),
-          ) as Pagination;
+            specifiedType: const FullType.nullable(Pagination),
+          ) as Pagination?;
+          if (valueDes == null) continue;
           result.pagination.replace(valueDes);
           break;
         default:

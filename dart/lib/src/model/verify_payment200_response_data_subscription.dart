@@ -108,29 +108,33 @@ class _$VerifyPayment200ResponseDataSubscriptionSerializer implements PrimitiveS
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VerifyPayment200ResponseDataSubscriptionStatusEnum),
-          ) as VerifyPayment200ResponseDataSubscriptionStatusEnum;
+            specifiedType: const FullType.nullable(VerifyPayment200ResponseDataSubscriptionStatusEnum),
+          ) as VerifyPayment200ResponseDataSubscriptionStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'plan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.plan = valueDes;
           break;
         case r'currentPeriodEnd':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.currentPeriodEnd = valueDes;
           break;
         default:

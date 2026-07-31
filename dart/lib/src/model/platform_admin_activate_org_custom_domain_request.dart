@@ -74,8 +74,9 @@ class _$PlatformAdminActivateOrgCustomDomainRequestSerializer implements Primiti
         case r'notifyOrg':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.notifyOrg = valueDes;
           break;
         default:

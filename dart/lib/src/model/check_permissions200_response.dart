@@ -86,15 +86,17 @@ class _$CheckPermissions200ResponseSerializer implements PrimitiveSerializer<Che
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.user = valueDes;
           break;
         case r'permissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CheckPermissions200ResponsePermissions),
-          ) as CheckPermissions200ResponsePermissions;
+            specifiedType: const FullType.nullable(CheckPermissions200ResponsePermissions),
+          ) as CheckPermissions200ResponsePermissions?;
+          if (valueDes == null) continue;
           result.permissions.replace(valueDes);
           break;
         default:

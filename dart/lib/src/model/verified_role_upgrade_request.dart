@@ -102,15 +102,17 @@ class _$VerifiedRoleUpgradeRequestSerializer implements PrimitiveSerializer<Veri
         case r'paymentIntentId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.paymentIntentId = valueDes;
           break;
         case r'verificationId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.verificationId = valueDes;
           break;
         default:

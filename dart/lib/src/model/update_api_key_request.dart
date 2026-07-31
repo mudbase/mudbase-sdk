@@ -109,29 +109,33 @@ class _$UpdateApiKeyRequestSerializer implements PrimitiveSerializer<UpdateApiKe
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'permissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ApiKeyPermission)]),
-          ) as BuiltList<ApiKeyPermission>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ApiKeyPermission)]),
+          ) as BuiltList<ApiKeyPermission>?;
+          if (valueDes == null) continue;
           result.permissions.replace(valueDes);
           break;
         case r'rateLimit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RateLimit),
-          ) as RateLimit;
+            specifiedType: const FullType.nullable(RateLimit),
+          ) as RateLimit?;
+          if (valueDes == null) continue;
           result.rateLimit.replace(valueDes);
           break;
         case r'isActive':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isActive = valueDes;
           break;
         default:

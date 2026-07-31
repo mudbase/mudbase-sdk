@@ -75,8 +75,9 @@ class _$GetOverage200ResponseSerializer implements PrimitiveSerializer<GetOverag
         case r'overage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetOverage200ResponseOverageInner)]),
-          ) as BuiltList<GetOverage200ResponseOverageInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetOverage200ResponseOverageInner)]),
+          ) as BuiltList<GetOverage200ResponseOverageInner>?;
+          if (valueDes == null) continue;
           result.overage.replace(valueDes);
           break;
         default:

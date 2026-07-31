@@ -137,8 +137,9 @@ class _$RegisterRequestSerializer implements PrimitiveSerializer<RegisterRequest
         case r'orgName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.orgName = valueDes;
           break;
         default:

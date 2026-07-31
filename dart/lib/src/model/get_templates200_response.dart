@@ -75,8 +75,9 @@ class _$GetTemplates200ResponseSerializer implements PrimitiveSerializer<GetTemp
         case r'templates':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetTemplates200ResponseTemplatesInner)]),
-          ) as BuiltList<GetTemplates200ResponseTemplatesInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetTemplates200ResponseTemplatesInner)]),
+          ) as BuiltList<GetTemplates200ResponseTemplatesInner>?;
+          if (valueDes == null) continue;
           result.templates.replace(valueDes);
           break;
         default:

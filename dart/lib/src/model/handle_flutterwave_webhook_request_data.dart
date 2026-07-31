@@ -153,57 +153,65 @@ class _$HandleFlutterwaveWebhookRequestDataSerializer implements PrimitiveSerial
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'tx_ref':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.txRef = valueDes;
           break;
         case r'flw_ref':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.flwRef = valueDes;
           break;
         case r'amount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.amount = valueDes;
           break;
         case r'currency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.currency = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'customer':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(HandleFlutterwaveWebhookRequestDataCustomer),
-          ) as HandleFlutterwaveWebhookRequestDataCustomer;
+            specifiedType: const FullType.nullable(HandleFlutterwaveWebhookRequestDataCustomer),
+          ) as HandleFlutterwaveWebhookRequestDataCustomer?;
+          if (valueDes == null) continue;
           result.customer.replace(valueDes);
           break;
         case r'meta':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.meta = valueDes;
           break;
         default:

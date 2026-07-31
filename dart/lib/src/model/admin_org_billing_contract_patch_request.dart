@@ -170,8 +170,9 @@ class _$AdminOrgBillingContractPatchRequestSerializer implements PrimitiveSerial
         case r'reason':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.reason = valueDes;
           break;
         default:

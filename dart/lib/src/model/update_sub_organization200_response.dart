@@ -85,15 +85,17 @@ class _$UpdateSubOrganization200ResponseSerializer implements PrimitiveSerialize
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'org':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Organization),
-          ) as Organization;
+            specifiedType: const FullType.nullable(Organization),
+          ) as Organization?;
+          if (valueDes == null) continue;
           result.org.replace(valueDes);
           break;
         default:

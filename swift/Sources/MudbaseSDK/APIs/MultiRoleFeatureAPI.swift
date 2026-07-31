@@ -350,10 +350,10 @@ open class MultiRoleFeatureAPI {
      - parameter role: (path) Must match the role&#39;s &#x60;signupEndpoint&#x60; (default &#x60;customer&#x60;; other values for roles you add). 
      - parameter registerWithRoleRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: Void
+     - returns: RegisterWithRole201Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func registerWithRole(role: String, registerWithRoleRequest: RegisterWithRoleRequest, apiConfiguration: MudbaseSDKAPIConfiguration = MudbaseSDKAPIConfiguration.shared) async throws(ErrorResponse) {
+    open class func registerWithRole(role: String, registerWithRoleRequest: RegisterWithRoleRequest, apiConfiguration: MudbaseSDKAPIConfiguration = MudbaseSDKAPIConfiguration.shared) async throws(ErrorResponse) -> RegisterWithRole201Response {
         return try await registerWithRoleWithRequestBuilder(role: role, registerWithRoleRequest: registerWithRoleRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -364,9 +364,9 @@ open class MultiRoleFeatureAPI {
      - parameter role: (path) Must match the role&#39;s &#x60;signupEndpoint&#x60; (default &#x60;customer&#x60;; other values for roles you add). 
      - parameter registerWithRoleRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<RegisterWithRole201Response> 
      */
-    open class func registerWithRoleWithRequestBuilder(role: String, registerWithRoleRequest: RegisterWithRoleRequest, apiConfiguration: MudbaseSDKAPIConfiguration = MudbaseSDKAPIConfiguration.shared) -> RequestBuilder<Void> {
+    open class func registerWithRoleWithRequestBuilder(role: String, registerWithRoleRequest: RegisterWithRoleRequest, apiConfiguration: MudbaseSDKAPIConfiguration = MudbaseSDKAPIConfiguration.shared) -> RequestBuilder<RegisterWithRole201Response> {
         var localVariablePath = "/api/auth/local/signup/{role}"
         let rolePreEscape = "\(APIHelper.mapValueToPathItem(role))"
         let rolePostEscape = rolePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -382,7 +382,7 @@ open class MultiRoleFeatureAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RegisterWithRole201Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
     }

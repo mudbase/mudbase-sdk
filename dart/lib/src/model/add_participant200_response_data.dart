@@ -75,8 +75,9 @@ class _$AddParticipant200ResponseDataSerializer implements PrimitiveSerializer<A
         case r'participants':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(AddParticipant200ResponseDataParticipantsInner)]),
-          ) as BuiltList<AddParticipant200ResponseDataParticipantsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(AddParticipant200ResponseDataParticipantsInner)]),
+          ) as BuiltList<AddParticipant200ResponseDataParticipantsInner>?;
+          if (valueDes == null) continue;
           result.participants.replace(valueDes);
           break;
         default:

@@ -85,15 +85,17 @@ class _$CreateCollection201ResponseSerializer implements PrimitiveSerializer<Cre
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'collection':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Collection),
-          ) as Collection;
+            specifiedType: const FullType.nullable(Collection),
+          ) as Collection?;
+          if (valueDes == null) continue;
           result.collection.replace(valueDes);
           break;
         default:

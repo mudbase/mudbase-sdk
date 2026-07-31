@@ -73,8 +73,9 @@ class _$MarkMessagesAsRead200ResponseDataSerializer implements PrimitiveSerializ
         case r'modifiedCount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.modifiedCount = valueDes;
           break;
         default:

@@ -133,22 +133,25 @@ class _$CreateApiKeyRequestSerializer implements PrimitiveSerializer<CreateApiKe
         case r'permissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ApiKeyPermission)]),
-          ) as BuiltList<ApiKeyPermission>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ApiKeyPermission)]),
+          ) as BuiltList<ApiKeyPermission>?;
+          if (valueDes == null) continue;
           result.permissions.replace(valueDes);
           break;
         case r'rateLimit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RateLimit),
-          ) as RateLimit;
+            specifiedType: const FullType.nullable(RateLimit),
+          ) as RateLimit?;
+          if (valueDes == null) continue;
           result.rateLimit.replace(valueDes);
           break;
         case r'expiresAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.expiresAt = valueDes;
           break;
         default:

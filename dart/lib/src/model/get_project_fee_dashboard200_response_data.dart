@@ -110,29 +110,33 @@ class _$GetProjectFeeDashboard200ResponseDataSerializer implements PrimitiveSeri
         case r'feeSettings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.feeSettings = valueDes;
           break;
         case r'balances':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetProjectFeeDashboard200ResponseDataBalancesInner)]),
-          ) as BuiltList<GetProjectFeeDashboard200ResponseDataBalancesInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetProjectFeeDashboard200ResponseDataBalancesInner)]),
+          ) as BuiltList<GetProjectFeeDashboard200ResponseDataBalancesInner>?;
+          if (valueDes == null) continue;
           result.balances.replace(valueDes);
           break;
         case r'recentPayouts':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetProjectFeeDashboard200ResponseDataRecentPayoutsInner)]),
-          ) as BuiltList<GetProjectFeeDashboard200ResponseDataRecentPayoutsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetProjectFeeDashboard200ResponseDataRecentPayoutsInner)]),
+          ) as BuiltList<GetProjectFeeDashboard200ResponseDataRecentPayoutsInner>?;
+          if (valueDes == null) continue;
           result.recentPayouts.replace(valueDes);
           break;
         case r'totalEarned':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.totalEarned = valueDes;
           break;
         default:

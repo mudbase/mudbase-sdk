@@ -85,15 +85,17 @@ class _$InitializePayment200ResponseSerializer implements PrimitiveSerializer<In
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(InitializePayment200ResponseData),
-          ) as InitializePayment200ResponseData;
+            specifiedType: const FullType.nullable(InitializePayment200ResponseData),
+          ) as InitializePayment200ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

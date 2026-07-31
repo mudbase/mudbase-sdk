@@ -8,25 +8,25 @@
 import Foundation
 
 public enum CreateRoleRequestCollectionPermissionsValue: Sendable, Codable, Hashable {
-    case typeCreateRoleRequestCollectionPermissionsValueOneOf(CreateRoleRequestCollectionPermissionsValueOneOf)
-    case typeArrayOfString([String])
+    case typeCollectionPermissionRule(CollectionPermissionRule)
+    case typeArrayOfCollectionAction([CollectionAction])
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .typeCreateRoleRequestCollectionPermissionsValueOneOf(let value):
+        case .typeCollectionPermissionRule(let value):
             try container.encode(value)
-        case .typeArrayOfString(let value):
+        case .typeArrayOfCollectionAction(let value):
             try container.encode(value)
         }
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(CreateRoleRequestCollectionPermissionsValueOneOf.self) {
-            self = .typeCreateRoleRequestCollectionPermissionsValueOneOf(value)
-        } else if let value = try? container.decode([String].self) {
-            self = .typeArrayOfString(value)
+        if let value = try? container.decode(CollectionPermissionRule.self) {
+            self = .typeCollectionPermissionRule(value)
+        } else if let value = try? container.decode([CollectionAction].self) {
+            self = .typeArrayOfCollectionAction(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of CreateRoleRequestCollectionPermissionsValue"))
         }

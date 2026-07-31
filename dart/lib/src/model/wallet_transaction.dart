@@ -311,106 +311,121 @@ class _$WalletTransactionSerializer implements PrimitiveSerializer<WalletTransac
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'txHash':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.txHash = valueDes;
           break;
         case r'mainTxHash':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.mainTxHash = valueDes;
           break;
         case r'address':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.address = valueDes;
           break;
         case r'chain':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.chain = valueDes;
           break;
         case r'from':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.from = valueDes;
           break;
         case r'to':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.to = valueDes;
           break;
         case r'fromAddress':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fromAddress = valueDes;
           break;
         case r'toAddress':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.toAddress = valueDes;
           break;
         case r'amount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.amount = valueDes;
           break;
         case r'currency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.currency = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(WalletTransactionStatusEnum),
-          ) as WalletTransactionStatusEnum;
+            specifiedType: const FullType.nullable(WalletTransactionStatusEnum),
+          ) as WalletTransactionStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'mainTxStatus':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(WalletTransactionMainTxStatusEnum),
-          ) as WalletTransactionMainTxStatusEnum;
+            specifiedType: const FullType.nullable(WalletTransactionMainTxStatusEnum),
+          ) as WalletTransactionMainTxStatusEnum?;
+          if (valueDes == null) continue;
           result.mainTxStatus = valueDes;
           break;
         case r'confirmations':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.confirmations = valueDes;
           break;
         case r'blockNumber':
@@ -432,8 +447,9 @@ class _$WalletTransactionSerializer implements PrimitiveSerializer<WalletTransac
         case r'networkFee':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.networkFee = valueDes;
           break;
         case r'mainTxConfirmedAt':
@@ -447,22 +463,25 @@ class _$WalletTransactionSerializer implements PrimitiveSerializer<WalletTransac
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'updatedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.updatedAt = valueDes;
           break;
         case r'tokenTransfers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(WalletTransactionTokenTransfersInner)]),
-          ) as BuiltList<WalletTransactionTokenTransfersInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(WalletTransactionTokenTransfersInner)]),
+          ) as BuiltList<WalletTransactionTokenTransfersInner>?;
+          if (valueDes == null) continue;
           result.tokenTransfers.replace(valueDes);
           break;
         default:

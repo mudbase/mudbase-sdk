@@ -85,15 +85,17 @@ class _$GetLocalSession200ResponseSerializer implements PrimitiveSerializer<GetL
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.user = valueDes;
           break;
         case r'authenticated':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.authenticated = valueDes;
           break;
         default:

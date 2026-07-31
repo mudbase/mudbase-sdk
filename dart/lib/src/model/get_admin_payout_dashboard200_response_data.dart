@@ -108,29 +108,33 @@ class _$GetAdminPayoutDashboard200ResponseDataSerializer implements PrimitiveSer
         case r'totalPending':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalPending = valueDes;
           break;
         case r'totalCompleted':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalCompleted = valueDes;
           break;
         case r'totalFailed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalFailed = valueDes;
           break;
         case r'byCurrency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetAdminPayoutDashboard200ResponseDataByCurrencyInner)]),
-          ) as BuiltList<GetAdminPayoutDashboard200ResponseDataByCurrencyInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetAdminPayoutDashboard200ResponseDataByCurrencyInner)]),
+          ) as BuiltList<GetAdminPayoutDashboard200ResponseDataByCurrencyInner>?;
+          if (valueDes == null) continue;
           result.byCurrency.replace(valueDes);
           break;
         default:

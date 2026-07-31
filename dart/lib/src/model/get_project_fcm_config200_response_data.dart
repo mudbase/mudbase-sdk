@@ -73,8 +73,9 @@ class _$GetProjectFcmConfig200ResponseDataSerializer implements PrimitiveSeriali
         case r'hasCredentials':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.hasCredentials = valueDes;
           break;
         default:

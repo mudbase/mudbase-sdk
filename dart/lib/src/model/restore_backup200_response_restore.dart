@@ -119,36 +119,41 @@ class _$RestoreBackup200ResponseRestoreSerializer implements PrimitiveSerializer
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RestoreBackup200ResponseRestoreStatusEnum),
-          ) as RestoreBackup200ResponseRestoreStatusEnum;
+            specifiedType: const FullType.nullable(RestoreBackup200ResponseRestoreStatusEnum),
+          ) as RestoreBackup200ResponseRestoreStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'restoreMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.restoreMode = valueDes;
           break;
         case r'startedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.startedAt = valueDes;
           break;
         case r'estimatedCompletion':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.estimatedCompletion = valueDes;
           break;
         default:

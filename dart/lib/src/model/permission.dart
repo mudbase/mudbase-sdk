@@ -109,29 +109,33 @@ class _$PermissionSerializer implements PrimitiveSerializer<Permission> {
         case r'role':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.role = valueDes;
           break;
         case r'actions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(PermissionActionsEnum)]),
-          ) as BuiltList<PermissionActionsEnum>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(PermissionActionsEnum)]),
+          ) as BuiltList<PermissionActionsEnum>?;
+          if (valueDes == null) continue;
           result.actions.replace(valueDes);
           break;
         case r'fields':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.fields.replace(valueDes);
           break;
         case r'condition':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.condition = valueDes;
           break;
         default:

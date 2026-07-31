@@ -117,8 +117,9 @@ class _$DashboardOverviewDataLatencyTopRoutesByImpactHintInnerSerializer impleme
         case r'routeKey':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.routeKey = valueDes;
           break;
         case r'p50Ms':
@@ -140,15 +141,17 @@ class _$DashboardOverviewDataLatencyTopRoutesByImpactHintInnerSerializer impleme
         case r'count':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.count = valueDes;
           break;
         case r'impactScore':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.impactScore = valueDes;
           break;
         default:

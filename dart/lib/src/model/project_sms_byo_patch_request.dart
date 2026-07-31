@@ -111,29 +111,33 @@ class _$ProjectSmsByoPatchRequestSerializer implements PrimitiveSerializer<Proje
         case r'enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.enabled = valueDes;
           break;
         case r'provider':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectSmsByoPatchRequestProviderEnum),
-          ) as ProjectSmsByoPatchRequestProviderEnum;
+            specifiedType: const FullType.nullable(ProjectSmsByoPatchRequestProviderEnum),
+          ) as ProjectSmsByoPatchRequestProviderEnum?;
+          if (valueDes == null) continue;
           result.provider = valueDes;
           break;
         case r'defaultFrom':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.defaultFrom = valueDes;
           break;
         case r'config':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-          ) as BuiltMap<String, JsonObject?>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>?;
+          if (valueDes == null) continue;
           result.config.replace(valueDes);
           break;
         default:

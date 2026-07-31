@@ -110,29 +110,33 @@ class _$UpdateCollectionRequestSerializer implements PrimitiveSerializer<UpdateC
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'fields':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Field)]),
-          ) as BuiltList<Field>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(Field)]),
+          ) as BuiltList<Field>?;
+          if (valueDes == null) continue;
           result.fields.replace(valueDes);
           break;
         case r'permissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Permission)]),
-          ) as BuiltList<Permission>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(Permission)]),
+          ) as BuiltList<Permission>?;
+          if (valueDes == null) continue;
           result.permissions.replace(valueDes);
           break;
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.settings = valueDes;
           break;
         default:

@@ -84,15 +84,17 @@ class _$MessageStatsResponseDataPeriodSerializer implements PrimitiveSerializer<
         case r'startDate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.startDate = valueDes;
           break;
         case r'endDate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.endDate = valueDes;
           break;
         default:

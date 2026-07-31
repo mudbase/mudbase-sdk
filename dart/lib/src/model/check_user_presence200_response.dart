@@ -86,15 +86,17 @@ class _$CheckUserPresence200ResponseSerializer implements PrimitiveSerializer<Ch
         case r'presence':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(CheckUserPresence200ResponsePresenceValue)]),
-          ) as BuiltMap<String, CheckUserPresence200ResponsePresenceValue>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(CheckUserPresence200ResponsePresenceValue)]),
+          ) as BuiltMap<String, CheckUserPresence200ResponsePresenceValue>?;
+          if (valueDes == null) continue;
           result.presence.replace(valueDes);
           break;
         case r'timestamp':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.timestamp = valueDes;
           break;
         default:

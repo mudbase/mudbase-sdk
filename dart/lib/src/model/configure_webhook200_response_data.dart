@@ -116,22 +116,25 @@ class _$ConfigureWebhook200ResponseDataSerializer implements PrimitiveSerializer
         case r'webhookEvents':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.webhookEvents.replace(valueDes);
           break;
         case r'webhookVersion':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.webhookVersion = valueDes;
           break;
         case r'transformations':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ConfigureWebhook200ResponseDataTransformationsInner)]),
-          ) as BuiltList<ConfigureWebhook200ResponseDataTransformationsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ConfigureWebhook200ResponseDataTransformationsInner)]),
+          ) as BuiltList<ConfigureWebhook200ResponseDataTransformationsInner>?;
+          if (valueDes == null) continue;
           result.transformations.replace(valueDes);
           break;
         default:

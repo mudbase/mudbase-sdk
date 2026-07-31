@@ -119,36 +119,41 @@ class _$CreateAnonymousSession200ResponseSerializer implements PrimitiveSerializ
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'token':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.token = valueDes;
           break;
         case r'refreshToken':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.refreshToken = valueDes;
           break;
         case r'expiresIn':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.expiresIn = valueDes;
           break;
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateAnonymousSession200ResponseUser),
-          ) as CreateAnonymousSession200ResponseUser;
+            specifiedType: const FullType.nullable(CreateAnonymousSession200ResponseUser),
+          ) as CreateAnonymousSession200ResponseUser?;
+          if (valueDes == null) continue;
           result.user.replace(valueDes);
           break;
         default:

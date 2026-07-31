@@ -85,15 +85,17 @@ class _$LogSecurityEvent200ResponseSerializer implements PrimitiveSerializer<Log
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'event':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(LogSecurityEvent200ResponseEvent),
-          ) as LogSecurityEvent200ResponseEvent;
+            specifiedType: const FullType.nullable(LogSecurityEvent200ResponseEvent),
+          ) as LogSecurityEvent200ResponseEvent?;
+          if (valueDes == null) continue;
           result.event.replace(valueDes);
           break;
         default:

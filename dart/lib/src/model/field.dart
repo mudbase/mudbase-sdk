@@ -153,36 +153,41 @@ class _$FieldSerializer implements PrimitiveSerializer<Field> {
         case r'required':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.required_ = valueDes;
           break;
         case r'unique':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.unique = valueDes;
           break;
         case r'default':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FieldDefault),
-          ) as FieldDefault;
+            specifiedType: const FullType.nullable(FieldDefault),
+          ) as FieldDefault?;
+          if (valueDes == null) continue;
           result.default_.replace(valueDes);
           break;
         case r'validation':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.validation = valueDes;
           break;
         case r'ui':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.ui = valueDes;
           break;
         default:

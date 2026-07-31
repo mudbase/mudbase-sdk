@@ -74,8 +74,9 @@ class _$GetInvoice200ResponseSerializer implements PrimitiveSerializer<GetInvoic
         case r'invoice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetInvoice200ResponseInvoice),
-          ) as GetInvoice200ResponseInvoice;
+            specifiedType: const FullType.nullable(GetInvoice200ResponseInvoice),
+          ) as GetInvoice200ResponseInvoice?;
+          if (valueDes == null) continue;
           result.invoice.replace(valueDes);
           break;
         default:

@@ -279,15 +279,17 @@ class _$OrgVerifyCustomDomainDnsSuccessResponseSerializer implements PrimitiveSe
         case r'cloudflare':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(OrgCloudflareEdgeHints),
-          ) as OrgCloudflareEdgeHints;
+            specifiedType: const FullType.nullable(OrgCloudflareEdgeHints),
+          ) as OrgCloudflareEdgeHints?;
+          if (valueDes == null) continue;
           result.cloudflare.replace(valueDes);
           break;
         case r'dnsRecords':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(OrgDnsRecord)]),
-          ) as BuiltList<OrgDnsRecord>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(OrgDnsRecord)]),
+          ) as BuiltList<OrgDnsRecord>?;
+          if (valueDes == null) continue;
           result.dnsRecords.replace(valueDes);
           break;
         case r'flyCertificateStatus':
@@ -301,8 +303,9 @@ class _$OrgVerifyCustomDomainDnsSuccessResponseSerializer implements PrimitiveSe
         case r'flyAcmeEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.flyAcmeEnabled = valueDes;
           break;
         case r'flyAcmeDisabledReason':
@@ -324,8 +327,9 @@ class _$OrgVerifyCustomDomainDnsSuccessResponseSerializer implements PrimitiveSe
         case r'flyLegacyStaffPipeline':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.flyLegacyStaffPipeline = valueDes;
           break;
         default:

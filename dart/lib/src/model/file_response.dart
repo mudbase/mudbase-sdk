@@ -85,15 +85,17 @@ class _$FileResponseSerializer implements PrimitiveSerializer<FileResponse> {
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'file':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FileMetadata),
-          ) as FileMetadata;
+            specifiedType: const FullType.nullable(FileMetadata),
+          ) as FileMetadata?;
+          if (valueDes == null) continue;
           result.file.replace(valueDes);
           break;
         default:

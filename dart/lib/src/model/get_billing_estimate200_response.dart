@@ -155,43 +155,49 @@ class _$GetBillingEstimate200ResponseSerializer implements PrimitiveSerializer<G
         case r'period':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.period = valueDes;
           break;
         case r'lineItems':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetBillingEstimate200ResponseLineItemsInner)]),
-          ) as BuiltList<GetBillingEstimate200ResponseLineItemsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetBillingEstimate200ResponseLineItemsInner)]),
+          ) as BuiltList<GetBillingEstimate200ResponseLineItemsInner>?;
+          if (valueDes == null) continue;
           result.lineItems.replace(valueDes);
           break;
         case r'estimatedOverageCents':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.estimatedOverageCents = valueDes;
           break;
         case r'estimatedOverage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.estimatedOverage = valueDes;
           break;
         case r'forecastOverageCents':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.forecastOverageCents = valueDes;
           break;
         case r'forecastOverage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.forecastOverage = valueDes;
           break;
         case r'message':
@@ -205,8 +211,9 @@ class _$GetBillingEstimate200ResponseSerializer implements PrimitiveSerializer<G
         case r'spendLimits':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetBillingEstimate200ResponseSpendLimits),
-          ) as GetBillingEstimate200ResponseSpendLimits;
+            specifiedType: const FullType.nullable(GetBillingEstimate200ResponseSpendLimits),
+          ) as GetBillingEstimate200ResponseSpendLimits?;
+          if (valueDes == null) continue;
           result.spendLimits.replace(valueDes);
           break;
         default:

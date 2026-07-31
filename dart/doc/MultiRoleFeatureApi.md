@@ -293,7 +293,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **registerWithRole**
-> registerWithRole(role, registerWithRoleRequest)
+> RegisterWithRole201Response registerWithRole(role, registerWithRoleRequest)
 
 Register user with specific role (Local Auth)
 
@@ -305,10 +305,11 @@ import 'package:mudbase_sdk/api.dart';
 
 final api = MudbaseSdk().getMultiRoleFeatureApi();
 final String role = customer; // String | Must match the role's `signupEndpoint` (default `customer`; other values for roles you add).
-final RegisterWithRoleRequest registerWithRoleRequest = {"email":"customer@example.com","password":"SecurePass123!","firstName":"Jane","lastName":"Doe","projectId":"685ad30be129932fbb7a1047"}; // RegisterWithRoleRequest | 
+final RegisterWithRoleRequest registerWithRoleRequest = {"email":"customer@example.com","password":"SecurePass123!","firstName":"Jane","lastName":"Doe","projectId":"685ad30be129932fbb7a1047","agreedToTerms":true}; // RegisterWithRoleRequest | 
 
 try {
-    api.registerWithRole(role, registerWithRoleRequest);
+    final response = api.registerWithRole(role, registerWithRoleRequest);
+    print(response);
 } on DioException catch (e) {
     print('Exception when calling MultiRoleFeatureApi->registerWithRole: $e\n');
 }
@@ -323,7 +324,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**RegisterWithRole201Response**](RegisterWithRole201Response.md)
 
 ### Authorization
 
@@ -332,7 +333,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

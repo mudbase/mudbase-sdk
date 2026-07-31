@@ -84,15 +84,17 @@ class _$SystemStatusResponseDataCpuSerializer implements PrimitiveSerializer<Sys
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.usage = valueDes;
           break;
         case r'cores':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.cores = valueDes;
           break;
         default:

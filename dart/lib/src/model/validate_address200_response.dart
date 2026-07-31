@@ -85,15 +85,17 @@ class _$ValidateAddress200ResponseSerializer implements PrimitiveSerializer<Vali
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ValidateAddress200ResponseData),
-          ) as ValidateAddress200ResponseData;
+            specifiedType: const FullType.nullable(ValidateAddress200ResponseData),
+          ) as ValidateAddress200ResponseData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

@@ -98,22 +98,25 @@ class _$MonitoringPerformanceResponseSerializer implements PrimitiveSerializer<M
         case r'period':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.period = valueDes;
           break;
         case r'metrics':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MonitoringPerformanceResponseMetrics),
-          ) as MonitoringPerformanceResponseMetrics;
+            specifiedType: const FullType.nullable(MonitoringPerformanceResponseMetrics),
+          ) as MonitoringPerformanceResponseMetrics?;
+          if (valueDes == null) continue;
           result.metrics.replace(valueDes);
           break;
         case r'topEndpoints':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.topEndpoints.replace(valueDes);
           break;
         default:

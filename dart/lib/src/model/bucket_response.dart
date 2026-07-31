@@ -96,22 +96,25 @@ class _$BucketResponseSerializer implements PrimitiveSerializer<BucketResponse> 
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'bucket':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Bucket),
-          ) as Bucket;
+            specifiedType: const FullType.nullable(Bucket),
+          ) as Bucket?;
+          if (valueDes == null) continue;
           result.bucket.replace(valueDes);
           break;
         default:

@@ -139,15 +139,17 @@ class _$CreateCheckoutSessionRequestSerializer implements PrimitiveSerializer<Cr
         case r'successUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.successUrl = valueDes;
           break;
         case r'cancelUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.cancelUrl = valueDes;
           break;
         default:

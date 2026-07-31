@@ -158,57 +158,65 @@ class _$DashboardOverviewDataSerializer implements PrimitiveSerializer<Dashboard
         case r'project':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DashboardOverviewDataProject),
-          ) as DashboardOverviewDataProject;
+            specifiedType: const FullType.nullable(DashboardOverviewDataProject),
+          ) as DashboardOverviewDataProject?;
+          if (valueDes == null) continue;
           result.project.replace(valueDes);
           break;
         case r'requests':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DashboardOverviewDataRequests),
-          ) as DashboardOverviewDataRequests;
+            specifiedType: const FullType.nullable(DashboardOverviewDataRequests),
+          ) as DashboardOverviewDataRequests?;
+          if (valueDes == null) continue;
           result.requests.replace(valueDes);
           break;
         case r'activeUsers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DashboardOverviewDataActiveUsers),
-          ) as DashboardOverviewDataActiveUsers;
+            specifiedType: const FullType.nullable(DashboardOverviewDataActiveUsers),
+          ) as DashboardOverviewDataActiveUsers?;
+          if (valueDes == null) continue;
           result.activeUsers.replace(valueDes);
           break;
         case r'latency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DashboardOverviewDataLatency),
-          ) as DashboardOverviewDataLatency;
+            specifiedType: const FullType.nullable(DashboardOverviewDataLatency),
+          ) as DashboardOverviewDataLatency?;
+          if (valueDes == null) continue;
           result.latency.replace(valueDes);
           break;
         case r'uptime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DashboardOverviewDataUptime),
-          ) as DashboardOverviewDataUptime;
+            specifiedType: const FullType.nullable(DashboardOverviewDataUptime),
+          ) as DashboardOverviewDataUptime?;
+          if (valueDes == null) continue;
           result.uptime.replace(valueDes);
           break;
         case r'requestVolume14d':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(DashboardOverviewDataRequestVolume14dInner)]),
-          ) as BuiltList<DashboardOverviewDataRequestVolume14dInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(DashboardOverviewDataRequestVolume14dInner)]),
+          ) as BuiltList<DashboardOverviewDataRequestVolume14dInner>?;
+          if (valueDes == null) continue;
           result.requestVolume14d.replace(valueDes);
           break;
         case r'recentActivity':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(DashboardActivityItem)]),
-          ) as BuiltList<DashboardActivityItem>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(DashboardActivityItem)]),
+          ) as BuiltList<DashboardActivityItem>?;
+          if (valueDes == null) continue;
           result.recentActivity.replace(valueDes);
           break;
         case r'generatedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.generatedAt = valueDes;
           break;
         default:

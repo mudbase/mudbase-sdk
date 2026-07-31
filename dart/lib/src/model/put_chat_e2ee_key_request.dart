@@ -91,8 +91,9 @@ class _$PutChatE2eeKeyRequestSerializer implements PrimitiveSerializer<PutChatE2
         case r'keyVersion':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.keyVersion = valueDes;
           break;
         default:

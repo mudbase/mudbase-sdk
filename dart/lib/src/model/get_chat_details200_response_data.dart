@@ -97,22 +97,25 @@ class _$GetChatDetails200ResponseDataSerializer implements PrimitiveSerializer<G
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'participants':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetChatDetails200ResponseDataParticipantsInner)]),
-          ) as BuiltList<GetChatDetails200ResponseDataParticipantsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetChatDetails200ResponseDataParticipantsInner)]),
+          ) as BuiltList<GetChatDetails200ResponseDataParticipantsInner>?;
+          if (valueDes == null) continue;
           result.participants.replace(valueDes);
           break;
         default:

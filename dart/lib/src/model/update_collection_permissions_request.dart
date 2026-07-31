@@ -112,29 +112,33 @@ class _$UpdateCollectionPermissionsRequestSerializer implements PrimitiveSeriali
         case r'actions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(UpdateCollectionPermissionsRequestActionsEnum)]),
-          ) as BuiltList<UpdateCollectionPermissionsRequestActionsEnum>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(UpdateCollectionPermissionsRequestActionsEnum)]),
+          ) as BuiltList<UpdateCollectionPermissionsRequestActionsEnum>?;
+          if (valueDes == null) continue;
           result.actions.replace(valueDes);
           break;
         case r'conditions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.conditions = valueDes;
           break;
         case r'dataScope':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateCollectionPermissionsRequestDataScopeEnum),
-          ) as UpdateCollectionPermissionsRequestDataScopeEnum;
+            specifiedType: const FullType.nullable(UpdateCollectionPermissionsRequestDataScopeEnum),
+          ) as UpdateCollectionPermissionsRequestDataScopeEnum?;
+          if (valueDes == null) continue;
           result.dataScope = valueDes;
           break;
         case r'ownerField':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.ownerField = valueDes;
           break;
         default:

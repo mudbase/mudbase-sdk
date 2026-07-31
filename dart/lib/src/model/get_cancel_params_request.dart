@@ -97,15 +97,17 @@ class _$GetCancelParamsRequestSerializer implements PrimitiveSerializer<GetCance
         case r'txId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.txId = valueDes;
           break;
         case r'txHash':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.txHash = valueDes;
           break;
         case r'chain':

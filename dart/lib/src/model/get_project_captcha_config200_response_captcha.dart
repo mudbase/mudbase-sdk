@@ -112,15 +112,17 @@ class _$GetProjectCaptchaConfig200ResponseCaptchaSerializer implements Primitive
         case r'enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.enabled = valueDes;
           break;
         case r'version':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetProjectCaptchaConfig200ResponseCaptchaVersionEnum),
-          ) as GetProjectCaptchaConfig200ResponseCaptchaVersionEnum;
+            specifiedType: const FullType.nullable(GetProjectCaptchaConfig200ResponseCaptchaVersionEnum),
+          ) as GetProjectCaptchaConfig200ResponseCaptchaVersionEnum?;
+          if (valueDes == null) continue;
           result.version = valueDes;
           break;
         case r'siteKey':
@@ -134,8 +136,9 @@ class _$GetProjectCaptchaConfig200ResponseCaptchaSerializer implements Primitive
         case r'minScore':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.minScore = valueDes;
           break;
         default:

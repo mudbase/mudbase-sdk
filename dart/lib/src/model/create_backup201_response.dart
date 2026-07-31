@@ -74,8 +74,9 @@ class _$CreateBackup201ResponseSerializer implements PrimitiveSerializer<CreateB
         case r'backup':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateBackup201ResponseBackup),
-          ) as CreateBackup201ResponseBackup;
+            specifiedType: const FullType.nullable(CreateBackup201ResponseBackup),
+          ) as CreateBackup201ResponseBackup?;
+          if (valueDes == null) continue;
           result.backup.replace(valueDes);
           break;
         default:

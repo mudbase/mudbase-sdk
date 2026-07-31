@@ -332,7 +332,7 @@ No authorization required
 
 # **registerWithRole**
 ```swift
-    open class func registerWithRole(role: String, registerWithRoleRequest: RegisterWithRoleRequest, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func registerWithRole(role: String, registerWithRoleRequest: RegisterWithRoleRequest, completion: @escaping (_ data: RegisterWithRole201Response?, _ error: Error?) -> Void)
 ```
 
 Register user with specific role (Local Auth)
@@ -345,7 +345,7 @@ Public endpoint for user registration with a specific role. The path segment mus
 import MudbaseSDK
 
 let role = "role_example" // String | Must match the role's `signupEndpoint` (default `customer`; other values for roles you add).
-let registerWithRoleRequest = registerWithRole_request(email: "email_example", password: "password_example", firstName: "firstName_example", lastName: "lastName_example", projectId: "projectId_example") // RegisterWithRoleRequest | 
+let registerWithRoleRequest = registerWithRole_request(email: "email_example", password: "password_example", firstName: "firstName_example", lastName: "lastName_example", projectId: "projectId_example", agreedToTerms: false) // RegisterWithRoleRequest | 
 
 // Register user with specific role (Local Auth)
 MultiRoleFeatureAPI.registerWithRole(role: role, registerWithRoleRequest: registerWithRoleRequest) { (response, error) in
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-Void (empty response body)
+[**RegisterWithRole201Response**](RegisterWithRole201Response.md)
 
 ### Authorization
 
@@ -378,7 +378,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

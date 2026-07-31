@@ -268,8 +268,9 @@ class _$DashboardOverviewDataUptimeSerializer implements PrimitiveSerializer<Das
         case r'scope':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DashboardOverviewDataUptimeScopeEnum),
-          ) as DashboardOverviewDataUptimeScopeEnum;
+            specifiedType: const FullType.nullable(DashboardOverviewDataUptimeScopeEnum),
+          ) as DashboardOverviewDataUptimeScopeEnum?;
+          if (valueDes == null) continue;
           result.scope = valueDes;
           break;
         case r'displayPct30d':
@@ -283,15 +284,17 @@ class _$DashboardOverviewDataUptimeSerializer implements PrimitiveSerializer<Das
         case r'displaySource':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.displaySource = valueDes;
           break;
         case r'isPreliminary':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isPreliminary = valueDes;
           break;
         case r'platformProbePct30d':
@@ -305,15 +308,17 @@ class _$DashboardOverviewDataUptimeSerializer implements PrimitiveSerializer<Das
         case r'platformSamples':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.platformSamples = valueDes;
           break;
         case r'platformOkSamples':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.platformOkSamples = valueDes;
           break;
         case r'orgHttpNon5xxPct30d':
@@ -327,22 +332,25 @@ class _$DashboardOverviewDataUptimeSerializer implements PrimitiveSerializer<Das
         case r'orgHttpSampled30d':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.orgHttpSampled30d = valueDes;
           break;
         case r'orgHttp5xx30d':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.orgHttp5xx30d = valueDes;
           break;
         case r'projectHttp5xx30d':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.projectHttp5xx30d = valueDes;
           break;
         case r'globalHttpNon5xxPct30d':
@@ -356,8 +364,9 @@ class _$DashboardOverviewDataUptimeSerializer implements PrimitiveSerializer<Das
         case r'globalHttpSampled30d':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.globalHttpSampled30d = valueDes;
           break;
         case r'requestNon5xxPct30d':
@@ -371,8 +380,9 @@ class _$DashboardOverviewDataUptimeSerializer implements PrimitiveSerializer<Das
         case r'requestSampled30d':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.requestSampled30d = valueDes;
           break;
         case r'projectHttpNon5xxPct30d':
@@ -386,15 +396,17 @@ class _$DashboardOverviewDataUptimeSerializer implements PrimitiveSerializer<Das
         case r'projectHttpSampled30d':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.projectHttpSampled30d = valueDes;
           break;
         case r'help':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.help = valueDes;
           break;
         default:

@@ -85,15 +85,17 @@ class _$CreatePlan201ResponseSerializer implements PrimitiveSerializer<CreatePla
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'plan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Plan),
-          ) as Plan;
+            specifiedType: const FullType.nullable(Plan),
+          ) as Plan?;
+          if (valueDes == null) continue;
           result.plan.replace(valueDes);
           break;
         default:

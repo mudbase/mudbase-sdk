@@ -91,8 +91,9 @@ class _$AddParticipantRequestSerializer implements PrimitiveSerializer<AddPartic
         case r'role':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AddParticipantRequestRoleEnum),
-          ) as AddParticipantRequestRoleEnum;
+            specifiedType: const FullType.nullable(AddParticipantRequestRoleEnum),
+          ) as AddParticipantRequestRoleEnum?;
+          if (valueDes == null) continue;
           result.role = valueDes;
           break;
         default:

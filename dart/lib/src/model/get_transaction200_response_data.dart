@@ -243,113 +243,129 @@ class _$GetTransaction200ResponseDataSerializer implements PrimitiveSerializer<G
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetTransaction200ResponseDataTypeEnum),
-          ) as GetTransaction200ResponseDataTypeEnum;
+            specifiedType: const FullType.nullable(GetTransaction200ResponseDataTypeEnum),
+          ) as GetTransaction200ResponseDataTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'currency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.currency = valueDes;
           break;
         case r'amount':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.amount = valueDes;
           break;
         case r'toAddress':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.toAddress = valueDes;
           break;
         case r'fromAddress':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fromAddress = valueDes;
           break;
         case r'mainTxHash':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.mainTxHash = valueDes;
           break;
         case r'mainTxStatus':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetTransaction200ResponseDataMainTxStatusEnum),
-          ) as GetTransaction200ResponseDataMainTxStatusEnum;
+            specifiedType: const FullType.nullable(GetTransaction200ResponseDataMainTxStatusEnum),
+          ) as GetTransaction200ResponseDataMainTxStatusEnum?;
+          if (valueDes == null) continue;
           result.mainTxStatus = valueDes;
           break;
         case r'networkFee':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.networkFee = valueDes;
           break;
         case r'platformFee':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.platformFee = valueDes;
           break;
         case r'projectFee':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.projectFee = valueDes;
           break;
         case r'refundTxHash':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.refundTxHash = valueDes;
           break;
         case r'refundStatus':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetTransaction200ResponseDataRefundStatusEnum),
-          ) as GetTransaction200ResponseDataRefundStatusEnum;
+            specifiedType: const FullType.nullable(GetTransaction200ResponseDataRefundStatusEnum),
+          ) as GetTransaction200ResponseDataRefundStatusEnum?;
+          if (valueDes == null) continue;
           result.refundStatus = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetTransaction200ResponseDataStatusEnum),
-          ) as GetTransaction200ResponseDataStatusEnum;
+            specifiedType: const FullType.nullable(GetTransaction200ResponseDataStatusEnum),
+          ) as GetTransaction200ResponseDataStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'error':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.error = valueDes;
           break;
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         default:

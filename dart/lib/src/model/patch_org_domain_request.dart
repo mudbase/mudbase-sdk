@@ -87,15 +87,17 @@ class _$PatchOrgDomainRequestSerializer implements PrimitiveSerializer<PatchOrgD
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PatchOrgDomainRequestStatusEnum),
-          ) as PatchOrgDomainRequestStatusEnum;
+            specifiedType: const FullType.nullable(PatchOrgDomainRequestStatusEnum),
+          ) as PatchOrgDomainRequestStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'regenerateToken':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.regenerateToken = valueDes;
           break;
         default:

@@ -75,8 +75,9 @@ class _$ApiAddonsGet200ResponseSerializer implements PrimitiveSerializer<ApiAddo
         case r'addons':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(JsonObject)]),
-          ) as BuiltList<JsonObject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(JsonObject)]),
+          ) as BuiltList<JsonObject>?;
+          if (valueDes == null) continue;
           result.addons.replace(valueDes);
           break;
         default:

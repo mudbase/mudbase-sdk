@@ -86,15 +86,17 @@ class _$FunctionExecutionResponseDataSerializer implements PrimitiveSerializer<F
         case r'executionId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.executionId = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FunctionExecutionResponseDataStatusEnum),
-          ) as FunctionExecutionResponseDataStatusEnum;
+            specifiedType: const FullType.nullable(FunctionExecutionResponseDataStatusEnum),
+          ) as FunctionExecutionResponseDataStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         default:

@@ -17,6 +17,8 @@ class _$RegisterWithRoleRequest extends RegisterWithRoleRequest {
   final String lastName;
   @override
   final String projectId;
+  @override
+  final bool agreedToTerms;
 
   factory _$RegisterWithRoleRequest(
           [void Function(RegisterWithRoleRequestBuilder)? updates]) =>
@@ -27,7 +29,8 @@ class _$RegisterWithRoleRequest extends RegisterWithRoleRequest {
       required this.password,
       required this.firstName,
       required this.lastName,
-      required this.projectId})
+      required this.projectId,
+      required this.agreedToTerms})
       : super._();
   @override
   RegisterWithRoleRequest rebuild(
@@ -46,7 +49,8 @@ class _$RegisterWithRoleRequest extends RegisterWithRoleRequest {
         password == other.password &&
         firstName == other.firstName &&
         lastName == other.lastName &&
-        projectId == other.projectId;
+        projectId == other.projectId &&
+        agreedToTerms == other.agreedToTerms;
   }
 
   @override
@@ -57,6 +61,7 @@ class _$RegisterWithRoleRequest extends RegisterWithRoleRequest {
     _$hash = $jc(_$hash, firstName.hashCode);
     _$hash = $jc(_$hash, lastName.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
+    _$hash = $jc(_$hash, agreedToTerms.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -68,7 +73,8 @@ class _$RegisterWithRoleRequest extends RegisterWithRoleRequest {
           ..add('password', password)
           ..add('firstName', firstName)
           ..add('lastName', lastName)
-          ..add('projectId', projectId))
+          ..add('projectId', projectId)
+          ..add('agreedToTerms', agreedToTerms))
         .toString();
   }
 }
@@ -98,6 +104,11 @@ class RegisterWithRoleRequestBuilder
   String? get projectId => _$this._projectId;
   set projectId(String? projectId) => _$this._projectId = projectId;
 
+  bool? _agreedToTerms;
+  bool? get agreedToTerms => _$this._agreedToTerms;
+  set agreedToTerms(bool? agreedToTerms) =>
+      _$this._agreedToTerms = agreedToTerms;
+
   RegisterWithRoleRequestBuilder() {
     RegisterWithRoleRequest._defaults(this);
   }
@@ -110,6 +121,7 @@ class RegisterWithRoleRequestBuilder
       _firstName = $v.firstName;
       _lastName = $v.lastName;
       _projectId = $v.projectId;
+      _agreedToTerms = $v.agreedToTerms;
       _$v = null;
     }
     return this;
@@ -141,6 +153,8 @@ class RegisterWithRoleRequestBuilder
               lastName, r'RegisterWithRoleRequest', 'lastName'),
           projectId: BuiltValueNullFieldError.checkNotNull(
               projectId, r'RegisterWithRoleRequest', 'projectId'),
+          agreedToTerms: BuiltValueNullFieldError.checkNotNull(
+              agreedToTerms, r'RegisterWithRoleRequest', 'agreedToTerms'),
         );
     replace(_$result);
     return _$result;

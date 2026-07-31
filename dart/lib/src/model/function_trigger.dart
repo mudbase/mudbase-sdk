@@ -153,43 +153,49 @@ class _$FunctionTriggerSerializer implements PrimitiveSerializer<FunctionTrigger
         case r'event':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.event = valueDes;
           break;
         case r'schedule':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.schedule = valueDes;
           break;
         case r'path':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.path = valueDes;
           break;
         case r'method':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FunctionTriggerMethodEnum),
-          ) as FunctionTriggerMethodEnum;
+            specifiedType: const FullType.nullable(FunctionTriggerMethodEnum),
+          ) as FunctionTriggerMethodEnum?;
+          if (valueDes == null) continue;
           result.method = valueDes;
           break;
         case r'collectionId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.collectionId = valueDes;
           break;
         case r'bucketId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.bucketId = valueDes;
           break;
         default:

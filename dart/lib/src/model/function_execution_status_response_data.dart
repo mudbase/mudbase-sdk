@@ -188,22 +188,25 @@ class _$FunctionExecutionStatusResponseDataSerializer implements PrimitiveSerial
         case r'executionId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.executionId = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FunctionExecutionStatusResponseDataStatusEnum),
-          ) as FunctionExecutionStatusResponseDataStatusEnum;
+            specifiedType: const FullType.nullable(FunctionExecutionStatusResponseDataStatusEnum),
+          ) as FunctionExecutionStatusResponseDataStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'durationMs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.durationMs = valueDes;
           break;
         case r'result':
@@ -233,8 +236,9 @@ class _$FunctionExecutionStatusResponseDataSerializer implements PrimitiveSerial
         case r'logs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FunctionExecutionStatusResponseDataLogs),
-          ) as FunctionExecutionStatusResponseDataLogs;
+            specifiedType: const FullType.nullable(FunctionExecutionStatusResponseDataLogs),
+          ) as FunctionExecutionStatusResponseDataLogs?;
+          if (valueDes == null) continue;
           result.logs.replace(valueDes);
           break;
         case r'machine':
@@ -248,8 +252,9 @@ class _$FunctionExecutionStatusResponseDataSerializer implements PrimitiveSerial
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'startedAt':

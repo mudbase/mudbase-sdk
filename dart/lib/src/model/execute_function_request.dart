@@ -75,8 +75,9 @@ class _$ExecuteFunctionRequestSerializer implements PrimitiveSerializer<ExecuteF
         case r'payload':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.payload = valueDes;
           break;
         default:

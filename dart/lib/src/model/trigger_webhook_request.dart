@@ -145,8 +145,9 @@ class _$TriggerWebhookRequestSerializer implements PrimitiveSerializer<TriggerWe
         case r'method':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(TriggerWebhookRequestMethodEnum),
-          ) as TriggerWebhookRequestMethodEnum;
+            specifiedType: const FullType.nullable(TriggerWebhookRequestMethodEnum),
+          ) as TriggerWebhookRequestMethodEnum?;
+          if (valueDes == null) continue;
           result.method = valueDes;
           break;
         default:

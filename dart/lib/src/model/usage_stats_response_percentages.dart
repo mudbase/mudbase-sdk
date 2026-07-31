@@ -95,22 +95,25 @@ class _$UsageStatsResponsePercentagesSerializer implements PrimitiveSerializer<U
         case r'apiCalls':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.apiCalls = valueDes;
           break;
         case r'storage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.storage = valueDes;
           break;
         case r'bandwidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.bandwidth = valueDes;
           break;
         default:

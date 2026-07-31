@@ -108,29 +108,33 @@ class _$GetHistoricalAnalytics200ResponseSerializer implements PrimitiveSerializ
         case r'projectId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.projectId = valueDes;
           break;
         case r'period':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.period = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetHistoricalAnalytics200ResponseDataInner)]),
-          ) as BuiltList<GetHistoricalAnalytics200ResponseDataInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetHistoricalAnalytics200ResponseDataInner)]),
+          ) as BuiltList<GetHistoricalAnalytics200ResponseDataInner>?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         case r'generatedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.generatedAt = valueDes;
           break;
         default:

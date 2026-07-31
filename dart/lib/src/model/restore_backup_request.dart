@@ -97,15 +97,17 @@ class _$RestoreBackupRequestSerializer implements PrimitiveSerializer<RestoreBac
         case r'restoreMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RestoreBackupRequestRestoreModeEnum),
-          ) as RestoreBackupRequestRestoreModeEnum;
+            specifiedType: const FullType.nullable(RestoreBackupRequestRestoreModeEnum),
+          ) as RestoreBackupRequestRestoreModeEnum?;
+          if (valueDes == null) continue;
           result.restoreMode = valueDes;
           break;
         case r'collections':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.collections.replace(valueDes);
           break;
         case r'confirmation':

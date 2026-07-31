@@ -75,8 +75,9 @@ class _$GetPublicPlans200ResponseSerializer implements PrimitiveSerializer<GetPu
         case r'plans':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Plan)]),
-          ) as BuiltList<Plan>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(Plan)]),
+          ) as BuiltList<Plan>?;
+          if (valueDes == null) continue;
           result.plans.replace(valueDes);
           break;
         default:

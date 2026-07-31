@@ -86,15 +86,17 @@ class _$ListProjects200ResponseSerializer implements PrimitiveSerializer<ListPro
         case r'projects':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Project)]),
-          ) as BuiltList<Project>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(Project)]),
+          ) as BuiltList<Project>?;
+          if (valueDes == null) continue;
           result.projects.replace(valueDes);
           break;
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.total = valueDes;
           break;
         default:

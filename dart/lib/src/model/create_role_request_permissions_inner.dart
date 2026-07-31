@@ -99,22 +99,25 @@ class _$CreateRoleRequestPermissionsInnerSerializer implements PrimitiveSerializ
         case r'resource':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateRoleRequestPermissionsInnerResourceEnum),
-          ) as CreateRoleRequestPermissionsInnerResourceEnum;
+            specifiedType: const FullType.nullable(CreateRoleRequestPermissionsInnerResourceEnum),
+          ) as CreateRoleRequestPermissionsInnerResourceEnum?;
+          if (valueDes == null) continue;
           result.resource = valueDes;
           break;
         case r'actions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CreateRoleRequestPermissionsInnerActionsEnum)]),
-          ) as BuiltList<CreateRoleRequestPermissionsInnerActionsEnum>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CreateRoleRequestPermissionsInnerActionsEnum)]),
+          ) as BuiltList<CreateRoleRequestPermissionsInnerActionsEnum>?;
+          if (valueDes == null) continue;
           result.actions.replace(valueDes);
           break;
         case r'conditions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.conditions = valueDes;
           break;
         default:

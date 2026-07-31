@@ -154,57 +154,65 @@ class _$WalletWebhookSerializer implements PrimitiveSerializer<WalletWebhook> {
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.url = valueDes;
           break;
         case r'events':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(WalletWebhookEventsEnum)]),
-          ) as BuiltList<WalletWebhookEventsEnum>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(WalletWebhookEventsEnum)]),
+          ) as BuiltList<WalletWebhookEventsEnum>?;
+          if (valueDes == null) continue;
           result.events.replace(valueDes);
           break;
         case r'filters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(WalletWebhookFilters),
-          ) as WalletWebhookFilters;
+            specifiedType: const FullType.nullable(WalletWebhookFilters),
+          ) as WalletWebhookFilters?;
+          if (valueDes == null) continue;
           result.filters.replace(valueDes);
           break;
         case r'isActive':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isActive = valueDes;
           break;
         case r'stats':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(WalletWebhookStats),
-          ) as WalletWebhookStats;
+            specifiedType: const FullType.nullable(WalletWebhookStats),
+          ) as WalletWebhookStats?;
+          if (valueDes == null) continue;
           result.stats.replace(valueDes);
           break;
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'updatedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.updatedAt = valueDes;
           break;
         default:

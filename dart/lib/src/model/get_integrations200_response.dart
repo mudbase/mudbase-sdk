@@ -75,8 +75,9 @@ class _$GetIntegrations200ResponseSerializer implements PrimitiveSerializer<GetI
         case r'integrations':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetIntegrations200ResponseIntegrationsInner)]),
-          ) as BuiltList<GetIntegrations200ResponseIntegrationsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetIntegrations200ResponseIntegrationsInner)]),
+          ) as BuiltList<GetIntegrations200ResponseIntegrationsInner>?;
+          if (valueDes == null) continue;
           result.integrations.replace(valueDes);
           break;
         default:

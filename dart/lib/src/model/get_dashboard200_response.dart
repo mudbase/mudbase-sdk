@@ -95,22 +95,25 @@ class _$GetDashboard200ResponseSerializer implements PrimitiveSerializer<GetDash
         case r'revenue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.revenue = valueDes;
           break;
         case r'subscriptions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.subscriptions = valueDes;
           break;
         case r'activePlans':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.activePlans = valueDes;
           break;
         default:

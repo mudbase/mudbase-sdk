@@ -87,15 +87,17 @@ class _$FunctionListResponseDataSerializer implements PrimitiveSerializer<Functi
         case r'functions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ModelFunction)]),
-          ) as BuiltList<ModelFunction>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(ModelFunction)]),
+          ) as BuiltList<ModelFunction>?;
+          if (valueDes == null) continue;
           result.functions.replace(valueDes);
           break;
         case r'pagination':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Pagination),
-          ) as Pagination;
+            specifiedType: const FullType.nullable(Pagination),
+          ) as Pagination?;
+          if (valueDes == null) continue;
           result.pagination.replace(valueDes);
           break;
         default:

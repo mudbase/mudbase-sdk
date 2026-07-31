@@ -85,15 +85,17 @@ class _$RestoreBackup200ResponseSerializer implements PrimitiveSerializer<Restor
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'restore':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RestoreBackup200ResponseRestore),
-          ) as RestoreBackup200ResponseRestore;
+            specifiedType: const FullType.nullable(RestoreBackup200ResponseRestore),
+          ) as RestoreBackup200ResponseRestore?;
+          if (valueDes == null) continue;
           result.restore.replace(valueDes);
           break;
         default:

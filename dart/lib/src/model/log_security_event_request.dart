@@ -109,8 +109,9 @@ class _$LogSecurityEventRequestSerializer implements PrimitiveSerializer<LogSecu
         case r'details':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(LogSecurityEventRequestDetails),
-          ) as LogSecurityEventRequestDetails;
+            specifiedType: const FullType.nullable(LogSecurityEventRequestDetails),
+          ) as LogSecurityEventRequestDetails?;
+          if (valueDes == null) continue;
           result.details.replace(valueDes);
           break;
         default:

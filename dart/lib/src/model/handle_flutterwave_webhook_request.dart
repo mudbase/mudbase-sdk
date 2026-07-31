@@ -86,15 +86,17 @@ class _$HandleFlutterwaveWebhookRequestSerializer implements PrimitiveSerializer
         case r'event':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.event = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(HandleFlutterwaveWebhookRequestData),
-          ) as HandleFlutterwaveWebhookRequestData;
+            specifiedType: const FullType.nullable(HandleFlutterwaveWebhookRequestData),
+          ) as HandleFlutterwaveWebhookRequestData?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

@@ -124,8 +124,9 @@ class _$CreateCollectionRequestSerializer implements PrimitiveSerializer<CreateC
         case r'slug':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.slug = valueDes;
           break;
         case r'fields':
@@ -138,15 +139,17 @@ class _$CreateCollectionRequestSerializer implements PrimitiveSerializer<CreateC
         case r'permissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Permission)]),
-          ) as BuiltList<Permission>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(Permission)]),
+          ) as BuiltList<Permission>?;
+          if (valueDes == null) continue;
           result.permissions.replace(valueDes);
           break;
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.settings = valueDes;
           break;
         default:

@@ -157,8 +157,9 @@ class _$DashboardOverviewDataLatencySerializer implements PrimitiveSerializer<Da
         case r'scope':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DashboardOverviewDataLatencyScopeEnum),
-          ) as DashboardOverviewDataLatencyScopeEnum;
+            specifiedType: const FullType.nullable(DashboardOverviewDataLatencyScopeEnum),
+          ) as DashboardOverviewDataLatencyScopeEnum?;
+          if (valueDes == null) continue;
           result.scope = valueDes;
           break;
         case r'avgMsToday':
@@ -180,22 +181,25 @@ class _$DashboardOverviewDataLatencySerializer implements PrimitiveSerializer<Da
         case r'latencySamplesToday':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.latencySamplesToday = valueDes;
           break;
         case r'latencyNeedsTraffic':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.latencyNeedsTraffic = valueDes;
           break;
         case r'interpretation':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.interpretation = valueDes;
           break;
         case r'instanceRollup':
@@ -209,8 +213,9 @@ class _$DashboardOverviewDataLatencySerializer implements PrimitiveSerializer<Da
         case r'topRoutesByImpactHint':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(DashboardOverviewDataLatencyTopRoutesByImpactHintInner)]),
-          ) as BuiltList<DashboardOverviewDataLatencyTopRoutesByImpactHintInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(DashboardOverviewDataLatencyTopRoutesByImpactHintInner)]),
+          ) as BuiltList<DashboardOverviewDataLatencyTopRoutesByImpactHintInner>?;
+          if (valueDes == null) continue;
           result.topRoutesByImpactHint.replace(valueDes);
           break;
         default:

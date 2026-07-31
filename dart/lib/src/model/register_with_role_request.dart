@@ -16,6 +16,7 @@ part 'register_with_role_request.g.dart';
 /// * [firstName] 
 /// * [lastName] 
 /// * [projectId] 
+/// * [agreedToTerms] - Must be `true` - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy.
 @BuiltValue()
 abstract class RegisterWithRoleRequest implements Built<RegisterWithRoleRequest, RegisterWithRoleRequestBuilder> {
   @BuiltValueField(wireName: r'email')
@@ -32,6 +33,10 @@ abstract class RegisterWithRoleRequest implements Built<RegisterWithRoleRequest,
 
   @BuiltValueField(wireName: r'projectId')
   String get projectId;
+
+  /// Must be `true` - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy.
+  @BuiltValueField(wireName: r'agreedToTerms')
+  bool get agreedToTerms;
 
   RegisterWithRoleRequest._();
 
@@ -80,6 +85,11 @@ class _$RegisterWithRoleRequestSerializer implements PrimitiveSerializer<Registe
     yield serializers.serialize(
       object.projectId,
       specifiedType: const FullType(String),
+    );
+    yield r'agreedToTerms';
+    yield serializers.serialize(
+      object.agreedToTerms,
+      specifiedType: const FullType(bool),
     );
   }
 
@@ -138,6 +148,13 @@ class _$RegisterWithRoleRequestSerializer implements PrimitiveSerializer<Registe
             specifiedType: const FullType(String),
           ) as String;
           result.projectId = valueDes;
+          break;
+        case r'agreedToTerms':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.agreedToTerms = valueDes;
           break;
         default:
           unhandled.add(key);

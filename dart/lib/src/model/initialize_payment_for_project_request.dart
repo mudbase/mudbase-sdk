@@ -112,8 +112,9 @@ class _$InitializePaymentForProjectRequestSerializer implements PrimitiveSeriali
         case r'currency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.currency = valueDes;
           break;
         case r'customer':
@@ -126,8 +127,9 @@ class _$InitializePaymentForProjectRequestSerializer implements PrimitiveSeriali
         case r'metadata':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.metadata = valueDes;
           break;
         default:

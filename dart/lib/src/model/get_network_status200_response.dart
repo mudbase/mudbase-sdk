@@ -86,15 +86,17 @@ class _$GetNetworkStatus200ResponseSerializer implements PrimitiveSerializer<Get
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GetNetworkStatus200ResponseDataValue)]),
-          ) as BuiltMap<String, GetNetworkStatus200ResponseDataValue>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(GetNetworkStatus200ResponseDataValue)]),
+          ) as BuiltMap<String, GetNetworkStatus200ResponseDataValue>?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

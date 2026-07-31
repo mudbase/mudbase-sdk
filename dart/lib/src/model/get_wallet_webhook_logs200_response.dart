@@ -86,15 +86,17 @@ class _$GetWalletWebhookLogs200ResponseSerializer implements PrimitiveSerializer
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(WebhookLog)]),
-          ) as BuiltList<WebhookLog>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(WebhookLog)]),
+          ) as BuiltList<WebhookLog>?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         default:

@@ -110,29 +110,33 @@ class _$GetNetworkStatus200ResponseDataValueSerializer implements PrimitiveSeria
         case r'congestion':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetNetworkStatus200ResponseDataValueCongestionEnum),
-          ) as GetNetworkStatus200ResponseDataValueCongestionEnum;
+            specifiedType: const FullType.nullable(GetNetworkStatus200ResponseDataValueCongestionEnum),
+          ) as GetNetworkStatus200ResponseDataValueCongestionEnum?;
+          if (valueDes == null) continue;
           result.congestion = valueDes;
           break;
         case r'gasPriceGwei':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.gasPriceGwei = valueDes;
           break;
         case r'satPerVb':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.satPerVb = valueDes;
           break;
         case r'networkFee':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.networkFee = valueDes;
           break;
         default:

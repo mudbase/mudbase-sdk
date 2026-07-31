@@ -166,64 +166,73 @@ class _$UpdateFunctionRequestSerializer implements PrimitiveSerializer<UpdateFun
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'code':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.code = valueDes;
           break;
         case r'trigger':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FunctionTrigger),
-          ) as FunctionTrigger;
+            specifiedType: const FullType.nullable(FunctionTrigger),
+          ) as FunctionTrigger?;
+          if (valueDes == null) continue;
           result.trigger.replace(valueDes);
           break;
         case r'environment':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.environment = valueDes;
           break;
         case r'isActive':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isActive = valueDes;
           break;
         case r'limits':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateFunctionRequestLimits),
-          ) as UpdateFunctionRequestLimits;
+            specifiedType: const FullType.nullable(UpdateFunctionRequestLimits),
+          ) as UpdateFunctionRequestLimits?;
+          if (valueDes == null) continue;
           result.limits.replace(valueDes);
           break;
         case r'retryPolicy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateFunctionRequestRetryPolicy),
-          ) as UpdateFunctionRequestRetryPolicy;
+            specifiedType: const FullType.nullable(UpdateFunctionRequestRetryPolicy),
+          ) as UpdateFunctionRequestRetryPolicy?;
+          if (valueDes == null) continue;
           result.retryPolicy.replace(valueDes);
           break;
         case r'versionComment':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.versionComment = valueDes;
           break;
         default:

@@ -163,36 +163,41 @@ class _$EmailTemplateResolvedSerializer implements PrimitiveSerializer<EmailTemp
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'subject':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.subject = valueDes;
           break;
         case r'htmlBody':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.htmlBody = valueDes;
           break;
         case r'textBody':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.textBody = valueDes;
           break;
         case r'variables':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.variables.replace(valueDes);
           break;
         case r'updatedAt':
@@ -214,15 +219,17 @@ class _$EmailTemplateResolvedSerializer implements PrimitiveSerializer<EmailTemp
         case r'isProjectOverride':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isProjectOverride = valueDes;
           break;
         case r'effectiveSource':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EmailTemplateResolvedEffectiveSourceEnum),
-          ) as EmailTemplateResolvedEffectiveSourceEnum;
+            specifiedType: const FullType.nullable(EmailTemplateResolvedEffectiveSourceEnum),
+          ) as EmailTemplateResolvedEffectiveSourceEnum?;
+          if (valueDes == null) continue;
           result.effectiveSource = valueDes;
           break;
         default:

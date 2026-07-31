@@ -85,15 +85,17 @@ class _$UpdateUserAccountStatus200ResponseSerializer implements PrimitiveSeriali
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateUserAccountStatus200ResponseUser),
-          ) as UpdateUserAccountStatus200ResponseUser;
+            specifiedType: const FullType.nullable(UpdateUserAccountStatus200ResponseUser),
+          ) as UpdateUserAccountStatus200ResponseUser?;
+          if (valueDes == null) continue;
           result.user.replace(valueDes);
           break;
         default:

@@ -112,36 +112,41 @@ class _$GetOrganizationUsage200ResponseSerializer implements PrimitiveSerializer
         case r'suborgs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetOrganizationUsage200ResponseAllOfSuborgsInner)]),
-          ) as BuiltList<GetOrganizationUsage200ResponseAllOfSuborgsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetOrganizationUsage200ResponseAllOfSuborgsInner)]),
+          ) as BuiltList<GetOrganizationUsage200ResponseAllOfSuborgsInner>?;
+          if (valueDes == null) continue;
           result.suborgs.replace(valueDes);
           break;
         case r'plan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Plan),
-          ) as Plan;
+            specifiedType: const FullType.nullable(Plan),
+          ) as Plan?;
+          if (valueDes == null) continue;
           result.plan.replace(valueDes);
           break;
         case r'limits':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Limits),
-          ) as Limits;
+            specifiedType: const FullType.nullable(Limits),
+          ) as Limits?;
+          if (valueDes == null) continue;
           result.limits.replace(valueDes);
           break;
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Usage),
-          ) as Usage;
+            specifiedType: const FullType.nullable(Usage),
+          ) as Usage?;
+          if (valueDes == null) continue;
           result.usage.replace(valueDes);
           break;
         case r'billing':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Billing),
-          ) as Billing;
+            specifiedType: const FullType.nullable(Billing),
+          ) as Billing?;
+          if (valueDes == null) continue;
           result.billing.replace(valueDes);
           break;
         default:

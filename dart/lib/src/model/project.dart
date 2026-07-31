@@ -199,85 +199,97 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'slug':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.slug = valueDes;
           break;
         case r'org':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.org = valueDes;
           break;
         case r'auth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AuthConfig),
-          ) as AuthConfig;
+            specifiedType: const FullType.nullable(AuthConfig),
+          ) as AuthConfig?;
+          if (valueDes == null) continue;
           result.auth.replace(valueDes);
           break;
         case r'database':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DatabaseConfig),
-          ) as DatabaseConfig;
+            specifiedType: const FullType.nullable(DatabaseConfig),
+          ) as DatabaseConfig?;
+          if (valueDes == null) continue;
           result.database.replace(valueDes);
           break;
         case r'storage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(StorageConfig),
-          ) as StorageConfig;
+            specifiedType: const FullType.nullable(StorageConfig),
+          ) as StorageConfig?;
+          if (valueDes == null) continue;
           result.storage.replace(valueDes);
           break;
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectSettings),
-          ) as ProjectSettings;
+            specifiedType: const FullType.nullable(ProjectSettings),
+          ) as ProjectSettings?;
+          if (valueDes == null) continue;
           result.settings.replace(valueDes);
           break;
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ProjectUsage),
-          ) as ProjectUsage;
+            specifiedType: const FullType.nullable(ProjectUsage),
+          ) as ProjectUsage?;
+          if (valueDes == null) continue;
           result.usage.replace(valueDes);
           break;
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'updatedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.updatedAt = valueDes;
           break;
         default:

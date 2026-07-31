@@ -85,15 +85,17 @@ class _$UpdateMemberRole200ResponseSerializer implements PrimitiveSerializer<Upd
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'user':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(User),
-          ) as User;
+            specifiedType: const FullType.nullable(User),
+          ) as User?;
+          if (valueDes == null) continue;
           result.user.replace(valueDes);
           break;
         default:

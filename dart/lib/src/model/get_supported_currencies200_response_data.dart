@@ -87,15 +87,17 @@ class _$GetSupportedCurrencies200ResponseDataSerializer implements PrimitiveSeri
         case r'currencies':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetSupportedCurrencies200ResponseDataCurrenciesInner)]),
-          ) as BuiltList<GetSupportedCurrencies200ResponseDataCurrenciesInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetSupportedCurrencies200ResponseDataCurrenciesInner)]),
+          ) as BuiltList<GetSupportedCurrencies200ResponseDataCurrenciesInner>?;
+          if (valueDes == null) continue;
           result.currencies.replace(valueDes);
           break;
         case r'count':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.count = valueDes;
           break;
         default:

@@ -93,8 +93,9 @@ class _$EstimateNonCustodialGasRequestSerializer implements PrimitiveSerializer<
         case r'transaction':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EstimateNonCustodialGasRequestTransaction),
-          ) as EstimateNonCustodialGasRequestTransaction;
+            specifiedType: const FullType.nullable(EstimateNonCustodialGasRequestTransaction),
+          ) as EstimateNonCustodialGasRequestTransaction?;
+          if (valueDes == null) continue;
           result.transaction.replace(valueDes);
           break;
         default:

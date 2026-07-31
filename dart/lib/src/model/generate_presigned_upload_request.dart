@@ -122,8 +122,9 @@ class _$GeneratePresignedUploadRequestSerializer implements PrimitiveSerializer<
         case r'bucket':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.bucket = valueDes;
           break;
         case r'originalName':
@@ -136,15 +137,17 @@ class _$GeneratePresignedUploadRequestSerializer implements PrimitiveSerializer<
         case r'contentType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.contentType = valueDes;
           break;
         case r'isPublic':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isPublic = valueDes;
           break;
         default:

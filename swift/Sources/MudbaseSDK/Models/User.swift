@@ -22,6 +22,10 @@ public struct User: Sendable, Codable, Hashable {
     public var fullName: String?
     public var avatar: String?
     public var role: Role?
+    /** Application-level role slug from the project's Multi-Role feature (e.g. \"customer\", \"seller\"). Null for org-level (org/admin/member/viewer) users who aren't project end-users. */
+    public var customRole: String?
+    /** True for a guest session created via POST /api/auth/anonymous that hasn't been converted to a full account yet. */
+    public var isAnonymous: Bool?
     public var emailVerified: Bool?
     public var phoneVerified: Bool?
     public var twoFactorEnabled: Bool?
@@ -30,7 +34,7 @@ public struct User: Sendable, Codable, Hashable {
     public var updatedAt: Date?
     public var org: OrganizationSummary?
 
-    public init(id: String? = nil, email: String? = nil, firstName: String? = nil, lastName: String? = nil, fullName: String? = nil, avatar: String? = nil, role: Role? = nil, emailVerified: Bool? = nil, phoneVerified: Bool? = nil, twoFactorEnabled: Bool? = nil, lastLogin: Date? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, org: OrganizationSummary? = nil) {
+    public init(id: String? = nil, email: String? = nil, firstName: String? = nil, lastName: String? = nil, fullName: String? = nil, avatar: String? = nil, role: Role? = nil, customRole: String? = nil, isAnonymous: Bool? = nil, emailVerified: Bool? = nil, phoneVerified: Bool? = nil, twoFactorEnabled: Bool? = nil, lastLogin: Date? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, org: OrganizationSummary? = nil) {
         self.id = id
         self.email = email
         self.firstName = firstName
@@ -38,6 +42,8 @@ public struct User: Sendable, Codable, Hashable {
         self.fullName = fullName
         self.avatar = avatar
         self.role = role
+        self.customRole = customRole
+        self.isAnonymous = isAnonymous
         self.emailVerified = emailVerified
         self.phoneVerified = phoneVerified
         self.twoFactorEnabled = twoFactorEnabled
@@ -55,6 +61,8 @@ public struct User: Sendable, Codable, Hashable {
         case fullName
         case avatar
         case role
+        case customRole
+        case isAnonymous
         case emailVerified
         case phoneVerified
         case twoFactorEnabled
@@ -75,6 +83,8 @@ public struct User: Sendable, Codable, Hashable {
         try container.encodeIfPresent(fullName, forKey: .fullName)
         try container.encodeIfPresent(avatar, forKey: .avatar)
         try container.encodeIfPresent(role, forKey: .role)
+        try container.encodeIfPresent(customRole, forKey: .customRole)
+        try container.encodeIfPresent(isAnonymous, forKey: .isAnonymous)
         try container.encodeIfPresent(emailVerified, forKey: .emailVerified)
         try container.encodeIfPresent(phoneVerified, forKey: .phoneVerified)
         try container.encodeIfPresent(twoFactorEnabled, forKey: .twoFactorEnabled)

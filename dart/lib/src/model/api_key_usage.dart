@@ -84,15 +84,17 @@ class _$ApiKeyUsageSerializer implements PrimitiveSerializer<ApiKeyUsage> {
         case r'requests':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.requests = valueDes;
           break;
         case r'lastUsed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.lastUsed = valueDes;
           break;
         default:

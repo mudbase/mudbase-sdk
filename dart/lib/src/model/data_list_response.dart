@@ -87,15 +87,17 @@ class _$DataListResponseSerializer implements PrimitiveSerializer<DataListRespon
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(DataListResponseDataInner)]),
-          ) as BuiltList<DataListResponseDataInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(DataListResponseDataInner)]),
+          ) as BuiltList<DataListResponseDataInner>?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         case r'pagination':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Pagination),
-          ) as Pagination;
+            specifiedType: const FullType.nullable(Pagination),
+          ) as Pagination?;
+          if (valueDes == null) continue;
           result.pagination.replace(valueDes);
           break;
         default:

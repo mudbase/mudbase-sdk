@@ -84,15 +84,17 @@ class _$StartBugAnalysisScanByProjectRequestSerializer implements PrimitiveSeria
         case r'uploadSize':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.uploadSize = valueDes;
           break;
         case r'runtimeMinutes':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.runtimeMinutes = valueDes;
           break;
         default:

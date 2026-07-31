@@ -98,22 +98,25 @@ class _$GetComplianceSummary200ResponseComplianceSerializer implements Primitive
         case r'gdpr':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetComplianceSummary200ResponseComplianceGdpr),
-          ) as GetComplianceSummary200ResponseComplianceGdpr;
+            specifiedType: const FullType.nullable(GetComplianceSummary200ResponseComplianceGdpr),
+          ) as GetComplianceSummary200ResponseComplianceGdpr?;
+          if (valueDes == null) continue;
           result.gdpr.replace(valueDes);
           break;
         case r'soc2':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetComplianceSummary200ResponseComplianceSoc2),
-          ) as GetComplianceSummary200ResponseComplianceSoc2;
+            specifiedType: const FullType.nullable(GetComplianceSummary200ResponseComplianceSoc2),
+          ) as GetComplianceSummary200ResponseComplianceSoc2?;
+          if (valueDes == null) continue;
           result.soc2.replace(valueDes);
           break;
         case r'security':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetComplianceSummary200ResponseComplianceSecurity),
-          ) as GetComplianceSummary200ResponseComplianceSecurity;
+            specifiedType: const FullType.nullable(GetComplianceSummary200ResponseComplianceSecurity),
+          ) as GetComplianceSummary200ResponseComplianceSecurity?;
+          if (valueDes == null) continue;
           result.security.replace(valueDes);
           break;
         default:

@@ -83,6 +83,10 @@ class _$User extends User {
   @override
   final UserRoleEnum? role;
   @override
+  final String? customRole;
+  @override
+  final bool? isAnonymous;
+  @override
   final bool? emailVerified;
   @override
   final bool? phoneVerified;
@@ -108,6 +112,8 @@ class _$User extends User {
       this.fullName,
       this.avatar,
       this.role,
+      this.customRole,
+      this.isAnonymous,
       this.emailVerified,
       this.phoneVerified,
       this.twoFactorEnabled,
@@ -134,6 +140,8 @@ class _$User extends User {
         fullName == other.fullName &&
         avatar == other.avatar &&
         role == other.role &&
+        customRole == other.customRole &&
+        isAnonymous == other.isAnonymous &&
         emailVerified == other.emailVerified &&
         phoneVerified == other.phoneVerified &&
         twoFactorEnabled == other.twoFactorEnabled &&
@@ -153,6 +161,8 @@ class _$User extends User {
     _$hash = $jc(_$hash, fullName.hashCode);
     _$hash = $jc(_$hash, avatar.hashCode);
     _$hash = $jc(_$hash, role.hashCode);
+    _$hash = $jc(_$hash, customRole.hashCode);
+    _$hash = $jc(_$hash, isAnonymous.hashCode);
     _$hash = $jc(_$hash, emailVerified.hashCode);
     _$hash = $jc(_$hash, phoneVerified.hashCode);
     _$hash = $jc(_$hash, twoFactorEnabled.hashCode);
@@ -174,6 +184,8 @@ class _$User extends User {
           ..add('fullName', fullName)
           ..add('avatar', avatar)
           ..add('role', role)
+          ..add('customRole', customRole)
+          ..add('isAnonymous', isAnonymous)
           ..add('emailVerified', emailVerified)
           ..add('phoneVerified', phoneVerified)
           ..add('twoFactorEnabled', twoFactorEnabled)
@@ -215,6 +227,14 @@ class UserBuilder implements Builder<User, UserBuilder> {
   UserRoleEnum? _role;
   UserRoleEnum? get role => _$this._role;
   set role(UserRoleEnum? role) => _$this._role = role;
+
+  String? _customRole;
+  String? get customRole => _$this._customRole;
+  set customRole(String? customRole) => _$this._customRole = customRole;
+
+  bool? _isAnonymous;
+  bool? get isAnonymous => _$this._isAnonymous;
+  set isAnonymous(bool? isAnonymous) => _$this._isAnonymous = isAnonymous;
 
   bool? _emailVerified;
   bool? get emailVerified => _$this._emailVerified;
@@ -262,6 +282,8 @@ class UserBuilder implements Builder<User, UserBuilder> {
       _fullName = $v.fullName;
       _avatar = $v.avatar;
       _role = $v.role;
+      _customRole = $v.customRole;
+      _isAnonymous = $v.isAnonymous;
       _emailVerified = $v.emailVerified;
       _phoneVerified = $v.phoneVerified;
       _twoFactorEnabled = $v.twoFactorEnabled;
@@ -299,6 +321,8 @@ class UserBuilder implements Builder<User, UserBuilder> {
             fullName: fullName,
             avatar: avatar,
             role: role,
+            customRole: customRole,
+            isAnonymous: isAnonymous,
             emailVerified: emailVerified,
             phoneVerified: phoneVerified,
             twoFactorEnabled: twoFactorEnabled,

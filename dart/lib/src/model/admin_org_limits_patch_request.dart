@@ -549,8 +549,9 @@ class _$AdminOrgLimitsPatchRequestSerializer implements PrimitiveSerializer<Admi
         case r'bugAnalysis':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AdminOrgLimitsPatchRequestBugAnalysis),
-          ) as AdminOrgLimitsPatchRequestBugAnalysis;
+            specifiedType: const FullType.nullable(AdminOrgLimitsPatchRequestBugAnalysis),
+          ) as AdminOrgLimitsPatchRequestBugAnalysis?;
+          if (valueDes == null) continue;
           result.bugAnalysis.replace(valueDes);
           break;
         default:

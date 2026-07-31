@@ -84,15 +84,17 @@ class _$CheckUserPresence200ResponsePresenceValueSerializer implements Primitive
         case r'online':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.online = valueDes;
           break;
         case r'lastSeen':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.lastSeen = valueDes;
           break;
         default:

@@ -20,6 +20,8 @@ part 'user.g.dart';
 /// * [fullName] 
 /// * [avatar] 
 /// * [role] 
+/// * [customRole] - Application-level role slug from the project's Multi-Role feature (e.g. \"customer\", \"seller\"). Null for org-level (org/admin/member/viewer) users who aren't project end-users.
+/// * [isAnonymous] - True for a guest session created via POST /api/auth/anonymous that hasn't been converted to a full account yet.
 /// * [emailVerified] 
 /// * [phoneVerified] 
 /// * [twoFactorEnabled] 
@@ -50,6 +52,14 @@ abstract class User implements Built<User, UserBuilder> {
   @BuiltValueField(wireName: r'role')
   UserRoleEnum? get role;
   // enum roleEnum {  owner,  admin,  member,  viewer,  };
+
+  /// Application-level role slug from the project's Multi-Role feature (e.g. \"customer\", \"seller\"). Null for org-level (org/admin/member/viewer) users who aren't project end-users.
+  @BuiltValueField(wireName: r'customRole')
+  String? get customRole;
+
+  /// True for a guest session created via POST /api/auth/anonymous that hasn't been converted to a full account yet.
+  @BuiltValueField(wireName: r'isAnonymous')
+  bool? get isAnonymous;
 
   @BuiltValueField(wireName: r'emailVerified')
   bool? get emailVerified;
@@ -144,6 +154,20 @@ class _$UserSerializer implements PrimitiveSerializer<User> {
         specifiedType: const FullType(UserRoleEnum),
       );
     }
+    if (object.customRole != null) {
+      yield r'customRole';
+      yield serializers.serialize(
+        object.customRole,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.isAnonymous != null) {
+      yield r'isAnonymous';
+      yield serializers.serialize(
+        object.isAnonymous,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.emailVerified != null) {
       yield r'emailVerified';
       yield serializers.serialize(
@@ -219,99 +243,129 @@ class _$UserSerializer implements PrimitiveSerializer<User> {
         case r'_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'email':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.email = valueDes;
           break;
         case r'firstName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.firstName = valueDes;
           break;
         case r'lastName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.lastName = valueDes;
           break;
         case r'fullName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fullName = valueDes;
           break;
         case r'avatar':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.avatar = valueDes;
           break;
         case r'role':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UserRoleEnum),
-          ) as UserRoleEnum;
+            specifiedType: const FullType.nullable(UserRoleEnum),
+          ) as UserRoleEnum?;
+          if (valueDes == null) continue;
           result.role = valueDes;
+          break;
+        case r'customRole':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.customRole = valueDes;
+          break;
+        case r'isAnonymous':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.isAnonymous = valueDes;
           break;
         case r'emailVerified':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.emailVerified = valueDes;
           break;
         case r'phoneVerified':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.phoneVerified = valueDes;
           break;
         case r'twoFactorEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.twoFactorEnabled = valueDes;
           break;
         case r'lastLogin':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.lastLogin = valueDes;
           break;
         case r'createdAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'updatedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
           result.updatedAt = valueDes;
           break;
         case r'org':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(OrganizationSummary),
-          ) as OrganizationSummary;
+            specifiedType: const FullType.nullable(OrganizationSummary),
+          ) as OrganizationSummary?;
+          if (valueDes == null) continue;
           result.org.replace(valueDes);
           break;
         default:

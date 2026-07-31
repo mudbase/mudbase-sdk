@@ -131,15 +131,17 @@ class _$OrgDomainsListResponseSerializer implements PrimitiveSerializer<OrgDomai
         case r'domains':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(OrgDomainEntryOrgConsole)]),
-          ) as BuiltList<OrgDomainEntryOrgConsole>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(OrgDomainEntryOrgConsole)]),
+          ) as BuiltList<OrgDomainEntryOrgConsole>?;
+          if (valueDes == null) continue;
           result.domains.replace(valueDes);
           break;
         case r'dnsVerificationInstructions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dnsVerificationInstructions = valueDes;
           break;
         case r'primaryHostname':
@@ -153,22 +155,25 @@ class _$OrgDomainsListResponseSerializer implements PrimitiveSerializer<OrgDomai
         case r'apiBaseUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.apiBaseUrl = valueDes;
           break;
         case r'maxDomains':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.maxDomains = valueDes;
           break;
         case r'customDomainAllowed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.customDomainAllowed = valueDes;
           break;
         default:

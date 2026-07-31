@@ -97,22 +97,25 @@ class _$ListWalletWebhooks200ResponseSerializer implements PrimitiveSerializer<L
         case r'success':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.success = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(WalletWebhook)]),
-          ) as BuiltList<WalletWebhook>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(WalletWebhook)]),
+          ) as BuiltList<WalletWebhook>?;
+          if (valueDes == null) continue;
           result.data.replace(valueDes);
           break;
         case r'count':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.count = valueDes;
           break;
         default:

@@ -121,36 +121,41 @@ class _$MonitoringAnalyticsResponseSerializer implements PrimitiveSerializer<Mon
         case r'period':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.period = valueDes;
           break;
         case r'granularity':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.granularity = valueDes;
           break;
         case r'days':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.days = valueDes;
           break;
         case r'stats':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(MonitoringAnalyticsResponseStatsInner)]),
-          ) as BuiltList<MonitoringAnalyticsResponseStatsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(MonitoringAnalyticsResponseStatsInner)]),
+          ) as BuiltList<MonitoringAnalyticsResponseStatsInner>?;
+          if (valueDes == null) continue;
           result.stats.replace(valueDes);
           break;
         case r'totals':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MonitoringAnalyticsResponseTotals),
-          ) as MonitoringAnalyticsResponseTotals;
+            specifiedType: const FullType.nullable(MonitoringAnalyticsResponseTotals),
+          ) as MonitoringAnalyticsResponseTotals?;
+          if (valueDes == null) continue;
           result.totals.replace(valueDes);
           break;
         default:

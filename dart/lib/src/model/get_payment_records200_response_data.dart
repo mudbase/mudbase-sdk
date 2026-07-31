@@ -87,15 +87,17 @@ class _$GetPaymentRecords200ResponseDataSerializer implements PrimitiveSerialize
         case r'records':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GetPaymentRecords200ResponseDataRecordsInner)]),
-          ) as BuiltList<GetPaymentRecords200ResponseDataRecordsInner>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GetPaymentRecords200ResponseDataRecordsInner)]),
+          ) as BuiltList<GetPaymentRecords200ResponseDataRecordsInner>?;
+          if (valueDes == null) continue;
           result.records.replace(valueDes);
           break;
         case r'pagination':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GetPaymentRecords200ResponseDataPagination),
-          ) as GetPaymentRecords200ResponseDataPagination;
+            specifiedType: const FullType.nullable(GetPaymentRecords200ResponseDataPagination),
+          ) as GetPaymentRecords200ResponseDataPagination?;
+          if (valueDes == null) continue;
           result.pagination.replace(valueDes);
           break;
         default:

@@ -1,4 +1,4 @@
-# # EstimateNonCustodialGasRequestTransaction
+# EstimateNonCustodialGasRequestTransaction
 
 ## Properties
 

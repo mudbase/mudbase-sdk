@@ -1,4 +1,4 @@
-# # ProjectDashboardOverviewResponse
+# ProjectDashboardOverviewResponse
 
 ## Properties
 

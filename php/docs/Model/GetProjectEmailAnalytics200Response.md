@@ -1,4 +1,4 @@
-# # GetProjectEmailAnalytics200Response
+# GetProjectEmailAnalytics200Response
 
 ## Properties
 

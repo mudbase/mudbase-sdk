@@ -1,4 +1,4 @@
-# # LoginLocalUser200Response
+# LoginLocalUser200Response
 
 ## Properties
 

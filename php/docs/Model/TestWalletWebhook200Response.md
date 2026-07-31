@@ -1,4 +1,4 @@
-# # TestWalletWebhook200Response
+# TestWalletWebhook200Response
 
 ## Properties
 

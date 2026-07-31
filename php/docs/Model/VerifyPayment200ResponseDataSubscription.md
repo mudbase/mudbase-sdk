@@ -1,4 +1,4 @@
-# # VerifyPayment200ResponseDataSubscription
+# VerifyPayment200ResponseDataSubscription
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetPaymentRecords200ResponseDataPagination
+# GetPaymentRecords200ResponseDataPagination
 
 ## Properties
 

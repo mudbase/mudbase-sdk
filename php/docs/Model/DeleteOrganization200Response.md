@@ -1,4 +1,4 @@
-# # DeleteOrganization200Response
+# DeleteOrganization200Response
 
 ## Properties
 

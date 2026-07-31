@@ -1,4 +1,4 @@
-# # AddParticipant200ResponseDataParticipantsInner
+# AddParticipant200ResponseDataParticipantsInner
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # PlatformAdminDetachMemberRequest
+# PlatformAdminDetachMemberRequest
 
 ## Properties
 

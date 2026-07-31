@@ -1,4 +1,4 @@
-# # ApiKycWebhookConfigPut200Response
+# ApiKycWebhookConfigPut200Response
 
 ## Properties
 

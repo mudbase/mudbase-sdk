@@ -1,4 +1,4 @@
-# # GetWalletFeeConfig200Response
+# GetWalletFeeConfig200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # VerifyPayment200ResponseData
+# VerifyPayment200ResponseData
 
 ## Properties
 

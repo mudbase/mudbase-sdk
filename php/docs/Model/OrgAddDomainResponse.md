@@ -1,4 +1,4 @@
-# # OrgAddDomainResponse
+# OrgAddDomainResponse
 
 ## Properties
 

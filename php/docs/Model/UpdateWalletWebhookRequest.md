@@ -1,4 +1,4 @@
-# # UpdateWalletWebhookRequest
+# UpdateWalletWebhookRequest
 
 ## Properties
 

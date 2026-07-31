@@ -1,4 +1,4 @@
-# # ConfigureOAuthProviderRequest
+# ConfigureOAuthProviderRequest
 
 ## Properties
 

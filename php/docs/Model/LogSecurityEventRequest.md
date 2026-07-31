@@ -1,4 +1,4 @@
-# # LogSecurityEventRequest
+# LogSecurityEventRequest
 
 ## Properties
 

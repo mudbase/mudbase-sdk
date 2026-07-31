@@ -1,4 +1,4 @@
-# # ListProjects200Response
+# ListProjects200Response
 
 ## Properties
 

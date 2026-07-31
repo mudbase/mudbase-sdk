@@ -1,4 +1,4 @@
-# # SimulateAppPermissionsRequest
+# SimulateAppPermissionsRequest
 
 ## Properties
 

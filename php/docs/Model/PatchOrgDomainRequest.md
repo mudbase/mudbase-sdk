@@ -1,4 +1,4 @@
-# # PatchOrgDomainRequest
+# PatchOrgDomainRequest
 
 ## Properties
 

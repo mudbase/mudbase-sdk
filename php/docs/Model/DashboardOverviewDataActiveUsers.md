@@ -1,4 +1,4 @@
-# # DashboardOverviewDataActiveUsers
+# DashboardOverviewDataActiveUsers
 
 ## Properties
 

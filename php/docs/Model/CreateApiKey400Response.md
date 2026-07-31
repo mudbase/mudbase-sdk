@@ -1,4 +1,4 @@
-# # CreateApiKey400Response
+# CreateApiKey400Response
 
 ## Properties
 

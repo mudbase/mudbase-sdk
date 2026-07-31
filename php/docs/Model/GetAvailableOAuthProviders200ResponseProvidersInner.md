@@ -1,4 +1,4 @@
-# # GetAvailableOAuthProviders200ResponseProvidersInner
+# GetAvailableOAuthProviders200ResponseProvidersInner
 
 ## Properties
 

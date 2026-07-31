@@ -1,4 +1,4 @@
-# # ConfigureWebhookRequest
+# ConfigureWebhookRequest
 
 ## Properties
 

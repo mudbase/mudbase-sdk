@@ -1,4 +1,4 @@
-# # StartBugAnalysisScan503Response
+# StartBugAnalysisScan503Response
 
 ## Properties
 

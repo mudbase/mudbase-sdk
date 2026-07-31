@@ -1,4 +1,4 @@
-# # ConfirmDirectUploadRequest
+# ConfirmDirectUploadRequest
 
 ## Properties
 

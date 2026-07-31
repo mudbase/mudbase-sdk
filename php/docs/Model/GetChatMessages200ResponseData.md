@@ -1,4 +1,4 @@
-# # GetChatMessages200ResponseData
+# GetChatMessages200ResponseData
 
 ## Properties
 

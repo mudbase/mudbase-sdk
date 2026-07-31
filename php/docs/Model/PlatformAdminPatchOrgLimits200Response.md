@@ -1,4 +1,4 @@
-# # PlatformAdminPatchOrgLimits200Response
+# PlatformAdminPatchOrgLimits200Response
 
 ## Properties
 

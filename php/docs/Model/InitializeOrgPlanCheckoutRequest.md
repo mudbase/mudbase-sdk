@@ -1,4 +1,4 @@
-# # InitializeOrgPlanCheckoutRequest
+# InitializeOrgPlanCheckoutRequest
 
 ## Properties
 

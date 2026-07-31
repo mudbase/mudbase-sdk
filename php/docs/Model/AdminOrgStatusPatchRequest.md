@@ -1,4 +1,4 @@
-# # AdminOrgStatusPatchRequest
+# AdminOrgStatusPatchRequest
 
 ## Properties
 

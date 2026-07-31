@@ -1,4 +1,4 @@
-# # Withdraw200ResponseData
+# Withdraw200ResponseData
 
 ## Properties
 

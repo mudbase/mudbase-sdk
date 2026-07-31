@@ -1,4 +1,4 @@
-# # GetRole200Response
+# GetRole200Response
 
 ## Properties
 

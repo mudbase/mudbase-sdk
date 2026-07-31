@@ -1,4 +1,4 @@
-# # CheckSubscription200ResponseSubscription
+# CheckSubscription200ResponseSubscription
 
 ## Properties
 

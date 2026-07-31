@@ -1,4 +1,4 @@
-# # UpdateCollectionRequest
+# UpdateCollectionRequest
 
 ## Properties
 

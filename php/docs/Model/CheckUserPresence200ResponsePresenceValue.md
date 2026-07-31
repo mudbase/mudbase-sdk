@@ -1,4 +1,4 @@
-# # CheckUserPresence200ResponsePresenceValue
+# CheckUserPresence200ResponsePresenceValue
 
 ## Properties
 

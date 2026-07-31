@@ -1,4 +1,4 @@
-# # BroadcastNonCustodialTransaction200Response
+# BroadcastNonCustodialTransaction200Response
 
 ## Properties
 

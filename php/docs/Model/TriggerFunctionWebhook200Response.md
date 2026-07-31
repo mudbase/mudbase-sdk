@@ -1,4 +1,4 @@
-# # TriggerFunctionWebhook200Response
+# TriggerFunctionWebhook200Response
 
 ## Properties
 

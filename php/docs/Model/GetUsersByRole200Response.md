@@ -1,4 +1,4 @@
-# # GetUsersByRole200Response
+# GetUsersByRole200Response
 
 ## Properties
 

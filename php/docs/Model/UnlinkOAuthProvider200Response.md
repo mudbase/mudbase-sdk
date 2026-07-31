@@ -1,4 +1,4 @@
-# # UnlinkOAuthProvider200Response
+# UnlinkOAuthProvider200Response
 
 ## Properties
 

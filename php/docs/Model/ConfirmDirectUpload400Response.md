@@ -1,4 +1,4 @@
-# # ConfirmDirectUpload400Response
+# ConfirmDirectUpload400Response
 
 ## Properties
 

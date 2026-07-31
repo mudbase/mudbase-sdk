@@ -1,4 +1,4 @@
-# # OrgOAuthCallback400Response
+# OrgOAuthCallback400Response
 
 ## Properties
 

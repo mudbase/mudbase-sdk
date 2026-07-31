@@ -1,4 +1,4 @@
-# # GetHistoricalAnalytics200Response
+# GetHistoricalAnalytics200Response
 
 ## Properties
 

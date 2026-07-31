@@ -1,4 +1,4 @@
-# # ListWalletWebhooks200Response
+# ListWalletWebhooks200Response
 
 ## Properties
 

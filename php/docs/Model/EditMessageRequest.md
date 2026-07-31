@@ -1,4 +1,4 @@
-# # EditMessageRequest
+# EditMessageRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # InitiateOrgOAuth400Response
+# InitiateOrgOAuth400Response
 
 ## Properties
 

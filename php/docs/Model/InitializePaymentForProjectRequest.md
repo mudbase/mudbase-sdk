@@ -1,4 +1,4 @@
-# # InitializePaymentForProjectRequest
+# InitializePaymentForProjectRequest
 
 ## Properties
 

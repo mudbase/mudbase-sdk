@@ -1,4 +1,4 @@
-# # CheckPermissions200ResponsePermissions
+# CheckPermissions200ResponsePermissions
 
 ## Properties
 

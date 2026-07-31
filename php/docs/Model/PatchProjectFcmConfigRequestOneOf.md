@@ -1,4 +1,4 @@
-# # PatchProjectFcmConfigRequestOneOf
+# PatchProjectFcmConfigRequestOneOf
 
 ## Properties
 

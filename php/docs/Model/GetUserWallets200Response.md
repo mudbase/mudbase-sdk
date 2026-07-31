@@ -1,4 +1,4 @@
-# # GetUserWallets200Response
+# GetUserWallets200Response
 
 ## Properties
 

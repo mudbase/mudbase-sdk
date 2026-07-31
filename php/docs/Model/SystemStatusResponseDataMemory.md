@@ -1,4 +1,4 @@
-# # SystemStatusResponseDataMemory
+# SystemStatusResponseDataMemory
 
 ## Properties
 

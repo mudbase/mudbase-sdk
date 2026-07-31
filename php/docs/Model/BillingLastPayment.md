@@ -1,4 +1,4 @@
-# # BillingLastPayment
+# BillingLastPayment
 
 ## Properties
 

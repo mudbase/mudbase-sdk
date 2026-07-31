@@ -1,4 +1,4 @@
-# # ProjectUsage
+# ProjectUsage
 
 ## Properties
 

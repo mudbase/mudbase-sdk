@@ -1,4 +1,4 @@
-# # ProjectSmsByoPatchRequest
+# ProjectSmsByoPatchRequest
 
 ## Properties
 

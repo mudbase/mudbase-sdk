@@ -1,4 +1,4 @@
-# # AdminProjectPatchRequest
+# AdminProjectPatchRequest
 
 ## Properties
 

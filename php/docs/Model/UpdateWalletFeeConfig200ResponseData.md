@@ -1,4 +1,4 @@
-# # UpdateWalletFeeConfig200ResponseData
+# UpdateWalletFeeConfig200ResponseData
 
 ## Properties
 

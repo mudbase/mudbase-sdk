@@ -1,4 +1,4 @@
-# # SendPushNotification429Response
+# SendPushNotification429Response
 
 ## Properties
 

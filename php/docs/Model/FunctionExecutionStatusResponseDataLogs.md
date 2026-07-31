@@ -1,4 +1,4 @@
-# # FunctionExecutionStatusResponseDataLogs
+# FunctionExecutionStatusResponseDataLogs
 
 ## Properties
 

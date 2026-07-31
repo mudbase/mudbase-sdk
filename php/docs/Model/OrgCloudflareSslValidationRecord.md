@@ -1,4 +1,4 @@
-# # OrgCloudflareSslValidationRecord
+# OrgCloudflareSslValidationRecord
 
 ## Properties
 

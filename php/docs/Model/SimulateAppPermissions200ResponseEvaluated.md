@@ -1,4 +1,4 @@
-# # SimulateAppPermissions200ResponseEvaluated
+# SimulateAppPermissions200ResponseEvaluated
 
 ## Properties
 

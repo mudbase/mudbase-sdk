@@ -1,4 +1,4 @@
-# # CreatePlanRequestFeaturesInnerOneOf
+# CreatePlanRequestFeaturesInnerOneOf
 
 ## Properties
 

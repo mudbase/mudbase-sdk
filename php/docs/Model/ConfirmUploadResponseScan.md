@@ -1,4 +1,4 @@
-# # ConfirmUploadResponseScan
+# ConfirmUploadResponseScan
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetOrganizationUsage200Response
+# GetOrganizationUsage200Response
 
 ## Properties
 

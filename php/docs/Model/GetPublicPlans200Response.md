@@ -1,4 +1,4 @@
-# # GetPublicPlans200Response
+# GetPublicPlans200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # UpdateUserAccountStatusRequest
+# UpdateUserAccountStatusRequest
 
 ## Properties
 

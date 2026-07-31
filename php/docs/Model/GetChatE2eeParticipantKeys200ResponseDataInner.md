@@ -1,4 +1,4 @@
-# # GetChatE2eeParticipantKeys200ResponseDataInner
+# GetChatE2eeParticipantKeys200ResponseDataInner
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # OrgDomainEntryWithDns
+# OrgDomainEntryWithDns
 
 ## Properties
 

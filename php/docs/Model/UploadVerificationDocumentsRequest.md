@@ -1,4 +1,4 @@
-# # UploadVerificationDocumentsRequest
+# UploadVerificationDocumentsRequest
 
 ## Properties
 

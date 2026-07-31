@@ -1,4 +1,4 @@
-# # UpdateFunctionRequestRetryPolicy
+# UpdateFunctionRequestRetryPolicy
 
 ## Properties
 

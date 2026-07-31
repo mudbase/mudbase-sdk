@@ -1,4 +1,4 @@
-# # DashboardOverviewDataLatencyInstanceRollup
+# DashboardOverviewDataLatencyInstanceRollup
 
 ## Properties
 

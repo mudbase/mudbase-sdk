@@ -1,4 +1,4 @@
-# # RetryWebhook400Response
+# RetryWebhook400Response
 
 ## Properties
 

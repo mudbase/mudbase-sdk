@@ -1,4 +1,4 @@
-# # GetFunctionVersions200ResponseData
+# GetFunctionVersions200ResponseData
 
 ## Properties
 

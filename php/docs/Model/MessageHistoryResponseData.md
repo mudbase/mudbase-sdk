@@ -1,4 +1,4 @@
-# # MessageHistoryResponseData
+# MessageHistoryResponseData
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # AdminPlatformDnsVerificationPatchRequest
+# AdminPlatformDnsVerificationPatchRequest
 
 ## Properties
 

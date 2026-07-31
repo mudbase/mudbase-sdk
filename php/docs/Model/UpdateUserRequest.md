@@ -1,4 +1,4 @@
-# # UpdateUserRequest
+# UpdateUserRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # TriggerFunctionWebhook401Response
+# TriggerFunctionWebhook401Response
 
 ## Properties
 

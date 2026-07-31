@@ -1,4 +1,4 @@
-# # GetBillingEstimate200Response
+# GetBillingEstimate200Response
 
 ## Properties
 

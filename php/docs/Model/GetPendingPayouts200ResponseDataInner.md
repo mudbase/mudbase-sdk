@@ -1,4 +1,4 @@
-# # GetPendingPayouts200ResponseDataInner
+# GetPendingPayouts200ResponseDataInner
 
 ## Properties
 

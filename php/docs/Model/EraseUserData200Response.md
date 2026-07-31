@@ -1,4 +1,4 @@
-# # EraseUserData200Response
+# EraseUserData200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # LogSecurityEvent200ResponseEvent
+# LogSecurityEvent200ResponseEvent
 
 ## Properties
 

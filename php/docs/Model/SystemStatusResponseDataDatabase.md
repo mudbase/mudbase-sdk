@@ -1,4 +1,4 @@
-# # SystemStatusResponseDataDatabase
+# SystemStatusResponseDataDatabase
 
 ## Properties
 

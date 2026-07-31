@@ -1,4 +1,4 @@
-# # InitiateAddressVerification200Response
+# InitiateAddressVerification200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # CreateCheckoutSessionRequestCustomerInfo
+# CreateCheckoutSessionRequestCustomerInfo
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # MonitoringAnalyticsResponseTotals
+# MonitoringAnalyticsResponseTotals
 
 ## Properties
 

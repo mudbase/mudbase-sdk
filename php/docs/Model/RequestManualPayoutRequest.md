@@ -1,4 +1,4 @@
-# # RequestManualPayoutRequest
+# RequestManualPayoutRequest
 
 ## Properties
 

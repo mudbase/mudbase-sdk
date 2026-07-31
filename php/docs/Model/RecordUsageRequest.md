@@ -1,4 +1,4 @@
-# # RecordUsageRequest
+# RecordUsageRequest
 
 ## Properties
 

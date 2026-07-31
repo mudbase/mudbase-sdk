@@ -1,4 +1,4 @@
-# # ConfirmLocalPasswordResetWithOtpRequest
+# ConfirmLocalPasswordResetWithOtpRequest
 
 ## Properties
 

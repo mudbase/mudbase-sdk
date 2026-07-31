@@ -1,4 +1,4 @@
-# # OrgCloudflareEdgeHints
+# OrgCloudflareEdgeHints
 
 ## Properties
 

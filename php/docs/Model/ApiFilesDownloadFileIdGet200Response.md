@@ -1,4 +1,4 @@
-# # ApiFilesDownloadFileIdGet200Response
+# ApiFilesDownloadFileIdGet200Response
 
 ## Properties
 

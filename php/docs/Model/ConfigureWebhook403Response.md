@@ -1,4 +1,4 @@
-# # ConfigureWebhook403Response
+# ConfigureWebhook403Response
 
 ## Properties
 

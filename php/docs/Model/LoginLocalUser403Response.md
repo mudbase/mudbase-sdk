@@ -1,4 +1,4 @@
-# # LoginLocalUser403Response
+# LoginLocalUser403Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # UpdateOrganizationRequest
+# UpdateOrganizationRequest
 
 ## Properties
 

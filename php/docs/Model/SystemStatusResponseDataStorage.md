@@ -1,4 +1,4 @@
-# # SystemStatusResponseDataStorage
+# SystemStatusResponseDataStorage
 
 ## Properties
 

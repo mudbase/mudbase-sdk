@@ -1,4 +1,4 @@
-# # GetIntegration200Response
+# GetIntegration200Response
 
 ## Properties
 

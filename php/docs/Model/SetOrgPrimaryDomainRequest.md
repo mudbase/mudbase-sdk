@@ -1,4 +1,4 @@
-# # SetOrgPrimaryDomainRequest
+# SetOrgPrimaryDomainRequest
 
 ## Properties
 

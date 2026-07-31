@@ -1,4 +1,4 @@
-# # UsageStatsResponsePercentages
+# UsageStatsResponsePercentages
 
 ## Properties
 

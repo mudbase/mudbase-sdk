@@ -1,4 +1,4 @@
-# # EnablePaymentProcessing200Response
+# EnablePaymentProcessing200Response
 
 ## Properties
 

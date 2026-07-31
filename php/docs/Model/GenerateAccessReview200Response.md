@@ -1,4 +1,4 @@
-# # GenerateAccessReview200Response
+# GenerateAccessReview200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetOrgOAuthProviders200Response
+# GetOrgOAuthProviders200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetDashboardOrganizations200ResponseOrganizationsInnerCreatedBy
+# GetDashboardOrganizations200ResponseOrganizationsInnerCreatedBy
 
 ## Properties
 

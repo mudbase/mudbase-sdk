@@ -1,4 +1,4 @@
-# # ValidatePasswordResetToken400Response
+# ValidatePasswordResetToken400Response
 
 ## Properties
 

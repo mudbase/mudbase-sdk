@@ -1,4 +1,4 @@
-# # UpdateWalletWebhook200Response
+# UpdateWalletWebhook200Response
 
 ## Properties
 

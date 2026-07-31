@@ -1,4 +1,4 @@
-# # ProjectSmtpTestRequest
+# ProjectSmtpTestRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetSearchSuggestions200Response
+# GetSearchSuggestions200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # UpdateBucketRequest
+# UpdateBucketRequest
 
 ## Properties
 

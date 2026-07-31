@@ -405,7 +405,7 @@ No authorization required
 ## `registerWithRole()`
 
 ```php
-registerWithRole($role, $register_with_role_request)
+registerWithRole($role, $register_with_role_request): \Mudbase\Sdk\Model\RegisterWithRole201Response
 ```
 
 Register user with specific role (Local Auth)
@@ -426,10 +426,11 @@ $apiInstance = new Mudbase\Sdk\Api\MultiRoleFeatureApi(
     new GuzzleHttp\Client()
 );
 $role = customer; // string | Must match the role's `signupEndpoint` (default `customer`; other values for roles you add).
-$register_with_role_request = {"email":"customer@example.com","password":"SecurePass123!","firstName":"Jane","lastName":"Doe","projectId":"685ad30be129932fbb7a1047"}; // \Mudbase\Sdk\Model\RegisterWithRoleRequest
+$register_with_role_request = {"email":"customer@example.com","password":"SecurePass123!","firstName":"Jane","lastName":"Doe","projectId":"685ad30be129932fbb7a1047","agreedToTerms":true}; // \Mudbase\Sdk\Model\RegisterWithRoleRequest
 
 try {
-    $apiInstance->registerWithRole($role, $register_with_role_request);
+    $result = $apiInstance->registerWithRole($role, $register_with_role_request);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MultiRoleFeatureApi->registerWithRole: ', $e->getMessage(), PHP_EOL;
 }
@@ -444,7 +445,7 @@ try {
 
 ### Return type
 
-void (empty response body)
+[**\Mudbase\Sdk\Model\RegisterWithRole201Response**](../Model/RegisterWithRole201Response.md)
 
 ### Authorization
 
@@ -453,7 +454,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

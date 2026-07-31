@@ -1,4 +1,4 @@
-# # EmailTemplateResolved
+# EmailTemplateResolved
 
 ## Properties
 

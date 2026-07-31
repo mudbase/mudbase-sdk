@@ -1,4 +1,4 @@
-# # OrgDomainsListResponse
+# OrgDomainsListResponse
 
 ## Properties
 

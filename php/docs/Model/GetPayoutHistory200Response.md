@@ -1,4 +1,4 @@
-# # GetPayoutHistory200Response
+# GetPayoutHistory200Response
 
 ## Properties
 

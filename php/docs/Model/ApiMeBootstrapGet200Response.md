@@ -1,4 +1,4 @@
-# # ApiMeBootstrapGet200Response
+# ApiMeBootstrapGet200Response
 
 ## Properties
 

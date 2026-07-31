@@ -1,4 +1,4 @@
-# # MessageStatsResponseDataPeriod
+# MessageStatsResponseDataPeriod
 
 ## Properties
 

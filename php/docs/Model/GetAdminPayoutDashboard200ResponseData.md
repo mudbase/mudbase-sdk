@@ -1,4 +1,4 @@
-# # GetAdminPayoutDashboard200ResponseData
+# GetAdminPayoutDashboard200ResponseData
 
 ## Properties
 

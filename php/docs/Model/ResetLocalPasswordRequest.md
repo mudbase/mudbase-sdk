@@ -1,4 +1,4 @@
-# # ResetLocalPasswordRequest
+# ResetLocalPasswordRequest
 
 ## Properties
 

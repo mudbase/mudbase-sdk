@@ -1,4 +1,4 @@
-# # GetBillingEstimate200ResponseSpendLimits
+# GetBillingEstimate200ResponseSpendLimits
 
 ## Properties
 

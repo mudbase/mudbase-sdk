@@ -1,4 +1,4 @@
-# # AdminBillingCheckoutLinkRequest
+# AdminBillingCheckoutLinkRequest
 
 ## Properties
 

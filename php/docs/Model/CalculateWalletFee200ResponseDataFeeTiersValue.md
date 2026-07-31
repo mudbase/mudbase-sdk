@@ -1,4 +1,4 @@
-# # CalculateWalletFee200ResponseDataFeeTiersValue
+# CalculateWalletFee200ResponseDataFeeTiersValue
 
 ## Properties
 

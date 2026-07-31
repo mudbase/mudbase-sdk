@@ -1,4 +1,4 @@
-# # FunctionLogsResponseData
+# FunctionLogsResponseData
 
 ## Properties
 

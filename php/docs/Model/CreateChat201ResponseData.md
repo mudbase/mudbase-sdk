@@ -1,4 +1,4 @@
-# # CreateChat201ResponseData
+# CreateChat201ResponseData
 
 ## Properties
 

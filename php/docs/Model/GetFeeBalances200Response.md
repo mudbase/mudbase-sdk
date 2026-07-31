@@ -1,4 +1,4 @@
-# # GetFeeBalances200Response
+# GetFeeBalances200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # CreateWalletWebhook201Response
+# CreateWalletWebhook201Response
 
 ## Properties
 

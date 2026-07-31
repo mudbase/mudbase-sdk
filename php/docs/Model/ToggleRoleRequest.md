@@ -1,4 +1,4 @@
-# # ToggleRoleRequest
+# ToggleRoleRequest
 
 ## Properties
 

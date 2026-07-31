@@ -1,4 +1,4 @@
-# # AdminCustomDomainMutationResponse
+# AdminCustomDomainMutationResponse
 
 ## Properties
 

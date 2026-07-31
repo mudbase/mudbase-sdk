@@ -1,4 +1,4 @@
-# # RegisterNonCustodialAddressRequest
+# RegisterNonCustodialAddressRequest
 
 ## Properties
 

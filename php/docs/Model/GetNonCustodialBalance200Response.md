@@ -1,4 +1,4 @@
-# # GetNonCustodialBalance200Response
+# GetNonCustodialBalance200Response
 
 ## Properties
 

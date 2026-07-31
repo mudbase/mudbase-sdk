@@ -1,4 +1,4 @@
-# # ApproveRoleElevation200Response
+# ApproveRoleElevation200Response
 
 ## Properties
 

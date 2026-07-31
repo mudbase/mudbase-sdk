@@ -1,4 +1,4 @@
-# # UpdateNonCustodialAddress200Response
+# UpdateNonCustodialAddress200Response
 
 ## Properties
 

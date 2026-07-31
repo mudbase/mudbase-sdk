@@ -1,4 +1,4 @@
-# # WalletWebhookFilters
+# WalletWebhookFilters
 
 ## Properties
 

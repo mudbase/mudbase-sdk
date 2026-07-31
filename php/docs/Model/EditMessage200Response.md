@@ -1,4 +1,4 @@
-# # EditMessage200Response
+# EditMessage200Response
 
 ## Properties
 

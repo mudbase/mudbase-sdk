@@ -1,4 +1,4 @@
-# # CreateWalletRequest
+# CreateWalletRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # VerifyMagicLinkRequest
+# VerifyMagicLinkRequest
 
 ## Properties
 

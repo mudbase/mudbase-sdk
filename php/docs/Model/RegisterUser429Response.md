@@ -1,4 +1,4 @@
-# # RegisterUser429Response
+# RegisterUser429Response
 
 ## Properties
 

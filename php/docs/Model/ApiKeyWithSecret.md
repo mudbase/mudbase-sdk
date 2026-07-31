@@ -1,4 +1,4 @@
-# # ApiKeyWithSecret
+# ApiKeyWithSecret
 
 ## Properties
 

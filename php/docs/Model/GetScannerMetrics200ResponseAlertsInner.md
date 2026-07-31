@@ -1,4 +1,4 @@
-# # GetScannerMetrics200ResponseAlertsInner
+# GetScannerMetrics200ResponseAlertsInner
 
 ## Properties
 

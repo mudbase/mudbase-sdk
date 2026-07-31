@@ -1,4 +1,4 @@
-# # CreatePlanRequestTrial
+# CreatePlanRequestTrial
 
 ## Properties
 

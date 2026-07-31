@@ -1,4 +1,4 @@
-# # GetUserOverview200ResponseFootprint
+# GetUserOverview200ResponseFootprint
 
 ## Properties
 

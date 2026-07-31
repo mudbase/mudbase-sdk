@@ -1,4 +1,4 @@
-# # GetSubscriptions200Response
+# GetSubscriptions200Response
 
 ## Properties
 

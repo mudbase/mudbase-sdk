@@ -1,4 +1,4 @@
-# # RequestRoleElevation200Response
+# RequestRoleElevation200Response
 
 ## Properties
 

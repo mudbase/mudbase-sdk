@@ -1,4 +1,4 @@
-# # GetNonCustodialTransactions200Response
+# GetNonCustodialTransactions200Response
 
 ## Properties
 

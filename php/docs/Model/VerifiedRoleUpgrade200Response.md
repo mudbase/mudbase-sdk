@@ -1,4 +1,4 @@
-# # VerifiedRoleUpgrade200Response
+# VerifiedRoleUpgrade200Response
 
 ## Properties
 

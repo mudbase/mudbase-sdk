@@ -1,4 +1,4 @@
-# # UpsertProjectEmailTemplateRequest
+# UpsertProjectEmailTemplateRequest
 
 ## Properties
 

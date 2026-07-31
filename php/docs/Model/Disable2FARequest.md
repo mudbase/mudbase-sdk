@@ -1,4 +1,4 @@
-# # Disable2FARequest
+# Disable2FARequest
 
 ## Properties
 

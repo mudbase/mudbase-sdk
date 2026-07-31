@@ -1,4 +1,4 @@
-# # MarkMessagesAsReadRequest
+# MarkMessagesAsReadRequest
 
 ## Properties
 

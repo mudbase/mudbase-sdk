@@ -1,4 +1,4 @@
-# # GetOrganizationUsers200ResponseUsersInnerProject
+# GetOrganizationUsers200ResponseUsersInnerProject
 
 ## Properties
 

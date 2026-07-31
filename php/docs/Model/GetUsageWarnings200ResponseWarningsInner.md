@@ -1,4 +1,4 @@
-# # GetUsageWarnings200ResponseWarningsInner
+# GetUsageWarnings200ResponseWarningsInner
 
 ## Properties
 

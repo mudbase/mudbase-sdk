@@ -1,4 +1,4 @@
-# # GetAvailableRoles200Response
+# GetAvailableRoles200Response
 
 ## Properties
 

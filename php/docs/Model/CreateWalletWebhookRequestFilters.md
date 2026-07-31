@@ -1,4 +1,4 @@
-# # CreateWalletWebhookRequestFilters
+# CreateWalletWebhookRequestFilters
 
 ## Properties
 

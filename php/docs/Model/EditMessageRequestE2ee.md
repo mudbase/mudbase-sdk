@@ -1,4 +1,4 @@
-# # EditMessageRequestE2ee
+# EditMessageRequestE2ee
 
 ## Properties
 

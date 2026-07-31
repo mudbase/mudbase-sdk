@@ -1,4 +1,4 @@
-# # VerifiedRoleUpgradeRequest
+# VerifiedRoleUpgradeRequest
 
 ## Properties
 

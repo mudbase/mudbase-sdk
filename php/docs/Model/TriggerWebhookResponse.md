@@ -1,4 +1,4 @@
-# # TriggerWebhookResponse
+# TriggerWebhookResponse
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # InternalCustomDomainAddonRequest
+# InternalCustomDomainAddonRequest
 
 ## Properties
 

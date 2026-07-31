@@ -1,4 +1,4 @@
-# # GetCancelParams200Response
+# GetCancelParams200Response
 
 ## Properties
 

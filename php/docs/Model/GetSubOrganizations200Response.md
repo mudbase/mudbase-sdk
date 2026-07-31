@@ -1,4 +1,4 @@
-# # GetSubOrganizations200Response
+# GetSubOrganizations200Response
 
 ## Properties
 

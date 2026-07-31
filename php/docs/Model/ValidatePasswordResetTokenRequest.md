@@ -1,4 +1,4 @@
-# # ValidatePasswordResetTokenRequest
+# ValidatePasswordResetTokenRequest
 
 ## Properties
 

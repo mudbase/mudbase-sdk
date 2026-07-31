@@ -1,4 +1,4 @@
-# # GetTransactionHistory200ResponsePagination
+# GetTransactionHistory200ResponsePagination
 
 ## Properties
 

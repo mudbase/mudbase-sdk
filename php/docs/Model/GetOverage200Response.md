@@ -1,4 +1,4 @@
-# # GetOverage200Response
+# GetOverage200Response
 
 ## Properties
 

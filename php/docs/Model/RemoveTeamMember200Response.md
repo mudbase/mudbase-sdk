@@ -1,4 +1,4 @@
-# # RemoveTeamMember200Response
+# RemoveTeamMember200Response
 
 ## Properties
 

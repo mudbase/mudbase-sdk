@@ -1,4 +1,4 @@
-# # Withdraw200Response
+# Withdraw200Response
 
 ## Properties
 

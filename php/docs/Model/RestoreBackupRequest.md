@@ -1,4 +1,4 @@
-# # RestoreBackupRequest
+# RestoreBackupRequest
 
 ## Properties
 

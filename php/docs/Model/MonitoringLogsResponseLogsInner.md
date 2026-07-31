@@ -1,4 +1,4 @@
-# # MonitoringLogsResponseLogsInner
+# MonitoringLogsResponseLogsInner
 
 ## Properties
 

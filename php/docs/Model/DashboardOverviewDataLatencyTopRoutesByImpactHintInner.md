@@ -1,4 +1,4 @@
-# # DashboardOverviewDataLatencyTopRoutesByImpactHintInner
+# DashboardOverviewDataLatencyTopRoutesByImpactHintInner
 
 ## Properties
 

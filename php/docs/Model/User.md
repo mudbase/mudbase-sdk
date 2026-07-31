@@ -1,4 +1,4 @@
-# # User
+# User
 
 ## Properties
 
@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **full_name** | **string** |  | [optional]
 **avatar** | **string** |  | [optional]
 **role** | **string** |  | [optional]
+**custom_role** | **string** | Application-level role slug from the project&#39;s Multi-Role feature (e.g. \&quot;customer\&quot;, \&quot;seller\&quot;). Null for org-level (org/admin/member/viewer) users who aren&#39;t project end-users. | [optional]
+**is_anonymous** | **bool** | True for a guest session created via POST /api/auth/anonymous that hasn&#39;t been converted to a full account yet. | [optional]
 **email_verified** | **bool** |  | [optional]
 **phone_verified** | **bool** |  | [optional]
 **two_factor_enabled** | **bool** |  | [optional]

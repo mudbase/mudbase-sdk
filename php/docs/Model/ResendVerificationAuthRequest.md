@@ -1,4 +1,4 @@
-# # ResendVerificationAuthRequest
+# ResendVerificationAuthRequest
 
 ## Properties
 

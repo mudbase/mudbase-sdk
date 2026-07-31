@@ -1,4 +1,4 @@
-# # DataResponse
+# DataResponse
 
 ## Properties
 

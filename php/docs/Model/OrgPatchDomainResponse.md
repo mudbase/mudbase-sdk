@@ -1,4 +1,4 @@
-# # OrgPatchDomainResponse
+# OrgPatchDomainResponse
 
 ## Properties
 

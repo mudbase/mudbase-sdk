@@ -1,4 +1,4 @@
-# # SessionResponse
+# SessionResponse
 
 ## Properties
 

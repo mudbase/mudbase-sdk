@@ -1,4 +1,4 @@
-# # GetUserChats200ResponseDataChatsInnerLastMessage
+# GetUserChats200ResponseDataChatsInnerLastMessage
 
 ## Properties
 

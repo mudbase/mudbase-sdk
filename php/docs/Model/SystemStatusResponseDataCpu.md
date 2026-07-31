@@ -1,4 +1,4 @@
-# # SystemStatusResponseDataCpu
+# SystemStatusResponseDataCpu
 
 ## Properties
 

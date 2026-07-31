@@ -1,4 +1,4 @@
-# # GetSubscriptionTierById200ResponsePlan
+# GetSubscriptionTierById200ResponsePlan
 
 ## Properties
 

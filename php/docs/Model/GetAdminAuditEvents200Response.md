@@ -1,4 +1,4 @@
-# # GetAdminAuditEvents200Response
+# GetAdminAuditEvents200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # SystemStatusResponseDataRequests
+# SystemStatusResponseDataRequests
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetPaymentRecords200ResponseData
+# GetPaymentRecords200ResponseData
 
 ## Properties
 

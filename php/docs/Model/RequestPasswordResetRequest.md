@@ -1,4 +1,4 @@
-# # RequestPasswordResetRequest
+# RequestPasswordResetRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # InitiateOAuth400Response
+# InitiateOAuth400Response
 
 ## Properties
 

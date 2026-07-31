@@ -1,4 +1,4 @@
-# # UpdateFunctionRequestLimits
+# UpdateFunctionRequestLimits
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetComplianceSummary200Response
+# GetComplianceSummary200Response
 
 ## Properties
 

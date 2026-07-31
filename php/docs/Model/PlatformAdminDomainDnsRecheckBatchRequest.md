@@ -1,4 +1,4 @@
-# # PlatformAdminDomainDnsRecheckBatchRequest
+# PlatformAdminDomainDnsRecheckBatchRequest
 
 ## Properties
 

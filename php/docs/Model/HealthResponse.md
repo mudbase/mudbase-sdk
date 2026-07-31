@@ -1,4 +1,4 @@
-# # HealthResponse
+# HealthResponse
 
 ## Properties
 

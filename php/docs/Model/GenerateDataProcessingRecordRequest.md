@@ -1,4 +1,4 @@
-# # GenerateDataProcessingRecordRequest
+# GenerateDataProcessingRecordRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # RemoveReaction200ResponseDataInner
+# RemoveReaction200ResponseDataInner
 
 ## Properties
 

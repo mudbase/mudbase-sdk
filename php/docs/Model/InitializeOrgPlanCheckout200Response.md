@@ -1,4 +1,4 @@
-# # InitializeOrgPlanCheckout200Response
+# InitializeOrgPlanCheckout200Response
 
 ## Properties
 

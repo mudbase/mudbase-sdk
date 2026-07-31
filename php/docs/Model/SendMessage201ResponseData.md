@@ -1,4 +1,4 @@
-# # SendMessage201ResponseData
+# SendMessage201ResponseData
 
 ## Properties
 

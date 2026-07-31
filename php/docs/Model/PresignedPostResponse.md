@@ -1,4 +1,4 @@
-# # PresignedPostResponse
+# PresignedPostResponse
 
 ## Properties
 

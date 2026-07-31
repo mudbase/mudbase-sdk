@@ -1,4 +1,4 @@
-# # GenerateDataProcessingRecord200Response
+# GenerateDataProcessingRecord200Response
 
 ## Properties
 

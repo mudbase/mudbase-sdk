@@ -1,4 +1,4 @@
-# # AdminOrgLimitsPatchRequest
+# AdminOrgLimitsPatchRequest
 
 ## Properties
 

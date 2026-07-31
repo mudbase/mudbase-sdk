@@ -1,4 +1,4 @@
-# # UpdateUserProfile200Response
+# UpdateUserProfile200Response
 
 ## Properties
 

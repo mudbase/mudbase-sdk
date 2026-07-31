@@ -1,4 +1,4 @@
-# # UpdateUserAccountStatus200Response
+# UpdateUserAccountStatus200Response
 
 ## Properties
 

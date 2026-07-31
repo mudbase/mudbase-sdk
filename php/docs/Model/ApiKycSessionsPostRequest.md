@@ -1,4 +1,4 @@
-# # ApiKycSessionsPostRequest
+# ApiKycSessionsPostRequest
 
 ## Properties
 

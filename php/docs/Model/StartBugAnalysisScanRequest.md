@@ -1,4 +1,4 @@
-# # StartBugAnalysisScanRequest
+# StartBugAnalysisScanRequest
 
 ## Properties
 

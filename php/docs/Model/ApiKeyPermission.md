@@ -1,4 +1,4 @@
-# # ApiKeyPermission
+# ApiKeyPermission
 
 ## Properties
 

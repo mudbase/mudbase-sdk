@@ -1,4 +1,4 @@
-# # CheckUserPresenceRequest
+# CheckUserPresenceRequest
 
 ## Properties
 

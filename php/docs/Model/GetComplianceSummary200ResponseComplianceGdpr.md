@@ -1,4 +1,4 @@
-# # GetComplianceSummary200ResponseComplianceGdpr
+# GetComplianceSummary200ResponseComplianceGdpr
 
 ## Properties
 

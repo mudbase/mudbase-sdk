@@ -1,4 +1,4 @@
-# # ValidateAddress200Response
+# ValidateAddress200Response
 
 ## Properties
 

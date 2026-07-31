@@ -1,4 +1,4 @@
-# # ProjectSmtpPatchRequest
+# ProjectSmtpPatchRequest
 
 ## Properties
 

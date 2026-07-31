@@ -1,4 +1,4 @@
-# # ProjectSmtpSettingsPublic
+# ProjectSmtpSettingsPublic
 
 ## Properties
 

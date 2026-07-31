@@ -1,4 +1,4 @@
-# # UpdateIntegrationRequest
+# UpdateIntegrationRequest
 
 ## Properties
 

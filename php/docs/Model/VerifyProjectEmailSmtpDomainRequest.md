@@ -1,4 +1,4 @@
-# # VerifyProjectEmailSmtpDomainRequest
+# VerifyProjectEmailSmtpDomainRequest
 
 ## Properties
 

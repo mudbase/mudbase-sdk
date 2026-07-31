@@ -1,4 +1,4 @@
-# # GetSpeedUpParams200Response
+# GetSpeedUpParams200Response
 
 ## Properties
 

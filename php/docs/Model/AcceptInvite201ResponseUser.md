@@ -1,4 +1,4 @@
-# # AcceptInvite201ResponseUser
+# AcceptInvite201ResponseUser
 
 ## Properties
 

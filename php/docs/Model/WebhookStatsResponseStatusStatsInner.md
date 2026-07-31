@@ -1,4 +1,4 @@
-# # WebhookStatsResponseStatusStatsInner
+# WebhookStatsResponseStatusStatsInner
 
 ## Properties
 

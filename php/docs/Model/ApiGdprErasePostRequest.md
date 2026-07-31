@@ -1,4 +1,4 @@
-# # ApiGdprErasePostRequest
+# ApiGdprErasePostRequest
 
 ## Properties
 

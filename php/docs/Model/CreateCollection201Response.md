@@ -1,4 +1,4 @@
-# # CreateCollection201Response
+# CreateCollection201Response
 
 ## Properties
 

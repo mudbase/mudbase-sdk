@@ -1,4 +1,4 @@
-# # AddReaction200Response
+# AddReaction200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # DataListResponse
+# DataListResponse
 
 ## Properties
 

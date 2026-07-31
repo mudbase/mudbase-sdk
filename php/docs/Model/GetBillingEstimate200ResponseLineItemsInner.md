@@ -1,4 +1,4 @@
-# # GetBillingEstimate200ResponseLineItemsInner
+# GetBillingEstimate200ResponseLineItemsInner
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # TestWebhookTransformation200Response
+# TestWebhookTransformation200Response
 
 ## Properties
 

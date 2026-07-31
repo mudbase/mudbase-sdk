@@ -1,4 +1,4 @@
-# # GetSubscriptionTierById200Response
+# GetSubscriptionTierById200Response
 
 ## Properties
 

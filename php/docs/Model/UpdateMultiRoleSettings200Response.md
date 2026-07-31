@@ -1,4 +1,4 @@
-# # UpdateMultiRoleSettings200Response
+# UpdateMultiRoleSettings200Response
 
 ## Properties
 

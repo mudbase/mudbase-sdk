@@ -1,4 +1,4 @@
-# # GetProjectCaptchaConfig200Response
+# GetProjectCaptchaConfig200Response
 
 ## Properties
 

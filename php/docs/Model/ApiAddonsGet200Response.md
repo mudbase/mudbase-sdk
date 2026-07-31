@@ -1,4 +1,4 @@
-# # ApiAddonsGet200Response
+# ApiAddonsGet200Response
 
 ## Properties
 

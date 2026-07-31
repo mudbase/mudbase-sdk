@@ -1,4 +1,4 @@
-# # CreateOrganizationRequest
+# CreateOrganizationRequest
 
 ## Properties
 

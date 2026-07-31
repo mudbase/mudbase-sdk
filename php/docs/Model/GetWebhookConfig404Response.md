@@ -1,4 +1,4 @@
-# # GetWebhookConfig404Response
+# GetWebhookConfig404Response
 
 ## Properties
 

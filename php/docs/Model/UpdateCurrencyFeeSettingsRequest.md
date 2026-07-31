@@ -1,4 +1,4 @@
-# # UpdateCurrencyFeeSettingsRequest
+# UpdateCurrencyFeeSettingsRequest
 
 ## Properties
 

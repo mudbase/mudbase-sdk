@@ -1,4 +1,4 @@
-# # GetSearchAnalytics200ResponseTopQueriesInner
+# GetSearchAnalytics200ResponseTopQueriesInner
 
 ## Properties
 

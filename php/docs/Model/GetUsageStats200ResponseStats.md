@@ -1,4 +1,4 @@
-# # GetUsageStats200ResponseStats
+# GetUsageStats200ResponseStats
 
 ## Properties
 

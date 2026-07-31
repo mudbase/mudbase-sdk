@@ -1,4 +1,4 @@
-# # EstimateNonCustodialGas200Response
+# EstimateNonCustodialGas200Response
 
 ## Properties
 

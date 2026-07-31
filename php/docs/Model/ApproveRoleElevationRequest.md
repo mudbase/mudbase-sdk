@@ -1,4 +1,4 @@
-# # ApproveRoleElevationRequest
+# ApproveRoleElevationRequest
 
 ## Properties
 

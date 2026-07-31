@@ -1,4 +1,4 @@
-# # MessageStatsResponse
+# MessageStatsResponse
 
 ## Properties
 

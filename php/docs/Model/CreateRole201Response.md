@@ -1,4 +1,4 @@
-# # CreateRole201Response
+# CreateRole201Response
 
 ## Properties
 

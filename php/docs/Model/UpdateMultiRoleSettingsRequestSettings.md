@@ -1,4 +1,4 @@
-# # UpdateMultiRoleSettingsRequestSettings
+# UpdateMultiRoleSettingsRequestSettings
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # ProjectEmailSendRequest
+# ProjectEmailSendRequest
 
 ## Properties
 

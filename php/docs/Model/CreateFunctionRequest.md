@@ -1,4 +1,4 @@
-# # CreateFunctionRequest
+# CreateFunctionRequest
 
 ## Properties
 

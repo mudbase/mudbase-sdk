@@ -1,4 +1,4 @@
-# # InitiateOAuth404Response
+# InitiateOAuth404Response
 
 ## Properties
 

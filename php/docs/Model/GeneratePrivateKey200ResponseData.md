@@ -1,4 +1,4 @@
-# # GeneratePrivateKey200ResponseData
+# GeneratePrivateKey200ResponseData
 
 ## Properties
 

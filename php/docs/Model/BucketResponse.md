@@ -1,4 +1,4 @@
-# # BucketResponse
+# BucketResponse
 
 ## Properties
 

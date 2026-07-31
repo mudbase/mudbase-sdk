@@ -1,4 +1,4 @@
-# # EstimateNetworkFeeRequest
+# EstimateNetworkFeeRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # CreateCheckoutSessionRequest
+# CreateCheckoutSessionRequest
 
 ## Properties
 

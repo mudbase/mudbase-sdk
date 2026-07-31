@@ -1,4 +1,4 @@
-# # UpdateFunctionRequest
+# UpdateFunctionRequest
 
 ## Properties
 

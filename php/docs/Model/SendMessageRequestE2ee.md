@@ -1,4 +1,4 @@
-# # SendMessageRequestE2ee
+# SendMessageRequestE2ee
 
 ## Properties
 

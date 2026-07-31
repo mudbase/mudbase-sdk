@@ -1,4 +1,4 @@
-# # GetWebhookConfig200ResponseData
+# GetWebhookConfig200ResponseData
 
 ## Properties
 

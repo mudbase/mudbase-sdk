@@ -1,4 +1,4 @@
-# # GetProjectFcmConfig200ResponseData
+# GetProjectFcmConfig200ResponseData
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetEventThroughput200Response
+# GetEventThroughput200Response
 
 ## Properties
 

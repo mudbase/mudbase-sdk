@@ -1,4 +1,4 @@
-# # SimulateFunctionTriggerRequest
+# SimulateFunctionTriggerRequest
 
 ## Properties
 

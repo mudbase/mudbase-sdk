@@ -1,4 +1,4 @@
-# # ExportUserData200Response
+# ExportUserData200Response
 
 ## Properties
 

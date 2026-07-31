@@ -1,4 +1,4 @@
-# # GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerUsersInner
+# GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerUsersInner
 
 ## Properties
 

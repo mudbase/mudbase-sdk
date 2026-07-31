@@ -1,4 +1,4 @@
-# # CreateApiKeyRequest
+# CreateApiKeyRequest
 
 ## Properties
 

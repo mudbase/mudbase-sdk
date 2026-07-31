@@ -1,4 +1,4 @@
-# # GetProjectFeeDashboard200ResponseDataRecentPayoutsInner
+# GetProjectFeeDashboard200ResponseDataRecentPayoutsInner
 
 ## Properties
 

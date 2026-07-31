@@ -1,4 +1,4 @@
-# # AddOrgDomainRequest
+# AddOrgDomainRequest
 
 ## Properties
 

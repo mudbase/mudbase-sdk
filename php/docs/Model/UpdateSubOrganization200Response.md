@@ -1,4 +1,4 @@
-# # UpdateSubOrganization200Response
+# UpdateSubOrganization200Response
 
 ## Properties
 

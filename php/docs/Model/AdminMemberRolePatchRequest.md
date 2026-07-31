@@ -1,4 +1,4 @@
-# # AdminMemberRolePatchRequest
+# AdminMemberRolePatchRequest
 
 ## Properties
 

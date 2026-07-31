@@ -1,4 +1,4 @@
-# # UpdateOAuthProviderConfigRequest
+# UpdateOAuthProviderConfigRequest
 
 ## Properties
 

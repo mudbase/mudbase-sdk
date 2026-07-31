@@ -1,4 +1,4 @@
-# # ListProjectEmailTemplates200Response
+# ListProjectEmailTemplates200Response
 
 ## Properties
 

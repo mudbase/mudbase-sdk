@@ -1,4 +1,4 @@
-# # AdminOrgBillingContractPatchRequest
+# AdminOrgBillingContractPatchRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # MarkMessagesAsRead200ResponseData
+# MarkMessagesAsRead200ResponseData
 
 ## Properties
 

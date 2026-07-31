@@ -1,4 +1,4 @@
-# # RefreshToken400Response
+# RefreshToken400Response
 
 ## Properties
 

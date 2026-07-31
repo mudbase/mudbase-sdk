@@ -1,4 +1,4 @@
-# # DeleteBackup200Response
+# DeleteBackup200Response
 
 ## Properties
 

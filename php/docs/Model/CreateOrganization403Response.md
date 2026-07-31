@@ -1,4 +1,4 @@
-# # CreateOrganization403Response
+# CreateOrganization403Response
 
 ## Properties
 

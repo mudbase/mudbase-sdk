@@ -1,4 +1,4 @@
-# # Bucket
+# Bucket
 
 ## Properties
 

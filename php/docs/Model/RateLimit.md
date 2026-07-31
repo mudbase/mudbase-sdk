@@ -1,4 +1,4 @@
-# # RateLimit
+# RateLimit
 
 ## Properties
 

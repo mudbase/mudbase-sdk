@@ -1,4 +1,4 @@
-# # GetMultiRoleConfig200ResponseData
+# GetMultiRoleConfig200ResponseData
 
 ## Properties
 

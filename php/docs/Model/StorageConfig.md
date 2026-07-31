@@ -1,4 +1,4 @@
-# # StorageConfig
+# StorageConfig
 
 ## Properties
 

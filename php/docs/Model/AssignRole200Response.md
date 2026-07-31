@@ -1,4 +1,4 @@
-# # AssignRole200Response
+# AssignRole200Response
 
 ## Properties
 

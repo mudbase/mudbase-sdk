@@ -1,4 +1,4 @@
-# # AdminProvisionEnterpriseBody
+# AdminProvisionEnterpriseBody
 
 ## Properties
 

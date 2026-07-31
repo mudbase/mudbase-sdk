@@ -1,4 +1,4 @@
-# # GetNetworkStatus200ResponseDataValue
+# GetNetworkStatus200ResponseDataValue
 
 ## Properties
 

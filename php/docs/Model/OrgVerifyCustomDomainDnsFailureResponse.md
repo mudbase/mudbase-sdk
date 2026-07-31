@@ -1,4 +1,4 @@
-# # OrgVerifyCustomDomainDnsFailureResponse
+# OrgVerifyCustomDomainDnsFailureResponse
 
 ## Properties
 

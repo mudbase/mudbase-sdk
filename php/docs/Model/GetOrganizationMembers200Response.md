@@ -1,4 +1,4 @@
-# # GetOrganizationMembers200Response
+# GetOrganizationMembers200Response
 
 ## Properties
 

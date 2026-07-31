@@ -1,4 +1,4 @@
-# # ProjectSettings
+# ProjectSettings
 
 ## Properties
 

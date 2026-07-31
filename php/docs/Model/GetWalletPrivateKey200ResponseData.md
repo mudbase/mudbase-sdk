@@ -1,4 +1,4 @@
-# # GetWalletPrivateKey200ResponseData
+# GetWalletPrivateKey200ResponseData
 
 ## Properties
 

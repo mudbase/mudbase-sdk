@@ -1,4 +1,4 @@
-# # ProjectUsageResponse
+# ProjectUsageResponse
 
 ## Properties
 

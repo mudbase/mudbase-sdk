@@ -1,4 +1,4 @@
-# # RegisterLocalUser201ResponseUser
+# RegisterLocalUser201ResponseUser
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetUserChats200ResponseDataChatsInner
+# GetUserChats200ResponseDataChatsInner
 
 ## Properties
 

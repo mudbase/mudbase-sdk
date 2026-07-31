@@ -1,4 +1,4 @@
-# # UpdateCollectionPermissionsRequest
+# UpdateCollectionPermissionsRequest
 
 ## Properties
 

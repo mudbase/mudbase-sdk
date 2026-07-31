@@ -1,4 +1,4 @@
-# # GetSearchAnalytics200Response
+# GetSearchAnalytics200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetLocalSession200Response
+# GetLocalSession200Response
 
 ## Properties
 

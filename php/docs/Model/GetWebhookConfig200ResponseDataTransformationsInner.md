@@ -1,4 +1,4 @@
-# # GetWebhookConfig200ResponseDataTransformationsInner
+# GetWebhookConfig200ResponseDataTransformationsInner
 
 ## Properties
 

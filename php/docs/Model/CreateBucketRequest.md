@@ -1,4 +1,4 @@
-# # CreateBucketRequest
+# CreateBucketRequest
 
 ## Properties
 

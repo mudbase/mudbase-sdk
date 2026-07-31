@@ -1,4 +1,4 @@
-# # GeneratePrivateKey200Response
+# GeneratePrivateKey200Response
 
 ## Properties
 

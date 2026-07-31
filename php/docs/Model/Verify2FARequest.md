@@ -1,4 +1,4 @@
-# # Verify2FARequest
+# Verify2FARequest
 
 ## Properties
 

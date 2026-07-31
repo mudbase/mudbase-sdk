@@ -1,4 +1,4 @@
-# # GetHistoricalAnalytics200ResponseDataInner
+# GetHistoricalAnalytics200ResponseDataInner
 
 ## Properties
 

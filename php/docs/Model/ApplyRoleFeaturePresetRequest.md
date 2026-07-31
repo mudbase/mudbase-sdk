@@ -1,4 +1,4 @@
-# # ApplyRoleFeaturePresetRequest
+# ApplyRoleFeaturePresetRequest
 
 ## Properties
 

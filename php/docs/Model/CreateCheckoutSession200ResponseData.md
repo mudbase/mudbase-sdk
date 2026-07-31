@@ -1,4 +1,4 @@
-# # CreateCheckoutSession200ResponseData
+# CreateCheckoutSession200ResponseData
 
 ## Properties
 

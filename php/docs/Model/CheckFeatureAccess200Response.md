@@ -1,4 +1,4 @@
-# # CheckFeatureAccess200Response
+# CheckFeatureAccess200Response
 
 ## Properties
 

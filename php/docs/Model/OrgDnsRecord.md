@@ -1,4 +1,4 @@
-# # OrgDnsRecord
+# OrgDnsRecord
 
 ## Properties
 

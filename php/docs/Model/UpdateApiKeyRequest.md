@@ -1,4 +1,4 @@
-# # UpdateApiKeyRequest
+# UpdateApiKeyRequest
 
 ## Properties
 

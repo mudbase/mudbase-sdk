@@ -1,4 +1,4 @@
-# # ApiKycWebhookConfigPutRequest
+# ApiKycWebhookConfigPutRequest
 
 ## Properties
 

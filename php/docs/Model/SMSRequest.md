@@ -1,4 +1,4 @@
-# # SMSRequest
+# SMSRequest
 
 ## Properties
 

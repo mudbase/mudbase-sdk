@@ -1,4 +1,4 @@
-# # GetIntegrations200ResponseIntegrationsInner
+# GetIntegrations200ResponseIntegrationsInner
 
 ## Properties
 

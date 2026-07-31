@@ -1,4 +1,4 @@
-# # EnablePaymentProcessing200ResponseData
+# EnablePaymentProcessing200ResponseData
 
 ## Properties
 

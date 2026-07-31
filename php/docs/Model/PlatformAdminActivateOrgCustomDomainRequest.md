@@ -1,4 +1,4 @@
-# # PlatformAdminActivateOrgCustomDomainRequest
+# PlatformAdminActivateOrgCustomDomainRequest
 
 ## Properties
 

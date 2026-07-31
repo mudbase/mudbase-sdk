@@ -1,4 +1,4 @@
-# # BucketListResponse
+# BucketListResponse
 
 ## Properties
 

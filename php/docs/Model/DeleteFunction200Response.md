@@ -1,4 +1,4 @@
-# # DeleteFunction200Response
+# DeleteFunction200Response
 
 ## Properties
 

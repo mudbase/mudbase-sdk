@@ -1,4 +1,4 @@
-# # StartBugAnalysisScanByProjectRequest
+# StartBugAnalysisScanByProjectRequest
 
 ## Properties
 

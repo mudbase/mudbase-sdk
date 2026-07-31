@@ -1,4 +1,4 @@
-# # GetSupportedCurrencies200ResponseData
+# GetSupportedCurrencies200ResponseData
 
 ## Properties
 

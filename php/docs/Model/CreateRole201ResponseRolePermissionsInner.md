@@ -1,4 +1,4 @@
-# # CreateRole201ResponseRolePermissionsInner
+# CreateRole201ResponseRolePermissionsInner
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # ListOAuthProviders200Response
+# ListOAuthProviders200Response
 
 ## Properties
 

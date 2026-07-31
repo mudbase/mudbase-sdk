@@ -1,4 +1,4 @@
-# # ApiKeyUsage
+# ApiKeyUsage
 
 ## Properties
 

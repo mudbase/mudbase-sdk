@@ -1,4 +1,4 @@
-# # TestWalletWebhookRequest
+# TestWalletWebhookRequest
 
 ## Properties
 

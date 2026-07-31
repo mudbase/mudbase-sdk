@@ -1,4 +1,4 @@
-# # RemoveParticipantRequest
+# RemoveParticipantRequest
 
 ## Properties
 

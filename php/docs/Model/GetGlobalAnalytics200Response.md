@@ -1,4 +1,4 @@
-# # GetGlobalAnalytics200Response
+# GetGlobalAnalytics200Response
 
 ## Properties
 

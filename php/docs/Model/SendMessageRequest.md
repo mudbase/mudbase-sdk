@@ -1,4 +1,4 @@
-# # SendMessageRequest
+# SendMessageRequest
 
 ## Properties
 

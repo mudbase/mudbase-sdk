@@ -1,4 +1,4 @@
-# # UpdateMemberRoleRequest
+# UpdateMemberRoleRequest
 
 ## Properties
 

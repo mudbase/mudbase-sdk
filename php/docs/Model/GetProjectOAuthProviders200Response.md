@@ -1,4 +1,4 @@
-# # GetProjectOAuthProviders200Response
+# GetProjectOAuthProviders200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # OTPVerifyRequest
+# OTPVerifyRequest
 
 ## Properties
 

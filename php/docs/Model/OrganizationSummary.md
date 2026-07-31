@@ -1,4 +1,4 @@
-# # OrganizationSummary
+# OrganizationSummary
 
 ## Properties
 

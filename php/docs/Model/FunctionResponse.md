@@ -1,4 +1,4 @@
-# # FunctionResponse
+# FunctionResponse
 
 ## Properties
 

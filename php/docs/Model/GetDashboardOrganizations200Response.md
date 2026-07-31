@@ -1,4 +1,4 @@
-# # GetDashboardOrganizations200Response
+# GetDashboardOrganizations200Response
 
 ## Properties
 

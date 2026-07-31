@@ -1,4 +1,4 @@
-# # FileListResponse
+# FileListResponse
 
 ## Properties
 

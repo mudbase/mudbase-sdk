@@ -1,4 +1,4 @@
-# # ListBackups200ResponseBackupsInner
+# ListBackups200ResponseBackupsInner
 
 ## Properties
 

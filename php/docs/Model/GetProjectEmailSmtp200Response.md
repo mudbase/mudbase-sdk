@@ -1,4 +1,4 @@
-# # GetProjectEmailSmtp200Response
+# GetProjectEmailSmtp200Response
 
 ## Properties
 

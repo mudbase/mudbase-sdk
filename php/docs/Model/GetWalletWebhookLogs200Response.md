@@ -1,4 +1,4 @@
-# # GetWalletWebhookLogs200Response
+# GetWalletWebhookLogs200Response
 
 ## Properties
 

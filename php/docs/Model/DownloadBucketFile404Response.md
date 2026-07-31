@@ -1,4 +1,4 @@
-# # DownloadBucketFile404Response
+# DownloadBucketFile404Response
 
 ## Properties
 

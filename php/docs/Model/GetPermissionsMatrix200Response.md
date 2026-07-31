@@ -1,4 +1,4 @@
-# # GetPermissionsMatrix200Response
+# GetPermissionsMatrix200Response
 
 ## Properties
 

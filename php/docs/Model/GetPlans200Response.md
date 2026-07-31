@@ -1,4 +1,4 @@
-# # GetPlans200Response
+# GetPlans200Response
 
 ## Properties
 

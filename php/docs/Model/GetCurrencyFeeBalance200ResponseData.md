@@ -1,4 +1,4 @@
-# # GetCurrencyFeeBalance200ResponseData
+# GetCurrencyFeeBalance200ResponseData
 
 ## Properties
 

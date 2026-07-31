@@ -1,4 +1,4 @@
-# # ListRoles200Response
+# ListRoles200Response
 
 ## Properties
 

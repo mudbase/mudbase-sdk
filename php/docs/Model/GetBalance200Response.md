@@ -1,4 +1,4 @@
-# # GetBalance200Response
+# GetBalance200Response
 
 ## Properties
 

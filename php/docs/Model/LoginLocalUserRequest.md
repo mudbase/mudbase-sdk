@@ -1,4 +1,4 @@
-# # LoginLocalUserRequest
+# LoginLocalUserRequest
 
 ## Properties
 

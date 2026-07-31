@@ -1,4 +1,4 @@
-# # EnablePaymentProcessingRequest
+# EnablePaymentProcessingRequest
 
 ## Properties
 

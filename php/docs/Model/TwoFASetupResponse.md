@@ -1,4 +1,4 @@
-# # TwoFASetupResponse
+# TwoFASetupResponse
 
 ## Properties
 

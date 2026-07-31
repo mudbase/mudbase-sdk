@@ -1,4 +1,4 @@
-# # GetAvailableRoles200ResponseDataInner
+# GetAvailableRoles200ResponseDataInner
 
 ## Properties
 

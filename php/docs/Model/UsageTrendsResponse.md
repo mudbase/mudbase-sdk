@@ -1,4 +1,4 @@
-# # UsageTrendsResponse
+# UsageTrendsResponse
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # RestoreBackup200ResponseRestore
+# RestoreBackup200ResponseRestore
 
 ## Properties
 

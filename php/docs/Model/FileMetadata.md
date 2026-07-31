@@ -1,4 +1,4 @@
-# # FileMetadata
+# FileMetadata
 
 ## Properties
 

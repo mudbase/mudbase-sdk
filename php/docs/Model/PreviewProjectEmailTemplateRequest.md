@@ -1,4 +1,4 @@
-# # PreviewProjectEmailTemplateRequest
+# PreviewProjectEmailTemplateRequest
 
 ## Properties
 

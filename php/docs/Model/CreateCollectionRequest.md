@@ -1,4 +1,4 @@
-# # CreateCollectionRequest
+# CreateCollectionRequest
 
 ## Properties
 

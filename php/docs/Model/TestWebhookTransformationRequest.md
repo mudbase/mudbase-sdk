@@ -1,4 +1,4 @@
-# # TestWebhookTransformationRequest
+# TestWebhookTransformationRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetRoleElevationStatus200Response
+# GetRoleElevationStatus200Response
 
 ## Properties
 

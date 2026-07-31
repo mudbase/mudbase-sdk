@@ -1,4 +1,4 @@
-# # GetAllFees200Response
+# GetAllFees200Response
 
 ## Properties
 

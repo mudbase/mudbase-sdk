@@ -1,4 +1,4 @@
-# # OrgPlatformDnsVerificationCustomer
+# OrgPlatformDnsVerificationCustomer
 
 ## Properties
 

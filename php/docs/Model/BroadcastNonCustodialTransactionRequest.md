@@ -1,4 +1,4 @@
-# # BroadcastNonCustodialTransactionRequest
+# BroadcastNonCustodialTransactionRequest
 
 ## Properties
 

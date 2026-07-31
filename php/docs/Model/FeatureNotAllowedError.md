@@ -1,4 +1,4 @@
-# # FeatureNotAllowedError
+# FeatureNotAllowedError
 
 ## Properties
 

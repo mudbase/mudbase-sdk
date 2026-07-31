@@ -1,4 +1,4 @@
-# # WalletWebhook
+# WalletWebhook
 
 ## Properties
 

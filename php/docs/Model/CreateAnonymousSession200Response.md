@@ -1,4 +1,4 @@
-# # CreateAnonymousSession200Response
+# CreateAnonymousSession200Response
 
 ## Properties
 

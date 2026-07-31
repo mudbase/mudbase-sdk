@@ -1,4 +1,4 @@
-# # MonitoringAnalyticsResponseStatsInner
+# MonitoringAnalyticsResponseStatsInner
 
 ## Properties
 

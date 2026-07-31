@@ -1,4 +1,4 @@
-# # RegenerateApiKey200Response
+# RegenerateApiKey200Response
 
 ## Properties
 

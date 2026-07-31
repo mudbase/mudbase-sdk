@@ -1,4 +1,4 @@
-# # ApiProjectsProjectIdAddonsAddonInvokePost200Response
+# ApiProjectsProjectIdAddonsAddonInvokePost200Response
 
 ## Properties
 

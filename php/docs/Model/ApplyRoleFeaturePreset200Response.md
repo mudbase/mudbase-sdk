@@ -1,4 +1,4 @@
-# # ApplyRoleFeaturePreset200Response
+# ApplyRoleFeaturePreset200Response
 
 ## Properties
 

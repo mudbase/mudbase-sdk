@@ -1,4 +1,4 @@
-# # UpdateApiKey200Response
+# UpdateApiKey200Response
 
 ## Properties
 

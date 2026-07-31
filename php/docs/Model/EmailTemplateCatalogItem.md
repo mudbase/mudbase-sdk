@@ -1,4 +1,4 @@
-# # EmailTemplateCatalogItem
+# EmailTemplateCatalogItem
 
 ## Properties
 

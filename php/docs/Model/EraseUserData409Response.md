@@ -1,4 +1,4 @@
-# # EraseUserData409Response
+# EraseUserData409Response
 
 ## Properties
 

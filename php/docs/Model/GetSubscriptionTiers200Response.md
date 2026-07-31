@@ -1,4 +1,4 @@
-# # GetSubscriptionTiers200Response
+# GetSubscriptionTiers200Response
 
 ## Properties
 

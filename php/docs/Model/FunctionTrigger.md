@@ -1,4 +1,4 @@
-# # FunctionTrigger
+# FunctionTrigger
 
 ## Properties
 

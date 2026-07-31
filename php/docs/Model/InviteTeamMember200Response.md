@@ -1,4 +1,4 @@
-# # InviteTeamMember200Response
+# InviteTeamMember200Response
 
 ## Properties
 

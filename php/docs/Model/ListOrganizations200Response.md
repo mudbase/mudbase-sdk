@@ -1,4 +1,4 @@
-# # ListOrganizations200Response
+# ListOrganizations200Response
 
 ## Properties
 

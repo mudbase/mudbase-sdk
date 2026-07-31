@@ -1,4 +1,4 @@
-# # GetSubscriptionTiers200ResponsePlansInner
+# GetSubscriptionTiers200ResponsePlansInner
 
 ## Properties
 

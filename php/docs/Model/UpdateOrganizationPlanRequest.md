@@ -1,4 +1,4 @@
-# # UpdateOrganizationPlanRequest
+# UpdateOrganizationPlanRequest
 
 ## Properties
 

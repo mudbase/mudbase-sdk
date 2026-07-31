@@ -1,4 +1,4 @@
-# # AdminOrgPlanPatchRequest
+# AdminOrgPlanPatchRequest
 
 ## Properties
 

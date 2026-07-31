@@ -1,4 +1,4 @@
-# # ConvertAnonymousAccount200Response
+# ConvertAnonymousAccount200Response
 
 ## Properties
 

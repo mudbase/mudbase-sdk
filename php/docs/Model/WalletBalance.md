@@ -1,4 +1,4 @@
-# # WalletBalance
+# WalletBalance
 
 ## Properties
 

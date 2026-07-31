@@ -1,4 +1,4 @@
-# # InternalDomainDnsRecheckBatchRequest
+# InternalDomainDnsRecheckBatchRequest
 
 ## Properties
 

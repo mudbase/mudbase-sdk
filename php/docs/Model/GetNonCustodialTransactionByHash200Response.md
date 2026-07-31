@@ -1,4 +1,4 @@
-# # GetNonCustodialTransactionByHash200Response
+# GetNonCustodialTransactionByHash200Response
 
 ## Properties
 

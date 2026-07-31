@@ -1,4 +1,4 @@
-# # InitializePayment200ResponseData
+# InitializePayment200ResponseData
 
 ## Properties
 

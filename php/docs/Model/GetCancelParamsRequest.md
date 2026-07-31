@@ -1,4 +1,4 @@
-# # GetCancelParamsRequest
+# GetCancelParamsRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # ModelFunction
+# ModelFunction
 
 ## Properties
 

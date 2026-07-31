@@ -1,4 +1,4 @@
-# # UpdateWalletFeeConfigRequest
+# UpdateWalletFeeConfigRequest
 
 ## Properties
 

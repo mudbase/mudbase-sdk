@@ -1,4 +1,4 @@
-# # CalculateWalletFee200Response
+# CalculateWalletFee200Response
 
 ## Properties
 

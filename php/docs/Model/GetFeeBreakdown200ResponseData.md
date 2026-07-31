@@ -1,4 +1,4 @@
-# # GetFeeBreakdown200ResponseData
+# GetFeeBreakdown200ResponseData
 
 ## Properties
 

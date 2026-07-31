@@ -1,4 +1,4 @@
-# # PlatformAdminCustomDomainAddonRequest
+# PlatformAdminCustomDomainAddonRequest
 
 ## Properties
 

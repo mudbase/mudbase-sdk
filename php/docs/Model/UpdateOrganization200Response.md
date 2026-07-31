@@ -1,4 +1,4 @@
-# # UpdateOrganization200Response
+# UpdateOrganization200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # PushNotificationRequest
+# PushNotificationRequest
 
 ## Properties
 

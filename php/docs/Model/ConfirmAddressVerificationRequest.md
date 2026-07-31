@@ -1,4 +1,4 @@
-# # ConfirmAddressVerificationRequest
+# ConfirmAddressVerificationRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # UploadProjectLogo200Response
+# UploadProjectLogo200Response
 
 ## Properties
 

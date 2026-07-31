@@ -1,4 +1,4 @@
-# # ListNonCustodialAddresses200Response
+# ListNonCustodialAddresses200Response
 
 ## Properties
 

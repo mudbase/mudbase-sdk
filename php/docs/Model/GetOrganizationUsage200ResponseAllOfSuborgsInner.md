@@ -1,4 +1,4 @@
-# # GetOrganizationUsage200ResponseAllOfSuborgsInner
+# GetOrganizationUsage200ResponseAllOfSuborgsInner
 
 ## Properties
 

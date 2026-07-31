@@ -1,4 +1,4 @@
-# # GetProjectFeeDashboard200Response
+# GetProjectFeeDashboard200Response
 
 ## Properties
 

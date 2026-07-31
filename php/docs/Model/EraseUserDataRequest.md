@@ -1,4 +1,4 @@
-# # EraseUserDataRequest
+# EraseUserDataRequest
 
 ## Properties
 

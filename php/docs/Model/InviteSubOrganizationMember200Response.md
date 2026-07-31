@@ -1,4 +1,4 @@
-# # InviteSubOrganizationMember200Response
+# InviteSubOrganizationMember200Response
 
 ## Properties
 

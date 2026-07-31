@@ -1,4 +1,4 @@
-# # MagicLinkRequest
+# MagicLinkRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # GetPendingRoleElevationRequests200Response
+# GetPendingRoleElevationRequests200Response
 
 ## Properties
 

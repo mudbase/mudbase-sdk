@@ -1,4 +1,4 @@
-# # ConfirmAddressVerification200Response
+# ConfirmAddressVerification200Response
 
 ## Properties
 

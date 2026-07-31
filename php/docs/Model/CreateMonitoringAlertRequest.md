@@ -1,4 +1,4 @@
-# # CreateMonitoringAlertRequest
+# CreateMonitoringAlertRequest
 
 ## Properties
 

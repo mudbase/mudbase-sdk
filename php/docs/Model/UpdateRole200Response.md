@@ -1,4 +1,4 @@
-# # UpdateRole200Response
+# UpdateRole200Response
 
 ## Properties
 

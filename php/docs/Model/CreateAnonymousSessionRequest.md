@@ -1,4 +1,4 @@
-# # CreateAnonymousSessionRequest
+# CreateAnonymousSessionRequest
 
 ## Properties
 

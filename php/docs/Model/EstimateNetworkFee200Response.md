@@ -1,4 +1,4 @@
-# # EstimateNetworkFee200Response
+# EstimateNetworkFee200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # HandleFlutterwaveWebhookRequestDataCustomer
+# HandleFlutterwaveWebhookRequestDataCustomer
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # HandleFlutterwaveWebhook200Response
+# HandleFlutterwaveWebhook200Response
 
 ## Properties
 

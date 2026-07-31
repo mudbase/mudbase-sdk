@@ -1,4 +1,4 @@
-# # CreateProject201Response
+# CreateProject201Response
 
 ## Properties
 

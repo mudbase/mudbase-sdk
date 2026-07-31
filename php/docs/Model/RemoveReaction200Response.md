@@ -1,4 +1,4 @@
-# # RemoveReaction200Response
+# RemoveReaction200Response
 
 ## Properties
 

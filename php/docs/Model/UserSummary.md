@@ -1,4 +1,4 @@
-# # UserSummary
+# UserSummary
 
 ## Properties
 

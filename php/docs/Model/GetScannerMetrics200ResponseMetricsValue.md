@@ -1,4 +1,4 @@
-# # GetScannerMetrics200ResponseMetricsValue
+# GetScannerMetrics200ResponseMetricsValue
 
 ## Properties
 

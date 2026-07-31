@@ -1,4 +1,4 @@
-# # MonitoringPerformanceResponse
+# MonitoringPerformanceResponse
 
 ## Properties
 

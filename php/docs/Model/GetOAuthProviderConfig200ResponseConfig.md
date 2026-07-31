@@ -1,4 +1,4 @@
-# # GetOAuthProviderConfig200ResponseConfig
+# GetOAuthProviderConfig200ResponseConfig
 
 ## Properties
 

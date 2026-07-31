@@ -1,4 +1,4 @@
-# # OrgCustomDomainPlatformReadyRequest
+# OrgCustomDomainPlatformReadyRequest
 
 ## Properties
 

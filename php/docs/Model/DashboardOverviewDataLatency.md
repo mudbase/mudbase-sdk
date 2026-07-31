@@ -1,4 +1,4 @@
-# # DashboardOverviewDataLatency
+# DashboardOverviewDataLatency
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # WalletTransaction
+# WalletTransaction
 
 ## Properties
 

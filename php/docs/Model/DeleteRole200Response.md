@@ -1,4 +1,4 @@
-# # DeleteRole200Response
+# DeleteRole200Response
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # CreateIntegration201Response
+# CreateIntegration201Response
 
 ## Properties
 

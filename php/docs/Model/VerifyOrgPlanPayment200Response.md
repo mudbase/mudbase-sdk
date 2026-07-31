@@ -1,4 +1,4 @@
-# # VerifyOrgPlanPayment200Response
+# VerifyOrgPlanPayment200Response
 
 ## Properties
 

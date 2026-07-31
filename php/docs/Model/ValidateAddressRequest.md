@@ -1,4 +1,4 @@
-# # ValidateAddressRequest
+# ValidateAddressRequest
 
 ## Properties
 

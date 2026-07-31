@@ -1,4 +1,4 @@
-# # CreateOrUpdateFeeSettingsRequest
+# CreateOrUpdateFeeSettingsRequest
 
 ## Properties
 

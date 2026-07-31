@@ -1,4 +1,4 @@
-# # GetDashboard200Response
+# GetDashboard200Response
 
 ## Properties
 

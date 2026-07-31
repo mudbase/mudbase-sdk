@@ -1,4 +1,4 @@
-# # GetSpeedUpParamsRequest
+# GetSpeedUpParamsRequest
 
 ## Properties
 

@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Templates
         /// </summary>
         [JsonPropertyName("templates")]
-        public List<GetTemplates200ResponseTemplatesInner>? Templates { get { return this.TemplatesOption; } set { this.TemplatesOption = new(value); } }
+        public List<GetTemplates200ResponseTemplatesInner>? Templates { get { return this.TemplatesOption.Value; } set { this.TemplatesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetTemplates200Response" />
     /// </summary>
-    public class GetTemplates200ResponseJsonConverter : JsonConverter<GetTemplates200Response>
+    public partial class GetTemplates200ResponseJsonConverter : JsonConverter<GetTemplates200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetTemplates200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetTemplates200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetTemplates200Response" />
         /// </summary>

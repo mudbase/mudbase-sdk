@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of File
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets File
         /// </summary>
         [JsonPropertyName("file")]
-        public FileMetadata? File { get { return this.FileOption; } set { this.FileOption = new(value); } }
+        public FileMetadata? File { get { return this.FileOption.Value; } set { this.FileOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FileResponse" />
     /// </summary>
-    public class FileResponseJsonConverter : JsonConverter<FileResponse>
+    public partial class FileResponseJsonConverter : JsonConverter<FileResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileResponseJsonConverter" /> class.
+        /// </summary>
+        public FileResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FileResponse" />
         /// </summary>

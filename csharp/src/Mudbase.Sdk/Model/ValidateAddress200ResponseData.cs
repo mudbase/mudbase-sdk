@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsValid
         /// </summary>
         [JsonPropertyName("isValid")]
-        public bool? IsValid { get { return this.IsValidOption; } set { this.IsValidOption = new(value); } }
+        public bool? IsValid { get { return this.IsValidOption.Value; } set { this.IsValidOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Address
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Address
         /// </summary>
         [JsonPropertyName("address")]
-        public string? Address { get { return this.AddressOption; } set { this.AddressOption = new(value); } }
+        public string? Address { get { return this.AddressOption.Value; } set { this.AddressOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ValidateAddress200ResponseData" />
     /// </summary>
-    public class ValidateAddress200ResponseDataJsonConverter : JsonConverter<ValidateAddress200ResponseData>
+    public partial class ValidateAddress200ResponseDataJsonConverter : JsonConverter<ValidateAddress200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValidateAddress200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public ValidateAddress200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ValidateAddress200ResponseData" />
         /// </summary>

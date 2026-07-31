@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UserId
         /// </summary>
         [JsonPropertyName("userId")]
-        public string? UserId { get { return this.UserIdOption; } set { this.UserIdOption = new(value); } }
+        public string? UserId { get { return this.UserIdOption.Value; } set { this.UserIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ConnectedAt
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ConnectedAt
         /// </summary>
         [JsonPropertyName("connectedAt")]
-        public DateTime? ConnectedAt { get { return this.ConnectedAtOption; } set { this.ConnectedAtOption = new(value); } }
+        public DateTime? ConnectedAt { get { return this.ConnectedAtOption.Value; } set { this.ConnectedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SocketId
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SocketId
         /// </summary>
         [JsonPropertyName("socketId")]
-        public string? SocketId { get { return this.SocketIdOption; } set { this.SocketIdOption = new(value); } }
+        public string? SocketId { get { return this.SocketIdOption.Value; } set { this.SocketIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,12 +116,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetActiveUsers200ResponseUsersInner" />
     /// </summary>
-    public class GetActiveUsers200ResponseUsersInnerJsonConverter : JsonConverter<GetActiveUsers200ResponseUsersInner>
+    public partial class GetActiveUsers200ResponseUsersInnerJsonConverter : JsonConverter<GetActiveUsers200ResponseUsersInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetActiveUsers200ResponseUsersInnerJsonConverter" /> class.
+        /// </summary>
+        public GetActiveUsers200ResponseUsersInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ConnectedAt
         /// </summary>
-        public static string ConnectedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string ConnectedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetActiveUsers200ResponseUsersInner" />

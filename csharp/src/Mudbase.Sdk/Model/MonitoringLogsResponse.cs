@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Logs
         /// </summary>
         [JsonPropertyName("logs")]
-        public List<MonitoringLogsResponseLogsInner>? Logs { get { return this.LogsOption; } set { this.LogsOption = new(value); } }
+        public List<MonitoringLogsResponseLogsInner>? Logs { get { return this.LogsOption.Value; } set { this.LogsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Count
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Count
         /// </summary>
         [JsonPropertyName("count")]
-        public int? Count { get { return this.CountOption; } set { this.CountOption = new(value); } }
+        public int? Count { get { return this.CountOption.Value; } set { this.CountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Page
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Page
         /// </summary>
         [JsonPropertyName("page")]
-        public int? Page { get { return this.PageOption; } set { this.PageOption = new(value); } }
+        public int? Page { get { return this.PageOption.Value; } set { this.PageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limit
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limit
         /// </summary>
         [JsonPropertyName("limit")]
-        public int? Limit { get { return this.LimitOption; } set { this.LimitOption = new(value); } }
+        public int? Limit { get { return this.LimitOption.Value; } set { this.LimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalPages
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalPages
         /// </summary>
         [JsonPropertyName("totalPages")]
-        public int? TotalPages { get { return this.TotalPagesOption; } set { this.TotalPagesOption = new(value); } }
+        public int? TotalPages { get { return this.TotalPagesOption.Value; } set { this.TotalPagesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MonitoringLogsResponse" />
     /// </summary>
-    public class MonitoringLogsResponseJsonConverter : JsonConverter<MonitoringLogsResponse>
+    public partial class MonitoringLogsResponseJsonConverter : JsonConverter<MonitoringLogsResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonitoringLogsResponseJsonConverter" /> class.
+        /// </summary>
+        public MonitoringLogsResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MonitoringLogsResponse" />
         /// </summary>

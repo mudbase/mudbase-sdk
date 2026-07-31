@@ -77,7 +77,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Filename
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Filename
         /// </summary>
         [JsonPropertyName("filename")]
-        public string? Filename { get { return this.FilenameOption; } set { this.FilenameOption = new(value); } }
+        public string? Filename { get { return this.FilenameOption.Value; } set { this.FilenameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OriginalName
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OriginalName
         /// </summary>
         [JsonPropertyName("originalName")]
-        public string? OriginalName { get { return this.OriginalNameOption; } set { this.OriginalNameOption = new(value); } }
+        public string? OriginalName { get { return this.OriginalNameOption.Value; } set { this.OriginalNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MimeType
@@ -116,7 +116,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MimeType
         /// </summary>
         [JsonPropertyName("mimeType")]
-        public string? MimeType { get { return this.MimeTypeOption; } set { this.MimeTypeOption = new(value); } }
+        public string? MimeType { get { return this.MimeTypeOption.Value; } set { this.MimeTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Size
@@ -129,7 +129,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Size
         /// </summary>
         [JsonPropertyName("size")]
-        public int? Size { get { return this.SizeOption; } set { this.SizeOption = new(value); } }
+        public int? Size { get { return this.SizeOption.Value; } set { this.SizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Url
@@ -142,7 +142,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Url
         /// </summary>
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PublicUrl
@@ -155,7 +155,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PublicUrl
         /// </summary>
         [JsonPropertyName("publicUrl")]
-        public string? PublicUrl { get { return this.PublicUrlOption; } set { this.PublicUrlOption = new(value); } }
+        public string? PublicUrl { get { return this.PublicUrlOption.Value; } set { this.PublicUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Bucket
@@ -168,7 +168,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Bucket
         /// </summary>
         [JsonPropertyName("bucket")]
-        public string? Bucket { get { return this.BucketOption; } set { this.BucketOption = new(value); } }
+        public string? Bucket { get { return this.BucketOption.Value; } set { this.BucketOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectId
@@ -181,7 +181,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectId
         /// </summary>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsPublic
@@ -194,7 +194,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsPublic
         /// </summary>
         [JsonPropertyName("isPublic")]
-        public bool? IsPublic { get { return this.IsPublicOption; } set { this.IsPublicOption = new(value); } }
+        public bool? IsPublic { get { return this.IsPublicOption.Value; } set { this.IsPublicOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UploadedBy
@@ -207,7 +207,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UploadedBy
         /// </summary>
         [JsonPropertyName("uploadedBy")]
-        public string? UploadedBy { get { return this.UploadedByOption; } set { this.UploadedByOption = new(value); } }
+        public string? UploadedBy { get { return this.UploadedByOption.Value; } set { this.UploadedByOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -220,7 +220,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -260,12 +260,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FileMetadata" />
     /// </summary>
-    public class FileMetadataJsonConverter : JsonConverter<FileMetadata>
+    public partial class FileMetadataJsonConverter : JsonConverter<FileMetadata>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileMetadataJsonConverter" /> class.
+        /// </summary>
+        public FileMetadataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="FileMetadata" />

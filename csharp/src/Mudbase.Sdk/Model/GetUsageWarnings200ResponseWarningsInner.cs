@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Resource
         /// </summary>
         [JsonPropertyName("resource")]
-        public string? Resource { get { return this.ResourceOption; } set { this.ResourceOption = new(value); } }
+        public string? Resource { get { return this.ResourceOption.Value; } set { this.ResourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Threshold
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Threshold
         /// </summary>
         [JsonPropertyName("threshold")]
-        public decimal? Threshold { get { return this.ThresholdOption; } set { this.ThresholdOption = new(value); } }
+        public decimal? Threshold { get { return this.ThresholdOption.Value; } set { this.ThresholdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Current
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Current
         /// </summary>
         [JsonPropertyName("current")]
-        public decimal? Current { get { return this.CurrentOption; } set { this.CurrentOption = new(value); } }
+        public decimal? Current { get { return this.CurrentOption.Value; } set { this.CurrentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limit
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limit
         /// </summary>
         [JsonPropertyName("limit")]
-        public decimal? Limit { get { return this.LimitOption; } set { this.LimitOption = new(value); } }
+        public decimal? Limit { get { return this.LimitOption.Value; } set { this.LimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetUsageWarnings200ResponseWarningsInner" />
     /// </summary>
-    public class GetUsageWarnings200ResponseWarningsInnerJsonConverter : JsonConverter<GetUsageWarnings200ResponseWarningsInner>
+    public partial class GetUsageWarnings200ResponseWarningsInnerJsonConverter : JsonConverter<GetUsageWarnings200ResponseWarningsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetUsageWarnings200ResponseWarningsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetUsageWarnings200ResponseWarningsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetUsageWarnings200ResponseWarningsInner" />
         /// </summary>

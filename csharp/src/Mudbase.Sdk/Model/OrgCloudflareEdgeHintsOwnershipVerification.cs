@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Type
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public string? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public string? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Value
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Value
         /// </summary>
         [JsonPropertyName("value")]
-        public string? Value { get { return this.ValueOption; } set { this.ValueOption = new(value); } }
+        public string? Value { get { return this.ValueOption.Value; } set { this.ValueOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgCloudflareEdgeHintsOwnershipVerification" />
     /// </summary>
-    public class OrgCloudflareEdgeHintsOwnershipVerificationJsonConverter : JsonConverter<OrgCloudflareEdgeHintsOwnershipVerification>
+    public partial class OrgCloudflareEdgeHintsOwnershipVerificationJsonConverter : JsonConverter<OrgCloudflareEdgeHintsOwnershipVerification>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgCloudflareEdgeHintsOwnershipVerificationJsonConverter" /> class.
+        /// </summary>
+        public OrgCloudflareEdgeHintsOwnershipVerificationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgCloudflareEdgeHintsOwnershipVerification" />
         /// </summary>

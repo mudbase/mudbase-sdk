@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Plans
         /// </summary>
         [JsonPropertyName("plans")]
-        public List<Plan>? Plans { get { return this.PlansOption; } set { this.PlansOption = new(value); } }
+        public List<Plan>? Plans { get { return this.PlansOption.Value; } set { this.PlansOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetPublicPlans200Response" />
     /// </summary>
-    public class GetPublicPlans200ResponseJsonConverter : JsonConverter<GetPublicPlans200Response>
+    public partial class GetPublicPlans200ResponseJsonConverter : JsonConverter<GetPublicPlans200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetPublicPlans200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetPublicPlans200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetPublicPlans200Response" />
         /// </summary>

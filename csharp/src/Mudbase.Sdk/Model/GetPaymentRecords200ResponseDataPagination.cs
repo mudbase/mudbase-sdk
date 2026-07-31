@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Page
         /// </summary>
         [JsonPropertyName("page")]
-        public int? Page { get { return this.PageOption; } set { this.PageOption = new(value); } }
+        public int? Page { get { return this.PageOption.Value; } set { this.PageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limit
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limit
         /// </summary>
         [JsonPropertyName("limit")]
-        public int? Limit { get { return this.LimitOption; } set { this.LimitOption = new(value); } }
+        public int? Limit { get { return this.LimitOption.Value; } set { this.LimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pages
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pages
         /// </summary>
         [JsonPropertyName("pages")]
-        public int? Pages { get { return this.PagesOption; } set { this.PagesOption = new(value); } }
+        public int? Pages { get { return this.PagesOption.Value; } set { this.PagesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetPaymentRecords200ResponseDataPagination" />
     /// </summary>
-    public class GetPaymentRecords200ResponseDataPaginationJsonConverter : JsonConverter<GetPaymentRecords200ResponseDataPagination>
+    public partial class GetPaymentRecords200ResponseDataPaginationJsonConverter : JsonConverter<GetPaymentRecords200ResponseDataPagination>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetPaymentRecords200ResponseDataPaginationJsonConverter" /> class.
+        /// </summary>
+        public GetPaymentRecords200ResponseDataPaginationJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetPaymentRecords200ResponseDataPagination" />
         /// </summary>

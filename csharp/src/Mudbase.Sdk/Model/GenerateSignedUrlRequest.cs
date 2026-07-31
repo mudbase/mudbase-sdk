@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>3600</example> */
         [JsonPropertyName("expiresIn")]
-        public int? ExpiresIn { get { return this.ExpiresInOption; } set { this.ExpiresInOption = new(value); } }
+        public int? ExpiresIn { get { return this.ExpiresInOption.Value; } set { this.ExpiresInOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateSignedUrlRequest" />
     /// </summary>
-    public class GenerateSignedUrlRequestJsonConverter : JsonConverter<GenerateSignedUrlRequest>
+    public partial class GenerateSignedUrlRequestJsonConverter : JsonConverter<GenerateSignedUrlRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateSignedUrlRequestJsonConverter" /> class.
+        /// </summary>
+        public GenerateSignedUrlRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GenerateSignedUrlRequest" />
         /// </summary>

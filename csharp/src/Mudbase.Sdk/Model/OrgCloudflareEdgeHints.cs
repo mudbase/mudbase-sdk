@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SaasIntegrationEnabled
         /// </summary>
         [JsonPropertyName("saasIntegrationEnabled")]
-        public bool? SaasIntegrationEnabled { get { return this.SaasIntegrationEnabledOption; } set { this.SaasIntegrationEnabledOption = new(value); } }
+        public bool? SaasIntegrationEnabled { get { return this.SaasIntegrationEnabledOption.Value; } set { this.SaasIntegrationEnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Skipped
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Skipped
         /// </summary>
         [JsonPropertyName("skipped")]
-        public bool? Skipped { get { return this.SkippedOption; } set { this.SkippedOption = new(value); } }
+        public bool? Skipped { get { return this.SkippedOption.Value; } set { this.SkippedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Reason
@@ -99,7 +99,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("reason")]
-        public string? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public string? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CustomHostnameId
@@ -112,7 +112,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CustomHostnameId
         /// </summary>
         [JsonPropertyName("customHostnameId")]
-        public string? CustomHostnameId { get { return this.CustomHostnameIdOption; } set { this.CustomHostnameIdOption = new(value); } }
+        public string? CustomHostnameId { get { return this.CustomHostnameIdOption.Value; } set { this.CustomHostnameIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HostnameStatus
@@ -125,7 +125,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets HostnameStatus
         /// </summary>
         [JsonPropertyName("hostnameStatus")]
-        public string? HostnameStatus { get { return this.HostnameStatusOption; } set { this.HostnameStatusOption = new(value); } }
+        public string? HostnameStatus { get { return this.HostnameStatusOption.Value; } set { this.HostnameStatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SslStatus
@@ -138,7 +138,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SslStatus
         /// </summary>
         [JsonPropertyName("sslStatus")]
-        public string? SslStatus { get { return this.SslStatusOption; } set { this.SslStatusOption = new(value); } }
+        public string? SslStatus { get { return this.SslStatusOption.Value; } set { this.SslStatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OwnershipVerification
@@ -151,7 +151,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OwnershipVerification
         /// </summary>
         [JsonPropertyName("ownershipVerification")]
-        public OrgCloudflareEdgeHintsOwnershipVerification? OwnershipVerification { get { return this.OwnershipVerificationOption; } set { this.OwnershipVerificationOption = new(value); } }
+        public OrgCloudflareEdgeHintsOwnershipVerification? OwnershipVerification { get { return this.OwnershipVerificationOption.Value; } set { this.OwnershipVerificationOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SslValidationRecords
@@ -164,7 +164,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SslValidationRecords
         /// </summary>
         [JsonPropertyName("sslValidationRecords")]
-        public List<OrgCloudflareSslValidationRecord>? SslValidationRecords { get { return this.SslValidationRecordsOption; } set { this.SslValidationRecordsOption = new(value); } }
+        public List<OrgCloudflareSslValidationRecord>? SslValidationRecords { get { return this.SslValidationRecordsOption.Value; } set { this.SslValidationRecordsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastError
@@ -177,7 +177,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastError
         /// </summary>
         [JsonPropertyName("lastError")]
-        public string? LastError { get { return this.LastErrorOption; } set { this.LastErrorOption = new(value); } }
+        public string? LastError { get { return this.LastErrorOption.Value; } set { this.LastErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Instructions
@@ -190,7 +190,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Instructions
         /// </summary>
         [JsonPropertyName("instructions")]
-        public string? Instructions { get { return this.InstructionsOption; } set { this.InstructionsOption = new(value); } }
+        public string? Instructions { get { return this.InstructionsOption.Value; } set { this.InstructionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -228,8 +228,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgCloudflareEdgeHints" />
     /// </summary>
-    public class OrgCloudflareEdgeHintsJsonConverter : JsonConverter<OrgCloudflareEdgeHints>
+    public partial class OrgCloudflareEdgeHintsJsonConverter : JsonConverter<OrgCloudflareEdgeHints>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgCloudflareEdgeHintsJsonConverter" /> class.
+        /// </summary>
+        public OrgCloudflareEdgeHintsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgCloudflareEdgeHints" />
         /// </summary>

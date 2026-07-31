@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2025-03-18</example> */
         [JsonPropertyName("date")]
-        public string? Date { get { return this.DateOption; } set { this.DateOption = new(value); } }
+        public string? Date { get { return this.DateOption.Value; } set { this.DateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiCalls
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiCalls
         /// </summary>
         [JsonPropertyName("apiCalls")]
-        public int? ApiCalls { get { return this.ApiCallsOption; } set { this.ApiCallsOption = new(value); } }
+        public int? ApiCalls { get { return this.ApiCallsOption.Value; } set { this.ApiCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LatencyTracked
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Middleware-metered responses that day (UsageStat latencyCount)</value>
         [JsonPropertyName("latencyTracked")]
-        public int? LatencyTracked { get { return this.LatencyTrackedOption; } set { this.LatencyTrackedOption = new(value); } }
+        public int? LatencyTracked { get { return this.LatencyTrackedOption.Value; } set { this.LatencyTrackedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DashboardOverviewDataRequestVolume14dInner" />
     /// </summary>
-    public class DashboardOverviewDataRequestVolume14dInnerJsonConverter : JsonConverter<DashboardOverviewDataRequestVolume14dInner>
+    public partial class DashboardOverviewDataRequestVolume14dInnerJsonConverter : JsonConverter<DashboardOverviewDataRequestVolume14dInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardOverviewDataRequestVolume14dInnerJsonConverter" /> class.
+        /// </summary>
+        public DashboardOverviewDataRequestVolume14dInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DashboardOverviewDataRequestVolume14dInner" />
         /// </summary>

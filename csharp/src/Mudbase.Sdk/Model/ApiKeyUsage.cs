@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Requests
         /// </summary>
         [JsonPropertyName("requests")]
-        public int? Requests { get { return this.RequestsOption; } set { this.RequestsOption = new(value); } }
+        public int? Requests { get { return this.RequestsOption.Value; } set { this.RequestsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastUsed
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastUsed
         /// </summary>
         [JsonPropertyName("lastUsed")]
-        public DateTime? LastUsed { get { return this.LastUsedOption; } set { this.LastUsedOption = new(value); } }
+        public DateTime? LastUsed { get { return this.LastUsedOption.Value; } set { this.LastUsedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,12 +100,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiKeyUsage" />
     /// </summary>
-    public class ApiKeyUsageJsonConverter : JsonConverter<ApiKeyUsage>
+    public partial class ApiKeyUsageJsonConverter : JsonConverter<ApiKeyUsage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKeyUsageJsonConverter" /> class.
+        /// </summary>
+        public ApiKeyUsageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastUsed
         /// </summary>
-        public static string LastUsedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastUsedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApiKeyUsage" />

@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public Usage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public Usage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limits
         /// </summary>
         [JsonPropertyName("limits")]
-        public Limits? Limits { get { return this.LimitsOption; } set { this.LimitsOption = new(value); } }
+        public Limits? Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Plan
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Plan
         /// </summary>
         [JsonPropertyName("plan")]
-        public Plan? Plan { get { return this.PlanOption; } set { this.PlanOption = new(value); } }
+        public Plan? Plan { get { return this.PlanOption.Value; } set { this.PlanOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Billing
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Billing
         /// </summary>
         [JsonPropertyName("billing")]
-        public Billing? Billing { get { return this.BillingOption; } set { this.BillingOption = new(value); } }
+        public Billing? Billing { get { return this.BillingOption.Value; } set { this.BillingOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Suborgs
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Suborgs
         /// </summary>
         [JsonPropertyName("suborgs")]
-        public List<GetOrganizationUsage200ResponseAllOfSuborgsInner>? Suborgs { get { return this.SuborgsOption; } set { this.SuborgsOption = new(value); } }
+        public List<GetOrganizationUsage200ResponseAllOfSuborgsInner>? Suborgs { get { return this.SuborgsOption.Value; } set { this.SuborgsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetOrganizationUsage200Response" />
     /// </summary>
-    public class GetOrganizationUsage200ResponseJsonConverter : JsonConverter<GetOrganizationUsage200Response>
+    public partial class GetOrganizationUsage200ResponseJsonConverter : JsonConverter<GetOrganizationUsage200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetOrganizationUsage200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetOrganizationUsage200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetOrganizationUsage200Response" />
         /// </summary>

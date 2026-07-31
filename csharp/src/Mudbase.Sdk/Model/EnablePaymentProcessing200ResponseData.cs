@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SubaccountId
         /// </summary>
         [JsonPropertyName("subaccountId")]
-        public string? SubaccountId { get { return this.SubaccountIdOption; } set { this.SubaccountIdOption = new(value); } }
+        public string? SubaccountId { get { return this.SubaccountIdOption.Value; } set { this.SubaccountIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AlreadyEnabled
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AlreadyEnabled
         /// </summary>
         [JsonPropertyName("alreadyEnabled")]
-        public bool? AlreadyEnabled { get { return this.AlreadyEnabledOption; } set { this.AlreadyEnabledOption = new(value); } }
+        public bool? AlreadyEnabled { get { return this.AlreadyEnabledOption.Value; } set { this.AlreadyEnabledOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EnablePaymentProcessing200ResponseData" />
     /// </summary>
-    public class EnablePaymentProcessing200ResponseDataJsonConverter : JsonConverter<EnablePaymentProcessing200ResponseData>
+    public partial class EnablePaymentProcessing200ResponseDataJsonConverter : JsonConverter<EnablePaymentProcessing200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnablePaymentProcessing200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public EnablePaymentProcessing200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EnablePaymentProcessing200ResponseData" />
         /// </summary>

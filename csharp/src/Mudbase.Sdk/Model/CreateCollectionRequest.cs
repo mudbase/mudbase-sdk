@@ -75,7 +75,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Slug
         /// </summary>
         [JsonPropertyName("slug")]
-        public string? Slug { get { return this.SlugOption; } set { this.SlugOption = new(value); } }
+        public string? Slug { get { return this.SlugOption.Value; } set { this.SlugOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Permissions
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Permissions
         /// </summary>
         [JsonPropertyName("permissions")]
-        public List<Permission>? Permissions { get { return this.PermissionsOption; } set { this.PermissionsOption = new(value); } }
+        public List<Permission>? Permissions { get { return this.PermissionsOption.Value; } set { this.PermissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Settings
@@ -101,7 +101,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Settings
         /// </summary>
         [JsonPropertyName("settings")]
-        public Object? Settings { get { return this.SettingsOption; } set { this.SettingsOption = new(value); } }
+        public Object? Settings { get { return this.SettingsOption.Value; } set { this.SettingsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -134,8 +134,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateCollectionRequest" />
     /// </summary>
-    public class CreateCollectionRequestJsonConverter : JsonConverter<CreateCollectionRequest>
+    public partial class CreateCollectionRequestJsonConverter : JsonConverter<CreateCollectionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateCollectionRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateCollectionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateCollectionRequest" />
         /// </summary>

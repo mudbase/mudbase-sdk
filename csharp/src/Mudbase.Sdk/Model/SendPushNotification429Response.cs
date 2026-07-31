@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Error
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>messaging_rate_limited</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SendPushNotification429Response" />
     /// </summary>
-    public class SendPushNotification429ResponseJsonConverter : JsonConverter<SendPushNotification429Response>
+    public partial class SendPushNotification429ResponseJsonConverter : JsonConverter<SendPushNotification429Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SendPushNotification429ResponseJsonConverter" /> class.
+        /// </summary>
+        public SendPushNotification429ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SendPushNotification429Response" />
         /// </summary>

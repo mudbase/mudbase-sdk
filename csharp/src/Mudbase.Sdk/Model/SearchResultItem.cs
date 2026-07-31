@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Score
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Score
         /// </summary>
         [JsonPropertyName("score")]
-        public decimal? Score { get { return this.ScoreOption; } set { this.ScoreOption = new(value); } }
+        public decimal? Score { get { return this.ScoreOption.Value; } set { this.ScoreOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SearchResultItem" />
     /// </summary>
-    public class SearchResultItemJsonConverter : JsonConverter<SearchResultItem>
+    public partial class SearchResultItemJsonConverter : JsonConverter<SearchResultItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchResultItemJsonConverter" /> class.
+        /// </summary>
+        public SearchResultItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SearchResultItem" />
         /// </summary>

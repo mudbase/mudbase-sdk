@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>User profile (metadata only)</value>
         [JsonPropertyName("user")]
-        public Object? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public Object? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Footprint
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Footprint
         /// </summary>
         [JsonPropertyName("footprint")]
-        public GetUserOverview200ResponseFootprint? Footprint { get { return this.FootprintOption; } set { this.FootprintOption = new(value); } }
+        public GetUserOverview200ResponseFootprint? Footprint { get { return this.FootprintOption.Value; } set { this.FootprintOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetUserOverview200Response" />
     /// </summary>
-    public class GetUserOverview200ResponseJsonConverter : JsonConverter<GetUserOverview200Response>
+    public partial class GetUserOverview200ResponseJsonConverter : JsonConverter<GetUserOverview200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetUserOverview200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetUserOverview200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetUserOverview200Response" />
         /// </summary>

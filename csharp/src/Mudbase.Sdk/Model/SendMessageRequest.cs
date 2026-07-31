@@ -206,7 +206,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Plaintext body; omit when sending e2ee (use e2ee.ciphertext for E2EE text)</value>
         [JsonPropertyName("content")]
-        public string? Content { get { return this.ContentOption; } set { this.ContentOption = new(value); } }
+        public string? Content { get { return this.ContentOption.Value; } set { this.ContentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of E2ee
@@ -219,7 +219,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets E2ee
         /// </summary>
         [JsonPropertyName("e2ee")]
-        public SendMessageRequestE2ee? E2ee { get { return this.E2eeOption; } set { this.E2eeOption = new(value); } }
+        public SendMessageRequestE2ee? E2ee { get { return this.E2eeOption.Value; } set { this.E2eeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ReplyTo
@@ -232,7 +232,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ReplyTo
         /// </summary>
         [JsonPropertyName("replyTo")]
-        public string? ReplyTo { get { return this.ReplyToOption; } set { this.ReplyToOption = new(value); } }
+        public string? ReplyTo { get { return this.ReplyToOption.Value; } set { this.ReplyToOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Mentions
@@ -245,7 +245,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Mentions
         /// </summary>
         [JsonPropertyName("mentions")]
-        public List<string>? Mentions { get { return this.MentionsOption; } set { this.MentionsOption = new(value); } }
+        public List<string>? Mentions { get { return this.MentionsOption.Value; } set { this.MentionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -278,8 +278,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SendMessageRequest" />
     /// </summary>
-    public class SendMessageRequestJsonConverter : JsonConverter<SendMessageRequest>
+    public partial class SendMessageRequestJsonConverter : JsonConverter<SendMessageRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SendMessageRequestJsonConverter" /> class.
+        /// </summary>
+        public SendMessageRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SendMessageRequest" />
         /// </summary>

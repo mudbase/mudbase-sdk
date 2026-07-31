@@ -284,7 +284,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TxPlan
         /// </summary>
         [JsonPropertyName("txPlan")]
-        public TxPlanEnum? TxPlan { get { return this.TxPlanOption; } set { this.TxPlanOption = new(value); } }
+        public TxPlanEnum? TxPlan { get { return this.TxPlanOption.Value; } set { this.TxPlanOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Reason
@@ -297,7 +297,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("reason")]
-        public string? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public string? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -328,8 +328,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminOrgPlanPatchRequest" />
     /// </summary>
-    public class AdminOrgPlanPatchRequestJsonConverter : JsonConverter<AdminOrgPlanPatchRequest>
+    public partial class AdminOrgPlanPatchRequestJsonConverter : JsonConverter<AdminOrgPlanPatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminOrgPlanPatchRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminOrgPlanPatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminOrgPlanPatchRequest" />
         /// </summary>
@@ -376,8 +386,7 @@ namespace Mudbase.Sdk.Model
                             break;
                         case "txPlan":
                             string? txPlanRawValue = utf8JsonReader.GetString();
-                            if (txPlanRawValue != null)
-                                txPlan = new Option<AdminOrgPlanPatchRequest.TxPlanEnum?>(AdminOrgPlanPatchRequest.TxPlanEnumFromStringOrDefault(txPlanRawValue));
+                            txPlan = new Option<AdminOrgPlanPatchRequest.TxPlanEnum?>(txPlanRawValue == null ? null : AdminOrgPlanPatchRequest.TxPlanEnumFromStringOrDefault(txPlanRawValue));
                             break;
                         default:
                             break;

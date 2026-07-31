@@ -153,7 +153,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Defines Status
@@ -246,7 +246,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -259,7 +259,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Title
@@ -272,7 +272,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Title
         /// </summary>
         [JsonPropertyName("title")]
-        public string? Title { get { return this.TitleOption; } set { this.TitleOption = new(value); } }
+        public string? Title { get { return this.TitleOption.Value; } set { this.TitleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Body
@@ -285,7 +285,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Body
         /// </summary>
         [JsonPropertyName("body")]
-        public string? Body { get { return this.BodyOption; } set { this.BodyOption = new(value); } }
+        public string? Body { get { return this.BodyOption.Value; } set { this.BodyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Subject
@@ -298,7 +298,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Subject
         /// </summary>
         [JsonPropertyName("subject")]
-        public string? Subject { get { return this.SubjectOption; } set { this.SubjectOption = new(value); } }
+        public string? Subject { get { return this.SubjectOption.Value; } set { this.SubjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Recipients
@@ -311,7 +311,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Recipients
         /// </summary>
         [JsonPropertyName("recipients")]
-        public int? Recipients { get { return this.RecipientsOption; } set { this.RecipientsOption = new(value); } }
+        public int? Recipients { get { return this.RecipientsOption.Value; } set { this.RecipientsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SuccessCount
@@ -324,7 +324,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SuccessCount
         /// </summary>
         [JsonPropertyName("successCount")]
-        public int? SuccessCount { get { return this.SuccessCountOption; } set { this.SuccessCountOption = new(value); } }
+        public int? SuccessCount { get { return this.SuccessCountOption.Value; } set { this.SuccessCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FailureCount
@@ -337,7 +337,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FailureCount
         /// </summary>
         [JsonPropertyName("failureCount")]
-        public int? FailureCount { get { return this.FailureCountOption; } set { this.FailureCountOption = new(value); } }
+        public int? FailureCount { get { return this.FailureCountOption.Value; } set { this.FailureCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SentAt
@@ -350,7 +350,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SentAt
         /// </summary>
         [JsonPropertyName("sentAt")]
-        public DateTime? SentAt { get { return this.SentAtOption; } set { this.SentAtOption = new(value); } }
+        public DateTime? SentAt { get { return this.SentAtOption.Value; } set { this.SentAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -388,12 +388,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Message" />
     /// </summary>
-    public class MessageJsonConverter : JsonConverter<Message>
+    public partial class MessageJsonConverter : JsonConverter<Message>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageJsonConverter" /> class.
+        /// </summary>
+        public MessageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize SentAt
         /// </summary>
-        public static string SentAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string SentAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="Message" />

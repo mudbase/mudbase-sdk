@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Suborgs
         /// </summary>
         [JsonPropertyName("suborgs")]
-        public List<Organization>? Suborgs { get { return this.SuborgsOption; } set { this.SuborgsOption = new(value); } }
+        public List<Organization>? Suborgs { get { return this.SuborgsOption.Value; } set { this.SuborgsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSubOrganizations200Response" />
     /// </summary>
-    public class GetSubOrganizations200ResponseJsonConverter : JsonConverter<GetSubOrganizations200Response>
+    public partial class GetSubOrganizations200ResponseJsonConverter : JsonConverter<GetSubOrganizations200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSubOrganizations200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetSubOrganizations200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSubOrganizations200Response" />
         /// </summary>

@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Triggered
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Number of functions triggered</value>
         [JsonPropertyName("triggered")]
-        public int? Triggered { get { return this.TriggeredOption; } set { this.TriggeredOption = new(value); } }
+        public int? Triggered { get { return this.TriggeredOption.Value; } set { this.TriggeredOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Results
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Results
         /// </summary>
         [JsonPropertyName("results")]
-        public List<Object>? Results { get { return this.ResultsOption; } set { this.ResultsOption = new(value); } }
+        public List<Object>? Results { get { return this.ResultsOption.Value; } set { this.ResultsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TriggerFunctionWebhook200Response" />
     /// </summary>
-    public class TriggerFunctionWebhook200ResponseJsonConverter : JsonConverter<TriggerFunctionWebhook200Response>
+    public partial class TriggerFunctionWebhook200ResponseJsonConverter : JsonConverter<TriggerFunctionWebhook200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TriggerFunctionWebhook200ResponseJsonConverter" /> class.
+        /// </summary>
+        public TriggerFunctionWebhook200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TriggerFunctionWebhook200Response" />
         /// </summary>

@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public GetSpeedUpParams200ResponseData? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public GetSpeedUpParams200ResponseData? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSpeedUpParams200Response" />
     /// </summary>
-    public class GetSpeedUpParams200ResponseJsonConverter : JsonConverter<GetSpeedUpParams200Response>
+    public partial class GetSpeedUpParams200ResponseJsonConverter : JsonConverter<GetSpeedUpParams200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSpeedUpParams200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetSpeedUpParams200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSpeedUpParams200Response" />
         /// </summary>

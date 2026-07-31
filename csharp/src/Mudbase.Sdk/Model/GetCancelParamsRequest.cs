@@ -230,7 +230,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>WalletTransaction _id</value>
         [JsonPropertyName("txId")]
-        public string? TxId { get { return this.TxIdOption; } set { this.TxIdOption = new(value); } }
+        public string? TxId { get { return this.TxIdOption.Value; } set { this.TxIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TxHash
@@ -244,7 +244,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>mainTxHash or txHash of the stuck transaction</value>
         [JsonPropertyName("txHash")]
-        public string? TxHash { get { return this.TxHashOption; } set { this.TxHashOption = new(value); } }
+        public string? TxHash { get { return this.TxHashOption.Value; } set { this.TxHashOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -275,8 +275,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetCancelParamsRequest" />
     /// </summary>
-    public class GetCancelParamsRequestJsonConverter : JsonConverter<GetCancelParamsRequest>
+    public partial class GetCancelParamsRequestJsonConverter : JsonConverter<GetCancelParamsRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetCancelParamsRequestJsonConverter" /> class.
+        /// </summary>
+        public GetCancelParamsRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetCancelParamsRequest" />
         /// </summary>

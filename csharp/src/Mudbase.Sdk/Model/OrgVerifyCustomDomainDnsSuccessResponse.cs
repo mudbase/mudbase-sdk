@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Cloudflare
         /// </summary>
         [JsonPropertyName("cloudflare")]
-        public OrgCloudflareEdgeHints? Cloudflare { get { return this.CloudflareOption; } set { this.CloudflareOption = new(value); } }
+        public OrgCloudflareEdgeHints? Cloudflare { get { return this.CloudflareOption.Value; } set { this.CloudflareOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DnsRecords
@@ -148,7 +148,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Same shape as &#x60;OrgDomainEntryWithDns.dnsRecords&#x60; when Fly ACME ran after this successful verify; omit or empty when Fly ACME is disabled or not provisioned.</value>
         [JsonPropertyName("dnsRecords")]
-        public List<OrgDnsRecord>? DnsRecords { get { return this.DnsRecordsOption; } set { this.DnsRecordsOption = new(value); } }
+        public List<OrgDnsRecord>? DnsRecords { get { return this.DnsRecordsOption.Value; } set { this.DnsRecordsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FlyCertificateStatus
@@ -162,7 +162,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Fly certificate status after verify when Fly ACME is active; null otherwise</value>
         [JsonPropertyName("flyCertificateStatus")]
-        public string? FlyCertificateStatus { get { return this.FlyCertificateStatusOption; } set { this.FlyCertificateStatusOption = new(value); } }
+        public string? FlyCertificateStatus { get { return this.FlyCertificateStatusOption.Value; } set { this.FlyCertificateStatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FlyAcmeEnabled
@@ -176,7 +176,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>True when Fly ACME would call the Certificates API (token, app, CUSTOM_DOMAIN_FLY_ACME_ENABLED).</value>
         [JsonPropertyName("flyAcmeEnabled")]
-        public bool? FlyAcmeEnabled { get { return this.FlyAcmeEnabledOption; } set { this.FlyAcmeEnabledOption = new(value); } }
+        public bool? FlyAcmeEnabled { get { return this.FlyAcmeEnabledOption.Value; } set { this.FlyAcmeEnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FlyAcmeDisabledReason
@@ -190,7 +190,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When &#x60;flyAcmeEnabled&#x60; is false, why Fly ACME did not run (ops misconfiguration hint).</value>
         [JsonPropertyName("flyAcmeDisabledReason")]
-        public string? FlyAcmeDisabledReason { get { return this.FlyAcmeDisabledReasonOption; } set { this.FlyAcmeDisabledReasonOption = new(value); } }
+        public string? FlyAcmeDisabledReason { get { return this.FlyAcmeDisabledReasonOption.Value; } set { this.FlyAcmeDisabledReasonOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FlyProvisionError
@@ -204,7 +204,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When Fly ACME is enabled but POST acme failed, Fly API error message for support; null on success.</value>
         [JsonPropertyName("flyProvisionError")]
-        public string? FlyProvisionError { get { return this.FlyProvisionErrorOption; } set { this.FlyProvisionErrorOption = new(value); } }
+        public string? FlyProvisionError { get { return this.FlyProvisionErrorOption.Value; } set { this.FlyProvisionErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FlyLegacyStaffPipeline
@@ -218,7 +218,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When true, &#x60;CUSTOM_DOMAIN_FLY_LEGACY_STAFF_PIPELINE&#x60; is on — status may stay &#x60;cname_pending_staff&#x60; and staff approve-cname is required even if Fly provision succeeds.</value>
         [JsonPropertyName("flyLegacyStaffPipeline")]
-        public bool? FlyLegacyStaffPipeline { get { return this.FlyLegacyStaffPipelineOption; } set { this.FlyLegacyStaffPipelineOption = new(value); } }
+        public bool? FlyLegacyStaffPipeline { get { return this.FlyLegacyStaffPipelineOption.Value; } set { this.FlyLegacyStaffPipelineOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -261,8 +261,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgVerifyCustomDomainDnsSuccessResponse" />
     /// </summary>
-    public class OrgVerifyCustomDomainDnsSuccessResponseJsonConverter : JsonConverter<OrgVerifyCustomDomainDnsSuccessResponse>
+    public partial class OrgVerifyCustomDomainDnsSuccessResponseJsonConverter : JsonConverter<OrgVerifyCustomDomainDnsSuccessResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgVerifyCustomDomainDnsSuccessResponseJsonConverter" /> class.
+        /// </summary>
+        public OrgVerifyCustomDomainDnsSuccessResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgVerifyCustomDomainDnsSuccessResponse" />
         /// </summary>

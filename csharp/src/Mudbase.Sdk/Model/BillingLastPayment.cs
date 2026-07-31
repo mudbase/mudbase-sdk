@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Date
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Date
         /// </summary>
         [JsonPropertyName("date")]
-        public DateTime? Date { get { return this.DateOption; } set { this.DateOption = new(value); } }
+        public DateTime? Date { get { return this.DateOption.Value; } set { this.DateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,12 +116,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BillingLastPayment" />
     /// </summary>
-    public class BillingLastPaymentJsonConverter : JsonConverter<BillingLastPayment>
+    public partial class BillingLastPaymentJsonConverter : JsonConverter<BillingLastPayment>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BillingLastPaymentJsonConverter" /> class.
+        /// </summary>
+        public BillingLastPaymentJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Date
         /// </summary>
-        public static string DateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string DateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="BillingLastPayment" />

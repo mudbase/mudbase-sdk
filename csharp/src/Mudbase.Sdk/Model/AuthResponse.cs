@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Token
@@ -77,7 +77,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>JWT access token (use in Authorization Bearer header)</value>
         [JsonPropertyName("token")]
-        public string? Token { get { return this.TokenOption; } set { this.TokenOption = new(value); } }
+        public string? Token { get { return this.TokenOption.Value; } set { this.TokenOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RefreshToken
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>JWT refresh token (use with POST /api/auth/refresh to get new token pair)</value>
         [JsonPropertyName("refreshToken")]
-        public string? RefreshToken { get { return this.RefreshTokenOption; } set { this.RefreshTokenOption = new(value); } }
+        public string? RefreshToken { get { return this.RefreshTokenOption.Value; } set { this.RefreshTokenOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresIn
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Access token TTL in seconds (e.g. 1800 for 30 minutes)</value>
         [JsonPropertyName("expiresIn")]
-        public int? ExpiresIn { get { return this.ExpiresInOption; } set { this.ExpiresInOption = new(value); } }
+        public int? ExpiresIn { get { return this.ExpiresInOption.Value; } set { this.ExpiresInOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -118,7 +118,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public User? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public User? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,8 +151,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AuthResponse" />
     /// </summary>
-    public class AuthResponseJsonConverter : JsonConverter<AuthResponse>
+    public partial class AuthResponseJsonConverter : JsonConverter<AuthResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthResponseJsonConverter" /> class.
+        /// </summary>
+        public AuthResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuthResponse" />
         /// </summary>

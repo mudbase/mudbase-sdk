@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Metadata
         /// </summary>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -124,8 +124,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InitializePaymentForProjectRequest" />
     /// </summary>
-    public class InitializePaymentForProjectRequestJsonConverter : JsonConverter<InitializePaymentForProjectRequest>
+    public partial class InitializePaymentForProjectRequestJsonConverter : JsonConverter<InitializePaymentForProjectRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InitializePaymentForProjectRequestJsonConverter" /> class.
+        /// </summary>
+        public InitializePaymentForProjectRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InitializePaymentForProjectRequest" />
         /// </summary>

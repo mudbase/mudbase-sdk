@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -84,7 +84,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Code
@@ -97,7 +97,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Code
         /// </summary>
         [JsonPropertyName("code")]
-        public string? Code { get { return this.CodeOption; } set { this.CodeOption = new(value); } }
+        public string? Code { get { return this.CodeOption.Value; } set { this.CodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Trigger
@@ -110,7 +110,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Trigger
         /// </summary>
         [JsonPropertyName("trigger")]
-        public FunctionTrigger? Trigger { get { return this.TriggerOption; } set { this.TriggerOption = new(value); } }
+        public FunctionTrigger? Trigger { get { return this.TriggerOption.Value; } set { this.TriggerOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VarEnvironment
@@ -123,7 +123,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VarEnvironment
         /// </summary>
         [JsonPropertyName("environment")]
-        public Object? VarEnvironment { get { return this.VarEnvironmentOption; } set { this.VarEnvironmentOption = new(value); } }
+        public Object? VarEnvironment { get { return this.VarEnvironmentOption.Value; } set { this.VarEnvironmentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -136,7 +136,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsActive
         /// </summary>
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -149,7 +149,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limits
         /// </summary>
         [JsonPropertyName("limits")]
-        public UpdateFunctionRequestLimits? Limits { get { return this.LimitsOption; } set { this.LimitsOption = new(value); } }
+        public UpdateFunctionRequestLimits? Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RetryPolicy
@@ -162,7 +162,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RetryPolicy
         /// </summary>
         [JsonPropertyName("retryPolicy")]
-        public UpdateFunctionRequestRetryPolicy? RetryPolicy { get { return this.RetryPolicyOption; } set { this.RetryPolicyOption = new(value); } }
+        public UpdateFunctionRequestRetryPolicy? RetryPolicy { get { return this.RetryPolicyOption.Value; } set { this.RetryPolicyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VersionComment
@@ -176,7 +176,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Comment for version when code is updated</value>
         [JsonPropertyName("versionComment")]
-        public string? VersionComment { get { return this.VersionCommentOption; } set { this.VersionCommentOption = new(value); } }
+        public string? VersionComment { get { return this.VersionCommentOption.Value; } set { this.VersionCommentOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -213,8 +213,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateFunctionRequest" />
     /// </summary>
-    public class UpdateFunctionRequestJsonConverter : JsonConverter<UpdateFunctionRequest>
+    public partial class UpdateFunctionRequestJsonConverter : JsonConverter<UpdateFunctionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateFunctionRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateFunctionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateFunctionRequest" />
         /// </summary>

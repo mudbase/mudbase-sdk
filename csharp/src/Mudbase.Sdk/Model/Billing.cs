@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets NextBillingDate
         /// </summary>
         [JsonPropertyName("nextBillingDate")]
-        public DateTime? NextBillingDate { get { return this.NextBillingDateOption; } set { this.NextBillingDateOption = new(value); } }
+        public DateTime? NextBillingDate { get { return this.NextBillingDateOption.Value; } set { this.NextBillingDateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PaymentMethod
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PaymentMethod
         /// </summary>
         [JsonPropertyName("paymentMethod")]
-        public string? PaymentMethod { get { return this.PaymentMethodOption; } set { this.PaymentMethodOption = new(value); } }
+        public string? PaymentMethod { get { return this.PaymentMethodOption.Value; } set { this.PaymentMethodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastPayment
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastPayment
         /// </summary>
         [JsonPropertyName("lastPayment")]
-        public BillingLastPayment? LastPayment { get { return this.LastPaymentOption; } set { this.LastPaymentOption = new(value); } }
+        public BillingLastPayment? LastPayment { get { return this.LastPaymentOption.Value; } set { this.LastPaymentOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,12 +116,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Billing" />
     /// </summary>
-    public class BillingJsonConverter : JsonConverter<Billing>
+    public partial class BillingJsonConverter : JsonConverter<Billing>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BillingJsonConverter" /> class.
+        /// </summary>
+        public BillingJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize NextBillingDate
         /// </summary>
-        public static string NextBillingDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string NextBillingDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="Billing" />

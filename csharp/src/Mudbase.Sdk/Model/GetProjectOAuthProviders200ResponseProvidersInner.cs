@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>google</example> */
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DisplayName
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Sign in with Google</example> */
         [JsonPropertyName("displayName")]
-        public string? DisplayName { get { return this.DisplayNameOption; } set { this.DisplayNameOption = new(value); } }
+        public string? DisplayName { get { return this.DisplayNameOption.Value; } set { this.DisplayNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AuthUrl
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>/api/auth/oauth/google?projectId&#x3D;685ad30be129932fbb7a1047</example> */
         [JsonPropertyName("authUrl")]
-        public string? AuthUrl { get { return this.AuthUrlOption; } set { this.AuthUrlOption = new(value); } }
+        public string? AuthUrl { get { return this.AuthUrlOption.Value; } set { this.AuthUrlOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetProjectOAuthProviders200ResponseProvidersInner" />
     /// </summary>
-    public class GetProjectOAuthProviders200ResponseProvidersInnerJsonConverter : JsonConverter<GetProjectOAuthProviders200ResponseProvidersInner>
+    public partial class GetProjectOAuthProviders200ResponseProvidersInnerJsonConverter : JsonConverter<GetProjectOAuthProviders200ResponseProvidersInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetProjectOAuthProviders200ResponseProvidersInnerJsonConverter" /> class.
+        /// </summary>
+        public GetProjectOAuthProviders200ResponseProvidersInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetProjectOAuthProviders200ResponseProvidersInner" />
         /// </summary>

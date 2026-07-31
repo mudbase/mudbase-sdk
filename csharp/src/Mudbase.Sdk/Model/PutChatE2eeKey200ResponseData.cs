@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IdentityPublicKey
         /// </summary>
         [JsonPropertyName("identityPublicKey")]
-        public string? IdentityPublicKey { get { return this.IdentityPublicKeyOption; } set { this.IdentityPublicKeyOption = new(value); } }
+        public string? IdentityPublicKey { get { return this.IdentityPublicKeyOption.Value; } set { this.IdentityPublicKeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of KeyVersion
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets KeyVersion
         /// </summary>
         [JsonPropertyName("keyVersion")]
-        public int? KeyVersion { get { return this.KeyVersionOption; } set { this.KeyVersionOption = new(value); } }
+        public int? KeyVersion { get { return this.KeyVersionOption.Value; } set { this.KeyVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,12 +116,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PutChatE2eeKey200ResponseData" />
     /// </summary>
-    public class PutChatE2eeKey200ResponseDataJsonConverter : JsonConverter<PutChatE2eeKey200ResponseData>
+    public partial class PutChatE2eeKey200ResponseDataJsonConverter : JsonConverter<PutChatE2eeKey200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PutChatE2eeKey200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public PutChatE2eeKey200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="PutChatE2eeKey200ResponseData" />

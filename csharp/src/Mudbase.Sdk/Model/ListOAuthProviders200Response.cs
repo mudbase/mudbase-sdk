@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Providers
         /// </summary>
         [JsonPropertyName("providers")]
-        public List<ListOAuthProviders200ResponseProvidersInner>? Providers { get { return this.ProvidersOption; } set { this.ProvidersOption = new(value); } }
+        public List<ListOAuthProviders200ResponseProvidersInner>? Providers { get { return this.ProvidersOption.Value; } set { this.ProvidersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ListOAuthProviders200Response" />
     /// </summary>
-    public class ListOAuthProviders200ResponseJsonConverter : JsonConverter<ListOAuthProviders200Response>
+    public partial class ListOAuthProviders200ResponseJsonConverter : JsonConverter<ListOAuthProviders200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListOAuthProviders200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ListOAuthProviders200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ListOAuthProviders200Response" />
         /// </summary>

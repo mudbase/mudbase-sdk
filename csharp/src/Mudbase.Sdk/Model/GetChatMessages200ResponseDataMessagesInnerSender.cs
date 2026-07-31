@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FirstName
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FirstName
         /// </summary>
         [JsonPropertyName("firstName")]
-        public string? FirstName { get { return this.FirstNameOption; } set { this.FirstNameOption = new(value); } }
+        public string? FirstName { get { return this.FirstNameOption.Value; } set { this.FirstNameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetChatMessages200ResponseDataMessagesInnerSender" />
     /// </summary>
-    public class GetChatMessages200ResponseDataMessagesInnerSenderJsonConverter : JsonConverter<GetChatMessages200ResponseDataMessagesInnerSender>
+    public partial class GetChatMessages200ResponseDataMessagesInnerSenderJsonConverter : JsonConverter<GetChatMessages200ResponseDataMessagesInnerSender>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetChatMessages200ResponseDataMessagesInnerSenderJsonConverter" /> class.
+        /// </summary>
+        public GetChatMessages200ResponseDataMessagesInnerSenderJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetChatMessages200ResponseDataMessagesInnerSender" />
         /// </summary>

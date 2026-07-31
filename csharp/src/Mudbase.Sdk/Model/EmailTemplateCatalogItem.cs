@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Which layer is used at send time for this name.</value>
         [JsonPropertyName("effectiveSource")]
-        public EffectiveSourceEnum? EffectiveSource { get { return this.EffectiveSourceOption; } set { this.EffectiveSourceOption = new(value); } }
+        public EffectiveSourceEnum? EffectiveSource { get { return this.EffectiveSourceOption.Value; } set { this.EffectiveSourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsCustomized
@@ -174,7 +174,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>True if this project has a stored override for this template name.</value>
         [JsonPropertyName("isCustomized")]
-        public bool? IsCustomized { get { return this.IsCustomizedOption; } set { this.IsCustomizedOption = new(value); } }
+        public bool? IsCustomized { get { return this.IsCustomizedOption.Value; } set { this.IsCustomizedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SubjectSnippet
@@ -187,7 +187,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SubjectSnippet
         /// </summary>
         [JsonPropertyName("subjectSnippet")]
-        public string? SubjectSnippet { get { return this.SubjectSnippetOption; } set { this.SubjectSnippetOption = new(value); } }
+        public string? SubjectSnippet { get { return this.SubjectSnippetOption.Value; } set { this.SubjectSnippetOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -200,7 +200,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -213,7 +213,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VarVersion
         /// </summary>
         [JsonPropertyName("version")]
-        public int? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new(value); } }
+        public int? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -247,12 +247,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EmailTemplateCatalogItem" />
     /// </summary>
-    public class EmailTemplateCatalogItemJsonConverter : JsonConverter<EmailTemplateCatalogItem>
+    public partial class EmailTemplateCatalogItemJsonConverter : JsonConverter<EmailTemplateCatalogItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmailTemplateCatalogItemJsonConverter" /> class.
+        /// </summary>
+        public EmailTemplateCatalogItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="EmailTemplateCatalogItem" />

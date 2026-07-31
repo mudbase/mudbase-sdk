@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Slug
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Slug
         /// </summary>
         [JsonPropertyName("slug")]
-        public string? Slug { get { return this.SlugOption; } set { this.SlugOption = new(value); } }
+        public string? Slug { get { return this.SlugOption.Value; } set { this.SlugOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Permissions
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Permissions
         /// </summary>
         [JsonPropertyName("permissions")]
-        public List<CreateRole201ResponseRolePermissionsInner>? Permissions { get { return this.PermissionsOption; } set { this.PermissionsOption = new(value); } }
+        public List<CreateRole201ResponseRolePermissionsInner>? Permissions { get { return this.PermissionsOption.Value; } set { this.PermissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Hierarchy
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Hierarchy
         /// </summary>
         [JsonPropertyName("hierarchy")]
-        public decimal? Hierarchy { get { return this.HierarchyOption; } set { this.HierarchyOption = new(value); } }
+        public decimal? Hierarchy { get { return this.HierarchyOption.Value; } set { this.HierarchyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsSystem
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsSystem
         /// </summary>
         [JsonPropertyName("isSystem")]
-        public bool? IsSystem { get { return this.IsSystemOption; } set { this.IsSystemOption = new(value); } }
+        public bool? IsSystem { get { return this.IsSystemOption.Value; } set { this.IsSystemOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsActive
         /// </summary>
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,8 +196,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateRole201ResponseRole" />
     /// </summary>
-    public class CreateRole201ResponseRoleJsonConverter : JsonConverter<CreateRole201ResponseRole>
+    public partial class CreateRole201ResponseRoleJsonConverter : JsonConverter<CreateRole201ResponseRole>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateRole201ResponseRoleJsonConverter" /> class.
+        /// </summary>
+        public CreateRole201ResponseRoleJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateRole201ResponseRole" />
         /// </summary>

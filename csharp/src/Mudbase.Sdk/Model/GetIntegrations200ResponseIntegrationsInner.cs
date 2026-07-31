@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Provider
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Provider
         /// </summary>
         [JsonPropertyName("provider")]
-        public string? Provider { get { return this.ProviderOption; } set { this.ProviderOption = new(value); } }
+        public string? Provider { get { return this.ProviderOption.Value; } set { this.ProviderOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetIntegrations200ResponseIntegrationsInner" />
     /// </summary>
-    public class GetIntegrations200ResponseIntegrationsInnerJsonConverter : JsonConverter<GetIntegrations200ResponseIntegrationsInner>
+    public partial class GetIntegrations200ResponseIntegrationsInnerJsonConverter : JsonConverter<GetIntegrations200ResponseIntegrationsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetIntegrations200ResponseIntegrationsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetIntegrations200ResponseIntegrationsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetIntegrations200ResponseIntegrationsInner" />
         /// </summary>

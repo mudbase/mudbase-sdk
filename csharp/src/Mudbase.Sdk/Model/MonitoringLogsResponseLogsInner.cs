@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Timestamp
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Level
@@ -99,7 +99,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Level
         /// </summary>
         [JsonPropertyName("level")]
-        public string? Level { get { return this.LevelOption; } set { this.LevelOption = new(value); } }
+        public string? Level { get { return this.LevelOption.Value; } set { this.LevelOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -112,7 +112,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Action
@@ -125,7 +125,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Action
         /// </summary>
         [JsonPropertyName("action")]
-        public string? Action { get { return this.ActionOption; } set { this.ActionOption = new(value); } }
+        public string? Action { get { return this.ActionOption.Value; } set { this.ActionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ActivityTitle
@@ -138,7 +138,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ActivityTitle
         /// </summary>
         [JsonPropertyName("activityTitle")]
-        public string? ActivityTitle { get { return this.ActivityTitleOption; } set { this.ActivityTitleOption = new(value); } }
+        public string? ActivityTitle { get { return this.ActivityTitleOption.Value; } set { this.ActivityTitleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ActivityDetail
@@ -151,7 +151,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ActivityDetail
         /// </summary>
         [JsonPropertyName("activityDetail")]
-        public string? ActivityDetail { get { return this.ActivityDetailOption; } set { this.ActivityDetailOption = new(value); } }
+        public string? ActivityDetail { get { return this.ActivityDetailOption.Value; } set { this.ActivityDetailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -164,7 +164,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public MonitoringLogsResponseLogsInnerUser? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public MonitoringLogsResponseLogsInnerUser? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Project
@@ -177,7 +177,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public Object? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public Object? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -190,7 +190,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Metadata
         /// </summary>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -228,12 +228,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MonitoringLogsResponseLogsInner" />
     /// </summary>
-    public class MonitoringLogsResponseLogsInnerJsonConverter : JsonConverter<MonitoringLogsResponseLogsInner>
+    public partial class MonitoringLogsResponseLogsInnerJsonConverter : JsonConverter<MonitoringLogsResponseLogsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonitoringLogsResponseLogsInnerJsonConverter" /> class.
+        /// </summary>
+        public MonitoringLogsResponseLogsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="MonitoringLogsResponseLogsInner" />

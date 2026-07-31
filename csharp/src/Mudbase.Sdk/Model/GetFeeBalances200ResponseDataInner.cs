@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CollectedAmount
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CollectedAmount
         /// </summary>
         [JsonPropertyName("collectedAmount")]
-        public decimal? CollectedAmount { get { return this.CollectedAmountOption; } set { this.CollectedAmountOption = new(value); } }
+        public decimal? CollectedAmount { get { return this.CollectedAmountOption.Value; } set { this.CollectedAmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Threshold
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Threshold
         /// </summary>
         [JsonPropertyName("threshold")]
-        public decimal? Threshold { get { return this.ThresholdOption; } set { this.ThresholdOption = new(value); } }
+        public decimal? Threshold { get { return this.ThresholdOption.Value; } set { this.ThresholdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalCollected
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalCollected
         /// </summary>
         [JsonPropertyName("totalCollected")]
-        public decimal? TotalCollected { get { return this.TotalCollectedOption; } set { this.TotalCollectedOption = new(value); } }
+        public decimal? TotalCollected { get { return this.TotalCollectedOption.Value; } set { this.TotalCollectedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalPaidOut
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalPaidOut
         /// </summary>
         [JsonPropertyName("totalPaidOut")]
-        public decimal? TotalPaidOut { get { return this.TotalPaidOutOption; } set { this.TotalPaidOutOption = new(value); } }
+        public decimal? TotalPaidOut { get { return this.TotalPaidOutOption.Value; } set { this.TotalPaidOutOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetFeeBalances200ResponseDataInner" />
     /// </summary>
-    public class GetFeeBalances200ResponseDataInnerJsonConverter : JsonConverter<GetFeeBalances200ResponseDataInner>
+    public partial class GetFeeBalances200ResponseDataInnerJsonConverter : JsonConverter<GetFeeBalances200ResponseDataInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetFeeBalances200ResponseDataInnerJsonConverter" /> class.
+        /// </summary>
+        public GetFeeBalances200ResponseDataInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetFeeBalances200ResponseDataInner" />
         /// </summary>

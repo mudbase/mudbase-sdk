@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>google authentication not enabled for this project</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InitiateOAuth400Response" />
     /// </summary>
-    public class InitiateOAuth400ResponseJsonConverter : JsonConverter<InitiateOAuth400Response>
+    public partial class InitiateOAuth400ResponseJsonConverter : JsonConverter<InitiateOAuth400Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InitiateOAuth400ResponseJsonConverter" /> class.
+        /// </summary>
+        public InitiateOAuth400ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InitiateOAuth400Response" />
         /// </summary>

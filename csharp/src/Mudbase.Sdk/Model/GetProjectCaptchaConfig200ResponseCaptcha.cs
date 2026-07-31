@@ -129,7 +129,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>reCAPTCHA version (v2 or v3)</value>
         [JsonPropertyName("version")]
-        public VarVersionEnum? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new(value); } }
+        public VarVersionEnum? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Enabled
@@ -143,7 +143,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Whether CAPTCHA is enabled for this project</value>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SiteKey
@@ -157,7 +157,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Public site key for frontend integration</value>
         [JsonPropertyName("siteKey")]
-        public string? SiteKey { get { return this.SiteKeyOption; } set { this.SiteKeyOption = new(value); } }
+        public string? SiteKey { get { return this.SiteKeyOption.Value; } set { this.SiteKeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MinScore
@@ -171,7 +171,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Minimum score threshold for reCAPTCHA v3</value>
         [JsonPropertyName("minScore")]
-        public decimal? MinScore { get { return this.MinScoreOption; } set { this.MinScoreOption = new(value); } }
+        public decimal? MinScore { get { return this.MinScoreOption.Value; } set { this.MinScoreOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -215,8 +215,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetProjectCaptchaConfig200ResponseCaptcha" />
     /// </summary>
-    public class GetProjectCaptchaConfig200ResponseCaptchaJsonConverter : JsonConverter<GetProjectCaptchaConfig200ResponseCaptcha>
+    public partial class GetProjectCaptchaConfig200ResponseCaptchaJsonConverter : JsonConverter<GetProjectCaptchaConfig200ResponseCaptcha>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetProjectCaptchaConfig200ResponseCaptchaJsonConverter" /> class.
+        /// </summary>
+        public GetProjectCaptchaConfig200ResponseCaptchaJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetProjectCaptchaConfig200ResponseCaptcha" />
         /// </summary>

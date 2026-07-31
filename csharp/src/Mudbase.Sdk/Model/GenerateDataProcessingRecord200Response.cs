@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Record
         /// </summary>
         [JsonPropertyName("record")]
-        public GenerateDataProcessingRecord200ResponseRecord? Record { get { return this.RecordOption; } set { this.RecordOption = new(value); } }
+        public GenerateDataProcessingRecord200ResponseRecord? Record { get { return this.RecordOption.Value; } set { this.RecordOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateDataProcessingRecord200Response" />
     /// </summary>
-    public class GenerateDataProcessingRecord200ResponseJsonConverter : JsonConverter<GenerateDataProcessingRecord200Response>
+    public partial class GenerateDataProcessingRecord200ResponseJsonConverter : JsonConverter<GenerateDataProcessingRecord200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateDataProcessingRecord200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GenerateDataProcessingRecord200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GenerateDataProcessingRecord200Response" />
         /// </summary>

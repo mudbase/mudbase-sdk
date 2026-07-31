@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Records
         /// </summary>
         [JsonPropertyName("records")]
-        public List<GetPaymentRecords200ResponseDataRecordsInner>? Records { get { return this.RecordsOption; } set { this.RecordsOption = new(value); } }
+        public List<GetPaymentRecords200ResponseDataRecordsInner>? Records { get { return this.RecordsOption.Value; } set { this.RecordsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pagination
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pagination
         /// </summary>
         [JsonPropertyName("pagination")]
-        public GetPaymentRecords200ResponseDataPagination? Pagination { get { return this.PaginationOption; } set { this.PaginationOption = new(value); } }
+        public GetPaymentRecords200ResponseDataPagination? Pagination { get { return this.PaginationOption.Value; } set { this.PaginationOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetPaymentRecords200ResponseData" />
     /// </summary>
-    public class GetPaymentRecords200ResponseDataJsonConverter : JsonConverter<GetPaymentRecords200ResponseData>
+    public partial class GetPaymentRecords200ResponseDataJsonConverter : JsonConverter<GetPaymentRecords200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetPaymentRecords200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetPaymentRecords200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetPaymentRecords200ResponseData" />
         /// </summary>

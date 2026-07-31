@@ -78,8 +78,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AssignRoleRequest" />
     /// </summary>
-    public class AssignRoleRequestJsonConverter : JsonConverter<AssignRoleRequest>
+    public partial class AssignRoleRequestJsonConverter : JsonConverter<AssignRoleRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssignRoleRequestJsonConverter" /> class.
+        /// </summary>
+        public AssignRoleRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AssignRoleRequest" />
         /// </summary>

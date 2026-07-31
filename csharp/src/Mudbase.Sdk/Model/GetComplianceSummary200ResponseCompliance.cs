@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Gdpr
         /// </summary>
         [JsonPropertyName("gdpr")]
-        public GetComplianceSummary200ResponseComplianceGdpr? Gdpr { get { return this.GdprOption; } set { this.GdprOption = new(value); } }
+        public GetComplianceSummary200ResponseComplianceGdpr? Gdpr { get { return this.GdprOption.Value; } set { this.GdprOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Soc2
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Soc2
         /// </summary>
         [JsonPropertyName("soc2")]
-        public GetComplianceSummary200ResponseComplianceSoc2? Soc2 { get { return this.Soc2Option; } set { this.Soc2Option = new(value); } }
+        public GetComplianceSummary200ResponseComplianceSoc2? Soc2 { get { return this.Soc2Option.Value; } set { this.Soc2Option = new(value); } }
 
         /// <summary>
         /// Used to track the state of Security
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Security
         /// </summary>
         [JsonPropertyName("security")]
-        public GetComplianceSummary200ResponseComplianceSecurity? Security { get { return this.SecurityOption; } set { this.SecurityOption = new(value); } }
+        public GetComplianceSummary200ResponseComplianceSecurity? Security { get { return this.SecurityOption.Value; } set { this.SecurityOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetComplianceSummary200ResponseCompliance" />
     /// </summary>
-    public class GetComplianceSummary200ResponseComplianceJsonConverter : JsonConverter<GetComplianceSummary200ResponseCompliance>
+    public partial class GetComplianceSummary200ResponseComplianceJsonConverter : JsonConverter<GetComplianceSummary200ResponseCompliance>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetComplianceSummary200ResponseComplianceJsonConverter" /> class.
+        /// </summary>
+        public GetComplianceSummary200ResponseComplianceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetComplianceSummary200ResponseCompliance" />
         /// </summary>

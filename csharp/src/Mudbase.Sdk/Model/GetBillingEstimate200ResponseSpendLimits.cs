@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SoftLimitCents
         /// </summary>
         [JsonPropertyName("softLimitCents")]
-        public decimal? SoftLimitCents { get { return this.SoftLimitCentsOption; } set { this.SoftLimitCentsOption = new(value); } }
+        public decimal? SoftLimitCents { get { return this.SoftLimitCentsOption.Value; } set { this.SoftLimitCentsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HardLimitCents
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets HardLimitCents
         /// </summary>
         [JsonPropertyName("hardLimitCents")]
-        public decimal? HardLimitCents { get { return this.HardLimitCentsOption; } set { this.HardLimitCentsOption = new(value); } }
+        public decimal? HardLimitCents { get { return this.HardLimitCentsOption.Value; } set { this.HardLimitCentsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SpendBlocked
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SpendBlocked
         /// </summary>
         [JsonPropertyName("spendBlocked")]
-        public bool? SpendBlocked { get { return this.SpendBlockedOption; } set { this.SpendBlockedOption = new(value); } }
+        public bool? SpendBlocked { get { return this.SpendBlockedOption.Value; } set { this.SpendBlockedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetBillingEstimate200ResponseSpendLimits" />
     /// </summary>
-    public class GetBillingEstimate200ResponseSpendLimitsJsonConverter : JsonConverter<GetBillingEstimate200ResponseSpendLimits>
+    public partial class GetBillingEstimate200ResponseSpendLimitsJsonConverter : JsonConverter<GetBillingEstimate200ResponseSpendLimits>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetBillingEstimate200ResponseSpendLimitsJsonConverter" /> class.
+        /// </summary>
+        public GetBillingEstimate200ResponseSpendLimitsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetBillingEstimate200ResponseSpendLimits" />
         /// </summary>

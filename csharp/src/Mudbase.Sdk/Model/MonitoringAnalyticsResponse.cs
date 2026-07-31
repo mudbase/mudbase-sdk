@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Period
         /// </summary>
         [JsonPropertyName("period")]
-        public string? Period { get { return this.PeriodOption; } set { this.PeriodOption = new(value); } }
+        public string? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Granularity
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Granularity
         /// </summary>
         [JsonPropertyName("granularity")]
-        public string? Granularity { get { return this.GranularityOption; } set { this.GranularityOption = new(value); } }
+        public string? Granularity { get { return this.GranularityOption.Value; } set { this.GranularityOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Days
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Present when rolling window used</value>
         [JsonPropertyName("days")]
-        public int? Days { get { return this.DaysOption; } set { this.DaysOption = new(value); } }
+        public int? Days { get { return this.DaysOption.Value; } set { this.DaysOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Stats
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Stats
         /// </summary>
         [JsonPropertyName("stats")]
-        public List<MonitoringAnalyticsResponseStatsInner>? Stats { get { return this.StatsOption; } set { this.StatsOption = new(value); } }
+        public List<MonitoringAnalyticsResponseStatsInner>? Stats { get { return this.StatsOption.Value; } set { this.StatsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Totals
@@ -116,7 +116,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Totals
         /// </summary>
         [JsonPropertyName("totals")]
-        public MonitoringAnalyticsResponseTotals? Totals { get { return this.TotalsOption; } set { this.TotalsOption = new(value); } }
+        public MonitoringAnalyticsResponseTotals? Totals { get { return this.TotalsOption.Value; } set { this.TotalsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -149,8 +149,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MonitoringAnalyticsResponse" />
     /// </summary>
-    public class MonitoringAnalyticsResponseJsonConverter : JsonConverter<MonitoringAnalyticsResponse>
+    public partial class MonitoringAnalyticsResponseJsonConverter : JsonConverter<MonitoringAnalyticsResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonitoringAnalyticsResponseJsonConverter" /> class.
+        /// </summary>
+        public MonitoringAnalyticsResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MonitoringAnalyticsResponse" />
         /// </summary>

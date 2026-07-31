@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TxRef
         /// </summary>
         [JsonPropertyName("txRef")]
-        public string? TxRef { get { return this.TxRefOption; } set { this.TxRefOption = new(value); } }
+        public string? TxRef { get { return this.TxRefOption.Value; } set { this.TxRefOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OrgReceives
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OrgReceives
         /// </summary>
         [JsonPropertyName("orgReceives")]
-        public decimal? OrgReceives { get { return this.OrgReceivesOption; } set { this.OrgReceivesOption = new(value); } }
+        public decimal? OrgReceives { get { return this.OrgReceivesOption.Value; } set { this.OrgReceivesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PaidAt
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PaidAt
         /// </summary>
         [JsonPropertyName("paidAt")]
-        public string? PaidAt { get { return this.PaidAtOption; } set { this.PaidAtOption = new(value); } }
+        public string? PaidAt { get { return this.PaidAtOption.Value; } set { this.PaidAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetPaymentRecords200ResponseDataRecordsInner" />
     /// </summary>
-    public class GetPaymentRecords200ResponseDataRecordsInnerJsonConverter : JsonConverter<GetPaymentRecords200ResponseDataRecordsInner>
+    public partial class GetPaymentRecords200ResponseDataRecordsInnerJsonConverter : JsonConverter<GetPaymentRecords200ResponseDataRecordsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetPaymentRecords200ResponseDataRecordsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetPaymentRecords200ResponseDataRecordsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetPaymentRecords200ResponseDataRecordsInner" />
         /// </summary>

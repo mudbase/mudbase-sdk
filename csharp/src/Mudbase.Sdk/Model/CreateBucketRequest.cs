@@ -67,7 +67,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Whether the bucket is publicly accessible</value>
         [JsonPropertyName("isPublic")]
-        public bool? IsPublic { get { return this.IsPublicOption; } set { this.IsPublicOption = new(value); } }
+        public bool? IsPublic { get { return this.IsPublicOption.Value; } set { this.IsPublicOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Settings
@@ -81,7 +81,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Additional bucket settings</value>
         [JsonPropertyName("settings")]
-        public Object? Settings { get { return this.SettingsOption; } set { this.SettingsOption = new(value); } }
+        public Object? Settings { get { return this.SettingsOption.Value; } set { this.SettingsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -112,8 +112,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateBucketRequest" />
     /// </summary>
-    public class CreateBucketRequestJsonConverter : JsonConverter<CreateBucketRequest>
+    public partial class CreateBucketRequestJsonConverter : JsonConverter<CreateBucketRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateBucketRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateBucketRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateBucketRequest" />
         /// </summary>

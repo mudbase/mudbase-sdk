@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalRequests
         /// </summary>
         [JsonPropertyName("totalRequests")]
-        public int? TotalRequests { get { return this.TotalRequestsOption; } set { this.TotalRequestsOption = new(value); } }
+        public int? TotalRequests { get { return this.TotalRequestsOption.Value; } set { this.TotalRequestsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AvgResponseTime
@@ -84,7 +84,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AvgResponseTime
         /// </summary>
         [JsonPropertyName("avgResponseTime")]
-        public decimal? AvgResponseTime { get { return this.AvgResponseTimeOption; } set { this.AvgResponseTimeOption = new(value); } }
+        public decimal? AvgResponseTime { get { return this.AvgResponseTimeOption.Value; } set { this.AvgResponseTimeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MinResponseTime
@@ -97,7 +97,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MinResponseTime
         /// </summary>
         [JsonPropertyName("minResponseTime")]
-        public decimal? MinResponseTime { get { return this.MinResponseTimeOption; } set { this.MinResponseTimeOption = new(value); } }
+        public decimal? MinResponseTime { get { return this.MinResponseTimeOption.Value; } set { this.MinResponseTimeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxResponseTime
@@ -110,7 +110,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxResponseTime
         /// </summary>
         [JsonPropertyName("maxResponseTime")]
-        public decimal? MaxResponseTime { get { return this.MaxResponseTimeOption; } set { this.MaxResponseTimeOption = new(value); } }
+        public decimal? MaxResponseTime { get { return this.MaxResponseTimeOption.Value; } set { this.MaxResponseTimeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ErrorCount
@@ -123,7 +123,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ErrorCount
         /// </summary>
         [JsonPropertyName("errorCount")]
-        public int? ErrorCount { get { return this.ErrorCountOption; } set { this.ErrorCountOption = new(value); } }
+        public int? ErrorCount { get { return this.ErrorCountOption.Value; } set { this.ErrorCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SuccessCount
@@ -136,7 +136,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SuccessCount
         /// </summary>
         [JsonPropertyName("successCount")]
-        public int? SuccessCount { get { return this.SuccessCountOption; } set { this.SuccessCountOption = new(value); } }
+        public int? SuccessCount { get { return this.SuccessCountOption.Value; } set { this.SuccessCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SuccessRate
@@ -149,7 +149,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SuccessRate
         /// </summary>
         [JsonPropertyName("successRate")]
-        public decimal? SuccessRate { get { return this.SuccessRateOption; } set { this.SuccessRateOption = new(value); } }
+        public decimal? SuccessRate { get { return this.SuccessRateOption.Value; } set { this.SuccessRateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ErrorRate
@@ -162,7 +162,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ErrorRate
         /// </summary>
         [JsonPropertyName("errorRate")]
-        public decimal? ErrorRate { get { return this.ErrorRateOption; } set { this.ErrorRateOption = new(value); } }
+        public decimal? ErrorRate { get { return this.ErrorRateOption.Value; } set { this.ErrorRateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LatencySource
@@ -176,7 +176,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>usage_stat when filled from UsageStat</value>
         [JsonPropertyName("latencySource")]
-        public string? LatencySource { get { return this.LatencySourceOption; } set { this.LatencySourceOption = new(value); } }
+        public string? LatencySource { get { return this.LatencySourceOption.Value; } set { this.LatencySourceOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -213,8 +213,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MonitoringPerformanceResponseMetrics" />
     /// </summary>
-    public class MonitoringPerformanceResponseMetricsJsonConverter : JsonConverter<MonitoringPerformanceResponseMetrics>
+    public partial class MonitoringPerformanceResponseMetricsJsonConverter : JsonConverter<MonitoringPerformanceResponseMetrics>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonitoringPerformanceResponseMetricsJsonConverter" /> class.
+        /// </summary>
+        public MonitoringPerformanceResponseMetricsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MonitoringPerformanceResponseMetrics" />
         /// </summary>

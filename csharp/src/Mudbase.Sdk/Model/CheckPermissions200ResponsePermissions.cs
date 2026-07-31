@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets System
         /// </summary>
         [JsonPropertyName("system")]
-        public List<string>? System { get { return this.SystemOption; } set { this.SystemOption = new(value); } }
+        public List<string>? System { get { return this.SystemOption.Value; } set { this.SystemOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Custom
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Custom
         /// </summary>
         [JsonPropertyName("custom")]
-        public List<string>? Custom { get { return this.CustomOption; } set { this.CustomOption = new(value); } }
+        public List<string>? Custom { get { return this.CustomOption.Value; } set { this.CustomOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Combined
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Combined
         /// </summary>
         [JsonPropertyName("combined")]
-        public List<string>? Combined { get { return this.CombinedOption; } set { this.CombinedOption = new(value); } }
+        public List<string>? Combined { get { return this.CombinedOption.Value; } set { this.CombinedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckPermissions200ResponsePermissions" />
     /// </summary>
-    public class CheckPermissions200ResponsePermissionsJsonConverter : JsonConverter<CheckPermissions200ResponsePermissions>
+    public partial class CheckPermissions200ResponsePermissionsJsonConverter : JsonConverter<CheckPermissions200ResponsePermissions>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckPermissions200ResponsePermissionsJsonConverter" /> class.
+        /// </summary>
+        public CheckPermissions200ResponsePermissionsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CheckPermissions200ResponsePermissions" />
         /// </summary>

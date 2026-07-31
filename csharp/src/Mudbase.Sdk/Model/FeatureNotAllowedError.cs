@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>messaging</example> */
         [JsonPropertyName("resource")]
-        public string? Resource { get { return this.ResourceOption; } set { this.ResourceOption = new(value); } }
+        public string? Resource { get { return this.ResourceOption.Value; } set { this.ResourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Action
@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>email</example> */
         [JsonPropertyName("action")]
-        public string? Action { get { return this.ActionOption; } set { this.ActionOption = new(value); } }
+        public string? Action { get { return this.ActionOption.Value; } set { this.ActionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Your role does not have permission to send email for this project.</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,8 +139,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FeatureNotAllowedError" />
     /// </summary>
-    public class FeatureNotAllowedErrorJsonConverter : JsonConverter<FeatureNotAllowedError>
+    public partial class FeatureNotAllowedErrorJsonConverter : JsonConverter<FeatureNotAllowedError>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FeatureNotAllowedErrorJsonConverter" /> class.
+        /// </summary>
+        public FeatureNotAllowedErrorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FeatureNotAllowedError" />
         /// </summary>

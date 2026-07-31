@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FeeSettings
         /// </summary>
         [JsonPropertyName("feeSettings")]
-        public Object? FeeSettings { get { return this.FeeSettingsOption; } set { this.FeeSettingsOption = new(value); } }
+        public Object? FeeSettings { get { return this.FeeSettingsOption.Value; } set { this.FeeSettingsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Balances
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Balances
         /// </summary>
         [JsonPropertyName("balances")]
-        public List<GetProjectFeeDashboard200ResponseDataBalancesInner>? Balances { get { return this.BalancesOption; } set { this.BalancesOption = new(value); } }
+        public List<GetProjectFeeDashboard200ResponseDataBalancesInner>? Balances { get { return this.BalancesOption.Value; } set { this.BalancesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RecentPayouts
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RecentPayouts
         /// </summary>
         [JsonPropertyName("recentPayouts")]
-        public List<GetProjectFeeDashboard200ResponseDataRecentPayoutsInner>? RecentPayouts { get { return this.RecentPayoutsOption; } set { this.RecentPayoutsOption = new(value); } }
+        public List<GetProjectFeeDashboard200ResponseDataRecentPayoutsInner>? RecentPayouts { get { return this.RecentPayoutsOption.Value; } set { this.RecentPayoutsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalEarned
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalEarned
         /// </summary>
         [JsonPropertyName("totalEarned")]
-        public decimal? TotalEarned { get { return this.TotalEarnedOption; } set { this.TotalEarnedOption = new(value); } }
+        public decimal? TotalEarned { get { return this.TotalEarnedOption.Value; } set { this.TotalEarnedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetProjectFeeDashboard200ResponseData" />
     /// </summary>
-    public class GetProjectFeeDashboard200ResponseDataJsonConverter : JsonConverter<GetProjectFeeDashboard200ResponseData>
+    public partial class GetProjectFeeDashboard200ResponseDataJsonConverter : JsonConverter<GetProjectFeeDashboard200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetProjectFeeDashboard200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetProjectFeeDashboard200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetProjectFeeDashboard200ResponseData" />
         /// </summary>

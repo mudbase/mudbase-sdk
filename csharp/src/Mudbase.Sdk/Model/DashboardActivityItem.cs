@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of At
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets At
         /// </summary>
         [JsonPropertyName("at")]
-        public DateTime? At { get { return this.AtOption; } set { this.AtOption = new(value); } }
+        public DateTime? At { get { return this.AtOption.Value; } set { this.AtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Action
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Action
         /// </summary>
         [JsonPropertyName("action")]
-        public string? Action { get { return this.ActionOption; } set { this.ActionOption = new(value); } }
+        public string? Action { get { return this.ActionOption.Value; } set { this.ActionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Title
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Title
         /// </summary>
         [JsonPropertyName("title")]
-        public string? Title { get { return this.TitleOption; } set { this.TitleOption = new(value); } }
+        public string? Title { get { return this.TitleOption.Value; } set { this.TitleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Detail
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Detail
         /// </summary>
         [JsonPropertyName("detail")]
-        public string? Detail { get { return this.DetailOption; } set { this.DetailOption = new(value); } }
+        public string? Detail { get { return this.DetailOption.Value; } set { this.DetailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ActorEmail
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ActorEmail
         /// </summary>
         [JsonPropertyName("actorEmail")]
-        public string? ActorEmail { get { return this.ActorEmailOption; } set { this.ActorEmailOption = new(value); } }
+        public string? ActorEmail { get { return this.ActorEmailOption.Value; } set { this.ActorEmailOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,12 +164,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DashboardActivityItem" />
     /// </summary>
-    public class DashboardActivityItemJsonConverter : JsonConverter<DashboardActivityItem>
+    public partial class DashboardActivityItemJsonConverter : JsonConverter<DashboardActivityItem>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardActivityItemJsonConverter" /> class.
+        /// </summary>
+        public DashboardActivityItemJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize At
         /// </summary>
-        public static string AtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string AtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="DashboardActivityItem" />

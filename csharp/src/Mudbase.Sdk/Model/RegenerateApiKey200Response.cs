@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Secret
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Secret
         /// </summary>
         [JsonPropertyName("secret")]
-        public string? Secret { get { return this.SecretOption; } set { this.SecretOption = new(value); } }
+        public string? Secret { get { return this.SecretOption.Value; } set { this.SecretOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RegenerateApiKey200Response" />
     /// </summary>
-    public class RegenerateApiKey200ResponseJsonConverter : JsonConverter<RegenerateApiKey200Response>
+    public partial class RegenerateApiKey200ResponseJsonConverter : JsonConverter<RegenerateApiKey200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegenerateApiKey200ResponseJsonConverter" /> class.
+        /// </summary>
+        public RegenerateApiKey200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RegenerateApiKey200Response" />
         /// </summary>

@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currencies
         /// </summary>
         [JsonPropertyName("currencies")]
-        public List<GetSupportedCurrencies200ResponseDataCurrenciesInner>? Currencies { get { return this.CurrenciesOption; } set { this.CurrenciesOption = new(value); } }
+        public List<GetSupportedCurrencies200ResponseDataCurrenciesInner>? Currencies { get { return this.CurrenciesOption.Value; } set { this.CurrenciesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Count
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Number of supported currencies/chains</value>
         [JsonPropertyName("count")]
-        public int? Count { get { return this.CountOption; } set { this.CountOption = new(value); } }
+        public int? Count { get { return this.CountOption.Value; } set { this.CountOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSupportedCurrencies200ResponseData" />
     /// </summary>
-    public class GetSupportedCurrencies200ResponseDataJsonConverter : JsonConverter<GetSupportedCurrencies200ResponseData>
+    public partial class GetSupportedCurrencies200ResponseDataJsonConverter : JsonConverter<GetSupportedCurrencies200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSupportedCurrencies200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetSupportedCurrencies200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSupportedCurrencies200ResponseData" />
         /// </summary>

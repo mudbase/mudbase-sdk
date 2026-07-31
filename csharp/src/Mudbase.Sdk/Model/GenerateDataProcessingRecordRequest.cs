@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2024-12-16T00:00Z</example> */
         [JsonPropertyName("recordDate")]
-        public DateTime? RecordDate { get { return this.RecordDateOption; } set { this.RecordDateOption = new(value); } }
+        public DateTime? RecordDate { get { return this.RecordDateOption.Value; } set { this.RecordDateOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,12 +95,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateDataProcessingRecordRequest" />
     /// </summary>
-    public class GenerateDataProcessingRecordRequestJsonConverter : JsonConverter<GenerateDataProcessingRecordRequest>
+    public partial class GenerateDataProcessingRecordRequestJsonConverter : JsonConverter<GenerateDataProcessingRecordRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateDataProcessingRecordRequestJsonConverter" /> class.
+        /// </summary>
+        public GenerateDataProcessingRecordRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize RecordDate
         /// </summary>
-        public static string RecordDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string RecordDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GenerateDataProcessingRecordRequest" />

@@ -78,8 +78,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RollbackFunctionRequest" />
     /// </summary>
-    public class RollbackFunctionRequestJsonConverter : JsonConverter<RollbackFunctionRequest>
+    public partial class RollbackFunctionRequestJsonConverter : JsonConverter<RollbackFunctionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RollbackFunctionRequestJsonConverter" /> class.
+        /// </summary>
+        public RollbackFunctionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RollbackFunctionRequest" />
         /// </summary>

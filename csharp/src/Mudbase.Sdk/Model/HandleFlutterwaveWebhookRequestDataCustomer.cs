@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Email
         /// </summary>
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="HandleFlutterwaveWebhookRequestDataCustomer" />
     /// </summary>
-    public class HandleFlutterwaveWebhookRequestDataCustomerJsonConverter : JsonConverter<HandleFlutterwaveWebhookRequestDataCustomer>
+    public partial class HandleFlutterwaveWebhookRequestDataCustomerJsonConverter : JsonConverter<HandleFlutterwaveWebhookRequestDataCustomer>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HandleFlutterwaveWebhookRequestDataCustomerJsonConverter" /> class.
+        /// </summary>
+        public HandleFlutterwaveWebhookRequestDataCustomerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="HandleFlutterwaveWebhookRequestDataCustomer" />
         /// </summary>

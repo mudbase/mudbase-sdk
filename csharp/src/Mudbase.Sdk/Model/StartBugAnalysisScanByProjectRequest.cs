@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UploadSize
         /// </summary>
         [JsonPropertyName("uploadSize")]
-        public decimal? UploadSize { get { return this.UploadSizeOption; } set { this.UploadSizeOption = new(value); } }
+        public decimal? UploadSize { get { return this.UploadSizeOption.Value; } set { this.UploadSizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RuntimeMinutes
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RuntimeMinutes
         /// </summary>
         [JsonPropertyName("runtimeMinutes")]
-        public decimal? RuntimeMinutes { get { return this.RuntimeMinutesOption; } set { this.RuntimeMinutesOption = new(value); } }
+        public decimal? RuntimeMinutes { get { return this.RuntimeMinutesOption.Value; } set { this.RuntimeMinutesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StartBugAnalysisScanByProjectRequest" />
     /// </summary>
-    public class StartBugAnalysisScanByProjectRequestJsonConverter : JsonConverter<StartBugAnalysisScanByProjectRequest>
+    public partial class StartBugAnalysisScanByProjectRequestJsonConverter : JsonConverter<StartBugAnalysisScanByProjectRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StartBugAnalysisScanByProjectRequestJsonConverter" /> class.
+        /// </summary>
+        public StartBugAnalysisScanByProjectRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="StartBugAnalysisScanByProjectRequest" />
         /// </summary>

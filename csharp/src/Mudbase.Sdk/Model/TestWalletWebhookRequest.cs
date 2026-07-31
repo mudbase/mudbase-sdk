@@ -67,7 +67,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Secret
         /// </summary>
         [JsonPropertyName("secret")]
-        public string? Secret { get { return this.SecretOption; } set { this.SecretOption = new(value); } }
+        public string? Secret { get { return this.SecretOption.Value; } set { this.SecretOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectId
@@ -80,7 +80,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectId
         /// </summary>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Event
@@ -93,7 +93,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Event
         /// </summary>
         [JsonPropertyName("event")]
-        public string? Event { get { return this.EventOption; } set { this.EventOption = new(value); } }
+        public string? Event { get { return this.EventOption.Value; } set { this.EventOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -125,8 +125,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TestWalletWebhookRequest" />
     /// </summary>
-    public class TestWalletWebhookRequestJsonConverter : JsonConverter<TestWalletWebhookRequest>
+    public partial class TestWalletWebhookRequestJsonConverter : JsonConverter<TestWalletWebhookRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestWalletWebhookRequestJsonConverter" /> class.
+        /// </summary>
+        public TestWalletWebhookRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TestWalletWebhookRequest" />
         /// </summary>

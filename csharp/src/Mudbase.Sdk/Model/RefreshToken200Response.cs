@@ -62,7 +62,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Token refreshed successfully</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Token
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>New JWT access token</value>
         [JsonPropertyName("token")]
-        public string? Token { get { return this.TokenOption; } set { this.TokenOption = new(value); } }
+        public string? Token { get { return this.TokenOption.Value; } set { this.TokenOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RefreshToken
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>New refresh token (store and use for next refresh)</value>
         [JsonPropertyName("refreshToken")]
-        public string? RefreshToken { get { return this.RefreshTokenOption; } set { this.RefreshTokenOption = new(value); } }
+        public string? RefreshToken { get { return this.RefreshTokenOption.Value; } set { this.RefreshTokenOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresIn
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Access token TTL in seconds</value>
         /* <example>1800</example> */
         [JsonPropertyName("expiresIn")]
-        public int? ExpiresIn { get { return this.ExpiresInOption; } set { this.ExpiresInOption = new(value); } }
+        public int? ExpiresIn { get { return this.ExpiresInOption.Value; } set { this.ExpiresInOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -137,8 +137,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RefreshToken200Response" />
     /// </summary>
-    public class RefreshToken200ResponseJsonConverter : JsonConverter<RefreshToken200Response>
+    public partial class RefreshToken200ResponseJsonConverter : JsonConverter<RefreshToken200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RefreshToken200ResponseJsonConverter" /> class.
+        /// </summary>
+        public RefreshToken200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RefreshToken200Response" />
         /// </summary>

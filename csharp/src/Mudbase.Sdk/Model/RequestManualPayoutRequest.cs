@@ -77,8 +77,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RequestManualPayoutRequest" />
     /// </summary>
-    public class RequestManualPayoutRequestJsonConverter : JsonConverter<RequestManualPayoutRequest>
+    public partial class RequestManualPayoutRequestJsonConverter : JsonConverter<RequestManualPayoutRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RequestManualPayoutRequestJsonConverter" /> class.
+        /// </summary>
+        public RequestManualPayoutRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RequestManualPayoutRequest" />
         /// </summary>

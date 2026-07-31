@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public Object? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public Object? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Organizations
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Organizations
         /// </summary>
         [JsonPropertyName("organizations")]
-        public List<Object>? Organizations { get { return this.OrganizationsOption; } set { this.OrganizationsOption = new(value); } }
+        public List<Object>? Organizations { get { return this.OrganizationsOption.Value; } set { this.OrganizationsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultOrg
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DefaultOrg
         /// </summary>
         [JsonPropertyName("defaultOrg")]
-        public Object? DefaultOrg { get { return this.DefaultOrgOption; } set { this.DefaultOrgOption = new(value); } }
+        public Object? DefaultOrg { get { return this.DefaultOrgOption.Value; } set { this.DefaultOrgOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Projects
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Projects
         /// </summary>
         [JsonPropertyName("projects")]
-        public List<Object>? Projects { get { return this.ProjectsOption; } set { this.ProjectsOption = new(value); } }
+        public List<Object>? Projects { get { return this.ProjectsOption.Value; } set { this.ProjectsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiMeBootstrapGet200Response" />
     /// </summary>
-    public class ApiMeBootstrapGet200ResponseJsonConverter : JsonConverter<ApiMeBootstrapGet200Response>
+    public partial class ApiMeBootstrapGet200ResponseJsonConverter : JsonConverter<ApiMeBootstrapGet200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiMeBootstrapGet200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ApiMeBootstrapGet200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiMeBootstrapGet200Response" />
         /// </summary>

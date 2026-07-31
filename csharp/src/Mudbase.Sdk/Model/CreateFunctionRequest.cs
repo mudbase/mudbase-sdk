@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VarEnvironment
@@ -96,7 +96,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Per-function env vars injected into sandbox</value>
         [JsonPropertyName("environment")]
-        public Dictionary<string, string>? VarEnvironment { get { return this.VarEnvironmentOption; } set { this.VarEnvironmentOption = new(value); } }
+        public Dictionary<string, string>? VarEnvironment { get { return this.VarEnvironmentOption.Value; } set { this.VarEnvironmentOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -129,8 +129,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateFunctionRequest" />
     /// </summary>
-    public class CreateFunctionRequestJsonConverter : JsonConverter<CreateFunctionRequest>
+    public partial class CreateFunctionRequestJsonConverter : JsonConverter<CreateFunctionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateFunctionRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateFunctionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateFunctionRequest" />
         /// </summary>

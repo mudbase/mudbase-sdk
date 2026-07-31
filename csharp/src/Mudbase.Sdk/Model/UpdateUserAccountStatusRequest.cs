@@ -145,8 +145,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateUserAccountStatusRequest" />
     /// </summary>
-    public class UpdateUserAccountStatusRequestJsonConverter : JsonConverter<UpdateUserAccountStatusRequest>
+    public partial class UpdateUserAccountStatusRequestJsonConverter : JsonConverter<UpdateUserAccountStatusRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateUserAccountStatusRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateUserAccountStatusRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateUserAccountStatusRequest" />
         /// </summary>

@@ -77,7 +77,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Html
         /// </summary>
         [JsonPropertyName("html")]
-        public string? Html { get { return this.HtmlOption; } set { this.HtmlOption = new(value); } }
+        public string? Html { get { return this.HtmlOption.Value; } set { this.HtmlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Text
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Text
         /// </summary>
         [JsonPropertyName("text")]
-        public string? Text { get { return this.TextOption; } set { this.TextOption = new(value); } }
+        public string? Text { get { return this.TextOption.Value; } set { this.TextOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TemplateId
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TemplateId
         /// </summary>
         [JsonPropertyName("templateId")]
-        public string? TemplateId { get { return this.TemplateIdOption; } set { this.TemplateIdOption = new(value); } }
+        public string? TemplateId { get { return this.TemplateIdOption.Value; } set { this.TemplateIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TemplateData
@@ -116,7 +116,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TemplateData
         /// </summary>
         [JsonPropertyName("templateData")]
-        public Object? TemplateData { get { return this.TemplateDataOption; } set { this.TemplateDataOption = new(value); } }
+        public Object? TemplateData { get { return this.TemplateDataOption.Value; } set { this.TemplateDataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -150,8 +150,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EmailRequest" />
     /// </summary>
-    public class EmailRequestJsonConverter : JsonConverter<EmailRequest>
+    public partial class EmailRequestJsonConverter : JsonConverter<EmailRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmailRequestJsonConverter" /> class.
+        /// </summary>
+        public EmailRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EmailRequest" />
         /// </summary>

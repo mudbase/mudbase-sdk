@@ -107,8 +107,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PlatformAdminPatchOrgLimits200Response" />
     /// </summary>
-    public class PlatformAdminPatchOrgLimits200ResponseJsonConverter : JsonConverter<PlatformAdminPatchOrgLimits200Response>
+    public partial class PlatformAdminPatchOrgLimits200ResponseJsonConverter : JsonConverter<PlatformAdminPatchOrgLimits200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlatformAdminPatchOrgLimits200ResponseJsonConverter" /> class.
+        /// </summary>
+        public PlatformAdminPatchOrgLimits200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PlatformAdminPatchOrgLimits200Response" />
         /// </summary>

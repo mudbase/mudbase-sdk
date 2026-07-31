@@ -119,8 +119,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RegisterLocalUserRequest" />
     /// </summary>
-    public class RegisterLocalUserRequestJsonConverter : JsonConverter<RegisterLocalUserRequest>
+    public partial class RegisterLocalUserRequestJsonConverter : JsonConverter<RegisterLocalUserRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterLocalUserRequestJsonConverter" /> class.
+        /// </summary>
+        public RegisterLocalUserRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RegisterLocalUserRequest" />
         /// </summary>

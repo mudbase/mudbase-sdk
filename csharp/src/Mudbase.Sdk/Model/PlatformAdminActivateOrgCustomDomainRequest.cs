@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Email org billing contact when domain goes live (default true)</value>
         [JsonPropertyName("notifyOrg")]
-        public bool? NotifyOrg { get { return this.NotifyOrgOption; } set { this.NotifyOrgOption = new(value); } }
+        public bool? NotifyOrg { get { return this.NotifyOrgOption.Value; } set { this.NotifyOrgOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PlatformAdminActivateOrgCustomDomainRequest" />
     /// </summary>
-    public class PlatformAdminActivateOrgCustomDomainRequestJsonConverter : JsonConverter<PlatformAdminActivateOrgCustomDomainRequest>
+    public partial class PlatformAdminActivateOrgCustomDomainRequestJsonConverter : JsonConverter<PlatformAdminActivateOrgCustomDomainRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlatformAdminActivateOrgCustomDomainRequestJsonConverter" /> class.
+        /// </summary>
+        public PlatformAdminActivateOrgCustomDomainRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PlatformAdminActivateOrgCustomDomainRequest" />
         /// </summary>

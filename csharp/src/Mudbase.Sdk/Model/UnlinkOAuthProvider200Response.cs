@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>OAuth provider unlinked successfully</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Provider
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>github</example> */
         [JsonPropertyName("provider")]
-        public string? Provider { get { return this.ProviderOption; } set { this.ProviderOption = new(value); } }
+        public string? Provider { get { return this.ProviderOption.Value; } set { this.ProviderOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UnlinkOAuthProvider200Response" />
     /// </summary>
-    public class UnlinkOAuthProvider200ResponseJsonConverter : JsonConverter<UnlinkOAuthProvider200Response>
+    public partial class UnlinkOAuthProvider200ResponseJsonConverter : JsonConverter<UnlinkOAuthProvider200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UnlinkOAuthProvider200ResponseJsonConverter" /> class.
+        /// </summary>
+        public UnlinkOAuthProvider200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UnlinkOAuthProvider200Response" />
         /// </summary>

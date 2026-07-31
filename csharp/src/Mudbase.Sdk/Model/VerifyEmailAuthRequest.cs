@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional; for project signup context (redirect hint)</value>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,8 +95,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="VerifyEmailAuthRequest" />
     /// </summary>
-    public class VerifyEmailAuthRequestJsonConverter : JsonConverter<VerifyEmailAuthRequest>
+    public partial class VerifyEmailAuthRequestJsonConverter : JsonConverter<VerifyEmailAuthRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifyEmailAuthRequestJsonConverter" /> class.
+        /// </summary>
+        public VerifyEmailAuthRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VerifyEmailAuthRequest" />
         /// </summary>

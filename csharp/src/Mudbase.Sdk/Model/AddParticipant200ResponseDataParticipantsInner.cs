@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UserId
         /// </summary>
         [JsonPropertyName("userId")]
-        public string? UserId { get { return this.UserIdOption; } set { this.UserIdOption = new(value); } }
+        public string? UserId { get { return this.UserIdOption.Value; } set { this.UserIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Role
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Role
         /// </summary>
         [JsonPropertyName("role")]
-        public string? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public string? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AddedAt
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AddedAt
         /// </summary>
         [JsonPropertyName("addedAt")]
-        public DateTime? AddedAt { get { return this.AddedAtOption; } set { this.AddedAtOption = new(value); } }
+        public DateTime? AddedAt { get { return this.AddedAtOption.Value; } set { this.AddedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,12 +116,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddParticipant200ResponseDataParticipantsInner" />
     /// </summary>
-    public class AddParticipant200ResponseDataParticipantsInnerJsonConverter : JsonConverter<AddParticipant200ResponseDataParticipantsInner>
+    public partial class AddParticipant200ResponseDataParticipantsInnerJsonConverter : JsonConverter<AddParticipant200ResponseDataParticipantsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddParticipant200ResponseDataParticipantsInnerJsonConverter" /> class.
+        /// </summary>
+        public AddParticipant200ResponseDataParticipantsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize AddedAt
         /// </summary>
-        public static string AddedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string AddedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="AddParticipant200ResponseDataParticipantsInner" />

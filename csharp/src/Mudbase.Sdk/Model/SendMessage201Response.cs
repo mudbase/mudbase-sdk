@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public SendMessage201ResponseData? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public SendMessage201ResponseData? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SendMessage201Response" />
     /// </summary>
-    public class SendMessage201ResponseJsonConverter : JsonConverter<SendMessage201Response>
+    public partial class SendMessage201ResponseJsonConverter : JsonConverter<SendMessage201Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SendMessage201ResponseJsonConverter" /> class.
+        /// </summary>
+        public SendMessage201ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SendMessage201Response" />
         /// </summary>

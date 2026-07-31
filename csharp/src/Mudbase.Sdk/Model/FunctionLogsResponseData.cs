@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Executions
         /// </summary>
         [JsonPropertyName("executions")]
-        public List<FunctionExecution>? Executions { get { return this.ExecutionsOption; } set { this.ExecutionsOption = new(value); } }
+        public List<FunctionExecution>? Executions { get { return this.ExecutionsOption.Value; } set { this.ExecutionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Stats
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Stats
         /// </summary>
         [JsonPropertyName("stats")]
-        public FunctionStats? Stats { get { return this.StatsOption; } set { this.StatsOption = new(value); } }
+        public FunctionStats? Stats { get { return this.StatsOption.Value; } set { this.StatsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FunctionLogsResponseData" />
     /// </summary>
-    public class FunctionLogsResponseDataJsonConverter : JsonConverter<FunctionLogsResponseData>
+    public partial class FunctionLogsResponseDataJsonConverter : JsonConverter<FunctionLogsResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FunctionLogsResponseDataJsonConverter" /> class.
+        /// </summary>
+        public FunctionLogsResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FunctionLogsResponseData" />
         /// </summary>

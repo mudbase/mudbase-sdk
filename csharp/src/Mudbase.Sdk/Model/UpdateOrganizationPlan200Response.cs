@@ -89,8 +89,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateOrganizationPlan200Response" />
     /// </summary>
-    public class UpdateOrganizationPlan200ResponseJsonConverter : JsonConverter<UpdateOrganizationPlan200Response>
+    public partial class UpdateOrganizationPlan200ResponseJsonConverter : JsonConverter<UpdateOrganizationPlan200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateOrganizationPlan200ResponseJsonConverter" /> class.
+        /// </summary>
+        public UpdateOrganizationPlan200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateOrganizationPlan200Response" />
         /// </summary>

@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Users
         /// </summary>
         [JsonPropertyName("users")]
-        public List<GetOrganizationUsers200ResponseUsersInner>? Users { get { return this.UsersOption; } set { this.UsersOption = new(value); } }
+        public List<GetOrganizationUsers200ResponseUsersInner>? Users { get { return this.UsersOption.Value; } set { this.UsersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetOrganizationUsers200Response" />
     /// </summary>
-    public class GetOrganizationUsers200ResponseJsonConverter : JsonConverter<GetOrganizationUsers200Response>
+    public partial class GetOrganizationUsers200ResponseJsonConverter : JsonConverter<GetOrganizationUsers200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetOrganizationUsers200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetOrganizationUsers200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetOrganizationUsers200Response" />
         /// </summary>

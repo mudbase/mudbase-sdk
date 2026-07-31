@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When true, public DNS CNAME chain for hostname must match Fly &#x60;dns_requirements.cname&#x60; when stored, else &#x60;CUSTOM_DOMAIN_API_CNAME_TARGET&#x60;.</value>
         [JsonPropertyName("verifyDns")]
-        public bool? VerifyDns { get { return this.VerifyDnsOption; } set { this.VerifyDnsOption = new(value); } }
+        public bool? VerifyDns { get { return this.VerifyDnsOption.Value; } set { this.VerifyDnsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminApproveOrgDomainCnameRequest" />
     /// </summary>
-    public class AdminApproveOrgDomainCnameRequestJsonConverter : JsonConverter<AdminApproveOrgDomainCnameRequest>
+    public partial class AdminApproveOrgDomainCnameRequestJsonConverter : JsonConverter<AdminApproveOrgDomainCnameRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminApproveOrgDomainCnameRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminApproveOrgDomainCnameRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminApproveOrgDomainCnameRequest" />
         /// </summary>

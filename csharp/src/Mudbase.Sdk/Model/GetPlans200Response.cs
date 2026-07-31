@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Plans
         /// </summary>
         [JsonPropertyName("plans")]
-        public List<Plan>? Plans { get { return this.PlansOption; } set { this.PlansOption = new(value); } }
+        public List<Plan>? Plans { get { return this.PlansOption.Value; } set { this.PlansOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetPlans200Response" />
     /// </summary>
-    public class GetPlans200ResponseJsonConverter : JsonConverter<GetPlans200Response>
+    public partial class GetPlans200ResponseJsonConverter : JsonConverter<GetPlans200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetPlans200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetPlans200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetPlans200Response" />
         /// </summary>

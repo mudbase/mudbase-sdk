@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Requests
         /// </summary>
         [JsonPropertyName("requests")]
-        public int? Requests { get { return this.RequestsOption; } set { this.RequestsOption = new(value); } }
+        public int? Requests { get { return this.RequestsOption.Value; } set { this.RequestsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Window
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Window
         /// </summary>
         [JsonPropertyName("window")]
-        public int? Window { get { return this.WindowOption; } set { this.WindowOption = new(value); } }
+        public int? Window { get { return this.WindowOption.Value; } set { this.WindowOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RateLimit" />
     /// </summary>
-    public class RateLimitJsonConverter : JsonConverter<RateLimit>
+    public partial class RateLimitJsonConverter : JsonConverter<RateLimit>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RateLimitJsonConverter" /> class.
+        /// </summary>
+        public RateLimitJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RateLimit" />
         /// </summary>

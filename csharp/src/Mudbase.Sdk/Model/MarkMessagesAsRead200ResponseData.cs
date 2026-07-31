@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ModifiedCount
         /// </summary>
         [JsonPropertyName("modifiedCount")]
-        public int? ModifiedCount { get { return this.ModifiedCountOption; } set { this.ModifiedCountOption = new(value); } }
+        public int? ModifiedCount { get { return this.ModifiedCountOption.Value; } set { this.ModifiedCountOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MarkMessagesAsRead200ResponseData" />
     /// </summary>
-    public class MarkMessagesAsRead200ResponseDataJsonConverter : JsonConverter<MarkMessagesAsRead200ResponseData>
+    public partial class MarkMessagesAsRead200ResponseDataJsonConverter : JsonConverter<MarkMessagesAsRead200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MarkMessagesAsRead200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public MarkMessagesAsRead200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MarkMessagesAsRead200ResponseData" />
         /// </summary>

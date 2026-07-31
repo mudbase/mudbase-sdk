@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public User? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public User? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Authenticated
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Authenticated
         /// </summary>
         [JsonPropertyName("authenticated")]
-        public bool? Authenticated { get { return this.AuthenticatedOption; } set { this.AuthenticatedOption = new(value); } }
+        public bool? Authenticated { get { return this.AuthenticatedOption.Value; } set { this.AuthenticatedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SessionResponse" />
     /// </summary>
-    public class SessionResponseJsonConverter : JsonConverter<SessionResponse>
+    public partial class SessionResponseJsonConverter : JsonConverter<SessionResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SessionResponseJsonConverter" /> class.
+        /// </summary>
+        public SessionResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SessionResponse" />
         /// </summary>

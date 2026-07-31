@@ -119,7 +119,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>HTTP method the client must use against &#x60;url&#x60; (always PUT - R2 does not implement the S3 POST Object API)</value>
         [JsonPropertyName("method")]
-        public MethodEnum? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public MethodEnum? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Key
@@ -133,7 +133,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Object key (S3) clients should upload to</value>
         [JsonPropertyName("key")]
-        public string? Key { get { return this.KeyOption; } set { this.KeyOption = new(value); } }
+        public string? Key { get { return this.KeyOption.Value; } set { this.KeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Url
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Presigned URL to PUT the file body to directly</value>
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Headers
@@ -161,7 +161,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Headers the client must send with the PUT request (e.g. Content-Type) - mismatching these from what was signed causes a SignatureDoesNotMatch error</value>
         [JsonPropertyName("headers")]
-        public Object? Headers { get { return this.HeadersOption; } set { this.HeadersOption = new(value); } }
+        public Object? Headers { get { return this.HeadersOption.Value; } set { this.HeadersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresIn
@@ -175,7 +175,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Expiration of the presigned URL in seconds</value>
         [JsonPropertyName("expiresIn")]
-        public int? ExpiresIn { get { return this.ExpiresInOption; } set { this.ExpiresInOption = new(value); } }
+        public int? ExpiresIn { get { return this.ExpiresInOption.Value; } set { this.ExpiresInOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxFileUploadBytes
@@ -189,7 +189,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Maximum upload size in bytes for this org plan. Not enforced by the presigned URL itself (PUT has no content-length-range equivalent) - checked server-side by /api/files/upload/confirm after the upload completes</value>
         [JsonPropertyName("maxFileUploadBytes")]
-        public long? MaxFileUploadBytes { get { return this.MaxFileUploadBytesOption; } set { this.MaxFileUploadBytesOption = new(value); } }
+        public long? MaxFileUploadBytes { get { return this.MaxFileUploadBytesOption.Value; } set { this.MaxFileUploadBytesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -223,8 +223,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PresignedPostResponse" />
     /// </summary>
-    public class PresignedPostResponseJsonConverter : JsonConverter<PresignedPostResponse>
+    public partial class PresignedPostResponseJsonConverter : JsonConverter<PresignedPostResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PresignedPostResponseJsonConverter" /> class.
+        /// </summary>
+        public PresignedPostResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PresignedPostResponse" />
         /// </summary>

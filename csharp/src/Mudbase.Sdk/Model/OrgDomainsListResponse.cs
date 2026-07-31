@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Domains
         /// </summary>
         [JsonPropertyName("domains")]
-        public List<OrgDomainEntryOrgConsole>? Domains { get { return this.DomainsOption; } set { this.DomainsOption = new(value); } }
+        public List<OrgDomainEntryOrgConsole>? Domains { get { return this.DomainsOption.Value; } set { this.DomainsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DnsVerificationInstructions
@@ -79,7 +79,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Plain-language reminder to add the ownership TXT from each domain’s DNS checklist, then use Verify DNS in the organization’s domain settings.</value>
         [JsonPropertyName("dnsVerificationInstructions")]
-        public string? DnsVerificationInstructions { get { return this.DnsVerificationInstructionsOption; } set { this.DnsVerificationInstructionsOption = new(value); } }
+        public string? DnsVerificationInstructions { get { return this.DnsVerificationInstructionsOption.Value; } set { this.DnsVerificationInstructionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PrimaryHostname
@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PrimaryHostname
         /// </summary>
         [JsonPropertyName("primaryHostname")]
-        public string? PrimaryHostname { get { return this.PrimaryHostnameOption; } set { this.PrimaryHostnameOption = new(value); } }
+        public string? PrimaryHostname { get { return this.PrimaryHostnameOption.Value; } set { this.PrimaryHostnameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiBaseUrl
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiBaseUrl
         /// </summary>
         [JsonPropertyName("apiBaseUrl")]
-        public string? ApiBaseUrl { get { return this.ApiBaseUrlOption; } set { this.ApiBaseUrlOption = new(value); } }
+        public string? ApiBaseUrl { get { return this.ApiBaseUrlOption.Value; } set { this.ApiBaseUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxDomains
@@ -118,7 +118,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxDomains
         /// </summary>
         [JsonPropertyName("maxDomains")]
-        public int? MaxDomains { get { return this.MaxDomainsOption; } set { this.MaxDomainsOption = new(value); } }
+        public int? MaxDomains { get { return this.MaxDomainsOption.Value; } set { this.MaxDomainsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CustomDomainAllowed
@@ -131,7 +131,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CustomDomainAllowed
         /// </summary>
         [JsonPropertyName("customDomainAllowed")]
-        public bool? CustomDomainAllowed { get { return this.CustomDomainAllowedOption; } set { this.CustomDomainAllowedOption = new(value); } }
+        public bool? CustomDomainAllowed { get { return this.CustomDomainAllowedOption.Value; } set { this.CustomDomainAllowedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -165,8 +165,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgDomainsListResponse" />
     /// </summary>
-    public class OrgDomainsListResponseJsonConverter : JsonConverter<OrgDomainsListResponse>
+    public partial class OrgDomainsListResponseJsonConverter : JsonConverter<OrgDomainsListResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgDomainsListResponseJsonConverter" /> class.
+        /// </summary>
+        public OrgDomainsListResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgDomainsListResponse" />
         /// </summary>

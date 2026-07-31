@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OrgId
         /// </summary>
         [JsonPropertyName("orgId")]
-        public string? OrgId { get { return this.OrgIdOption; } set { this.OrgIdOption = new(value); } }
+        public string? OrgId { get { return this.OrgIdOption.Value; } set { this.OrgIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ReviewPeriod
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ReviewPeriod
         /// </summary>
         [JsonPropertyName("reviewPeriod")]
-        public Object? ReviewPeriod { get { return this.ReviewPeriodOption; } set { this.ReviewPeriodOption = new(value); } }
+        public Object? ReviewPeriod { get { return this.ReviewPeriodOption.Value; } set { this.ReviewPeriodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Users
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Users
         /// </summary>
         [JsonPropertyName("users")]
-        public List<Object>? Users { get { return this.UsersOption; } set { this.UsersOption = new(value); } }
+        public List<Object>? Users { get { return this.UsersOption.Value; } set { this.UsersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Summary
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Summary
         /// </summary>
         [JsonPropertyName("summary")]
-        public Object? Summary { get { return this.SummaryOption; } set { this.SummaryOption = new(value); } }
+        public Object? Summary { get { return this.SummaryOption.Value; } set { this.SummaryOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Recommendations
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Recommendations
         /// </summary>
         [JsonPropertyName("recommendations")]
-        public List<string>? Recommendations { get { return this.RecommendationsOption; } set { this.RecommendationsOption = new(value); } }
+        public List<string>? Recommendations { get { return this.RecommendationsOption.Value; } set { this.RecommendationsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GeneratedAt
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets GeneratedAt
         /// </summary>
         [JsonPropertyName("generatedAt")]
-        public DateTime? GeneratedAt { get { return this.GeneratedAtOption; } set { this.GeneratedAtOption = new(value); } }
+        public DateTime? GeneratedAt { get { return this.GeneratedAtOption.Value; } set { this.GeneratedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,12 +164,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateAccessReview200ResponseReport" />
     /// </summary>
-    public class GenerateAccessReview200ResponseReportJsonConverter : JsonConverter<GenerateAccessReview200ResponseReport>
+    public partial class GenerateAccessReview200ResponseReportJsonConverter : JsonConverter<GenerateAccessReview200ResponseReport>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateAccessReview200ResponseReportJsonConverter" /> class.
+        /// </summary>
+        public GenerateAccessReview200ResponseReportJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize GeneratedAt
         /// </summary>
-        public static string GeneratedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string GeneratedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GenerateAccessReview200ResponseReport" />

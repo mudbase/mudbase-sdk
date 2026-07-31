@@ -139,7 +139,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Phone
         /// </summary>
         [JsonPropertyName("phone")]
-        public string? Phone { get { return this.PhoneOption; } set { this.PhoneOption = new(value); } }
+        public string? Phone { get { return this.PhoneOption.Value; } set { this.PhoneOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -152,7 +152,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Email
         /// </summary>
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -184,8 +184,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OTPSendRequest" />
     /// </summary>
-    public class OTPSendRequestJsonConverter : JsonConverter<OTPSendRequest>
+    public partial class OTPSendRequestJsonConverter : JsonConverter<OTPSendRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OTPSendRequestJsonConverter" /> class.
+        /// </summary>
+        public OTPSendRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OTPSendRequest" />
         /// </summary>

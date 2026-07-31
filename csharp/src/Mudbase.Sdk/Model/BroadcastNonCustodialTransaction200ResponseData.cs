@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TxHash
         /// </summary>
         [JsonPropertyName("txHash")]
-        public string? TxHash { get { return this.TxHashOption; } set { this.TxHashOption = new(value); } }
+        public string? TxHash { get { return this.TxHashOption.Value; } set { this.TxHashOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Chain
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Chain
         /// </summary>
         [JsonPropertyName("chain")]
-        public string? Chain { get { return this.ChainOption; } set { this.ChainOption = new(value); } }
+        public string? Chain { get { return this.ChainOption.Value; } set { this.ChainOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FromAddress
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FromAddress
         /// </summary>
         [JsonPropertyName("fromAddress")]
-        public string? FromAddress { get { return this.FromAddressOption; } set { this.FromAddressOption = new(value); } }
+        public string? FromAddress { get { return this.FromAddressOption.Value; } set { this.FromAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -101,7 +101,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Native currency for the chain (ETH, BNB, MATIC, etc.)</value>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -133,8 +133,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BroadcastNonCustodialTransaction200ResponseData" />
     /// </summary>
-    public class BroadcastNonCustodialTransaction200ResponseDataJsonConverter : JsonConverter<BroadcastNonCustodialTransaction200ResponseData>
+    public partial class BroadcastNonCustodialTransaction200ResponseDataJsonConverter : JsonConverter<BroadcastNonCustodialTransaction200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BroadcastNonCustodialTransaction200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public BroadcastNonCustodialTransaction200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BroadcastNonCustodialTransaction200ResponseData" />
         /// </summary>

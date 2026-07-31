@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>HTTP status code from your endpoint</value>
         [JsonPropertyName("status")]
-        public int? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public int? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Body
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Parsed JSON when possible; otherwise structure varies</value>
         [JsonPropertyName("body")]
-        public Object? Body { get { return this.BodyOption; } set { this.BodyOption = new(value); } }
+        public Object? Body { get { return this.BodyOption.Value; } set { this.BodyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Headers
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Headers
         /// </summary>
         [JsonPropertyName("headers")]
-        public Object? Headers { get { return this.HeadersOption; } set { this.HeadersOption = new(value); } }
+        public Object? Headers { get { return this.HeadersOption.Value; } set { this.HeadersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WebhookLogResponse" />
     /// </summary>
-    public class WebhookLogResponseJsonConverter : JsonConverter<WebhookLogResponse>
+    public partial class WebhookLogResponseJsonConverter : JsonConverter<WebhookLogResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebhookLogResponseJsonConverter" /> class.
+        /// </summary>
+        public WebhookLogResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="WebhookLogResponse" />
         /// </summary>

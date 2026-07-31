@@ -88,17 +88,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateAccessReviewRequestReviewPeriod" />
     /// </summary>
-    public class GenerateAccessReviewRequestReviewPeriodJsonConverter : JsonConverter<GenerateAccessReviewRequestReviewPeriod>
+    public partial class GenerateAccessReviewRequestReviewPeriodJsonConverter : JsonConverter<GenerateAccessReviewRequestReviewPeriod>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateAccessReviewRequestReviewPeriodJsonConverter" /> class.
+        /// </summary>
+        public GenerateAccessReviewRequestReviewPeriodJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Start
         /// </summary>
-        public static string StartFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string StartFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize End
         /// </summary>
-        public static string EndFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string EndFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GenerateAccessReviewRequestReviewPeriod" />

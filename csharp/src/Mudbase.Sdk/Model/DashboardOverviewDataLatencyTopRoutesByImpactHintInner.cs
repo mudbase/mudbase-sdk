@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RouteKey
         /// </summary>
         [JsonPropertyName("routeKey")]
-        public string? RouteKey { get { return this.RouteKeyOption; } set { this.RouteKeyOption = new(value); } }
+        public string? RouteKey { get { return this.RouteKeyOption.Value; } set { this.RouteKeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of P50Ms
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets P50Ms
         /// </summary>
         [JsonPropertyName("p50Ms")]
-        public int? P50Ms { get { return this.P50MsOption; } set { this.P50MsOption = new(value); } }
+        public int? P50Ms { get { return this.P50MsOption.Value; } set { this.P50MsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of P95Ms
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets P95Ms
         /// </summary>
         [JsonPropertyName("p95Ms")]
-        public int? P95Ms { get { return this.P95MsOption; } set { this.P95MsOption = new(value); } }
+        public int? P95Ms { get { return this.P95MsOption.Value; } set { this.P95MsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Count
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Count
         /// </summary>
         [JsonPropertyName("count")]
-        public int? Count { get { return this.CountOption; } set { this.CountOption = new(value); } }
+        public int? Count { get { return this.CountOption.Value; } set { this.CountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ImpactScore
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ImpactScore
         /// </summary>
         [JsonPropertyName("impactScore")]
-        public int? ImpactScore { get { return this.ImpactScoreOption; } set { this.ImpactScoreOption = new(value); } }
+        public int? ImpactScore { get { return this.ImpactScoreOption.Value; } set { this.ImpactScoreOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DashboardOverviewDataLatencyTopRoutesByImpactHintInner" />
     /// </summary>
-    public class DashboardOverviewDataLatencyTopRoutesByImpactHintInnerJsonConverter : JsonConverter<DashboardOverviewDataLatencyTopRoutesByImpactHintInner>
+    public partial class DashboardOverviewDataLatencyTopRoutesByImpactHintInnerJsonConverter : JsonConverter<DashboardOverviewDataLatencyTopRoutesByImpactHintInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardOverviewDataLatencyTopRoutesByImpactHintInnerJsonConverter" /> class.
+        /// </summary>
+        public DashboardOverviewDataLatencyTopRoutesByImpactHintInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DashboardOverviewDataLatencyTopRoutesByImpactHintInner" />
         /// </summary>

@@ -139,7 +139,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FileId
@@ -152,7 +152,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FileId
         /// </summary>
         [JsonPropertyName("fileId")]
-        public string? FileId { get { return this.FileIdOption; } set { this.FileIdOption = new(value); } }
+        public string? FileId { get { return this.FileIdOption.Value; } set { this.FileIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Scan
@@ -165,7 +165,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Scan
         /// </summary>
         [JsonPropertyName("scan")]
-        public ConfirmUploadResponseScan? Scan { get { return this.ScanOption; } set { this.ScanOption = new(value); } }
+        public ConfirmUploadResponseScan? Scan { get { return this.ScanOption.Value; } set { this.ScanOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,8 +196,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfirmUploadResponse" />
     /// </summary>
-    public class ConfirmUploadResponseJsonConverter : JsonConverter<ConfirmUploadResponse>
+    public partial class ConfirmUploadResponseJsonConverter : JsonConverter<ConfirmUploadResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfirmUploadResponseJsonConverter" /> class.
+        /// </summary>
+        public ConfirmUploadResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfirmUploadResponse" />
         /// </summary>

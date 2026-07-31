@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Link
         /// </summary>
         [JsonPropertyName("link")]
-        public string? Link { get { return this.LinkOption; } set { this.LinkOption = new(value); } }
+        public string? Link { get { return this.LinkOption.Value; } set { this.LinkOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TxRef
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TxRef
         /// </summary>
         [JsonPropertyName("txRef")]
-        public string? TxRef { get { return this.TxRefOption; } set { this.TxRefOption = new(value); } }
+        public string? TxRef { get { return this.TxRefOption.Value; } set { this.TxRefOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProviderRef
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProviderRef
         /// </summary>
         [JsonPropertyName("providerRef")]
-        public string? ProviderRef { get { return this.ProviderRefOption; } set { this.ProviderRefOption = new(value); } }
+        public string? ProviderRef { get { return this.ProviderRefOption.Value; } set { this.ProviderRefOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OrgReceives
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OrgReceives
         /// </summary>
         [JsonPropertyName("orgReceives")]
-        public decimal? OrgReceives { get { return this.OrgReceivesOption; } set { this.OrgReceivesOption = new(value); } }
+        public decimal? OrgReceives { get { return this.OrgReceivesOption.Value; } set { this.OrgReceivesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformPercent
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformPercent
         /// </summary>
         [JsonPropertyName("platformPercent")]
-        public decimal? PlatformPercent { get { return this.PlatformPercentOption; } set { this.PlatformPercentOption = new(value); } }
+        public decimal? PlatformPercent { get { return this.PlatformPercentOption.Value; } set { this.PlatformPercentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformFixed
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformFixed
         /// </summary>
         [JsonPropertyName("platformFixed")]
-        public decimal? PlatformFixed { get { return this.PlatformFixedOption; } set { this.PlatformFixedOption = new(value); } }
+        public decimal? PlatformFixed { get { return this.PlatformFixedOption.Value; } set { this.PlatformFixedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,8 +196,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InitializePayment200ResponseData" />
     /// </summary>
-    public class InitializePayment200ResponseDataJsonConverter : JsonConverter<InitializePayment200ResponseData>
+    public partial class InitializePayment200ResponseDataJsonConverter : JsonConverter<InitializePayment200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InitializePayment200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public InitializePayment200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InitializePayment200ResponseData" />
         /// </summary>

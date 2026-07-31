@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// <value>OAuth scopes to request</value>
         /* <example>[&quot;profile&quot;,&quot;email&quot;]</example> */
         [JsonPropertyName("scope")]
-        public List<string>? Scope { get { return this.ScopeOption; } set { this.ScopeOption = new(value); } }
+        public List<string>? Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DisplayName
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Custom display name for the provider</value>
         /* <example>Sign in with Google</example> */
         [JsonPropertyName("displayName")]
-        public string? DisplayName { get { return this.DisplayNameOption; } set { this.DisplayNameOption = new(value); } }
+        public string? DisplayName { get { return this.DisplayNameOption.Value; } set { this.DisplayNameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -137,8 +137,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfigureOAuthProviderRequest" />
     /// </summary>
-    public class ConfigureOAuthProviderRequestJsonConverter : JsonConverter<ConfigureOAuthProviderRequest>
+    public partial class ConfigureOAuthProviderRequestJsonConverter : JsonConverter<ConfigureOAuthProviderRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigureOAuthProviderRequestJsonConverter" /> class.
+        /// </summary>
+        public ConfigureOAuthProviderRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfigureOAuthProviderRequest" />
         /// </summary>

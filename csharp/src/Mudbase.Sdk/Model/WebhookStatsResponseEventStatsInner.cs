@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Event name</value>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Count
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Count
         /// </summary>
         [JsonPropertyName("count")]
-        public int? Count { get { return this.CountOption; } set { this.CountOption = new(value); } }
+        public int? Count { get { return this.CountOption.Value; } set { this.CountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SuccessRate
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Fraction of logs with status success (0–1)</value>
         [JsonPropertyName("successRate")]
-        public decimal? SuccessRate { get { return this.SuccessRateOption; } set { this.SuccessRateOption = new(value); } }
+        public decimal? SuccessRate { get { return this.SuccessRateOption.Value; } set { this.SuccessRateOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WebhookStatsResponseEventStatsInner" />
     /// </summary>
-    public class WebhookStatsResponseEventStatsInnerJsonConverter : JsonConverter<WebhookStatsResponseEventStatsInner>
+    public partial class WebhookStatsResponseEventStatsInnerJsonConverter : JsonConverter<WebhookStatsResponseEventStatsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebhookStatsResponseEventStatsInnerJsonConverter" /> class.
+        /// </summary>
+        public WebhookStatsResponseEventStatsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="WebhookStatsResponseEventStatsInner" />
         /// </summary>

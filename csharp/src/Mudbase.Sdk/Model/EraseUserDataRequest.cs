@@ -120,7 +120,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Required unless the account has no password set (OAuth-only)</value>
         /* <example>CurrentPassword123!</example> */
         [JsonPropertyName("currentPassword")]
-        public string? CurrentPassword { get { return this.CurrentPasswordOption; } set { this.CurrentPasswordOption = new(value); } }
+        public string? CurrentPassword { get { return this.CurrentPasswordOption.Value; } set { this.CurrentPasswordOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotpToken
@@ -135,7 +135,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Required only if the account has 2FA enabled</value>
         /* <example>123456</example> */
         [JsonPropertyName("totpToken")]
-        public string? TotpToken { get { return this.TotpTokenOption; } set { this.TotpTokenOption = new(value); } }
+        public string? TotpToken { get { return this.TotpTokenOption.Value; } set { this.TotpTokenOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -166,8 +166,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EraseUserDataRequest" />
     /// </summary>
-    public class EraseUserDataRequestJsonConverter : JsonConverter<EraseUserDataRequest>
+    public partial class EraseUserDataRequestJsonConverter : JsonConverter<EraseUserDataRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EraseUserDataRequestJsonConverter" /> class.
+        /// </summary>
+        public EraseUserDataRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EraseUserDataRequest" />
         /// </summary>

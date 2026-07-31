@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Collections
         /// </summary>
         [JsonPropertyName("collections")]
-        public List<Object>? Collections { get { return this.CollectionsOption; } set { this.CollectionsOption = new(value); } }
+        public List<Object>? Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Roles
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Roles
         /// </summary>
         [JsonPropertyName("roles")]
-        public List<Object>? Roles { get { return this.RolesOption; } set { this.RolesOption = new(value); } }
+        public List<Object>? Roles { get { return this.RolesOption.Value; } set { this.RolesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Features
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Per-role featurePermissions for app JWT gates</value>
         [JsonPropertyName("features")]
-        public List<Object>? Features { get { return this.FeaturesOption; } set { this.FeaturesOption = new(value); } }
+        public List<Object>? Features { get { return this.FeaturesOption.Value; } set { this.FeaturesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetPermissionsMatrix200ResponseData" />
     /// </summary>
-    public class GetPermissionsMatrix200ResponseDataJsonConverter : JsonConverter<GetPermissionsMatrix200ResponseData>
+    public partial class GetPermissionsMatrix200ResponseDataJsonConverter : JsonConverter<GetPermissionsMatrix200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetPermissionsMatrix200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetPermissionsMatrix200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetPermissionsMatrix200ResponseData" />
         /// </summary>

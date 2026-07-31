@@ -141,7 +141,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -154,7 +154,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Plan
@@ -167,7 +167,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Plan
         /// </summary>
         [JsonPropertyName("plan")]
-        public string? Plan { get { return this.PlanOption; } set { this.PlanOption = new(value); } }
+        public string? Plan { get { return this.PlanOption.Value; } set { this.PlanOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentPeriodEnd
@@ -180,7 +180,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CurrentPeriodEnd
         /// </summary>
         [JsonPropertyName("currentPeriodEnd")]
-        public DateTime? CurrentPeriodEnd { get { return this.CurrentPeriodEndOption; } set { this.CurrentPeriodEndOption = new(value); } }
+        public DateTime? CurrentPeriodEnd { get { return this.CurrentPeriodEndOption.Value; } set { this.CurrentPeriodEndOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -212,12 +212,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="VerifyPayment200ResponseDataSubscription" />
     /// </summary>
-    public class VerifyPayment200ResponseDataSubscriptionJsonConverter : JsonConverter<VerifyPayment200ResponseDataSubscription>
+    public partial class VerifyPayment200ResponseDataSubscriptionJsonConverter : JsonConverter<VerifyPayment200ResponseDataSubscription>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifyPayment200ResponseDataSubscriptionJsonConverter" /> class.
+        /// </summary>
+        public VerifyPayment200ResponseDataSubscriptionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CurrentPeriodEnd
         /// </summary>
-        public static string CurrentPeriodEndFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CurrentPeriodEndFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="VerifyPayment200ResponseDataSubscription" />

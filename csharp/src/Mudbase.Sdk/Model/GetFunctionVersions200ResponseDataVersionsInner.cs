@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Code
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Code
         /// </summary>
         [JsonPropertyName("code")]
-        public string? Code { get { return this.CodeOption; } set { this.CodeOption = new(value); } }
+        public string? Code { get { return this.CodeOption.Value; } set { this.CodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VarVersion
         /// </summary>
         [JsonPropertyName("version")]
-        public int? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new(value); } }
+        public int? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedBy
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedBy
         /// </summary>
         [JsonPropertyName("createdBy")]
-        public string? CreatedBy { get { return this.CreatedByOption; } set { this.CreatedByOption = new(value); } }
+        public string? CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Comment
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Comment
         /// </summary>
         [JsonPropertyName("comment")]
-        public string? Comment { get { return this.CommentOption; } set { this.CommentOption = new(value); } }
+        public string? Comment { get { return this.CommentOption.Value; } set { this.CommentOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,12 +164,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetFunctionVersions200ResponseDataVersionsInner" />
     /// </summary>
-    public class GetFunctionVersions200ResponseDataVersionsInnerJsonConverter : JsonConverter<GetFunctionVersions200ResponseDataVersionsInner>
+    public partial class GetFunctionVersions200ResponseDataVersionsInnerJsonConverter : JsonConverter<GetFunctionVersions200ResponseDataVersionsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetFunctionVersions200ResponseDataVersionsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetFunctionVersions200ResponseDataVersionsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetFunctionVersions200ResponseDataVersionsInner" />

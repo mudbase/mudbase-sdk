@@ -151,7 +151,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EffectiveSource
         /// </summary>
         [JsonPropertyName("effectiveSource")]
-        public EffectiveSourceEnum? EffectiveSource { get { return this.EffectiveSourceOption; } set { this.EffectiveSourceOption = new(value); } }
+        public EffectiveSourceEnum? EffectiveSource { get { return this.EffectiveSourceOption.Value; } set { this.EffectiveSourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -164,7 +164,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Subject
@@ -177,7 +177,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Subject
         /// </summary>
         [JsonPropertyName("subject")]
-        public string? Subject { get { return this.SubjectOption; } set { this.SubjectOption = new(value); } }
+        public string? Subject { get { return this.SubjectOption.Value; } set { this.SubjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HtmlBody
@@ -190,7 +190,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets HtmlBody
         /// </summary>
         [JsonPropertyName("htmlBody")]
-        public string? HtmlBody { get { return this.HtmlBodyOption; } set { this.HtmlBodyOption = new(value); } }
+        public string? HtmlBody { get { return this.HtmlBodyOption.Value; } set { this.HtmlBodyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TextBody
@@ -203,7 +203,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TextBody
         /// </summary>
         [JsonPropertyName("textBody")]
-        public string? TextBody { get { return this.TextBodyOption; } set { this.TextBodyOption = new(value); } }
+        public string? TextBody { get { return this.TextBodyOption.Value; } set { this.TextBodyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Variables
@@ -216,7 +216,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Variables
         /// </summary>
         [JsonPropertyName("variables")]
-        public List<string>? Variables { get { return this.VariablesOption; } set { this.VariablesOption = new(value); } }
+        public List<string>? Variables { get { return this.VariablesOption.Value; } set { this.VariablesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -229,7 +229,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -242,7 +242,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VarVersion
         /// </summary>
         [JsonPropertyName("version")]
-        public int? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new(value); } }
+        public int? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsProjectOverride
@@ -255,7 +255,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsProjectOverride
         /// </summary>
         [JsonPropertyName("isProjectOverride")]
-        public bool? IsProjectOverride { get { return this.IsProjectOverrideOption; } set { this.IsProjectOverrideOption = new(value); } }
+        public bool? IsProjectOverride { get { return this.IsProjectOverrideOption.Value; } set { this.IsProjectOverrideOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -292,12 +292,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EmailTemplateResolved" />
     /// </summary>
-    public class EmailTemplateResolvedJsonConverter : JsonConverter<EmailTemplateResolved>
+    public partial class EmailTemplateResolvedJsonConverter : JsonConverter<EmailTemplateResolved>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmailTemplateResolvedJsonConverter" /> class.
+        /// </summary>
+        public EmailTemplateResolvedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="EmailTemplateResolved" />

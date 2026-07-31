@@ -209,7 +209,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Resource
         /// </summary>
         [JsonPropertyName("resource")]
-        public ResourceEnum? Resource { get { return this.ResourceOption; } set { this.ResourceOption = new(value); } }
+        public ResourceEnum? Resource { get { return this.ResourceOption.Value; } set { this.ResourceOption = new(value); } }
 
         /// <summary>
         /// Defines Actions
@@ -330,7 +330,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Actions
         /// </summary>
         [JsonPropertyName("actions")]
-        public List<CreateRoleRequestPermissionsInner.ActionsEnum>? Actions { get { return this.ActionsOption; } set { this.ActionsOption = new(value); } }
+        public List<CreateRoleRequestPermissionsInner.ActionsEnum>? Actions { get { return this.ActionsOption.Value; } set { this.ActionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Conditions
@@ -343,7 +343,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Conditions
         /// </summary>
         [JsonPropertyName("conditions")]
-        public Object? Conditions { get { return this.ConditionsOption; } set { this.ConditionsOption = new(value); } }
+        public Object? Conditions { get { return this.ConditionsOption.Value; } set { this.ConditionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -374,8 +374,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateRoleRequestPermissionsInner" />
     /// </summary>
-    public class CreateRoleRequestPermissionsInnerJsonConverter : JsonConverter<CreateRoleRequestPermissionsInner>
+    public partial class CreateRoleRequestPermissionsInnerJsonConverter : JsonConverter<CreateRoleRequestPermissionsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateRoleRequestPermissionsInnerJsonConverter" /> class.
+        /// </summary>
+        public CreateRoleRequestPermissionsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateRoleRequestPermissionsInner" />
         /// </summary>

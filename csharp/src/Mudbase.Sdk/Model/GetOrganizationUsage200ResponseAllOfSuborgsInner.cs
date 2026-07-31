@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Slug
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Slug
         /// </summary>
         [JsonPropertyName("slug")]
-        public string? Slug { get { return this.SlugOption; } set { this.SlugOption = new(value); } }
+        public string? Slug { get { return this.SlugOption.Value; } set { this.SlugOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Usage
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public Usage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public Usage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetOrganizationUsage200ResponseAllOfSuborgsInner" />
     /// </summary>
-    public class GetOrganizationUsage200ResponseAllOfSuborgsInnerJsonConverter : JsonConverter<GetOrganizationUsage200ResponseAllOfSuborgsInner>
+    public partial class GetOrganizationUsage200ResponseAllOfSuborgsInnerJsonConverter : JsonConverter<GetOrganizationUsage200ResponseAllOfSuborgsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetOrganizationUsage200ResponseAllOfSuborgsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetOrganizationUsage200ResponseAllOfSuborgsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetOrganizationUsage200ResponseAllOfSuborgsInner" />
         /// </summary>

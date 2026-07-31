@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Versions
         /// </summary>
         [JsonPropertyName("versions")]
-        public List<GetFunctionVersions200ResponseDataVersionsInner>? Versions { get { return this.VersionsOption; } set { this.VersionsOption = new(value); } }
+        public List<GetFunctionVersions200ResponseDataVersionsInner>? Versions { get { return this.VersionsOption.Value; } set { this.VersionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetFunctionVersions200ResponseData" />
     /// </summary>
-    public class GetFunctionVersions200ResponseDataJsonConverter : JsonConverter<GetFunctionVersions200ResponseData>
+    public partial class GetFunctionVersions200ResponseDataJsonConverter : JsonConverter<GetFunctionVersions200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetFunctionVersions200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetFunctionVersions200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetFunctionVersions200ResponseData" />
         /// </summary>

@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SampleData
         /// </summary>
         [JsonPropertyName("sampleData")]
-        public Dictionary<string, Object>? SampleData { get { return this.SampleDataOption; } set { this.SampleDataOption = new(value); } }
+        public Dictionary<string, Object>? SampleData { get { return this.SampleDataOption.Value; } set { this.SampleDataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PreviewProjectEmailTemplateRequest" />
     /// </summary>
-    public class PreviewProjectEmailTemplateRequestJsonConverter : JsonConverter<PreviewProjectEmailTemplateRequest>
+    public partial class PreviewProjectEmailTemplateRequestJsonConverter : JsonConverter<PreviewProjectEmailTemplateRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreviewProjectEmailTemplateRequestJsonConverter" /> class.
+        /// </summary>
+        public PreviewProjectEmailTemplateRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PreviewProjectEmailTemplateRequest" />
         /// </summary>

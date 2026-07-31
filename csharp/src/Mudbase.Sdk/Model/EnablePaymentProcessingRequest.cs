@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets BusinessMobile
         /// </summary>
         [JsonPropertyName("businessMobile")]
-        public string? BusinessMobile { get { return this.BusinessMobileOption; } set { this.BusinessMobileOption = new(value); } }
+        public string? BusinessMobile { get { return this.BusinessMobileOption.Value; } set { this.BusinessMobileOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Bvn
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Required only when country is NG (Nigeria)</value>
         [JsonPropertyName("bvn")]
-        public string? Bvn { get { return this.BvnOption; } set { this.BvnOption = new(value); } }
+        public string? Bvn { get { return this.BvnOption.Value; } set { this.BvnOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -140,8 +140,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EnablePaymentProcessingRequest" />
     /// </summary>
-    public class EnablePaymentProcessingRequestJsonConverter : JsonConverter<EnablePaymentProcessingRequest>
+    public partial class EnablePaymentProcessingRequestJsonConverter : JsonConverter<EnablePaymentProcessingRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnablePaymentProcessingRequestJsonConverter" /> class.
+        /// </summary>
+        public EnablePaymentProcessingRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EnablePaymentProcessingRequest" />
         /// </summary>

@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Project
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public Project? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public Project? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateProject201Response" />
     /// </summary>
-    public class CreateProject201ResponseJsonConverter : JsonConverter<CreateProject201Response>
+    public partial class CreateProject201ResponseJsonConverter : JsonConverter<CreateProject201Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateProject201ResponseJsonConverter" /> class.
+        /// </summary>
+        public CreateProject201ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateProject201Response" />
         /// </summary>

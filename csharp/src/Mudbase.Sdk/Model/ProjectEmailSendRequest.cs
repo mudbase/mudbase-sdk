@@ -135,7 +135,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Email layout branding; defaults from project context when omitted</value>
         [JsonPropertyName("brandingScope")]
-        public BrandingScopeEnum? BrandingScope { get { return this.BrandingScopeOption; } set { this.BrandingScopeOption = new(value); } }
+        public BrandingScopeEnum? BrandingScope { get { return this.BrandingScopeOption.Value; } set { this.BrandingScopeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Template
@@ -149,7 +149,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Registered template name resolved by the email worker</value>
         [JsonPropertyName("template")]
-        public string? Template { get { return this.TemplateOption; } set { this.TemplateOption = new(value); } }
+        public string? Template { get { return this.TemplateOption.Value; } set { this.TemplateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of To
@@ -162,7 +162,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets To
         /// </summary>
         [JsonPropertyName("to")]
-        public EmailRequestTo? To { get { return this.ToOption; } set { this.ToOption = new(value); } }
+        public EmailRequestTo? To { get { return this.ToOption.Value; } set { this.ToOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -175,7 +175,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public Dictionary<string, Object>? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public Dictionary<string, Object>? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Subject
@@ -188,7 +188,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Subject
         /// </summary>
         [JsonPropertyName("subject")]
-        public string? Subject { get { return this.SubjectOption; } set { this.SubjectOption = new(value); } }
+        public string? Subject { get { return this.SubjectOption.Value; } set { this.SubjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Html
@@ -201,7 +201,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Html
         /// </summary>
         [JsonPropertyName("html")]
-        public string? Html { get { return this.HtmlOption; } set { this.HtmlOption = new(value); } }
+        public string? Html { get { return this.HtmlOption.Value; } set { this.HtmlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IdempotencyKey
@@ -214,7 +214,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IdempotencyKey
         /// </summary>
         [JsonPropertyName("idempotencyKey")]
-        public string? IdempotencyKey { get { return this.IdempotencyKeyOption; } set { this.IdempotencyKeyOption = new(value); } }
+        public string? IdempotencyKey { get { return this.IdempotencyKeyOption.Value; } set { this.IdempotencyKeyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -249,8 +249,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectEmailSendRequest" />
     /// </summary>
-    public class ProjectEmailSendRequestJsonConverter : JsonConverter<ProjectEmailSendRequest>
+    public partial class ProjectEmailSendRequestJsonConverter : JsonConverter<ProjectEmailSendRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectEmailSendRequestJsonConverter" /> class.
+        /// </summary>
+        public ProjectEmailSendRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectEmailSendRequest" />
         /// </summary>

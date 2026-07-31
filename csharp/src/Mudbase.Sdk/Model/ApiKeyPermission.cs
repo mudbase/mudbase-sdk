@@ -305,8 +305,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiKeyPermission" />
     /// </summary>
-    public class ApiKeyPermissionJsonConverter : JsonConverter<ApiKeyPermission>
+    public partial class ApiKeyPermissionJsonConverter : JsonConverter<ApiKeyPermission>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKeyPermissionJsonConverter" /> class.
+        /// </summary>
+        public ApiKeyPermissionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiKeyPermission" />
         /// </summary>

@@ -229,7 +229,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Optional webhook secret for HMAC signing</value>
         /* <example>whsec_abc123xyz789</example> */
         [JsonPropertyName("secret")]
-        public string? Secret { get { return this.SecretOption; } set { this.SecretOption = new(value); } }
+        public string? Secret { get { return this.SecretOption.Value; } set { this.SecretOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Filters
@@ -242,7 +242,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Filters
         /// </summary>
         [JsonPropertyName("filters")]
-        public CreateWalletWebhookRequestFilters? Filters { get { return this.FiltersOption; } set { this.FiltersOption = new(value); } }
+        public CreateWalletWebhookRequestFilters? Filters { get { return this.FiltersOption.Value; } set { this.FiltersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectId
@@ -257,7 +257,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Optional project ID</value>
         /* <example>685ad30be129932fbb7a1047</example> */
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -290,8 +290,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateWalletWebhookRequest" />
     /// </summary>
-    public class CreateWalletWebhookRequestJsonConverter : JsonConverter<CreateWalletWebhookRequest>
+    public partial class CreateWalletWebhookRequestJsonConverter : JsonConverter<CreateWalletWebhookRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateWalletWebhookRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateWalletWebhookRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateWalletWebhookRequest" />
         /// </summary>

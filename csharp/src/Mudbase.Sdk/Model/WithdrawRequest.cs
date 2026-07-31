@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>For USDT wallets only; ETH, BSC, TRX, SOL, or POLYGON.</value>
         [JsonPropertyName("network")]
-        public string? Network { get { return this.NetworkOption; } set { this.NetworkOption = new(value); } }
+        public string? Network { get { return this.NetworkOption.Value; } set { this.NetworkOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Options
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Options
         /// </summary>
         [JsonPropertyName("options")]
-        public Object? Options { get { return this.OptionsOption; } set { this.OptionsOption = new(value); } }
+        public Object? Options { get { return this.OptionsOption.Value; } set { this.OptionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -121,8 +121,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WithdrawRequest" />
     /// </summary>
-    public class WithdrawRequestJsonConverter : JsonConverter<WithdrawRequest>
+    public partial class WithdrawRequestJsonConverter : JsonConverter<WithdrawRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WithdrawRequestJsonConverter" /> class.
+        /// </summary>
+        public WithdrawRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="WithdrawRequest" />
         /// </summary>

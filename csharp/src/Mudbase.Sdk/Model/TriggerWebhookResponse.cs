@@ -88,8 +88,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TriggerWebhookResponse" />
     /// </summary>
-    public class TriggerWebhookResponseJsonConverter : JsonConverter<TriggerWebhookResponse>
+    public partial class TriggerWebhookResponseJsonConverter : JsonConverter<TriggerWebhookResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TriggerWebhookResponseJsonConverter" /> class.
+        /// </summary>
+        public TriggerWebhookResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TriggerWebhookResponse" />
         /// </summary>

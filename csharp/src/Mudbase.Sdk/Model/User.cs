@@ -41,6 +41,8 @@ namespace Mudbase.Sdk.Model
         /// <param name="fullName">fullName</param>
         /// <param name="avatar">avatar</param>
         /// <param name="role">role</param>
+        /// <param name="customRole">Application-level role slug from the project&#39;s Multi-Role feature (e.g. \&quot;customer\&quot;, \&quot;seller\&quot;). Null for org-level (org/admin/member/viewer) users who aren&#39;t project end-users.</param>
+        /// <param name="isAnonymous">True for a guest session created via POST /api/auth/anonymous that hasn&#39;t been converted to a full account yet.</param>
         /// <param name="emailVerified">emailVerified</param>
         /// <param name="phoneVerified">phoneVerified</param>
         /// <param name="twoFactorEnabled">twoFactorEnabled</param>
@@ -49,7 +51,7 @@ namespace Mudbase.Sdk.Model
         /// <param name="updatedAt">updatedAt</param>
         /// <param name="org">org</param>
         [JsonConstructor]
-        public User(Option<string?> id = default, Option<string?> email = default, Option<string?> firstName = default, Option<string?> lastName = default, Option<string?> fullName = default, Option<string?> avatar = default, Option<RoleEnum?> role = default, Option<bool?> emailVerified = default, Option<bool?> phoneVerified = default, Option<bool?> twoFactorEnabled = default, Option<DateTime?> lastLogin = default, Option<DateTime?> createdAt = default, Option<DateTime?> updatedAt = default, Option<OrganizationSummary?> org = default)
+        public User(Option<string?> id = default, Option<string?> email = default, Option<string?> firstName = default, Option<string?> lastName = default, Option<string?> fullName = default, Option<string?> avatar = default, Option<RoleEnum?> role = default, Option<string?> customRole = default, Option<bool?> isAnonymous = default, Option<bool?> emailVerified = default, Option<bool?> phoneVerified = default, Option<bool?> twoFactorEnabled = default, Option<DateTime?> lastLogin = default, Option<DateTime?> createdAt = default, Option<DateTime?> updatedAt = default, Option<OrganizationSummary?> org = default)
         {
             IdOption = id;
             EmailOption = email;
@@ -58,6 +60,8 @@ namespace Mudbase.Sdk.Model
             FullNameOption = fullName;
             AvatarOption = avatar;
             RoleOption = role;
+            CustomRoleOption = customRole;
+            IsAnonymousOption = isAnonymous;
             EmailVerifiedOption = emailVerified;
             PhoneVerifiedOption = phoneVerified;
             TwoFactorEnabledOption = twoFactorEnabled;
@@ -175,7 +179,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Role
         /// </summary>
         [JsonPropertyName("role")]
-        public RoleEnum? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public RoleEnum? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -188,7 +192,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -201,7 +205,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Email
         /// </summary>
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FirstName
@@ -214,7 +218,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FirstName
         /// </summary>
         [JsonPropertyName("firstName")]
-        public string? FirstName { get { return this.FirstNameOption; } set { this.FirstNameOption = new(value); } }
+        public string? FirstName { get { return this.FirstNameOption.Value; } set { this.FirstNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastName
@@ -227,7 +231,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastName
         /// </summary>
         [JsonPropertyName("lastName")]
-        public string? LastName { get { return this.LastNameOption; } set { this.LastNameOption = new(value); } }
+        public string? LastName { get { return this.LastNameOption.Value; } set { this.LastNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FullName
@@ -240,7 +244,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FullName
         /// </summary>
         [JsonPropertyName("fullName")]
-        public string? FullName { get { return this.FullNameOption; } set { this.FullNameOption = new(value); } }
+        public string? FullName { get { return this.FullNameOption.Value; } set { this.FullNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Avatar
@@ -253,7 +257,35 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Avatar
         /// </summary>
         [JsonPropertyName("avatar")]
-        public string? Avatar { get { return this.AvatarOption; } set { this.AvatarOption = new(value); } }
+        public string? Avatar { get { return this.AvatarOption.Value; } set { this.AvatarOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of CustomRole
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> CustomRoleOption { get; private set; }
+
+        /// <summary>
+        /// Application-level role slug from the project&#39;s Multi-Role feature (e.g. \&quot;customer\&quot;, \&quot;seller\&quot;). Null for org-level (org/admin/member/viewer) users who aren&#39;t project end-users.
+        /// </summary>
+        /// <value>Application-level role slug from the project&#39;s Multi-Role feature (e.g. \&quot;customer\&quot;, \&quot;seller\&quot;). Null for org-level (org/admin/member/viewer) users who aren&#39;t project end-users.</value>
+        [JsonPropertyName("customRole")]
+        public string? CustomRole { get { return this.CustomRoleOption.Value; } set { this.CustomRoleOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of IsAnonymous
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsAnonymousOption { get; private set; }
+
+        /// <summary>
+        /// True for a guest session created via POST /api/auth/anonymous that hasn&#39;t been converted to a full account yet.
+        /// </summary>
+        /// <value>True for a guest session created via POST /api/auth/anonymous that hasn&#39;t been converted to a full account yet.</value>
+        [JsonPropertyName("isAnonymous")]
+        public bool? IsAnonymous { get { return this.IsAnonymousOption.Value; } set { this.IsAnonymousOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EmailVerified
@@ -266,7 +298,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EmailVerified
         /// </summary>
         [JsonPropertyName("emailVerified")]
-        public bool? EmailVerified { get { return this.EmailVerifiedOption; } set { this.EmailVerifiedOption = new(value); } }
+        public bool? EmailVerified { get { return this.EmailVerifiedOption.Value; } set { this.EmailVerifiedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PhoneVerified
@@ -279,7 +311,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PhoneVerified
         /// </summary>
         [JsonPropertyName("phoneVerified")]
-        public bool? PhoneVerified { get { return this.PhoneVerifiedOption; } set { this.PhoneVerifiedOption = new(value); } }
+        public bool? PhoneVerified { get { return this.PhoneVerifiedOption.Value; } set { this.PhoneVerifiedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TwoFactorEnabled
@@ -292,7 +324,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TwoFactorEnabled
         /// </summary>
         [JsonPropertyName("twoFactorEnabled")]
-        public bool? TwoFactorEnabled { get { return this.TwoFactorEnabledOption; } set { this.TwoFactorEnabledOption = new(value); } }
+        public bool? TwoFactorEnabled { get { return this.TwoFactorEnabledOption.Value; } set { this.TwoFactorEnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastLogin
@@ -305,7 +337,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastLogin
         /// </summary>
         [JsonPropertyName("lastLogin")]
-        public DateTime? LastLogin { get { return this.LastLoginOption; } set { this.LastLoginOption = new(value); } }
+        public DateTime? LastLogin { get { return this.LastLoginOption.Value; } set { this.LastLoginOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -318,7 +350,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -331,7 +363,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Org
@@ -344,7 +376,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Org
         /// </summary>
         [JsonPropertyName("org")]
-        public OrganizationSummary? Org { get { return this.OrgOption; } set { this.OrgOption = new(value); } }
+        public OrganizationSummary? Org { get { return this.OrgOption.Value; } set { this.OrgOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -361,6 +393,8 @@ namespace Mudbase.Sdk.Model
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Avatar: ").Append(Avatar).Append("\n");
             sb.Append("  Role: ").Append(Role).Append("\n");
+            sb.Append("  CustomRole: ").Append(CustomRole).Append("\n");
+            sb.Append("  IsAnonymous: ").Append(IsAnonymous).Append("\n");
             sb.Append("  EmailVerified: ").Append(EmailVerified).Append("\n");
             sb.Append("  PhoneVerified: ").Append(PhoneVerified).Append("\n");
             sb.Append("  TwoFactorEnabled: ").Append(TwoFactorEnabled).Append("\n");
@@ -386,22 +420,32 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="User" />
     /// </summary>
-    public class UserJsonConverter : JsonConverter<User>
+    public partial class UserJsonConverter : JsonConverter<User>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserJsonConverter" /> class.
+        /// </summary>
+        public UserJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastLogin
         /// </summary>
-        public static string LastLoginFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastLoginFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="User" />
@@ -427,6 +471,8 @@ namespace Mudbase.Sdk.Model
             Option<string?> fullName = default;
             Option<string?> avatar = default;
             Option<User.RoleEnum?> role = default;
+            Option<string?> customRole = default;
+            Option<bool?> isAnonymous = default;
             Option<bool?> emailVerified = default;
             Option<bool?> phoneVerified = default;
             Option<bool?> twoFactorEnabled = default;
@@ -472,6 +518,12 @@ namespace Mudbase.Sdk.Model
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
                                 role = new Option<User.RoleEnum?>(User.RoleEnumFromStringOrDefault(roleRawValue));
+                            break;
+                        case "customRole":
+                            customRole = new Option<string?>(utf8JsonReader.GetString());
+                            break;
+                        case "isAnonymous":
+                            isAnonymous = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "emailVerified":
                             emailVerified = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -521,6 +573,9 @@ namespace Mudbase.Sdk.Model
             if (role.IsSet && role.Value == null)
                 throw new ArgumentNullException(nameof(role), "Property is not nullable for class User.");
 
+            if (isAnonymous.IsSet && isAnonymous.Value == null)
+                throw new ArgumentNullException(nameof(isAnonymous), "Property is not nullable for class User.");
+
             if (emailVerified.IsSet && emailVerified.Value == null)
                 throw new ArgumentNullException(nameof(emailVerified), "Property is not nullable for class User.");
 
@@ -542,7 +597,7 @@ namespace Mudbase.Sdk.Model
             if (org.IsSet && org.Value == null)
                 throw new ArgumentNullException(nameof(org), "Property is not nullable for class User.");
 
-            return new User(id, email, firstName, lastName, fullName, avatar, role, emailVerified, phoneVerified, twoFactorEnabled, lastLogin, createdAt, updatedAt, org);
+            return new User(id, email, firstName, lastName, fullName, avatar, role, customRole, isAnonymous, emailVerified, phoneVerified, twoFactorEnabled, lastLogin, createdAt, updatedAt, org);
         }
 
         /// <summary>
@@ -610,6 +665,15 @@ namespace Mudbase.Sdk.Model
 
             var roleRawValue = User.RoleEnumToJsonValue(user.RoleOption.Value!.Value);
             writer.WriteString("role", roleRawValue);
+            if (user.CustomRoleOption.IsSet)
+                if (user.CustomRoleOption.Value != null)
+                    writer.WriteString("customRole", user.CustomRole);
+                else
+                    writer.WriteNull("customRole");
+
+            if (user.IsAnonymousOption.IsSet)
+                writer.WriteBoolean("isAnonymous", user.IsAnonymousOption.Value!.Value);
+
             if (user.EmailVerifiedOption.IsSet)
                 writer.WriteBoolean("emailVerified", user.EmailVerifiedOption.Value!.Value);
 

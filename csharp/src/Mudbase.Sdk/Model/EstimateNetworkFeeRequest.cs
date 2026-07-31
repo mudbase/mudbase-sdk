@@ -397,7 +397,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Required for USDT; network on which USDT is sent</value>
         [JsonPropertyName("network")]
-        public NetworkEnum? Network { get { return this.NetworkOption; } set { this.NetworkOption = new(value); } }
+        public NetworkEnum? Network { get { return this.NetworkOption.Value; } set { this.NetworkOption = new(value); } }
 
         /// <summary>
         /// Transaction amount (used for display; fee is chain-based)
@@ -441,8 +441,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EstimateNetworkFeeRequest" />
     /// </summary>
-    public class EstimateNetworkFeeRequestJsonConverter : JsonConverter<EstimateNetworkFeeRequest>
+    public partial class EstimateNetworkFeeRequestJsonConverter : JsonConverter<EstimateNetworkFeeRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EstimateNetworkFeeRequestJsonConverter" /> class.
+        /// </summary>
+        public EstimateNetworkFeeRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EstimateNetworkFeeRequest" />
         /// </summary>

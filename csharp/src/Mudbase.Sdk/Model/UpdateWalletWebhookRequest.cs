@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Url
         /// </summary>
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Events
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Events
         /// </summary>
         [JsonPropertyName("events")]
-        public List<string>? Events { get { return this.EventsOption; } set { this.EventsOption = new(value); } }
+        public List<string>? Events { get { return this.EventsOption.Value; } set { this.EventsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Secret
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Secret
         /// </summary>
         [JsonPropertyName("secret")]
-        public string? Secret { get { return this.SecretOption; } set { this.SecretOption = new(value); } }
+        public string? Secret { get { return this.SecretOption.Value; } set { this.SecretOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Filters
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Filters
         /// </summary>
         [JsonPropertyName("filters")]
-        public Object? Filters { get { return this.FiltersOption; } set { this.FiltersOption = new(value); } }
+        public Object? Filters { get { return this.FiltersOption.Value; } set { this.FiltersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateWalletWebhookRequest" />
     /// </summary>
-    public class UpdateWalletWebhookRequestJsonConverter : JsonConverter<UpdateWalletWebhookRequest>
+    public partial class UpdateWalletWebhookRequestJsonConverter : JsonConverter<UpdateWalletWebhookRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateWalletWebhookRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateWalletWebhookRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateWalletWebhookRequest" />
         /// </summary>

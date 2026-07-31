@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Slug
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Slug
         /// </summary>
         [JsonPropertyName("slug")]
-        public string? Slug { get { return this.SlugOption; } set { this.SlugOption = new(value); } }
+        public string? Slug { get { return this.SlugOption.Value; } set { this.SlugOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsArchived
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsArchived
         /// </summary>
         [JsonPropertyName("isArchived")]
-        public bool? IsArchived { get { return this.IsArchivedOption; } set { this.IsArchivedOption = new(value); } }
+        public bool? IsArchived { get { return this.IsArchivedOption.Value; } set { this.IsArchivedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -150,8 +150,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminProjectPatchRequest" />
     /// </summary>
-    public class AdminProjectPatchRequestJsonConverter : JsonConverter<AdminProjectPatchRequest>
+    public partial class AdminProjectPatchRequestJsonConverter : JsonConverter<AdminProjectPatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminProjectPatchRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminProjectPatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminProjectPatchRequest" />
         /// </summary>

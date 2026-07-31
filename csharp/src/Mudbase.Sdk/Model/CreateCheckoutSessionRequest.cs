@@ -151,7 +151,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Redirect URL after successful payment</value>
         [JsonPropertyName("successUrl")]
-        public string? SuccessUrl { get { return this.SuccessUrlOption; } set { this.SuccessUrlOption = new(value); } }
+        public string? SuccessUrl { get { return this.SuccessUrlOption.Value; } set { this.SuccessUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CancelUrl
@@ -165,7 +165,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Redirect URL if user cancels</value>
         [JsonPropertyName("cancelUrl")]
-        public string? CancelUrl { get { return this.CancelUrlOption; } set { this.CancelUrlOption = new(value); } }
+        public string? CancelUrl { get { return this.CancelUrlOption.Value; } set { this.CancelUrlOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -198,8 +198,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateCheckoutSessionRequest" />
     /// </summary>
-    public class CreateCheckoutSessionRequestJsonConverter : JsonConverter<CreateCheckoutSessionRequest>
+    public partial class CreateCheckoutSessionRequestJsonConverter : JsonConverter<CreateCheckoutSessionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateCheckoutSessionRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateCheckoutSessionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateCheckoutSessionRequest" />
         /// </summary>

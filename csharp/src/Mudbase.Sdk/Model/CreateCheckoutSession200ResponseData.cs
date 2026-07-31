@@ -66,7 +66,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Hosted payment URL (same as authorizationUrl)</value>
         [JsonPropertyName("checkoutUrl")]
-        public string? CheckoutUrl { get { return this.CheckoutUrlOption; } set { this.CheckoutUrlOption = new(value); } }
+        public string? CheckoutUrl { get { return this.CheckoutUrlOption.Value; } set { this.CheckoutUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AuthorizationUrl
@@ -80,7 +80,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Hosted payment URL</value>
         [JsonPropertyName("authorizationUrl")]
-        public string? AuthorizationUrl { get { return this.AuthorizationUrlOption; } set { this.AuthorizationUrlOption = new(value); } }
+        public string? AuthorizationUrl { get { return this.AuthorizationUrlOption.Value; } set { this.AuthorizationUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AccessCode
@@ -94,7 +94,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Gateway access code</value>
         [JsonPropertyName("accessCode")]
-        public string? AccessCode { get { return this.AccessCodeOption; } set { this.AccessCodeOption = new(value); } }
+        public string? AccessCode { get { return this.AccessCodeOption.Value; } set { this.AccessCodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Reference
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Transaction reference (mudbase_...) for verify-payment</value>
         [JsonPropertyName("reference")]
-        public string? Reference { get { return this.ReferenceOption; } set { this.ReferenceOption = new(value); } }
+        public string? Reference { get { return this.ReferenceOption.Value; } set { this.ReferenceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -168,8 +168,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateCheckoutSession200ResponseData" />
     /// </summary>
-    public class CreateCheckoutSession200ResponseDataJsonConverter : JsonConverter<CreateCheckoutSession200ResponseData>
+    public partial class CreateCheckoutSession200ResponseDataJsonConverter : JsonConverter<CreateCheckoutSession200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateCheckoutSession200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public CreateCheckoutSession200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateCheckoutSession200ResponseData" />
         /// </summary>

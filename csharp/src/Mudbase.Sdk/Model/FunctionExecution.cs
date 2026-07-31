@@ -169,7 +169,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets InvokedBy
         /// </summary>
         [JsonPropertyName("invokedBy")]
-        public InvokedByEnum? InvokedBy { get { return this.InvokedByOption; } set { this.InvokedByOption = new(value); } }
+        public InvokedByEnum? InvokedBy { get { return this.InvokedByOption.Value; } set { this.InvokedByOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -182,7 +182,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExecutedAt
@@ -195,7 +195,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ExecutedAt
         /// </summary>
         [JsonPropertyName("executedAt")]
-        public DateTime? ExecutedAt { get { return this.ExecutedAtOption; } set { this.ExecutedAtOption = new(value); } }
+        public DateTime? ExecutedAt { get { return this.ExecutedAtOption.Value; } set { this.ExecutedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExecutionTime
@@ -208,7 +208,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ExecutionTime
         /// </summary>
         [JsonPropertyName("executionTime")]
-        public int? ExecutionTime { get { return this.ExecutionTimeOption; } set { this.ExecutionTimeOption = new(value); } }
+        public int? ExecutionTime { get { return this.ExecutionTimeOption.Value; } set { this.ExecutionTimeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Success
@@ -221,7 +221,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Payload
@@ -234,7 +234,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Payload
         /// </summary>
         [JsonPropertyName("payload")]
-        public Object? Payload { get { return this.PayloadOption; } set { this.PayloadOption = new(value); } }
+        public Object? Payload { get { return this.PayloadOption.Value; } set { this.PayloadOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Result
@@ -247,7 +247,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Result
         /// </summary>
         [JsonPropertyName("result")]
-        public Object? Result { get { return this.ResultOption; } set { this.ResultOption = new(value); } }
+        public Object? Result { get { return this.ResultOption.Value; } set { this.ResultOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Error
@@ -260,7 +260,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TriggerType
@@ -273,7 +273,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TriggerType
         /// </summary>
         [JsonPropertyName("triggerType")]
-        public string? TriggerType { get { return this.TriggerTypeOption; } set { this.TriggerTypeOption = new(value); } }
+        public string? TriggerType { get { return this.TriggerTypeOption.Value; } set { this.TriggerTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TriggerEvent
@@ -286,7 +286,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TriggerEvent
         /// </summary>
         [JsonPropertyName("triggerEvent")]
-        public string? TriggerEvent { get { return this.TriggerEventOption; } set { this.TriggerEventOption = new(value); } }
+        public string? TriggerEvent { get { return this.TriggerEventOption.Value; } set { this.TriggerEventOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RetryCount
@@ -299,7 +299,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RetryCount
         /// </summary>
         [JsonPropertyName("retryCount")]
-        public int? RetryCount { get { return this.RetryCountOption; } set { this.RetryCountOption = new(value); } }
+        public int? RetryCount { get { return this.RetryCountOption.Value; } set { this.RetryCountOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -338,12 +338,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FunctionExecution" />
     /// </summary>
-    public class FunctionExecutionJsonConverter : JsonConverter<FunctionExecution>
+    public partial class FunctionExecutionJsonConverter : JsonConverter<FunctionExecution>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FunctionExecutionJsonConverter" /> class.
+        /// </summary>
+        public FunctionExecutionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ExecutedAt
         /// </summary>
-        public static string ExecutedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string ExecutedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="FunctionExecution" />

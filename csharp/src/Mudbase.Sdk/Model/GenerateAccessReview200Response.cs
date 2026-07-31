@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Report
         /// </summary>
         [JsonPropertyName("report")]
-        public GenerateAccessReview200ResponseReport? Report { get { return this.ReportOption; } set { this.ReportOption = new(value); } }
+        public GenerateAccessReview200ResponseReport? Report { get { return this.ReportOption.Value; } set { this.ReportOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateAccessReview200Response" />
     /// </summary>
-    public class GenerateAccessReview200ResponseJsonConverter : JsonConverter<GenerateAccessReview200Response>
+    public partial class GenerateAccessReview200ResponseJsonConverter : JsonConverter<GenerateAccessReview200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateAccessReview200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GenerateAccessReview200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GenerateAccessReview200Response" />
         /// </summary>

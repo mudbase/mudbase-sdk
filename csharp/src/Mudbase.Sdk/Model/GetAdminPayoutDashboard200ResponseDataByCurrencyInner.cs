@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pending
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pending
         /// </summary>
         [JsonPropertyName("pending")]
-        public int? Pending { get { return this.PendingOption; } set { this.PendingOption = new(value); } }
+        public int? Pending { get { return this.PendingOption.Value; } set { this.PendingOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Completed
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Completed
         /// </summary>
         [JsonPropertyName("completed")]
-        public int? Completed { get { return this.CompletedOption; } set { this.CompletedOption = new(value); } }
+        public int? Completed { get { return this.CompletedOption.Value; } set { this.CompletedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Failed
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Failed
         /// </summary>
         [JsonPropertyName("failed")]
-        public int? Failed { get { return this.FailedOption; } set { this.FailedOption = new(value); } }
+        public int? Failed { get { return this.FailedOption.Value; } set { this.FailedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetAdminPayoutDashboard200ResponseDataByCurrencyInner" />
     /// </summary>
-    public class GetAdminPayoutDashboard200ResponseDataByCurrencyInnerJsonConverter : JsonConverter<GetAdminPayoutDashboard200ResponseDataByCurrencyInner>
+    public partial class GetAdminPayoutDashboard200ResponseDataByCurrencyInnerJsonConverter : JsonConverter<GetAdminPayoutDashboard200ResponseDataByCurrencyInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetAdminPayoutDashboard200ResponseDataByCurrencyInnerJsonConverter" /> class.
+        /// </summary>
+        public GetAdminPayoutDashboard200ResponseDataByCurrencyInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetAdminPayoutDashboard200ResponseDataByCurrencyInner" />
         /// </summary>

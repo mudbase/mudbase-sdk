@@ -78,8 +78,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckUserPresenceRequest" />
     /// </summary>
-    public class CheckUserPresenceRequestJsonConverter : JsonConverter<CheckUserPresenceRequest>
+    public partial class CheckUserPresenceRequestJsonConverter : JsonConverter<CheckUserPresenceRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckUserPresenceRequestJsonConverter" /> class.
+        /// </summary>
+        public CheckUserPresenceRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CheckUserPresenceRequest" />
         /// </summary>

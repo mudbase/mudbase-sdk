@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public ApiKeyUsage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public ApiKeyUsage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RateLimit
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RateLimit
         /// </summary>
         [JsonPropertyName("rateLimit")]
-        public RateLimit? RateLimit { get { return this.RateLimitOption; } set { this.RateLimitOption = new(value); } }
+        public RateLimit? RateLimit { get { return this.RateLimitOption.Value; } set { this.RateLimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsActive
         /// </summary>
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAt
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ExpiresAt
         /// </summary>
         [JsonPropertyName("expiresAt")]
-        public DateTime? ExpiresAt { get { return this.ExpiresAtOption; } set { this.ExpiresAtOption = new(value); } }
+        public DateTime? ExpiresAt { get { return this.ExpiresAtOption.Value; } set { this.ExpiresAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,12 +132,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiKeyUsageResponse" />
     /// </summary>
-    public class ApiKeyUsageResponseJsonConverter : JsonConverter<ApiKeyUsageResponse>
+    public partial class ApiKeyUsageResponseJsonConverter : JsonConverter<ApiKeyUsageResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKeyUsageResponseJsonConverter" /> class.
+        /// </summary>
+        public ApiKeyUsageResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ExpiresAt
         /// </summary>
-        public static string ExpiresAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string ExpiresAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApiKeyUsageResponse" />

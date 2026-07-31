@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RecordType
         /// </summary>
         [JsonPropertyName("recordType")]
-        public string? RecordType { get { return this.RecordTypeOption; } set { this.RecordTypeOption = new(value); } }
+        public string? RecordType { get { return this.RecordTypeOption.Value; } set { this.RecordTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RecordName
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RecordName
         /// </summary>
         [JsonPropertyName("recordName")]
-        public string? RecordName { get { return this.RecordNameOption; } set { this.RecordNameOption = new(value); } }
+        public string? RecordName { get { return this.RecordNameOption.Value; } set { this.RecordNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RecordValue
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RecordValue
         /// </summary>
         [JsonPropertyName("recordValue")]
-        public string? RecordValue { get { return this.RecordValueOption; } set { this.RecordValueOption = new(value); } }
+        public string? RecordValue { get { return this.RecordValueOption.Value; } set { this.RecordValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TtlSeconds
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TtlSeconds
         /// </summary>
         [JsonPropertyName("ttlSeconds")]
-        public int? TtlSeconds { get { return this.TtlSecondsOption; } set { this.TtlSecondsOption = new(value); } }
+        public int? TtlSeconds { get { return this.TtlSecondsOption.Value; } set { this.TtlSecondsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of StaffNote
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets StaffNote
         /// </summary>
         [JsonPropertyName("staffNote")]
-        public string? StaffNote { get { return this.StaffNoteOption; } set { this.StaffNoteOption = new(value); } }
+        public string? StaffNote { get { return this.StaffNoteOption.Value; } set { this.StaffNoteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,12 +164,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgPlatformDnsVerificationCustomer" />
     /// </summary>
-    public class OrgPlatformDnsVerificationCustomerJsonConverter : JsonConverter<OrgPlatformDnsVerificationCustomer>
+    public partial class OrgPlatformDnsVerificationCustomerJsonConverter : JsonConverter<OrgPlatformDnsVerificationCustomer>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgPlatformDnsVerificationCustomerJsonConverter" /> class.
+        /// </summary>
+        public OrgPlatformDnsVerificationCustomerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="OrgPlatformDnsVerificationCustomer" />

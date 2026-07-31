@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Role updated successfully</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public User? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public User? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateMemberRole200Response" />
     /// </summary>
-    public class UpdateMemberRole200ResponseJsonConverter : JsonConverter<UpdateMemberRole200Response>
+    public partial class UpdateMemberRole200ResponseJsonConverter : JsonConverter<UpdateMemberRole200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateMemberRole200ResponseJsonConverter" /> class.
+        /// </summary>
+        public UpdateMemberRole200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateMemberRole200Response" />
         /// </summary>

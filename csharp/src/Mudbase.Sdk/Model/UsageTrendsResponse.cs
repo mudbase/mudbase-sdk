@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Trends
         /// </summary>
         [JsonPropertyName("trends")]
-        public List<UsageTrendsResponseTrendsInner>? Trends { get { return this.TrendsOption; } set { this.TrendsOption = new(value); } }
+        public List<UsageTrendsResponseTrendsInner>? Trends { get { return this.TrendsOption.Value; } set { this.TrendsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Period
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Period
         /// </summary>
         [JsonPropertyName("period")]
-        public string? Period { get { return this.PeriodOption; } set { this.PeriodOption = new(value); } }
+        public string? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UsageTrendsResponse" />
     /// </summary>
-    public class UsageTrendsResponseJsonConverter : JsonConverter<UsageTrendsResponse>
+    public partial class UsageTrendsResponseJsonConverter : JsonConverter<UsageTrendsResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageTrendsResponseJsonConverter" /> class.
+        /// </summary>
+        public UsageTrendsResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UsageTrendsResponse" />
         /// </summary>

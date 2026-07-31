@@ -136,8 +136,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfirmLocalPasswordResetWithOtpRequest" />
     /// </summary>
-    public class ConfirmLocalPasswordResetWithOtpRequestJsonConverter : JsonConverter<ConfirmLocalPasswordResetWithOtpRequest>
+    public partial class ConfirmLocalPasswordResetWithOtpRequestJsonConverter : JsonConverter<ConfirmLocalPasswordResetWithOtpRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfirmLocalPasswordResetWithOtpRequestJsonConverter" /> class.
+        /// </summary>
+        public ConfirmLocalPasswordResetWithOtpRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfirmLocalPasswordResetWithOtpRequest" />
         /// </summary>

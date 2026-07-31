@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DataExportEnabled
         /// </summary>
         [JsonPropertyName("dataExportEnabled")]
-        public bool? DataExportEnabled { get { return this.DataExportEnabledOption; } set { this.DataExportEnabledOption = new(value); } }
+        public bool? DataExportEnabled { get { return this.DataExportEnabledOption.Value; } set { this.DataExportEnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DataErasureEnabled
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DataErasureEnabled
         /// </summary>
         [JsonPropertyName("dataErasureEnabled")]
-        public bool? DataErasureEnabled { get { return this.DataErasureEnabledOption; } set { this.DataErasureEnabledOption = new(value); } }
+        public bool? DataErasureEnabled { get { return this.DataErasureEnabledOption.Value; } set { this.DataErasureEnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ConsentManagement
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ConsentManagement
         /// </summary>
         [JsonPropertyName("consentManagement")]
-        public bool? ConsentManagement { get { return this.ConsentManagementOption; } set { this.ConsentManagementOption = new(value); } }
+        public bool? ConsentManagement { get { return this.ConsentManagementOption.Value; } set { this.ConsentManagementOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetComplianceSummary200ResponseComplianceGdpr" />
     /// </summary>
-    public class GetComplianceSummary200ResponseComplianceGdprJsonConverter : JsonConverter<GetComplianceSummary200ResponseComplianceGdpr>
+    public partial class GetComplianceSummary200ResponseComplianceGdprJsonConverter : JsonConverter<GetComplianceSummary200ResponseComplianceGdpr>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetComplianceSummary200ResponseComplianceGdprJsonConverter" /> class.
+        /// </summary>
+        public GetComplianceSummary200ResponseComplianceGdprJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetComplianceSummary200ResponseComplianceGdpr" />
         /// </summary>

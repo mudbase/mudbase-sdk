@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Project ID for the anonymous session</value>
         /* <example>685ad30be129932fbb7a1047</example> */
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DeviceId
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Optional device identifier</value>
         /* <example>device-uuid-123</example> */
         [JsonPropertyName("deviceId")]
-        public string? DeviceId { get { return this.DeviceIdOption; } set { this.DeviceIdOption = new(value); } }
+        public string? DeviceId { get { return this.DeviceIdOption.Value; } set { this.DeviceIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -104,8 +104,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateAnonymousSessionRequest" />
     /// </summary>
-    public class CreateAnonymousSessionRequestJsonConverter : JsonConverter<CreateAnonymousSessionRequest>
+    public partial class CreateAnonymousSessionRequestJsonConverter : JsonConverter<CreateAnonymousSessionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateAnonymousSessionRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateAnonymousSessionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateAnonymousSessionRequest" />
         /// </summary>

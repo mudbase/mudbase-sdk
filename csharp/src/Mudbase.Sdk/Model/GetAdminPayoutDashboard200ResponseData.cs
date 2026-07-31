@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalPending
         /// </summary>
         [JsonPropertyName("totalPending")]
-        public int? TotalPending { get { return this.TotalPendingOption; } set { this.TotalPendingOption = new(value); } }
+        public int? TotalPending { get { return this.TotalPendingOption.Value; } set { this.TotalPendingOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalCompleted
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalCompleted
         /// </summary>
         [JsonPropertyName("totalCompleted")]
-        public int? TotalCompleted { get { return this.TotalCompletedOption; } set { this.TotalCompletedOption = new(value); } }
+        public int? TotalCompleted { get { return this.TotalCompletedOption.Value; } set { this.TotalCompletedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalFailed
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalFailed
         /// </summary>
         [JsonPropertyName("totalFailed")]
-        public int? TotalFailed { get { return this.TotalFailedOption; } set { this.TotalFailedOption = new(value); } }
+        public int? TotalFailed { get { return this.TotalFailedOption.Value; } set { this.TotalFailedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ByCurrency
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ByCurrency
         /// </summary>
         [JsonPropertyName("byCurrency")]
-        public List<GetAdminPayoutDashboard200ResponseDataByCurrencyInner>? ByCurrency { get { return this.ByCurrencyOption; } set { this.ByCurrencyOption = new(value); } }
+        public List<GetAdminPayoutDashboard200ResponseDataByCurrencyInner>? ByCurrency { get { return this.ByCurrencyOption.Value; } set { this.ByCurrencyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetAdminPayoutDashboard200ResponseData" />
     /// </summary>
-    public class GetAdminPayoutDashboard200ResponseDataJsonConverter : JsonConverter<GetAdminPayoutDashboard200ResponseData>
+    public partial class GetAdminPayoutDashboard200ResponseDataJsonConverter : JsonConverter<GetAdminPayoutDashboard200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetAdminPayoutDashboard200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetAdminPayoutDashboard200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetAdminPayoutDashboard200ResponseData" />
         /// </summary>

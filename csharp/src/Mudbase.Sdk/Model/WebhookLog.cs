@@ -197,7 +197,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Method
         /// </summary>
         [JsonPropertyName("method")]
-        public MethodEnum? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public MethodEnum? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Defines Status
@@ -304,7 +304,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -318,7 +318,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>MongoDB id — use as &#x60;webhookId&#x60; path param for retry</value>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Org
@@ -332,7 +332,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Organization that owns the project</value>
         [JsonPropertyName("org")]
-        public string? Org { get { return this.OrgOption; } set { this.OrgOption = new(value); } }
+        public string? Org { get { return this.OrgOption.Value; } set { this.OrgOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Project
@@ -346,7 +346,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Project id this delivery belongs to</value>
         [JsonPropertyName("project")]
-        public string? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public string? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookId
@@ -360,7 +360,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Internal correlation string (e.g. manual-173…), not the retry path id</value>
         [JsonPropertyName("webhookId")]
-        public string? WebhookId { get { return this.WebhookIdOption; } set { this.WebhookIdOption = new(value); } }
+        public string? WebhookId { get { return this.WebhookIdOption.Value; } set { this.WebhookIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Url
@@ -373,7 +373,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Url
         /// </summary>
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Event
@@ -386,7 +386,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Event
         /// </summary>
         [JsonPropertyName("event")]
-        public string? Event { get { return this.EventOption; } set { this.EventOption = new(value); } }
+        public string? Event { get { return this.EventOption.Value; } set { this.EventOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Payload
@@ -400,7 +400,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>JSON body sent to your endpoint</value>
         [JsonPropertyName("payload")]
-        public Object? Payload { get { return this.PayloadOption; } set { this.PayloadOption = new(value); } }
+        public Object? Payload { get { return this.PayloadOption.Value; } set { this.PayloadOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Headers
@@ -414,7 +414,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Outbound request headers (e.g. X-MUDBASE-Event, Content-Type)</value>
         [JsonPropertyName("headers")]
-        public Object? Headers { get { return this.HeadersOption; } set { this.HeadersOption = new(value); } }
+        public Object? Headers { get { return this.HeadersOption.Value; } set { this.HeadersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Response
@@ -427,7 +427,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Response
         /// </summary>
         [JsonPropertyName("response")]
-        public WebhookLogResponse? Response { get { return this.ResponseOption; } set { this.ResponseOption = new(value); } }
+        public WebhookLogResponse? Response { get { return this.ResponseOption.Value; } set { this.ResponseOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Duration
@@ -441,7 +441,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Round-trip time in milliseconds</value>
         [JsonPropertyName("duration")]
-        public int? Duration { get { return this.DurationOption; } set { this.DurationOption = new(value); } }
+        public int? Duration { get { return this.DurationOption.Value; } set { this.DurationOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Attempts
@@ -454,7 +454,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Attempts
         /// </summary>
         [JsonPropertyName("attempts")]
-        public int? Attempts { get { return this.AttemptsOption; } set { this.AttemptsOption = new(value); } }
+        public int? Attempts { get { return this.AttemptsOption.Value; } set { this.AttemptsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxAttempts
@@ -467,7 +467,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxAttempts
         /// </summary>
         [JsonPropertyName("maxAttempts")]
-        public int? MaxAttempts { get { return this.MaxAttemptsOption; } set { this.MaxAttemptsOption = new(value); } }
+        public int? MaxAttempts { get { return this.MaxAttemptsOption.Value; } set { this.MaxAttemptsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Error
@@ -480,7 +480,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NextRetry
@@ -493,7 +493,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets NextRetry
         /// </summary>
         [JsonPropertyName("nextRetry")]
-        public DateTime? NextRetry { get { return this.NextRetryOption; } set { this.NextRetryOption = new(value); } }
+        public DateTime? NextRetry { get { return this.NextRetryOption.Value; } set { this.NextRetryOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -506,7 +506,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -519,7 +519,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -565,22 +565,32 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WebhookLog" />
     /// </summary>
-    public class WebhookLogJsonConverter : JsonConverter<WebhookLog>
+    public partial class WebhookLogJsonConverter : JsonConverter<WebhookLog>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebhookLogJsonConverter" /> class.
+        /// </summary>
+        public WebhookLogJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize NextRetry
         /// </summary>
-        public static string NextRetryFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string NextRetryFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="WebhookLog" />

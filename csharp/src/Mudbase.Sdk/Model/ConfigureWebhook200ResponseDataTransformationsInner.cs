@@ -179,7 +179,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Config
@@ -192,7 +192,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Config
         /// </summary>
         [JsonPropertyName("config")]
-        public Object? Config { get { return this.ConfigOption; } set { this.ConfigOption = new(value); } }
+        public Object? Config { get { return this.ConfigOption.Value; } set { this.ConfigOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -222,8 +222,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfigureWebhook200ResponseDataTransformationsInner" />
     /// </summary>
-    public class ConfigureWebhook200ResponseDataTransformationsInnerJsonConverter : JsonConverter<ConfigureWebhook200ResponseDataTransformationsInner>
+    public partial class ConfigureWebhook200ResponseDataTransformationsInnerJsonConverter : JsonConverter<ConfigureWebhook200ResponseDataTransformationsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigureWebhook200ResponseDataTransformationsInnerJsonConverter" /> class.
+        /// </summary>
+        public ConfigureWebhook200ResponseDataTransformationsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfigureWebhook200ResponseDataTransformationsInner" />
         /// </summary>

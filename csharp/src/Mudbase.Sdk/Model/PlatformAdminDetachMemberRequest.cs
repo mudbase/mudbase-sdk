@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("reason")]
-        public string? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public string? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PlatformAdminDetachMemberRequest" />
     /// </summary>
-    public class PlatformAdminDetachMemberRequestJsonConverter : JsonConverter<PlatformAdminDetachMemberRequest>
+    public partial class PlatformAdminDetachMemberRequestJsonConverter : JsonConverter<PlatformAdminDetachMemberRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlatformAdminDetachMemberRequestJsonConverter" /> class.
+        /// </summary>
+        public PlatformAdminDetachMemberRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PlatformAdminDetachMemberRequest" />
         /// </summary>

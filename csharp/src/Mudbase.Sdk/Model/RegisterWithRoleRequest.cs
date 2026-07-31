@@ -39,14 +39,16 @@ namespace Mudbase.Sdk.Model
         /// <param name="firstName">firstName</param>
         /// <param name="lastName">lastName</param>
         /// <param name="projectId">projectId</param>
+        /// <param name="agreedToTerms">Must be &#x60;true&#x60; - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy.</param>
         [JsonConstructor]
-        public RegisterWithRoleRequest(string email, string password, string firstName, string lastName, string projectId)
+        public RegisterWithRoleRequest(string email, string password, string firstName, string lastName, string projectId, bool agreedToTerms)
         {
             Email = email;
             Password = password;
             FirstName = firstName;
             LastName = lastName;
             ProjectId = projectId;
+            AgreedToTerms = agreedToTerms;
             OnCreated();
         }
 
@@ -83,6 +85,13 @@ namespace Mudbase.Sdk.Model
         public string ProjectId { get; set; }
 
         /// <summary>
+        /// Must be &#x60;true&#x60; - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy.
+        /// </summary>
+        /// <value>Must be &#x60;true&#x60; - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy.</value>
+        [JsonPropertyName("agreedToTerms")]
+        public bool AgreedToTerms { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -95,6 +104,7 @@ namespace Mudbase.Sdk.Model
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
             sb.Append("  ProjectId: ").Append(ProjectId).Append("\n");
+            sb.Append("  AgreedToTerms: ").Append(AgreedToTerms).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -113,8 +123,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RegisterWithRoleRequest" />
     /// </summary>
-    public class RegisterWithRoleRequestJsonConverter : JsonConverter<RegisterWithRoleRequest>
+    public partial class RegisterWithRoleRequestJsonConverter : JsonConverter<RegisterWithRoleRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterWithRoleRequestJsonConverter" /> class.
+        /// </summary>
+        public RegisterWithRoleRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RegisterWithRoleRequest" />
         /// </summary>
@@ -137,6 +157,7 @@ namespace Mudbase.Sdk.Model
             Option<string?> firstName = default;
             Option<string?> lastName = default;
             Option<string?> projectId = default;
+            Option<bool?> agreedToTerms = default;
 
             while (utf8JsonReader.Read())
             {
@@ -168,6 +189,9 @@ namespace Mudbase.Sdk.Model
                         case "projectId":
                             projectId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "agreedToTerms":
+                            agreedToTerms = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         default:
                             break;
                     }
@@ -189,6 +213,9 @@ namespace Mudbase.Sdk.Model
             if (!projectId.IsSet)
                 throw new ArgumentException("Property is required for class RegisterWithRoleRequest.", nameof(projectId));
 
+            if (!agreedToTerms.IsSet)
+                throw new ArgumentException("Property is required for class RegisterWithRoleRequest.", nameof(agreedToTerms));
+
             if (email.IsSet && email.Value == null)
                 throw new ArgumentNullException(nameof(email), "Property is not nullable for class RegisterWithRoleRequest.");
 
@@ -204,7 +231,10 @@ namespace Mudbase.Sdk.Model
             if (projectId.IsSet && projectId.Value == null)
                 throw new ArgumentNullException(nameof(projectId), "Property is not nullable for class RegisterWithRoleRequest.");
 
-            return new RegisterWithRoleRequest(email.Value!, password.Value!, firstName.Value!, lastName.Value!, projectId.Value!);
+            if (agreedToTerms.IsSet && agreedToTerms.Value == null)
+                throw new ArgumentNullException(nameof(agreedToTerms), "Property is not nullable for class RegisterWithRoleRequest.");
+
+            return new RegisterWithRoleRequest(email.Value!, password.Value!, firstName.Value!, lastName.Value!, projectId.Value!, agreedToTerms.Value!.Value!);
         }
 
         /// <summary>
@@ -255,6 +285,8 @@ namespace Mudbase.Sdk.Model
             writer.WriteString("lastName", registerWithRoleRequest.LastName);
 
             writer.WriteString("projectId", registerWithRoleRequest.ProjectId);
+
+            writer.WriteBoolean("agreedToTerms", registerWithRoleRequest.AgreedToTerms);
         }
     }
 }

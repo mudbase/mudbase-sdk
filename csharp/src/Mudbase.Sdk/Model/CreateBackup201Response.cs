@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Backup
         /// </summary>
         [JsonPropertyName("backup")]
-        public CreateBackup201ResponseBackup? Backup { get { return this.BackupOption; } set { this.BackupOption = new(value); } }
+        public CreateBackup201ResponseBackup? Backup { get { return this.BackupOption.Value; } set { this.BackupOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateBackup201Response" />
     /// </summary>
-    public class CreateBackup201ResponseJsonConverter : JsonConverter<CreateBackup201Response>
+    public partial class CreateBackup201ResponseJsonConverter : JsonConverter<CreateBackup201Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateBackup201ResponseJsonConverter" /> class.
+        /// </summary>
+        public CreateBackup201ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateBackup201Response" />
         /// </summary>

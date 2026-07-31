@@ -67,7 +67,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Main platform for Mudbase services</example> */
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Slug
@@ -81,7 +81,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>mudbase-platform</example> */
         [JsonPropertyName("slug")]
-        public string? Slug { get { return this.SlugOption; } set { this.SlugOption = new(value); } }
+        public string? Slug { get { return this.SlugOption.Value; } set { this.SlugOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -112,8 +112,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateProjectRequest" />
     /// </summary>
-    public class CreateProjectRequestJsonConverter : JsonConverter<CreateProjectRequest>
+    public partial class CreateProjectRequestJsonConverter : JsonConverter<CreateProjectRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateProjectRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateProjectRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateProjectRequest" />
         /// </summary>

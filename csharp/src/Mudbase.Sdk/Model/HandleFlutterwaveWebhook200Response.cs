@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Received
         /// </summary>
         [JsonPropertyName("received")]
-        public bool? Received { get { return this.ReceivedOption; } set { this.ReceivedOption = new(value); } }
+        public bool? Received { get { return this.ReceivedOption.Value; } set { this.ReceivedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="HandleFlutterwaveWebhook200Response" />
     /// </summary>
-    public class HandleFlutterwaveWebhook200ResponseJsonConverter : JsonConverter<HandleFlutterwaveWebhook200Response>
+    public partial class HandleFlutterwaveWebhook200ResponseJsonConverter : JsonConverter<HandleFlutterwaveWebhook200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HandleFlutterwaveWebhook200ResponseJsonConverter" /> class.
+        /// </summary>
+        public HandleFlutterwaveWebhook200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="HandleFlutterwaveWebhook200Response" />
         /// </summary>

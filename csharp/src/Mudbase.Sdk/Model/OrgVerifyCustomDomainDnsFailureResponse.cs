@@ -150,8 +150,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgVerifyCustomDomainDnsFailureResponse" />
     /// </summary>
-    public class OrgVerifyCustomDomainDnsFailureResponseJsonConverter : JsonConverter<OrgVerifyCustomDomainDnsFailureResponse>
+    public partial class OrgVerifyCustomDomainDnsFailureResponseJsonConverter : JsonConverter<OrgVerifyCustomDomainDnsFailureResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgVerifyCustomDomainDnsFailureResponseJsonConverter" /> class.
+        /// </summary>
+        public OrgVerifyCustomDomainDnsFailureResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgVerifyCustomDomainDnsFailureResponse" />
         /// </summary>

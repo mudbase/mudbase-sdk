@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Participants
         /// </summary>
         [JsonPropertyName("participants")]
-        public List<AddParticipant200ResponseDataParticipantsInner>? Participants { get { return this.ParticipantsOption; } set { this.ParticipantsOption = new(value); } }
+        public List<AddParticipant200ResponseDataParticipantsInner>? Participants { get { return this.ParticipantsOption.Value; } set { this.ParticipantsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddParticipant200ResponseData" />
     /// </summary>
-    public class AddParticipant200ResponseDataJsonConverter : JsonConverter<AddParticipant200ResponseData>
+    public partial class AddParticipant200ResponseDataJsonConverter : JsonConverter<AddParticipant200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddParticipant200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public AddParticipant200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddParticipant200ResponseData" />
         /// </summary>

@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InvoiceNumber
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets InvoiceNumber
         /// </summary>
         [JsonPropertyName("invoiceNumber")]
-        public string? InvoiceNumber { get { return this.InvoiceNumberOption; } set { this.InvoiceNumberOption = new(value); } }
+        public string? InvoiceNumber { get { return this.InvoiceNumberOption.Value; } set { this.InvoiceNumberOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public decimal? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public decimal? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DueDate
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DueDate
         /// </summary>
         [JsonPropertyName("dueDate")]
-        public DateTime? DueDate { get { return this.DueDateOption; } set { this.DueDateOption = new(value); } }
+        public DateTime? DueDate { get { return this.DueDateOption.Value; } set { this.DueDateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PaidAt
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PaidAt
         /// </summary>
         [JsonPropertyName("paidAt")]
-        public DateTime? PaidAt { get { return this.PaidAtOption; } set { this.PaidAtOption = new(value); } }
+        public DateTime? PaidAt { get { return this.PaidAtOption.Value; } set { this.PaidAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,22 +196,32 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetInvoice200ResponseInvoice" />
     /// </summary>
-    public class GetInvoice200ResponseInvoiceJsonConverter : JsonConverter<GetInvoice200ResponseInvoice>
+    public partial class GetInvoice200ResponseInvoiceJsonConverter : JsonConverter<GetInvoice200ResponseInvoice>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetInvoice200ResponseInvoiceJsonConverter" /> class.
+        /// </summary>
+        public GetInvoice200ResponseInvoiceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize DueDate
         /// </summary>
-        public static string DueDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string DueDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize PaidAt
         /// </summary>
-        public static string PaidAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string PaidAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetInvoice200ResponseInvoice" />

@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>685ad30be129932fbb7a1047</example> */
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ResetLocalPasswordRequest" />
     /// </summary>
-    public class ResetLocalPasswordRequestJsonConverter : JsonConverter<ResetLocalPasswordRequest>
+    public partial class ResetLocalPasswordRequestJsonConverter : JsonConverter<ResetLocalPasswordRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResetLocalPasswordRequestJsonConverter" /> class.
+        /// </summary>
+        public ResetLocalPasswordRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ResetLocalPasswordRequest" />
         /// </summary>

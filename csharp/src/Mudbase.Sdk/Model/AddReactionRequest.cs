@@ -77,8 +77,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddReactionRequest" />
     /// </summary>
-    public class AddReactionRequestJsonConverter : JsonConverter<AddReactionRequest>
+    public partial class AddReactionRequestJsonConverter : JsonConverter<AddReactionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddReactionRequestJsonConverter" /> class.
+        /// </summary>
+        public AddReactionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddReactionRequest" />
         /// </summary>

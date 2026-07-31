@@ -99,7 +99,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Region
         /// </summary>
         [JsonPropertyName("region")]
-        public string? Region { get { return this.RegionOption; } set { this.RegionOption = new(value); } }
+        public string? Region { get { return this.RegionOption.Value; } set { this.RegionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -112,7 +112,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VarVersion
         /// </summary>
         [JsonPropertyName("version")]
-        public string? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new(value); } }
+        public string? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ForceOverride
@@ -125,7 +125,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ForceOverride
         /// </summary>
         [JsonPropertyName("forceOverride")]
-        public bool? ForceOverride { get { return this.ForceOverrideOption; } set { this.ForceOverrideOption = new(value); } }
+        public bool? ForceOverride { get { return this.ForceOverrideOption.Value; } set { this.ForceOverrideOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -161,8 +161,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProvisionEnterpriseRequest" />
     /// </summary>
-    public class ProvisionEnterpriseRequestJsonConverter : JsonConverter<ProvisionEnterpriseRequest>
+    public partial class ProvisionEnterpriseRequestJsonConverter : JsonConverter<ProvisionEnterpriseRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProvisionEnterpriseRequestJsonConverter" /> class.
+        /// </summary>
+        public ProvisionEnterpriseRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProvisionEnterpriseRequest" />
         /// </summary>

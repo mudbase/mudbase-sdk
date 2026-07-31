@@ -222,8 +222,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ValidateAddressRequest" />
     /// </summary>
-    public class ValidateAddressRequestJsonConverter : JsonConverter<ValidateAddressRequest>
+    public partial class ValidateAddressRequestJsonConverter : JsonConverter<ValidateAddressRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValidateAddressRequestJsonConverter" /> class.
+        /// </summary>
+        public ValidateAddressRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ValidateAddressRequest" />
         /// </summary>

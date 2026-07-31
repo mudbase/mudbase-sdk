@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Period
         /// </summary>
         [JsonPropertyName("period")]
-        public string? Period { get { return this.PeriodOption; } set { this.PeriodOption = new(value); } }
+        public string? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metrics
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Metrics
         /// </summary>
         [JsonPropertyName("metrics")]
-        public MonitoringPerformanceResponseMetrics? Metrics { get { return this.MetricsOption; } set { this.MetricsOption = new(value); } }
+        public MonitoringPerformanceResponseMetrics? Metrics { get { return this.MetricsOption.Value; } set { this.MetricsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopEndpoints
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TopEndpoints
         /// </summary>
         [JsonPropertyName("topEndpoints")]
-        public List<Object>? TopEndpoints { get { return this.TopEndpointsOption; } set { this.TopEndpointsOption = new(value); } }
+        public List<Object>? TopEndpoints { get { return this.TopEndpointsOption.Value; } set { this.TopEndpointsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MonitoringPerformanceResponse" />
     /// </summary>
-    public class MonitoringPerformanceResponseJsonConverter : JsonConverter<MonitoringPerformanceResponse>
+    public partial class MonitoringPerformanceResponseJsonConverter : JsonConverter<MonitoringPerformanceResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonitoringPerformanceResponseJsonConverter" /> class.
+        /// </summary>
+        public MonitoringPerformanceResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MonitoringPerformanceResponse" />
         /// </summary>

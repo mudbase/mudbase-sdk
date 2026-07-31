@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Backup deleted successfully</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DeleteBackup200Response" />
     /// </summary>
-    public class DeleteBackup200ResponseJsonConverter : JsonConverter<DeleteBackup200Response>
+    public partial class DeleteBackup200ResponseJsonConverter : JsonConverter<DeleteBackup200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteBackup200ResponseJsonConverter" /> class.
+        /// </summary>
+        public DeleteBackup200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DeleteBackup200Response" />
         /// </summary>

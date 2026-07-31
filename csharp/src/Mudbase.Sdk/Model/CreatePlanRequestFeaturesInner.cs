@@ -89,8 +89,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreatePlanRequestFeaturesInner" />
     /// </summary>
-    public class CreatePlanRequestFeaturesInnerJsonConverter : JsonConverter<CreatePlanRequestFeaturesInner>
+    public partial class CreatePlanRequestFeaturesInnerJsonConverter : JsonConverter<CreatePlanRequestFeaturesInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreatePlanRequestFeaturesInnerJsonConverter" /> class.
+        /// </summary>
+        public CreatePlanRequestFeaturesInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreatePlanRequestFeaturesInner" />
         /// </summary>

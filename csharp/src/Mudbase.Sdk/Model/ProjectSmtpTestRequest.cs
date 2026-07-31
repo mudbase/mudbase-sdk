@@ -79,7 +79,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When true, use saved SMTP config; otherwise supply host/auth fields below</value>
         [JsonPropertyName("useSaved")]
-        public bool? UseSaved { get { return this.UseSavedOption; } set { this.UseSavedOption = new(value); } }
+        public bool? UseSaved { get { return this.UseSavedOption.Value; } set { this.UseSavedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Host
@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Host
         /// </summary>
         [JsonPropertyName("host")]
-        public string? Host { get { return this.HostOption; } set { this.HostOption = new(value); } }
+        public string? Host { get { return this.HostOption.Value; } set { this.HostOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Port
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Port
         /// </summary>
         [JsonPropertyName("port")]
-        public int? Port { get { return this.PortOption; } set { this.PortOption = new(value); } }
+        public int? Port { get { return this.PortOption.Value; } set { this.PortOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Secure
@@ -118,7 +118,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Secure
         /// </summary>
         [JsonPropertyName("secure")]
-        public bool? Secure { get { return this.SecureOption; } set { this.SecureOption = new(value); } }
+        public bool? Secure { get { return this.SecureOption.Value; } set { this.SecureOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AuthUser
@@ -131,7 +131,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AuthUser
         /// </summary>
         [JsonPropertyName("authUser")]
-        public string? AuthUser { get { return this.AuthUserOption; } set { this.AuthUserOption = new(value); } }
+        public string? AuthUser { get { return this.AuthUserOption.Value; } set { this.AuthUserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AuthPass
@@ -144,7 +144,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AuthPass
         /// </summary>
         [JsonPropertyName("authPass")]
-        public string? AuthPass { get { return this.AuthPassOption; } set { this.AuthPassOption = new(value); } }
+        public string? AuthPass { get { return this.AuthPassOption.Value; } set { this.AuthPassOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FromEmail
@@ -157,7 +157,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FromEmail
         /// </summary>
         [JsonPropertyName("fromEmail")]
-        public string? FromEmail { get { return this.FromEmailOption; } set { this.FromEmailOption = new(value); } }
+        public string? FromEmail { get { return this.FromEmailOption.Value; } set { this.FromEmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FromName
@@ -170,7 +170,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FromName
         /// </summary>
         [JsonPropertyName("fromName")]
-        public string? FromName { get { return this.FromNameOption; } set { this.FromNameOption = new(value); } }
+        public string? FromName { get { return this.FromNameOption.Value; } set { this.FromNameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -207,8 +207,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectSmtpTestRequest" />
     /// </summary>
-    public class ProjectSmtpTestRequestJsonConverter : JsonConverter<ProjectSmtpTestRequest>
+    public partial class ProjectSmtpTestRequestJsonConverter : JsonConverter<ProjectSmtpTestRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectSmtpTestRequestJsonConverter" /> class.
+        /// </summary>
+        public ProjectSmtpTestRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectSmtpTestRequest" />
         /// </summary>

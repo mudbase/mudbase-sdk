@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Human-readable label for the address</value>
         [JsonPropertyName("label")]
-        public string? Label { get { return this.LabelOption; } set { this.LabelOption = new(value); } }
+        public string? Label { get { return this.LabelOption.Value; } set { this.LabelOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DerivationPath
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>BIP derivation path (e.g. m/44&#39;/60&#39;/0&#39;/0/0); can be set to null to clear</value>
         [JsonPropertyName("derivationPath")]
-        public string? DerivationPath { get { return this.DerivationPathOption; } set { this.DerivationPathOption = new(value); } }
+        public string? DerivationPath { get { return this.DerivationPathOption.Value; } set { this.DerivationPathOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -108,8 +108,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateNonCustodialAddressRequest" />
     /// </summary>
-    public class UpdateNonCustodialAddressRequestJsonConverter : JsonConverter<UpdateNonCustodialAddressRequest>
+    public partial class UpdateNonCustodialAddressRequestJsonConverter : JsonConverter<UpdateNonCustodialAddressRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateNonCustodialAddressRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateNonCustodialAddressRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateNonCustodialAddressRequest" />
         /// </summary>

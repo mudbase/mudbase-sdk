@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Last24h
         /// </summary>
         [JsonPropertyName("last24h")]
-        public int? Last24h { get { return this.Last24hOption; } set { this.Last24hOption = new(value); } }
+        public int? Last24h { get { return this.Last24hOption.Value; } set { this.Last24hOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Last7d
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Last7d
         /// </summary>
         [JsonPropertyName("last7d")]
-        public int? Last7d { get { return this.Last7dOption; } set { this.Last7dOption = new(value); } }
+        public int? Last7d { get { return this.Last7dOption.Value; } set { this.Last7dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Last30d
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Last30d
         /// </summary>
         [JsonPropertyName("last30d")]
-        public int? Last30d { get { return this.Last30dOption; } set { this.Last30dOption = new(value); } }
+        public int? Last30d { get { return this.Last30dOption.Value; } set { this.Last30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ChangePct7d
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ChangePct7d
         /// </summary>
         [JsonPropertyName("changePct7d")]
-        public decimal? ChangePct7d { get { return this.ChangePct7dOption; } set { this.ChangePct7dOption = new(value); } }
+        public decimal? ChangePct7d { get { return this.ChangePct7dOption.Value; } set { this.ChangePct7dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Direction7d
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Direction7d
         /// </summary>
         [JsonPropertyName("direction7d")]
-        public string? Direction7d { get { return this.Direction7dOption; } set { this.Direction7dOption = new(value); } }
+        public string? Direction7d { get { return this.Direction7dOption.Value; } set { this.Direction7dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RealtimeConnected
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RealtimeConnected
         /// </summary>
         [JsonPropertyName("realtimeConnected")]
-        public int? RealtimeConnected { get { return this.RealtimeConnectedOption; } set { this.RealtimeConnectedOption = new(value); } }
+        public int? RealtimeConnected { get { return this.RealtimeConnectedOption.Value; } set { this.RealtimeConnectedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DashboardOverviewDataActiveUsers" />
     /// </summary>
-    public class DashboardOverviewDataActiveUsersJsonConverter : JsonConverter<DashboardOverviewDataActiveUsers>
+    public partial class DashboardOverviewDataActiveUsersJsonConverter : JsonConverter<DashboardOverviewDataActiveUsers>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardOverviewDataActiveUsersJsonConverter" /> class.
+        /// </summary>
+        public DashboardOverviewDataActiveUsersJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DashboardOverviewDataActiveUsers" />
         /// </summary>

@@ -80,7 +80,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OriginalName
         /// </summary>
         [JsonPropertyName("originalName")]
-        public string? OriginalName { get { return this.OriginalNameOption; } set { this.OriginalNameOption = new(value); } }
+        public string? OriginalName { get { return this.OriginalNameOption.Value; } set { this.OriginalNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ContentType
@@ -93,7 +93,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ContentType
         /// </summary>
         [JsonPropertyName("contentType")]
-        public string? ContentType { get { return this.ContentTypeOption; } set { this.ContentTypeOption = new(value); } }
+        public string? ContentType { get { return this.ContentTypeOption.Value; } set { this.ContentTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Size
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Size
         /// </summary>
         [JsonPropertyName("size")]
-        public int? Size { get { return this.SizeOption; } set { this.SizeOption = new(value); } }
+        public int? Size { get { return this.SizeOption.Value; } set { this.SizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Bucket
@@ -119,7 +119,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Bucket
         /// </summary>
         [JsonPropertyName("bucket")]
-        public string? Bucket { get { return this.BucketOption; } set { this.BucketOption = new(value); } }
+        public string? Bucket { get { return this.BucketOption.Value; } set { this.BucketOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsPublic
@@ -132,7 +132,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsPublic
         /// </summary>
         [JsonPropertyName("isPublic")]
-        public bool? IsPublic { get { return this.IsPublicOption; } set { this.IsPublicOption = new(value); } }
+        public bool? IsPublic { get { return this.IsPublicOption.Value; } set { this.IsPublicOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -167,8 +167,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfirmDirectUploadRequest" />
     /// </summary>
-    public class ConfirmDirectUploadRequestJsonConverter : JsonConverter<ConfirmDirectUploadRequest>
+    public partial class ConfirmDirectUploadRequestJsonConverter : JsonConverter<ConfirmDirectUploadRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfirmDirectUploadRequestJsonConverter" /> class.
+        /// </summary>
+        public ConfirmDirectUploadRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfirmDirectUploadRequest" />
         /// </summary>

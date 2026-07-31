@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InitiateOrgOAuth400Response" />
     /// </summary>
-    public class InitiateOrgOAuth400ResponseJsonConverter : JsonConverter<InitiateOrgOAuth400Response>
+    public partial class InitiateOrgOAuth400ResponseJsonConverter : JsonConverter<InitiateOrgOAuth400Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InitiateOrgOAuth400ResponseJsonConverter" /> class.
+        /// </summary>
+        public InitiateOrgOAuth400ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InitiateOrgOAuth400Response" />
         /// </summary>

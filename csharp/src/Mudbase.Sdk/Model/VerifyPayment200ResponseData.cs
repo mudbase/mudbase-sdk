@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Subscription
         /// </summary>
         [JsonPropertyName("subscription")]
-        public VerifyPayment200ResponseDataSubscription? Subscription { get { return this.SubscriptionOption; } set { this.SubscriptionOption = new(value); } }
+        public VerifyPayment200ResponseDataSubscription? Subscription { get { return this.SubscriptionOption.Value; } set { this.SubscriptionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="VerifyPayment200ResponseData" />
     /// </summary>
-    public class VerifyPayment200ResponseDataJsonConverter : JsonConverter<VerifyPayment200ResponseData>
+    public partial class VerifyPayment200ResponseDataJsonConverter : JsonConverter<VerifyPayment200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifyPayment200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public VerifyPayment200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VerifyPayment200ResponseData" />
         /// </summary>

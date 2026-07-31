@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Enabled
         /// </summary>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxRetries
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxRetries
         /// </summary>
         [JsonPropertyName("maxRetries")]
-        public int? MaxRetries { get { return this.MaxRetriesOption; } set { this.MaxRetriesOption = new(value); } }
+        public int? MaxRetries { get { return this.MaxRetriesOption.Value; } set { this.MaxRetriesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BackoffMs
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets BackoffMs
         /// </summary>
         [JsonPropertyName("backoffMs")]
-        public int? BackoffMs { get { return this.BackoffMsOption; } set { this.BackoffMsOption = new(value); } }
+        public int? BackoffMs { get { return this.BackoffMsOption.Value; } set { this.BackoffMsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateFunctionRequestRetryPolicy" />
     /// </summary>
-    public class UpdateFunctionRequestRetryPolicyJsonConverter : JsonConverter<UpdateFunctionRequestRetryPolicy>
+    public partial class UpdateFunctionRequestRetryPolicyJsonConverter : JsonConverter<UpdateFunctionRequestRetryPolicy>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateFunctionRequestRetryPolicyJsonConverter" /> class.
+        /// </summary>
+        public UpdateFunctionRequestRetryPolicyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateFunctionRequestRetryPolicy" />
         /// </summary>

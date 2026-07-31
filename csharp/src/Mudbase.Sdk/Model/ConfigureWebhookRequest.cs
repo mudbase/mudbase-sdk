@@ -64,7 +64,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>URL to receive webhook payloads; set to null or omit to disable</value>
         [JsonPropertyName("webhookUrl")]
-        public string? WebhookUrl { get { return this.WebhookUrlOption; } set { this.WebhookUrlOption = new(value); } }
+        public string? WebhookUrl { get { return this.WebhookUrlOption.Value; } set { this.WebhookUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookSecret
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional secret for signing payloads (e.g. X-Webhook-Signature)</value>
         [JsonPropertyName("webhookSecret")]
-        public string? WebhookSecret { get { return this.WebhookSecretOption; } set { this.WebhookSecretOption = new(value); } }
+        public string? WebhookSecret { get { return this.WebhookSecretOption.Value; } set { this.WebhookSecretOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookEvents
@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Event types to send (e.g. collection.insert, collection.update)</value>
         [JsonPropertyName("webhookEvents")]
-        public List<string>? WebhookEvents { get { return this.WebhookEventsOption; } set { this.WebhookEventsOption = new(value); } }
+        public List<string>? WebhookEvents { get { return this.WebhookEventsOption.Value; } set { this.WebhookEventsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookVersion
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Version string for payload format</value>
         [JsonPropertyName("webhookVersion")]
-        public string? WebhookVersion { get { return this.WebhookVersionOption; } set { this.WebhookVersionOption = new(value); } }
+        public string? WebhookVersion { get { return this.WebhookVersionOption.Value; } set { this.WebhookVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Transformations
@@ -120,7 +120,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Transformation rules to apply to payloads before delivery</value>
         [JsonPropertyName("transformations")]
-        public List<GetWebhookConfig200ResponseDataTransformationsInner>? Transformations { get { return this.TransformationsOption; } set { this.TransformationsOption = new(value); } }
+        public List<GetWebhookConfig200ResponseDataTransformationsInner>? Transformations { get { return this.TransformationsOption.Value; } set { this.TransformationsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -153,8 +153,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfigureWebhookRequest" />
     /// </summary>
-    public class ConfigureWebhookRequestJsonConverter : JsonConverter<ConfigureWebhookRequest>
+    public partial class ConfigureWebhookRequestJsonConverter : JsonConverter<ConfigureWebhookRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigureWebhookRequestJsonConverter" /> class.
+        /// </summary>
+        public ConfigureWebhookRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfigureWebhookRequest" />
         /// </summary>

@@ -319,7 +319,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Method
         /// </summary>
         [JsonPropertyName("method")]
-        public MethodEnum? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public MethodEnum? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Event
@@ -333,7 +333,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Event name (e.g. create, update, delete for document; uploaded, deleted for file; tx, balance for wallet)</value>
         [JsonPropertyName("event")]
-        public string? Event { get { return this.EventOption; } set { this.EventOption = new(value); } }
+        public string? Event { get { return this.EventOption.Value; } set { this.EventOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Schedule
@@ -347,7 +347,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>For cron - minutely, hourly, daily, weekly, or custom cron expression</value>
         [JsonPropertyName("schedule")]
-        public string? Schedule { get { return this.ScheduleOption; } set { this.ScheduleOption = new(value); } }
+        public string? Schedule { get { return this.ScheduleOption.Value; } set { this.ScheduleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Path
@@ -361,7 +361,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>HTTP path for http triggers</value>
         [JsonPropertyName("path")]
-        public string? Path { get { return this.PathOption; } set { this.PathOption = new(value); } }
+        public string? Path { get { return this.PathOption.Value; } set { this.PathOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CollectionId
@@ -375,7 +375,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>For document triggers - filter by collection</value>
         [JsonPropertyName("collectionId")]
-        public string? CollectionId { get { return this.CollectionIdOption; } set { this.CollectionIdOption = new(value); } }
+        public string? CollectionId { get { return this.CollectionIdOption.Value; } set { this.CollectionIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BucketId
@@ -389,7 +389,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>For file triggers - filter by bucket</value>
         [JsonPropertyName("bucketId")]
-        public string? BucketId { get { return this.BucketIdOption; } set { this.BucketIdOption = new(value); } }
+        public string? BucketId { get { return this.BucketIdOption.Value; } set { this.BucketIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -424,8 +424,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FunctionTrigger" />
     /// </summary>
-    public class FunctionTriggerJsonConverter : JsonConverter<FunctionTrigger>
+    public partial class FunctionTriggerJsonConverter : JsonConverter<FunctionTrigger>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FunctionTriggerJsonConverter" /> class.
+        /// </summary>
+        public FunctionTriggerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FunctionTrigger" />
         /// </summary>

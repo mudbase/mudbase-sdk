@@ -25,7 +25,7 @@ namespace Mudbase.Sdk.Client
     /// <summary>
     /// Provides hosting configuration for Mudbase.Sdk
     /// </summary>
-    public class HostConfiguration
+    public partial class HostConfiguration
     {
         private readonly IServiceCollection _services;
         private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions();
@@ -563,6 +563,9 @@ namespace Mudbase.Sdk.Client
             _jsonOptions.Converters.Add(new RegisterNonCustodialAddressRequestJsonConverter());
             _jsonOptions.Converters.Add(new RegisterRequestJsonConverter());
             _jsonOptions.Converters.Add(new RegisterUser429ResponseJsonConverter());
+            _jsonOptions.Converters.Add(new RegisterWithRole201ResponseJsonConverter());
+            _jsonOptions.Converters.Add(new RegisterWithRole201ResponseRoleJsonConverter());
+            _jsonOptions.Converters.Add(new RegisterWithRole201ResponseUserJsonConverter());
             _jsonOptions.Converters.Add(new RegisterWithRoleRequestJsonConverter());
             _jsonOptions.Converters.Add(new RemoveParticipantRequestJsonConverter());
             _jsonOptions.Converters.Add(new RemoveReaction200ResponseJsonConverter());
@@ -746,6 +749,17 @@ namespace Mudbase.Sdk.Client
             _services.AddSingleton<VerifiedRoleUpgradeApiEvents>();
             _services.AddSingleton<WalletApiEvents>();
             _services.AddSingleton<WebhooksApiEvents>();
+            OnHostConfigurationCreated();
+        }
+
+        /// <summary>
+        /// Configures the HttpClients.
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public HostConfiguration AddApiHttpClients(Action<IHttpClientBuilder>? builder = null)
+        {
+            return AddApiHttpClients((Action<IServiceProvider, HttpClient>?)null, builder);
         }
 
         /// <summary>
@@ -754,57 +768,99 @@ namespace Mudbase.Sdk.Client
         /// <param name="client"></param>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public HostConfiguration AddApiHttpClients
-        (
-            Action<HttpClient>? client = null, Action<IHttpClientBuilder>? builder = null)
+        public HostConfiguration AddApiHttpClients(
+            Action<HttpClient>? client,
+            Action<IHttpClientBuilder>? builder = null)
+        {
+            var wrapped = client != null ? new Action<IServiceProvider, HttpClient>((_, httpClient) =>
+            {
+                client(httpClient);
+            }) : null;
+            return AddApiHttpClients(wrapped, builder);
+        }
+
+        /// <summary>
+        /// Configures the HttpClients.
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public HostConfiguration AddApiHttpClients(
+            Action<IServiceProvider, HttpClient>? client,
+            Action<IHttpClientBuilder>? builder = null)
         {
             if (client == null)
-                client = c => c.BaseAddress = new Uri(ClientUtils.BASE_ADDRESS);
+                client = (_, c) => c.BaseAddress = new Uri(ClientUtils.BASE_ADDRESS);
 
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
-            builders.Add(_services.AddHttpClient<IAPIKeysApi, APIKeysApi>(client));
-            builders.Add(_services.AddHttpClient<IAddOnsApi, AddOnsApi>(client));
-            builders.Add(_services.AddHttpClient<IAdminApi, AdminApi>(client));
-            builders.Add(_services.AddHttpClient<IAuthenticationApi, AuthenticationApi>(client));
-            builders.Add(_services.AddHttpClient<IBackupsApi, BackupsApi>(client));
-            builders.Add(_services.AddHttpClient<IBillingApi, BillingApi>(client));
-            builders.Add(_services.AddHttpClient<IBucketsApi, BucketsApi>(client));
-            builders.Add(_services.AddHttpClient<IBugAnalysisApi, BugAnalysisApi>(client));
-            builders.Add(_services.AddHttpClient<IChatApi, ChatApi>(client));
-            builders.Add(_services.AddHttpClient<ICollectionsApi, CollectionsApi>(client));
-            builders.Add(_services.AddHttpClient<IComplianceApi, ComplianceApi>(client));
-            builders.Add(_services.AddHttpClient<IDataApi, DataApi>(client));
-            builders.Add(_services.AddHttpClient<IEmailApi, EmailApi>(client));
-            builders.Add(_services.AddHttpClient<IFilesApi, FilesApi>(client));
-            builders.Add(_services.AddHttpClient<IFunctionsApi, FunctionsApi>(client));
-            builders.Add(_services.AddHttpClient<IHealthApi, HealthApi>(client));
-            builders.Add(_services.AddHttpClient<IIntegrationsApi, IntegrationsApi>(client));
-            builders.Add(_services.AddHttpClient<IKYCApi, KYCApi>(client));
-            builders.Add(_services.AddHttpClient<IMessagingApi, MessagingApi>(client));
-            builders.Add(_services.AddHttpClient<IMonitoringApi, MonitoringApi>(client));
-            builders.Add(_services.AddHttpClient<IMultiRoleFeatureApi, MultiRoleFeatureApi>(client));
-            builders.Add(_services.AddHttpClient<IOrganizationsApi, OrganizationsApi>(client));
-            builders.Add(_services.AddHttpClient<IProjectFeesApi, ProjectFeesApi>(client));
-            builders.Add(_services.AddHttpClient<IProjectsApi, ProjectsApi>(client));
-            builders.Add(_services.AddHttpClient<IRealTimeAnalyticsApi, RealTimeAnalyticsApi>(client));
-            builders.Add(_services.AddHttpClient<IRoleElevationApi, RoleElevationApi>(client));
-            builders.Add(_services.AddHttpClient<IRolesApi, RolesApi>(client));
-            builders.Add(_services.AddHttpClient<ISearchApi, SearchApi>(client));
-            builders.Add(_services.AddHttpClient<IUsageApi, UsageApi>(client));
-            builders.Add(_services.AddHttpClient<IUsersApi, UsersApi>(client));
-            builders.Add(_services.AddHttpClient<IVerifiedRoleUpgradeApi, VerifiedRoleUpgradeApi>(client));
-            builders.Add(_services.AddHttpClient<IWalletApi, WalletApi>(client));
-            builders.Add(_services.AddHttpClient<IWebhooksApi, WebhooksApi>(client));
-            
-            if (builder != null)
-                foreach (IHttpClientBuilder instance in builders)
-                    builder(instance);
+            builders.Add(_services.AddHttpClient<IAPIKeysApi, APIKeysApi>("Mudbase.Sdk.Api.IAPIKeysApi", client));
+            builders.Add(_services.AddHttpClient<IAddOnsApi, AddOnsApi>("Mudbase.Sdk.Api.IAddOnsApi", client));
+            builders.Add(_services.AddHttpClient<IAdminApi, AdminApi>("Mudbase.Sdk.Api.IAdminApi", client));
+            builders.Add(_services.AddHttpClient<IAuthenticationApi, AuthenticationApi>("Mudbase.Sdk.Api.IAuthenticationApi", client));
+            builders.Add(_services.AddHttpClient<IBackupsApi, BackupsApi>("Mudbase.Sdk.Api.IBackupsApi", client));
+            builders.Add(_services.AddHttpClient<IBillingApi, BillingApi>("Mudbase.Sdk.Api.IBillingApi", client));
+            builders.Add(_services.AddHttpClient<IBucketsApi, BucketsApi>("Mudbase.Sdk.Api.IBucketsApi", client));
+            builders.Add(_services.AddHttpClient<IBugAnalysisApi, BugAnalysisApi>("Mudbase.Sdk.Api.IBugAnalysisApi", client));
+            builders.Add(_services.AddHttpClient<IChatApi, ChatApi>("Mudbase.Sdk.Api.IChatApi", client));
+            builders.Add(_services.AddHttpClient<ICollectionsApi, CollectionsApi>("Mudbase.Sdk.Api.ICollectionsApi", client));
+            builders.Add(_services.AddHttpClient<IComplianceApi, ComplianceApi>("Mudbase.Sdk.Api.IComplianceApi", client));
+            builders.Add(_services.AddHttpClient<IDataApi, DataApi>("Mudbase.Sdk.Api.IDataApi", client));
+            builders.Add(_services.AddHttpClient<IEmailApi, EmailApi>("Mudbase.Sdk.Api.IEmailApi", client));
+            builders.Add(_services.AddHttpClient<IFilesApi, FilesApi>("Mudbase.Sdk.Api.IFilesApi", client));
+            builders.Add(_services.AddHttpClient<IFunctionsApi, FunctionsApi>("Mudbase.Sdk.Api.IFunctionsApi", client));
+            builders.Add(_services.AddHttpClient<IHealthApi, HealthApi>("Mudbase.Sdk.Api.IHealthApi", client));
+            builders.Add(_services.AddHttpClient<IIntegrationsApi, IntegrationsApi>("Mudbase.Sdk.Api.IIntegrationsApi", client));
+            builders.Add(_services.AddHttpClient<IKYCApi, KYCApi>("Mudbase.Sdk.Api.IKYCApi", client));
+            builders.Add(_services.AddHttpClient<IMessagingApi, MessagingApi>("Mudbase.Sdk.Api.IMessagingApi", client));
+            builders.Add(_services.AddHttpClient<IMonitoringApi, MonitoringApi>("Mudbase.Sdk.Api.IMonitoringApi", client));
+            builders.Add(_services.AddHttpClient<IMultiRoleFeatureApi, MultiRoleFeatureApi>("Mudbase.Sdk.Api.IMultiRoleFeatureApi", client));
+            builders.Add(_services.AddHttpClient<IOrganizationsApi, OrganizationsApi>("Mudbase.Sdk.Api.IOrganizationsApi", client));
+            builders.Add(_services.AddHttpClient<IProjectFeesApi, ProjectFeesApi>("Mudbase.Sdk.Api.IProjectFeesApi", client));
+            builders.Add(_services.AddHttpClient<IProjectsApi, ProjectsApi>("Mudbase.Sdk.Api.IProjectsApi", client));
+            builders.Add(_services.AddHttpClient<IRealTimeAnalyticsApi, RealTimeAnalyticsApi>("Mudbase.Sdk.Api.IRealTimeAnalyticsApi", client));
+            builders.Add(_services.AddHttpClient<IRoleElevationApi, RoleElevationApi>("Mudbase.Sdk.Api.IRoleElevationApi", client));
+            builders.Add(_services.AddHttpClient<IRolesApi, RolesApi>("Mudbase.Sdk.Api.IRolesApi", client));
+            builders.Add(_services.AddHttpClient<ISearchApi, SearchApi>("Mudbase.Sdk.Api.ISearchApi", client));
+            builders.Add(_services.AddHttpClient<IUsageApi, UsageApi>("Mudbase.Sdk.Api.IUsageApi", client));
+            builders.Add(_services.AddHttpClient<IUsersApi, UsersApi>("Mudbase.Sdk.Api.IUsersApi", client));
+            builders.Add(_services.AddHttpClient<IVerifiedRoleUpgradeApi, VerifiedRoleUpgradeApi>("Mudbase.Sdk.Api.IVerifiedRoleUpgradeApi", client));
+            builders.Add(_services.AddHttpClient<IWalletApi, WalletApi>("Mudbase.Sdk.Api.IWalletApi", client));
+            builders.Add(_services.AddHttpClient<IWebhooksApi, WebhooksApi>("Mudbase.Sdk.Api.IWebhooksApi", client));
+
+            foreach (IHttpClientBuilder instance in builders)
+            {
+                OnAddApiHttpClientBuilder(instance);
+                builder?.Invoke(instance);
+            }
 
             HttpClientsAdded = true;
 
             return this;
         }
+
+        /// <summary>
+        /// Applies configuration to each HttpClient after registration.
+        /// Implement this partial method in a separate file to provide custom defaults;
+        /// the caller's <c>builder</c> action runs after.
+        /// </summary>
+        /// <param name="builder"></param>
+        partial void OnAddApiHttpClientBuilder(IHttpClientBuilder builder);
+
+        /// <summary>
+        /// Called at the end of the constructor after all JSON converters and services are registered.
+        /// Implement this partial method to further configure <c>_jsonOptions</c> or register additional singletons via <c>_services</c>.
+        /// </summary>
+        partial void OnHostConfigurationCreated();
+
+        /// <summary>
+        /// Called after all services have been registered.
+        /// Implement this partial method to register additional services.
+        /// </summary>
+        /// <param name="services"></param>
+        partial void OnServicesAdded(IServiceCollection services);
+
+        internal void NotifyServicesAdded(IServiceCollection services) => OnServicesAdded(services);
 
         /// <summary>
         /// Configures the JsonSerializerSettings

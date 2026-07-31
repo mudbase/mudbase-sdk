@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Type
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public string? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public string? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Recipients
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Recipients
         /// </summary>
         [JsonPropertyName("recipients")]
-        public int? Recipients { get { return this.RecipientsOption; } set { this.RecipientsOption = new(value); } }
+        public int? Recipients { get { return this.RecipientsOption.Value; } set { this.RecipientsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SuccessCount
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SuccessCount
         /// </summary>
         [JsonPropertyName("successCount")]
-        public int? SuccessCount { get { return this.SuccessCountOption; } set { this.SuccessCountOption = new(value); } }
+        public int? SuccessCount { get { return this.SuccessCountOption.Value; } set { this.SuccessCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FailureCount
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FailureCount
         /// </summary>
         [JsonPropertyName("failureCount")]
-        public int? FailureCount { get { return this.FailureCountOption; } set { this.FailureCountOption = new(value); } }
+        public int? FailureCount { get { return this.FailureCountOption.Value; } set { this.FailureCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MessageId
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MessageId
         /// </summary>
         [JsonPropertyName("messageId")]
-        public string? MessageId { get { return this.MessageIdOption; } set { this.MessageIdOption = new(value); } }
+        public string? MessageId { get { return this.MessageIdOption.Value; } set { this.MessageIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SentAt
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SentAt
         /// </summary>
         [JsonPropertyName("sentAt")]
-        public DateTime? SentAt { get { return this.SentAtOption; } set { this.SentAtOption = new(value); } }
+        public DateTime? SentAt { get { return this.SentAtOption.Value; } set { this.SentAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,12 +196,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageSentResponseData" />
     /// </summary>
-    public class MessageSentResponseDataJsonConverter : JsonConverter<MessageSentResponseData>
+    public partial class MessageSentResponseDataJsonConverter : JsonConverter<MessageSentResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageSentResponseDataJsonConverter" /> class.
+        /// </summary>
+        public MessageSentResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize SentAt
         /// </summary>
-        public static string SentAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string SentAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="MessageSentResponseData" />

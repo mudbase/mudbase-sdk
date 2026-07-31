@@ -89,8 +89,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EmailRequestTo" />
     /// </summary>
-    public class EmailRequestToJsonConverter : JsonConverter<EmailRequestTo>
+    public partial class EmailRequestToJsonConverter : JsonConverter<EmailRequestTo>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmailRequestToJsonConverter" /> class.
+        /// </summary>
+        public EmailRequestToJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EmailRequestTo" />
         /// </summary>

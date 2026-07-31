@@ -145,7 +145,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DeploymentType
         /// </summary>
         [JsonPropertyName("deploymentType")]
-        public DeploymentTypeEnum? DeploymentType { get { return this.DeploymentTypeOption; } set { this.DeploymentTypeOption = new(value); } }
+        public DeploymentTypeEnum? DeploymentType { get { return this.DeploymentTypeOption.Value; } set { this.DeploymentTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -158,7 +158,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -171,7 +171,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Slug
@@ -184,7 +184,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Slug
         /// </summary>
         [JsonPropertyName("slug")]
-        public string? Slug { get { return this.SlugOption; } set { this.SlugOption = new(value); } }
+        public string? Slug { get { return this.SlugOption.Value; } set { this.SlugOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -197,7 +197,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Plan
@@ -210,7 +210,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Plan
         /// </summary>
         [JsonPropertyName("plan")]
-        public string? Plan { get { return this.PlanOption; } set { this.PlanOption = new(value); } }
+        public string? Plan { get { return this.PlanOption.Value; } set { this.PlanOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DedicatedApiBaseUrl
@@ -223,7 +223,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DedicatedApiBaseUrl
         /// </summary>
         [JsonPropertyName("dedicatedApiBaseUrl")]
-        public string? DedicatedApiBaseUrl { get { return this.DedicatedApiBaseUrlOption; } set { this.DedicatedApiBaseUrlOption = new(value); } }
+        public string? DedicatedApiBaseUrl { get { return this.DedicatedApiBaseUrlOption.Value; } set { this.DedicatedApiBaseUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -236,7 +236,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsActive
         /// </summary>
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -249,7 +249,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedBy
@@ -262,7 +262,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedBy
         /// </summary>
         [JsonPropertyName("createdBy")]
-        public GetDashboardOrganizations200ResponseOrganizationsInnerCreatedBy? CreatedBy { get { return this.CreatedByOption; } set { this.CreatedByOption = new(value); } }
+        public GetDashboardOrganizations200ResponseOrganizationsInnerCreatedBy? CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectCount
@@ -275,7 +275,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectCount
         /// </summary>
         [JsonPropertyName("projectCount")]
-        public int? ProjectCount { get { return this.ProjectCountOption; } set { this.ProjectCountOption = new(value); } }
+        public int? ProjectCount { get { return this.ProjectCountOption.Value; } set { this.ProjectCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UserCount
@@ -288,7 +288,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UserCount
         /// </summary>
         [JsonPropertyName("userCount")]
-        public int? UserCount { get { return this.UserCountOption; } set { this.UserCountOption = new(value); } }
+        public int? UserCount { get { return this.UserCountOption.Value; } set { this.UserCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Projects
@@ -301,7 +301,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Projects
         /// </summary>
         [JsonPropertyName("projects")]
-        public List<GetOrganizationUsers200ResponseUsersInnerProject>? Projects { get { return this.ProjectsOption; } set { this.ProjectsOption = new(value); } }
+        public List<GetOrganizationUsers200ResponseUsersInnerProject>? Projects { get { return this.ProjectsOption.Value; } set { this.ProjectsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -342,12 +342,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetDashboardOrganizations200ResponseOrganizationsInner" />
     /// </summary>
-    public class GetDashboardOrganizations200ResponseOrganizationsInnerJsonConverter : JsonConverter<GetDashboardOrganizations200ResponseOrganizationsInner>
+    public partial class GetDashboardOrganizations200ResponseOrganizationsInnerJsonConverter : JsonConverter<GetDashboardOrganizations200ResponseOrganizationsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetDashboardOrganizations200ResponseOrganizationsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetDashboardOrganizations200ResponseOrganizationsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetDashboardOrganizations200ResponseOrganizationsInner" />

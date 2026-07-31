@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>false</example> */
         [JsonPropertyName("valid")]
-        public bool? Valid { get { return this.ValidOption; } set { this.ValidOption = new(value); } }
+        public bool? Valid { get { return this.ValidOption.Value; } set { this.ValidOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Error
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Invalid or expired reset token</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ValidatePasswordResetToken400Response" />
     /// </summary>
-    public class ValidatePasswordResetToken400ResponseJsonConverter : JsonConverter<ValidatePasswordResetToken400Response>
+    public partial class ValidatePasswordResetToken400ResponseJsonConverter : JsonConverter<ValidatePasswordResetToken400Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValidatePasswordResetToken400ResponseJsonConverter" /> class.
+        /// </summary>
+        public ValidatePasswordResetToken400ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ValidatePasswordResetToken400Response" />
         /// </summary>

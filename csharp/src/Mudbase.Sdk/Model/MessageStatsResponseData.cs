@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalMessages
         /// </summary>
         [JsonPropertyName("totalMessages")]
-        public int? TotalMessages { get { return this.TotalMessagesOption; } set { this.TotalMessagesOption = new(value); } }
+        public int? TotalMessages { get { return this.TotalMessagesOption.Value; } set { this.TotalMessagesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ByType
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ByType
         /// </summary>
         [JsonPropertyName("byType")]
-        public MessageStatsResponseDataByType? ByType { get { return this.ByTypeOption; } set { this.ByTypeOption = new(value); } }
+        public MessageStatsResponseDataByType? ByType { get { return this.ByTypeOption.Value; } set { this.ByTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ByStatus
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ByStatus
         /// </summary>
         [JsonPropertyName("byStatus")]
-        public MessageStatsResponseDataByStatus? ByStatus { get { return this.ByStatusOption; } set { this.ByStatusOption = new(value); } }
+        public MessageStatsResponseDataByStatus? ByStatus { get { return this.ByStatusOption.Value; } set { this.ByStatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SuccessRate
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SuccessRate
         /// </summary>
         [JsonPropertyName("successRate")]
-        public decimal? SuccessRate { get { return this.SuccessRateOption; } set { this.SuccessRateOption = new(value); } }
+        public decimal? SuccessRate { get { return this.SuccessRateOption.Value; } set { this.SuccessRateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Period
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Period
         /// </summary>
         [JsonPropertyName("period")]
-        public MessageStatsResponseDataPeriod? Period { get { return this.PeriodOption; } set { this.PeriodOption = new(value); } }
+        public MessageStatsResponseDataPeriod? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageStatsResponseData" />
     /// </summary>
-    public class MessageStatsResponseDataJsonConverter : JsonConverter<MessageStatsResponseData>
+    public partial class MessageStatsResponseDataJsonConverter : JsonConverter<MessageStatsResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageStatsResponseDataJsonConverter" /> class.
+        /// </summary>
+        public MessageStatsResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageStatsResponseData" />
         /// </summary>

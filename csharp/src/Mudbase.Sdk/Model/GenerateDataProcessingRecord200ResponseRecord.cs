@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OrgId
         /// </summary>
         [JsonPropertyName("orgId")]
-        public string? OrgId { get { return this.OrgIdOption; } set { this.OrgIdOption = new(value); } }
+        public string? OrgId { get { return this.OrgIdOption.Value; } set { this.OrgIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RecordDate
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RecordDate
         /// </summary>
         [JsonPropertyName("recordDate")]
-        public DateTime? RecordDate { get { return this.RecordDateOption; } set { this.RecordDateOption = new(value); } }
+        public DateTime? RecordDate { get { return this.RecordDateOption.Value; } set { this.RecordDateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DataController
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DataController
         /// </summary>
         [JsonPropertyName("dataController")]
-        public Object? DataController { get { return this.DataControllerOption; } set { this.DataControllerOption = new(value); } }
+        public Object? DataController { get { return this.DataControllerOption.Value; } set { this.DataControllerOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProcessingActivities
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProcessingActivities
         /// </summary>
         [JsonPropertyName("processingActivities")]
-        public List<Object>? ProcessingActivities { get { return this.ProcessingActivitiesOption; } set { this.ProcessingActivitiesOption = new(value); } }
+        public List<Object>? ProcessingActivities { get { return this.ProcessingActivitiesOption.Value; } set { this.ProcessingActivitiesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DataSubjects
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DataSubjects
         /// </summary>
         [JsonPropertyName("dataSubjects")]
-        public List<string>? DataSubjects { get { return this.DataSubjectsOption; } set { this.DataSubjectsOption = new(value); } }
+        public List<string>? DataSubjects { get { return this.DataSubjectsOption.Value; } set { this.DataSubjectsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GeneratedAt
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets GeneratedAt
         /// </summary>
         [JsonPropertyName("generatedAt")]
-        public DateTime? GeneratedAt { get { return this.GeneratedAtOption; } set { this.GeneratedAtOption = new(value); } }
+        public DateTime? GeneratedAt { get { return this.GeneratedAtOption.Value; } set { this.GeneratedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,17 +164,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateDataProcessingRecord200ResponseRecord" />
     /// </summary>
-    public class GenerateDataProcessingRecord200ResponseRecordJsonConverter : JsonConverter<GenerateDataProcessingRecord200ResponseRecord>
+    public partial class GenerateDataProcessingRecord200ResponseRecordJsonConverter : JsonConverter<GenerateDataProcessingRecord200ResponseRecord>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateDataProcessingRecord200ResponseRecordJsonConverter" /> class.
+        /// </summary>
+        public GenerateDataProcessingRecord200ResponseRecordJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize RecordDate
         /// </summary>
-        public static string RecordDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string RecordDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize GeneratedAt
         /// </summary>
-        public static string GeneratedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string GeneratedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GenerateDataProcessingRecord200ResponseRecord" />

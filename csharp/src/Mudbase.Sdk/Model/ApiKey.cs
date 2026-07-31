@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Project
@@ -99,7 +99,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public ProjectSummary? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public ProjectSummary? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Permissions
@@ -112,7 +112,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Permissions
         /// </summary>
         [JsonPropertyName("permissions")]
-        public List<ApiKeyPermission>? Permissions { get { return this.PermissionsOption; } set { this.PermissionsOption = new(value); } }
+        public List<ApiKeyPermission>? Permissions { get { return this.PermissionsOption.Value; } set { this.PermissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RateLimit
@@ -125,7 +125,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RateLimit
         /// </summary>
         [JsonPropertyName("rateLimit")]
-        public RateLimit? RateLimit { get { return this.RateLimitOption; } set { this.RateLimitOption = new(value); } }
+        public RateLimit? RateLimit { get { return this.RateLimitOption.Value; } set { this.RateLimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Usage
@@ -138,7 +138,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public ApiKeyUsage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public ApiKeyUsage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -151,7 +151,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsActive
         /// </summary>
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAt
@@ -164,7 +164,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ExpiresAt
         /// </summary>
         [JsonPropertyName("expiresAt")]
-        public DateTime? ExpiresAt { get { return this.ExpiresAtOption; } set { this.ExpiresAtOption = new(value); } }
+        public DateTime? ExpiresAt { get { return this.ExpiresAtOption.Value; } set { this.ExpiresAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedBy
@@ -177,7 +177,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedBy
         /// </summary>
         [JsonPropertyName("createdBy")]
-        public UserSummary? CreatedBy { get { return this.CreatedByOption; } set { this.CreatedByOption = new(value); } }
+        public UserSummary? CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -190,7 +190,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -228,17 +228,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiKey" />
     /// </summary>
-    public class ApiKeyJsonConverter : JsonConverter<ApiKey>
+    public partial class ApiKeyJsonConverter : JsonConverter<ApiKey>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKeyJsonConverter" /> class.
+        /// </summary>
+        public ApiKeyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ExpiresAt
         /// </summary>
-        public static string ExpiresAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string ExpiresAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApiKey" />

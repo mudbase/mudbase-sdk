@@ -292,7 +292,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional project ID</value>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Network
@@ -306,7 +306,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Required for USDT; one of ETH, BSC, TRX, SOL, POLYGON</value>
         [JsonPropertyName("network")]
-        public string? Network { get { return this.NetworkOption; } set { this.NetworkOption = new(value); } }
+        public string? Network { get { return this.NetworkOption.Value; } set { this.NetworkOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PrivateKey
@@ -320,7 +320,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional custom private key</value>
         [JsonPropertyName("privateKey")]
-        public string? PrivateKey { get { return this.PrivateKeyOption; } set { this.PrivateKeyOption = new(value); } }
+        public string? PrivateKey { get { return this.PrivateKeyOption.Value; } set { this.PrivateKeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Label
@@ -333,7 +333,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Label
         /// </summary>
         [JsonPropertyName("label")]
-        public string? Label { get { return this.LabelOption; } set { this.LabelOption = new(value); } }
+        public string? Label { get { return this.LabelOption.Value; } set { this.LabelOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -366,8 +366,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateWalletRequest" />
     /// </summary>
-    public class CreateWalletRequestJsonConverter : JsonConverter<CreateWalletRequest>
+    public partial class CreateWalletRequestJsonConverter : JsonConverter<CreateWalletRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateWalletRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateWalletRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateWalletRequest" />
         /// </summary>

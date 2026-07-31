@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VarVersion
         /// </summary>
         [JsonPropertyName("version")]
-        public int? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new(value); } }
+        public int? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Scheme
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Scheme
         /// </summary>
         [JsonPropertyName("scheme")]
-        public string? Scheme { get { return this.SchemeOption; } set { this.SchemeOption = new(value); } }
+        public string? Scheme { get { return this.SchemeOption.Value; } set { this.SchemeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Ciphertext
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Ciphertext
         /// </summary>
         [JsonPropertyName("ciphertext")]
-        public string? Ciphertext { get { return this.CiphertextOption; } set { this.CiphertextOption = new(value); } }
+        public string? Ciphertext { get { return this.CiphertextOption.Value; } set { this.CiphertextOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Nonce
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Nonce
         /// </summary>
         [JsonPropertyName("nonce")]
-        public string? Nonce { get { return this.NonceOption; } set { this.NonceOption = new(value); } }
+        public string? Nonce { get { return this.NonceOption.Value; } set { this.NonceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EphemeralPublicKey
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EphemeralPublicKey
         /// </summary>
         [JsonPropertyName("ephemeralPublicKey")]
-        public string? EphemeralPublicKey { get { return this.EphemeralPublicKeyOption; } set { this.EphemeralPublicKeyOption = new(value); } }
+        public string? EphemeralPublicKey { get { return this.EphemeralPublicKeyOption.Value; } set { this.EphemeralPublicKeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SenderKeyId
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SenderKeyId
         /// </summary>
         [JsonPropertyName("senderKeyId")]
-        public string? SenderKeyId { get { return this.SenderKeyIdOption; } set { this.SenderKeyIdOption = new(value); } }
+        public string? SenderKeyId { get { return this.SenderKeyIdOption.Value; } set { this.SenderKeyIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EditMessageRequestE2ee" />
     /// </summary>
-    public class EditMessageRequestE2eeJsonConverter : JsonConverter<EditMessageRequestE2ee>
+    public partial class EditMessageRequestE2eeJsonConverter : JsonConverter<EditMessageRequestE2ee>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditMessageRequestE2eeJsonConverter" /> class.
+        /// </summary>
+        public EditMessageRequestE2eeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EditMessageRequestE2ee" />
         /// </summary>

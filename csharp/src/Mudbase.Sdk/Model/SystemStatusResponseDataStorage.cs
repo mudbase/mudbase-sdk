@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Used
         /// </summary>
         [JsonPropertyName("used")]
-        public int? Used { get { return this.UsedOption; } set { this.UsedOption = new(value); } }
+        public int? Used { get { return this.UsedOption.Value; } set { this.UsedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Available
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Available
         /// </summary>
         [JsonPropertyName("available")]
-        public int? Available { get { return this.AvailableOption; } set { this.AvailableOption = new(value); } }
+        public int? Available { get { return this.AvailableOption.Value; } set { this.AvailableOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Percentage
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Percentage
         /// </summary>
         [JsonPropertyName("percentage")]
-        public decimal? Percentage { get { return this.PercentageOption; } set { this.PercentageOption = new(value); } }
+        public decimal? Percentage { get { return this.PercentageOption.Value; } set { this.PercentageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SystemStatusResponseDataStorage" />
     /// </summary>
-    public class SystemStatusResponseDataStorageJsonConverter : JsonConverter<SystemStatusResponseDataStorage>
+    public partial class SystemStatusResponseDataStorageJsonConverter : JsonConverter<SystemStatusResponseDataStorage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SystemStatusResponseDataStorageJsonConverter" /> class.
+        /// </summary>
+        public SystemStatusResponseDataStorageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SystemStatusResponseDataStorage" />
         /// </summary>

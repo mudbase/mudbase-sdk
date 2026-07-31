@@ -67,7 +67,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Payment intent ID from payment provider</value>
         [JsonPropertyName("paymentIntentId")]
-        public string? PaymentIntentId { get { return this.PaymentIntentIdOption; } set { this.PaymentIntentIdOption = new(value); } }
+        public string? PaymentIntentId { get { return this.PaymentIntentIdOption.Value; } set { this.PaymentIntentIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VerificationId
@@ -81,7 +81,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>KYC verification ID (if required)</value>
         [JsonPropertyName("verificationId")]
-        public string? VerificationId { get { return this.VerificationIdOption; } set { this.VerificationIdOption = new(value); } }
+        public string? VerificationId { get { return this.VerificationIdOption.Value; } set { this.VerificationIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -112,8 +112,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="VerifiedRoleUpgradeRequest" />
     /// </summary>
-    public class VerifiedRoleUpgradeRequestJsonConverter : JsonConverter<VerifiedRoleUpgradeRequest>
+    public partial class VerifiedRoleUpgradeRequestJsonConverter : JsonConverter<VerifiedRoleUpgradeRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifiedRoleUpgradeRequestJsonConverter" /> class.
+        /// </summary>
+        public VerifiedRoleUpgradeRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VerifiedRoleUpgradeRequest" />
         /// </summary>

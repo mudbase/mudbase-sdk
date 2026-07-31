@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>123456789-abcdefghijklmnop.apps.googleusercontent.com</example> */
         [JsonPropertyName("clientId")]
-        public string? ClientId { get { return this.ClientIdOption; } set { this.ClientIdOption = new(value); } }
+        public string? ClientId { get { return this.ClientIdOption.Value; } set { this.ClientIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Scope
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>[&quot;profile&quot;,&quot;email&quot;]</example> */
         [JsonPropertyName("scope")]
-        public List<string>? Scope { get { return this.ScopeOption; } set { this.ScopeOption = new(value); } }
+        public List<string>? Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetOAuthProviderConfig200ResponseConfig" />
     /// </summary>
-    public class GetOAuthProviderConfig200ResponseConfigJsonConverter : JsonConverter<GetOAuthProviderConfig200ResponseConfig>
+    public partial class GetOAuthProviderConfig200ResponseConfigJsonConverter : JsonConverter<GetOAuthProviderConfig200ResponseConfig>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetOAuthProviderConfig200ResponseConfigJsonConverter" /> class.
+        /// </summary>
+        public GetOAuthProviderConfig200ResponseConfigJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetOAuthProviderConfig200ResponseConfig" />
         /// </summary>

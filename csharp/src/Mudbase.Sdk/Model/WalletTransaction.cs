@@ -178,7 +178,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>completed</example> */
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Defines MainTxStatus
@@ -272,7 +272,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>confirmed</example> */
         [JsonPropertyName("mainTxStatus")]
-        public MainTxStatusEnum? MainTxStatus { get { return this.MainTxStatusOption; } set { this.MainTxStatusOption = new(value); } }
+        public MainTxStatusEnum? MainTxStatus { get { return this.MainTxStatusOption.Value; } set { this.MainTxStatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -286,7 +286,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>65a1b2c3d4e5f6789012345b</example> */
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TxHash
@@ -300,7 +300,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0xabc123def4567890123456789012345678901234567890123456789012345678</example> */
         [JsonPropertyName("txHash")]
-        public string? TxHash { get { return this.TxHashOption; } set { this.TxHashOption = new(value); } }
+        public string? TxHash { get { return this.TxHashOption.Value; } set { this.TxHashOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MainTxHash
@@ -314,7 +314,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0xabc123def4567890123456789012345678901234567890123456789012345678</example> */
         [JsonPropertyName("mainTxHash")]
-        public string? MainTxHash { get { return this.MainTxHashOption; } set { this.MainTxHashOption = new(value); } }
+        public string? MainTxHash { get { return this.MainTxHashOption.Value; } set { this.MainTxHashOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Address
@@ -328,7 +328,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb</example> */
         [JsonPropertyName("address")]
-        public string? Address { get { return this.AddressOption; } set { this.AddressOption = new(value); } }
+        public string? Address { get { return this.AddressOption.Value; } set { this.AddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Chain
@@ -342,7 +342,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>ethereum</example> */
         [JsonPropertyName("chain")]
-        public string? Chain { get { return this.ChainOption; } set { this.ChainOption = new(value); } }
+        public string? Chain { get { return this.ChainOption.Value; } set { this.ChainOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of From
@@ -356,7 +356,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb</example> */
         [JsonPropertyName("from")]
-        public string? From { get { return this.FromOption; } set { this.FromOption = new(value); } }
+        public string? From { get { return this.FromOption.Value; } set { this.FromOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of To
@@ -370,7 +370,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0xdef4567890123456789012345678901234567890</example> */
         [JsonPropertyName("to")]
-        public string? To { get { return this.ToOption; } set { this.ToOption = new(value); } }
+        public string? To { get { return this.ToOption.Value; } set { this.ToOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FromAddress
@@ -384,7 +384,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb</example> */
         [JsonPropertyName("fromAddress")]
-        public string? FromAddress { get { return this.FromAddressOption; } set { this.FromAddressOption = new(value); } }
+        public string? FromAddress { get { return this.FromAddressOption.Value; } set { this.FromAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ToAddress
@@ -398,7 +398,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0xdef4567890123456789012345678901234567890</example> */
         [JsonPropertyName("toAddress")]
-        public string? ToAddress { get { return this.ToAddressOption; } set { this.ToAddressOption = new(value); } }
+        public string? ToAddress { get { return this.ToAddressOption.Value; } set { this.ToAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -413,7 +413,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Transaction amount (string to handle large numbers)</value>
         /* <example>0.1</example> */
         [JsonPropertyName("amount")]
-        public string? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public string? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -427,7 +427,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>ETH</example> */
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Type
@@ -441,7 +441,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>transfer</example> */
         [JsonPropertyName("type")]
-        public string? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public string? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Confirmations
@@ -455,7 +455,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>12</example> */
         [JsonPropertyName("confirmations")]
-        public int? Confirmations { get { return this.ConfirmationsOption; } set { this.ConfirmationsOption = new(value); } }
+        public int? Confirmations { get { return this.ConfirmationsOption.Value; } set { this.ConfirmationsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BlockNumber
@@ -469,7 +469,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>12345678</example> */
         [JsonPropertyName("blockNumber")]
-        public int? BlockNumber { get { return this.BlockNumberOption; } set { this.BlockNumberOption = new(value); } }
+        public int? BlockNumber { get { return this.BlockNumberOption.Value; } set { this.BlockNumberOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BlockHash
@@ -483,7 +483,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0xdef7890123456789012345678901234567890123456789012345678901234567</example> */
         [JsonPropertyName("blockHash")]
-        public string? BlockHash { get { return this.BlockHashOption; } set { this.BlockHashOption = new(value); } }
+        public string? BlockHash { get { return this.BlockHashOption.Value; } set { this.BlockHashOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NetworkFee
@@ -498,7 +498,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Network fee (string to handle large numbers)</value>
         /* <example>0.00021</example> */
         [JsonPropertyName("networkFee")]
-        public string? NetworkFee { get { return this.NetworkFeeOption; } set { this.NetworkFeeOption = new(value); } }
+        public string? NetworkFee { get { return this.NetworkFeeOption.Value; } set { this.NetworkFeeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MainTxConfirmedAt
@@ -512,7 +512,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:00Z</example> */
         [JsonPropertyName("mainTxConfirmedAt")]
-        public DateTime? MainTxConfirmedAt { get { return this.MainTxConfirmedAtOption; } set { this.MainTxConfirmedAtOption = new(value); } }
+        public DateTime? MainTxConfirmedAt { get { return this.MainTxConfirmedAtOption.Value; } set { this.MainTxConfirmedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -526,7 +526,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:00Z</example> */
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -540,7 +540,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:00Z</example> */
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TokenTransfers
@@ -554,7 +554,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Parsed token transfer list (incoming and outgoing) when available</value>
         [JsonPropertyName("tokenTransfers")]
-        public List<WalletTransactionTokenTransfersInner>? TokenTransfers { get { return this.TokenTransfersOption; } set { this.TokenTransfersOption = new(value); } }
+        public List<WalletTransactionTokenTransfersInner>? TokenTransfers { get { return this.TokenTransfersOption.Value; } set { this.TokenTransfersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -604,22 +604,32 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WalletTransaction" />
     /// </summary>
-    public class WalletTransactionJsonConverter : JsonConverter<WalletTransaction>
+    public partial class WalletTransactionJsonConverter : JsonConverter<WalletTransaction>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WalletTransactionJsonConverter" /> class.
+        /// </summary>
+        public WalletTransactionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize MainTxConfirmedAt
         /// </summary>
-        public static string MainTxConfirmedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string MainTxConfirmedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="WalletTransaction" />

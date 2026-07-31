@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ExportedAt
         /// </summary>
         [JsonPropertyName("exportedAt")]
-        public DateTime? ExportedAt { get { return this.ExportedAtOption; } set { this.ExportedAtOption = new(value); } }
+        public DateTime? ExportedAt { get { return this.ExportedAtOption.Value; } set { this.ExportedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public User? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public User? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Projects
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Projects
         /// </summary>
         [JsonPropertyName("projects")]
-        public List<Dictionary<string, Object>>? Projects { get { return this.ProjectsOption; } set { this.ProjectsOption = new(value); } }
+        public List<Dictionary<string, Object>>? Projects { get { return this.ProjectsOption.Value; } set { this.ProjectsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Wallets
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Wallets
         /// </summary>
         [JsonPropertyName("wallets")]
-        public List<Dictionary<string, Object>>? Wallets { get { return this.WalletsOption; } set { this.WalletsOption = new(value); } }
+        public List<Dictionary<string, Object>>? Wallets { get { return this.WalletsOption.Value; } set { this.WalletsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Transactions
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Transactions
         /// </summary>
         [JsonPropertyName("transactions")]
-        public List<Dictionary<string, Object>>? Transactions { get { return this.TransactionsOption; } set { this.TransactionsOption = new(value); } }
+        public List<Dictionary<string, Object>>? Transactions { get { return this.TransactionsOption.Value; } set { this.TransactionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Files
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Files
         /// </summary>
         [JsonPropertyName("files")]
-        public List<Dictionary<string, Object>>? Files { get { return this.FilesOption; } set { this.FilesOption = new(value); } }
+        public List<Dictionary<string, Object>>? Files { get { return this.FilesOption.Value; } set { this.FilesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Integrations
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Integrations
         /// </summary>
         [JsonPropertyName("integrations")]
-        public List<Dictionary<string, Object>>? Integrations { get { return this.IntegrationsOption; } set { this.IntegrationsOption = new(value); } }
+        public List<Dictionary<string, Object>>? Integrations { get { return this.IntegrationsOption.Value; } set { this.IntegrationsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKeys
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiKeys
         /// </summary>
         [JsonPropertyName("apiKeys")]
-        public List<Dictionary<string, Object>>? ApiKeys { get { return this.ApiKeysOption; } set { this.ApiKeysOption = new(value); } }
+        public List<Dictionary<string, Object>>? ApiKeys { get { return this.ApiKeysOption.Value; } set { this.ApiKeysOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,12 +196,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExportUserData200Response" />
     /// </summary>
-    public class ExportUserData200ResponseJsonConverter : JsonConverter<ExportUserData200Response>
+    public partial class ExportUserData200ResponseJsonConverter : JsonConverter<ExportUserData200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExportUserData200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ExportUserData200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ExportedAt
         /// </summary>
-        public static string ExportedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string ExportedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExportUserData200Response" />

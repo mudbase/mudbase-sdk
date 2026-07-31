@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Validation failed</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Details
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>[&quot;\&quot;permissions[0]\&quot; must be of type object&quot;,&quot;\&quot;expiresAt\&quot; must be a valid date&quot;]</example> */
         [JsonPropertyName("details")]
-        public List<string>? Details { get { return this.DetailsOption; } set { this.DetailsOption = new(value); } }
+        public List<string>? Details { get { return this.DetailsOption.Value; } set { this.DetailsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateApiKey400Response" />
     /// </summary>
-    public class CreateApiKey400ResponseJsonConverter : JsonConverter<CreateApiKey400Response>
+    public partial class CreateApiKey400ResponseJsonConverter : JsonConverter<CreateApiKey400Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateApiKey400ResponseJsonConverter" /> class.
+        /// </summary>
+        public CreateApiKey400ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateApiKey400Response" />
         /// </summary>

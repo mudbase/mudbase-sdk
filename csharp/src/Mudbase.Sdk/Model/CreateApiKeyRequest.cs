@@ -77,7 +77,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional. Permission objects (resource + actions). Omit or pass [] for full access (all resources and actions). Include only the entries you want; remove resources or actions to restrict the key.</value>
         [JsonPropertyName("permissions")]
-        public List<ApiKeyPermission>? Permissions { get { return this.PermissionsOption; } set { this.PermissionsOption = new(value); } }
+        public List<ApiKeyPermission>? Permissions { get { return this.PermissionsOption.Value; } set { this.PermissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RateLimit
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RateLimit
         /// </summary>
         [JsonPropertyName("rateLimit")]
-        public RateLimit? RateLimit { get { return this.RateLimitOption; } set { this.RateLimitOption = new(value); } }
+        public RateLimit? RateLimit { get { return this.RateLimitOption.Value; } set { this.RateLimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAt
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional. When provided, must be a valid ISO 8601 date-time in the future. Omit for no expiration.</value>
         [JsonPropertyName("expiresAt")]
-        public DateTime? ExpiresAt { get { return this.ExpiresAtOption; } set { this.ExpiresAtOption = new(value); } }
+        public DateTime? ExpiresAt { get { return this.ExpiresAtOption.Value; } set { this.ExpiresAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -159,12 +159,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateApiKeyRequest" />
     /// </summary>
-    public class CreateApiKeyRequestJsonConverter : JsonConverter<CreateApiKeyRequest>
+    public partial class CreateApiKeyRequestJsonConverter : JsonConverter<CreateApiKeyRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateApiKeyRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateApiKeyRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ExpiresAt
         /// </summary>
-        public static string ExpiresAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string ExpiresAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateApiKeyRequest" />

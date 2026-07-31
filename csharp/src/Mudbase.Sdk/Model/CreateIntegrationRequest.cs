@@ -79,7 +79,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Credentials
         /// </summary>
         [JsonPropertyName("credentials")]
-        public Object? Credentials { get { return this.CredentialsOption; } set { this.CredentialsOption = new(value); } }
+        public Object? Credentials { get { return this.CredentialsOption.Value; } set { this.CredentialsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -111,8 +111,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateIntegrationRequest" />
     /// </summary>
-    public class CreateIntegrationRequestJsonConverter : JsonConverter<CreateIntegrationRequest>
+    public partial class CreateIntegrationRequestJsonConverter : JsonConverter<CreateIntegrationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateIntegrationRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateIntegrationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateIntegrationRequest" />
         /// </summary>

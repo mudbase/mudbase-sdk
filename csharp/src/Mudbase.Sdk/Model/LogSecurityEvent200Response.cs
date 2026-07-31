@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Security event logged</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Event
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Event
         /// </summary>
         [JsonPropertyName("event")]
-        public LogSecurityEvent200ResponseEvent? Event { get { return this.EventOption; } set { this.EventOption = new(value); } }
+        public LogSecurityEvent200ResponseEvent? Event { get { return this.EventOption.Value; } set { this.EventOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LogSecurityEvent200Response" />
     /// </summary>
-    public class LogSecurityEvent200ResponseJsonConverter : JsonConverter<LogSecurityEvent200Response>
+    public partial class LogSecurityEvent200ResponseJsonConverter : JsonConverter<LogSecurityEvent200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogSecurityEvent200ResponseJsonConverter" /> class.
+        /// </summary>
+        public LogSecurityEvent200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LogSecurityEvent200Response" />
         /// </summary>

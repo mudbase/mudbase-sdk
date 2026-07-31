@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Orgs
         /// </summary>
         [JsonPropertyName("orgs")]
-        public List<Organization>? Orgs { get { return this.OrgsOption; } set { this.OrgsOption = new(value); } }
+        public List<Organization>? Orgs { get { return this.OrgsOption.Value; } set { this.OrgsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ListOrganizations200Response" />
     /// </summary>
-    public class ListOrganizations200ResponseJsonConverter : JsonConverter<ListOrganizations200Response>
+    public partial class ListOrganizations200ResponseJsonConverter : JsonConverter<ListOrganizations200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListOrganizations200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ListOrganizations200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ListOrganizations200Response" />
         /// </summary>

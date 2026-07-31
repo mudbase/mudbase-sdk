@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Emoji
         /// </summary>
         [JsonPropertyName("emoji")]
-        public string? Emoji { get { return this.EmojiOption; } set { this.EmojiOption = new(value); } }
+        public string? Emoji { get { return this.EmojiOption.Value; } set { this.EmojiOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Count
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Count
         /// </summary>
         [JsonPropertyName("count")]
-        public int? Count { get { return this.CountOption; } set { this.CountOption = new(value); } }
+        public int? Count { get { return this.CountOption.Value; } set { this.CountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Users
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Users
         /// </summary>
         [JsonPropertyName("users")]
-        public List<string>? Users { get { return this.UsersOption; } set { this.UsersOption = new(value); } }
+        public List<string>? Users { get { return this.UsersOption.Value; } set { this.UsersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RemoveReaction200ResponseDataInner" />
     /// </summary>
-    public class RemoveReaction200ResponseDataInnerJsonConverter : JsonConverter<RemoveReaction200ResponseDataInner>
+    public partial class RemoveReaction200ResponseDataInnerJsonConverter : JsonConverter<RemoveReaction200ResponseDataInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoveReaction200ResponseDataInnerJsonConverter" /> class.
+        /// </summary>
+        public RemoveReaction200ResponseDataInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RemoveReaction200ResponseDataInner" />
         /// </summary>

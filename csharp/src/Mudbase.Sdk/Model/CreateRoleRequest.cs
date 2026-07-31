@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Customer support team member</example> */
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Permissions
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Legacy resource-level permissions. For data CRUD, prefer &#x60;collectionPermissions&#x60; below.</value>
         [JsonPropertyName("permissions")]
-        public List<CreateRoleRequestPermissionsInner>? Permissions { get { return this.PermissionsOption; } set { this.PermissionsOption = new(value); } }
+        public List<CreateRoleRequestPermissionsInner>? Permissions { get { return this.PermissionsOption.Value; } set { this.PermissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Hierarchy
@@ -99,7 +99,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>40</example> */
         [JsonPropertyName("hierarchy")]
-        public decimal? Hierarchy { get { return this.HierarchyOption; } set { this.HierarchyOption = new(value); } }
+        public decimal? Hierarchy { get { return this.HierarchyOption.Value; } set { this.HierarchyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CollectionPermissions
@@ -113,7 +113,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Per-collection CRUD map. Keys are collection slugs; value can be action array or object with actions + conditions.</value>
         [JsonPropertyName("collectionPermissions")]
-        public Dictionary<string, CreateRoleRequestCollectionPermissionsValue>? CollectionPermissions { get { return this.CollectionPermissionsOption; } set { this.CollectionPermissionsOption = new(value); } }
+        public Dictionary<string, CreateRoleRequestCollectionPermissionsValue>? CollectionPermissions { get { return this.CollectionPermissionsOption.Value; } set { this.CollectionPermissionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -158,8 +158,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateRoleRequest" />
     /// </summary>
-    public class CreateRoleRequestJsonConverter : JsonConverter<CreateRoleRequest>
+    public partial class CreateRoleRequestJsonConverter : JsonConverter<CreateRoleRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateRoleRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateRoleRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateRoleRequest" />
         /// </summary>

@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("id")]
-        public decimal? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public decimal? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TxRef
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TxRef
         /// </summary>
         [JsonPropertyName("tx_ref")]
-        public string? TxRef { get { return this.TxRefOption; } set { this.TxRefOption = new(value); } }
+        public string? TxRef { get { return this.TxRefOption.Value; } set { this.TxRefOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FlwRef
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FlwRef
         /// </summary>
         [JsonPropertyName("flw_ref")]
-        public string? FlwRef { get { return this.FlwRefOption; } set { this.FlwRefOption = new(value); } }
+        public string? FlwRef { get { return this.FlwRefOption.Value; } set { this.FlwRefOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Customer
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Customer
         /// </summary>
         [JsonPropertyName("customer")]
-        public HandleFlutterwaveWebhookRequestDataCustomer? Customer { get { return this.CustomerOption; } set { this.CustomerOption = new(value); } }
+        public HandleFlutterwaveWebhookRequestDataCustomer? Customer { get { return this.CustomerOption.Value; } set { this.CustomerOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Meta
@@ -161,7 +161,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>orgId, projectId, planId, billingCycle; or isPaymentProcessing true for fiat payment-processing</value>
         [JsonPropertyName("meta")]
-        public Object? Meta { get { return this.MetaOption; } set { this.MetaOption = new(value); } }
+        public Object? Meta { get { return this.MetaOption.Value; } set { this.MetaOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -197,8 +197,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="HandleFlutterwaveWebhookRequestData" />
     /// </summary>
-    public class HandleFlutterwaveWebhookRequestDataJsonConverter : JsonConverter<HandleFlutterwaveWebhookRequestData>
+    public partial class HandleFlutterwaveWebhookRequestDataJsonConverter : JsonConverter<HandleFlutterwaveWebhookRequestData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HandleFlutterwaveWebhookRequestDataJsonConverter" /> class.
+        /// </summary>
+        public HandleFlutterwaveWebhookRequestDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="HandleFlutterwaveWebhookRequestData" />
         /// </summary>

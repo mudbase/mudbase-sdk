@@ -64,7 +64,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Support Agent</example> */
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Customer support team member with enhanced permissions</example> */
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Permissions
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Permissions
         /// </summary>
         [JsonPropertyName("permissions")]
-        public List<Object>? Permissions { get { return this.PermissionsOption; } set { this.PermissionsOption = new(value); } }
+        public List<Object>? Permissions { get { return this.PermissionsOption.Value; } set { this.PermissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Hierarchy
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>45</example> */
         [JsonPropertyName("hierarchy")]
-        public decimal? Hierarchy { get { return this.HierarchyOption; } set { this.HierarchyOption = new(value); } }
+        public decimal? Hierarchy { get { return this.HierarchyOption.Value; } set { this.HierarchyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -119,7 +119,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -152,8 +152,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateRoleRequest" />
     /// </summary>
-    public class UpdateRoleRequestJsonConverter : JsonConverter<UpdateRoleRequest>
+    public partial class UpdateRoleRequestJsonConverter : JsonConverter<UpdateRoleRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateRoleRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateRoleRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateRoleRequest" />
         /// </summary>

@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Verified
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Verified
         /// </summary>
         [JsonPropertyName("verified")]
-        public bool? Verified { get { return this.VerifiedOption; } set { this.VerifiedOption = new(value); } }
+        public bool? Verified { get { return this.VerifiedOption.Value; } set { this.VerifiedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VerifiedAt
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VerifiedAt
         /// </summary>
         [JsonPropertyName("verifiedAt")]
-        public DateTime? VerifiedAt { get { return this.VerifiedAtOption; } set { this.VerifiedAtOption = new(value); } }
+        public DateTime? VerifiedAt { get { return this.VerifiedAtOption.Value; } set { this.VerifiedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,12 +132,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfirmAddressVerification200Response" />
     /// </summary>
-    public class ConfirmAddressVerification200ResponseJsonConverter : JsonConverter<ConfirmAddressVerification200Response>
+    public partial class ConfirmAddressVerification200ResponseJsonConverter : JsonConverter<ConfirmAddressVerification200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfirmAddressVerification200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ConfirmAddressVerification200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize VerifiedAt
         /// </summary>
-        public static string VerifiedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string VerifiedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="ConfirmAddressVerification200Response" />

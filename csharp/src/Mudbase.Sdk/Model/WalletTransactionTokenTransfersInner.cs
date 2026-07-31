@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e</example> */
         [JsonPropertyName("tokenAddress")]
-        public string? TokenAddress { get { return this.TokenAddressOption; } set { this.TokenAddressOption = new(value); } }
+        public string? TokenAddress { get { return this.TokenAddressOption.Value; } set { this.TokenAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of From
@@ -84,7 +84,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0x1194d844f5c5a9adc488835e1f506dafbb579341</example> */
         [JsonPropertyName("from")]
-        public string? From { get { return this.FromOption; } set { this.FromOption = new(value); } }
+        public string? From { get { return this.FromOption.Value; } set { this.FromOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of To
@@ -98,7 +98,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0x000000000000000000000000000000000ce106a5</example> */
         [JsonPropertyName("to")]
-        public string? To { get { return this.ToOption; } set { this.ToOption = new(value); } }
+        public string? To { get { return this.ToOption.Value; } set { this.ToOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Value
@@ -113,7 +113,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Raw token units (string to preserve precision)</value>
         /* <example>80</example> */
         [JsonPropertyName("value")]
-        public string? Value { get { return this.ValueOption; } set { this.ValueOption = new(value); } }
+        public string? Value { get { return this.ValueOption.Value; } set { this.ValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FormattedAmount
@@ -128,7 +128,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Human-readable token amount (units)</value>
         /* <example>0.000076</example> */
         [JsonPropertyName("formattedAmount")]
-        public string? FormattedAmount { get { return this.FormattedAmountOption; } set { this.FormattedAmountOption = new(value); } }
+        public string? FormattedAmount { get { return this.FormattedAmountOption.Value; } set { this.FormattedAmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TokenSymbol
@@ -142,7 +142,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>USDT</example> */
         [JsonPropertyName("tokenSymbol")]
-        public string? TokenSymbol { get { return this.TokenSymbolOption; } set { this.TokenSymbolOption = new(value); } }
+        public string? TokenSymbol { get { return this.TokenSymbolOption.Value; } set { this.TokenSymbolOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TokenDecimals
@@ -156,7 +156,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>6</example> */
         [JsonPropertyName("tokenDecimals")]
-        public int? TokenDecimals { get { return this.TokenDecimalsOption; } set { this.TokenDecimalsOption = new(value); } }
+        public int? TokenDecimals { get { return this.TokenDecimalsOption.Value; } set { this.TokenDecimalsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsIncoming
@@ -170,7 +170,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("isIncoming")]
-        public bool? IsIncoming { get { return this.IsIncomingOption; } set { this.IsIncomingOption = new(value); } }
+        public bool? IsIncoming { get { return this.IsIncomingOption.Value; } set { this.IsIncomingOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -206,8 +206,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WalletTransactionTokenTransfersInner" />
     /// </summary>
-    public class WalletTransactionTokenTransfersInnerJsonConverter : JsonConverter<WalletTransactionTokenTransfersInner>
+    public partial class WalletTransactionTokenTransfersInnerJsonConverter : JsonConverter<WalletTransactionTokenTransfersInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WalletTransactionTokenTransfersInnerJsonConverter" /> class.
+        /// </summary>
+        public WalletTransactionTokenTransfersInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="WalletTransactionTokenTransfersInner" />
         /// </summary>

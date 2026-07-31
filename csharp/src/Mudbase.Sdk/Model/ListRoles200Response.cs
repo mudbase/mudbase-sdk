@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Roles
         /// </summary>
         [JsonPropertyName("roles")]
-        public List<Object>? Roles { get { return this.RolesOption; } set { this.RolesOption = new(value); } }
+        public List<Object>? Roles { get { return this.RolesOption.Value; } set { this.RolesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ListRoles200Response" />
     /// </summary>
-    public class ListRoles200ResponseJsonConverter : JsonConverter<ListRoles200Response>
+    public partial class ListRoles200ResponseJsonConverter : JsonConverter<ListRoles200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListRoles200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ListRoles200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ListRoles200Response" />
         /// </summary>

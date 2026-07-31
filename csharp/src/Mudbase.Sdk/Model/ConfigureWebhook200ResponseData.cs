@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WebhookUrl
         /// </summary>
         [JsonPropertyName("webhookUrl")]
-        public string? WebhookUrl { get { return this.WebhookUrlOption; } set { this.WebhookUrlOption = new(value); } }
+        public string? WebhookUrl { get { return this.WebhookUrlOption.Value; } set { this.WebhookUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookEvents
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WebhookEvents
         /// </summary>
         [JsonPropertyName("webhookEvents")]
-        public List<string>? WebhookEvents { get { return this.WebhookEventsOption; } set { this.WebhookEventsOption = new(value); } }
+        public List<string>? WebhookEvents { get { return this.WebhookEventsOption.Value; } set { this.WebhookEventsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookVersion
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WebhookVersion
         /// </summary>
         [JsonPropertyName("webhookVersion")]
-        public string? WebhookVersion { get { return this.WebhookVersionOption; } set { this.WebhookVersionOption = new(value); } }
+        public string? WebhookVersion { get { return this.WebhookVersionOption.Value; } set { this.WebhookVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Transformations
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Transformations
         /// </summary>
         [JsonPropertyName("transformations")]
-        public List<ConfigureWebhook200ResponseDataTransformationsInner>? Transformations { get { return this.TransformationsOption; } set { this.TransformationsOption = new(value); } }
+        public List<ConfigureWebhook200ResponseDataTransformationsInner>? Transformations { get { return this.TransformationsOption.Value; } set { this.TransformationsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfigureWebhook200ResponseData" />
     /// </summary>
-    public class ConfigureWebhook200ResponseDataJsonConverter : JsonConverter<ConfigureWebhook200ResponseData>
+    public partial class ConfigureWebhook200ResponseDataJsonConverter : JsonConverter<ConfigureWebhook200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigureWebhook200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public ConfigureWebhook200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfigureWebhook200ResponseData" />
         /// </summary>

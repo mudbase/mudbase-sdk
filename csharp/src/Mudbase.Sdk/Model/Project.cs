@@ -77,7 +77,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Slug
@@ -116,7 +116,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Slug
         /// </summary>
         [JsonPropertyName("slug")]
-        public string? Slug { get { return this.SlugOption; } set { this.SlugOption = new(value); } }
+        public string? Slug { get { return this.SlugOption.Value; } set { this.SlugOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Org
@@ -129,7 +129,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Org
         /// </summary>
         [JsonPropertyName("org")]
-        public string? Org { get { return this.OrgOption; } set { this.OrgOption = new(value); } }
+        public string? Org { get { return this.OrgOption.Value; } set { this.OrgOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Auth
@@ -142,7 +142,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Auth
         /// </summary>
         [JsonPropertyName("auth")]
-        public AuthConfig? Auth { get { return this.AuthOption; } set { this.AuthOption = new(value); } }
+        public AuthConfig? Auth { get { return this.AuthOption.Value; } set { this.AuthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Database
@@ -155,7 +155,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Database
         /// </summary>
         [JsonPropertyName("database")]
-        public DatabaseConfig? Database { get { return this.DatabaseOption; } set { this.DatabaseOption = new(value); } }
+        public DatabaseConfig? Database { get { return this.DatabaseOption.Value; } set { this.DatabaseOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Storage
@@ -168,7 +168,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Storage
         /// </summary>
         [JsonPropertyName("storage")]
-        public StorageConfig? Storage { get { return this.StorageOption; } set { this.StorageOption = new(value); } }
+        public StorageConfig? Storage { get { return this.StorageOption.Value; } set { this.StorageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Settings
@@ -181,7 +181,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Settings
         /// </summary>
         [JsonPropertyName("settings")]
-        public ProjectSettings? Settings { get { return this.SettingsOption; } set { this.SettingsOption = new(value); } }
+        public ProjectSettings? Settings { get { return this.SettingsOption.Value; } set { this.SettingsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Usage
@@ -194,7 +194,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public ProjectUsage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public ProjectUsage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -207,7 +207,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -220,7 +220,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -260,17 +260,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Project" />
     /// </summary>
-    public class ProjectJsonConverter : JsonConverter<Project>
+    public partial class ProjectJsonConverter : JsonConverter<Project>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectJsonConverter" /> class.
+        /// </summary>
+        public ProjectJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="Project" />

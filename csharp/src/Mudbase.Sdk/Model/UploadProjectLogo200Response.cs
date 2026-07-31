@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LogoUrl
         /// </summary>
         [JsonPropertyName("logoUrl")]
-        public string? LogoUrl { get { return this.LogoUrlOption; } set { this.LogoUrlOption = new(value); } }
+        public string? LogoUrl { get { return this.LogoUrlOption.Value; } set { this.LogoUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Project
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public Project? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public Project? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UploadProjectLogo200Response" />
     /// </summary>
-    public class UploadProjectLogo200ResponseJsonConverter : JsonConverter<UploadProjectLogo200Response>
+    public partial class UploadProjectLogo200ResponseJsonConverter : JsonConverter<UploadProjectLogo200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadProjectLogo200ResponseJsonConverter" /> class.
+        /// </summary>
+        public UploadProjectLogo200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UploadProjectLogo200Response" />
         /// </summary>

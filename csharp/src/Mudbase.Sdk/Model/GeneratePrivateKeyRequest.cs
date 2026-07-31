@@ -213,8 +213,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GeneratePrivateKeyRequest" />
     /// </summary>
-    public class GeneratePrivateKeyRequestJsonConverter : JsonConverter<GeneratePrivateKeyRequest>
+    public partial class GeneratePrivateKeyRequestJsonConverter : JsonConverter<GeneratePrivateKeyRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeneratePrivateKeyRequestJsonConverter" /> class.
+        /// </summary>
+        public GeneratePrivateKeyRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GeneratePrivateKeyRequest" />
         /// </summary>

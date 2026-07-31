@@ -171,7 +171,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Method
         /// </summary>
         [JsonPropertyName("method")]
-        public MethodEnum? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public MethodEnum? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Target project (must belong to your org)
@@ -232,8 +232,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TriggerWebhookRequest" />
     /// </summary>
-    public class TriggerWebhookRequestJsonConverter : JsonConverter<TriggerWebhookRequest>
+    public partial class TriggerWebhookRequestJsonConverter : JsonConverter<TriggerWebhookRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TriggerWebhookRequestJsonConverter" /> class.
+        /// </summary>
+        public TriggerWebhookRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TriggerWebhookRequest" />
         /// </summary>

@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Updated name of the bucket</value>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsPublic
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Update whether the bucket is publicly accessible</value>
         [JsonPropertyName("isPublic")]
-        public bool? IsPublic { get { return this.IsPublicOption; } set { this.IsPublicOption = new(value); } }
+        public bool? IsPublic { get { return this.IsPublicOption.Value; } set { this.IsPublicOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Settings
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Updated bucket settings</value>
         [JsonPropertyName("settings")]
-        public Object? Settings { get { return this.SettingsOption; } set { this.SettingsOption = new(value); } }
+        public Object? Settings { get { return this.SettingsOption.Value; } set { this.SettingsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateBucketRequest" />
     /// </summary>
-    public class UpdateBucketRequestJsonConverter : JsonConverter<UpdateBucketRequest>
+    public partial class UpdateBucketRequestJsonConverter : JsonConverter<UpdateBucketRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateBucketRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateBucketRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateBucketRequest" />
         /// </summary>

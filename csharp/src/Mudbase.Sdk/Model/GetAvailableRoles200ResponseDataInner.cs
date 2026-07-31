@@ -67,7 +67,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Slug
         /// </summary>
         [JsonPropertyName("slug")]
-        public string? Slug { get { return this.SlugOption; } set { this.SlugOption = new(value); } }
+        public string? Slug { get { return this.SlugOption.Value; } set { this.SlugOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -80,7 +80,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -93,7 +93,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SignupEndpoint
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SignupEndpoint
         /// </summary>
         [JsonPropertyName("signupEndpoint")]
-        public string? SignupEndpoint { get { return this.SignupEndpointOption; } set { this.SignupEndpointOption = new(value); } }
+        public string? SignupEndpoint { get { return this.SignupEndpointOption.Value; } set { this.SignupEndpointOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequiresApproval
@@ -119,7 +119,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RequiresApproval
         /// </summary>
         [JsonPropertyName("requiresApproval")]
-        public bool? RequiresApproval { get { return this.RequiresApprovalOption; } set { this.RequiresApprovalOption = new(value); } }
+        public bool? RequiresApproval { get { return this.RequiresApprovalOption.Value; } set { this.RequiresApprovalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequiresPayment
@@ -132,7 +132,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RequiresPayment
         /// </summary>
         [JsonPropertyName("requiresPayment")]
-        public bool? RequiresPayment { get { return this.RequiresPaymentOption; } set { this.RequiresPaymentOption = new(value); } }
+        public bool? RequiresPayment { get { return this.RequiresPaymentOption.Value; } set { this.RequiresPaymentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequiresKYC
@@ -145,7 +145,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RequiresKYC
         /// </summary>
         [JsonPropertyName("requiresKYC")]
-        public bool? RequiresKYC { get { return this.RequiresKYCOption; } set { this.RequiresKYCOption = new(value); } }
+        public bool? RequiresKYC { get { return this.RequiresKYCOption.Value; } set { this.RequiresKYCOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -180,8 +180,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetAvailableRoles200ResponseDataInner" />
     /// </summary>
-    public class GetAvailableRoles200ResponseDataInnerJsonConverter : JsonConverter<GetAvailableRoles200ResponseDataInner>
+    public partial class GetAvailableRoles200ResponseDataInnerJsonConverter : JsonConverter<GetAvailableRoles200ResponseDataInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetAvailableRoles200ResponseDataInnerJsonConverter" /> class.
+        /// </summary>
+        public GetAvailableRoles200ResponseDataInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetAvailableRoles200ResponseDataInner" />
         /// </summary>

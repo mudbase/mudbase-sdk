@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalSearches
         /// </summary>
         [JsonPropertyName("totalSearches")]
-        public int? TotalSearches { get { return this.TotalSearchesOption; } set { this.TotalSearchesOption = new(value); } }
+        public int? TotalSearches { get { return this.TotalSearchesOption.Value; } set { this.TotalSearchesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopQueries
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TopQueries
         /// </summary>
         [JsonPropertyName("topQueries")]
-        public List<GetSearchAnalytics200ResponseTopQueriesInner>? TopQueries { get { return this.TopQueriesOption; } set { this.TopQueriesOption = new(value); } }
+        public List<GetSearchAnalytics200ResponseTopQueriesInner>? TopQueries { get { return this.TopQueriesOption.Value; } set { this.TopQueriesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SearchesByCollection
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SearchesByCollection
         /// </summary>
         [JsonPropertyName("searchesByCollection")]
-        public Object? SearchesByCollection { get { return this.SearchesByCollectionOption; } set { this.SearchesByCollectionOption = new(value); } }
+        public Object? SearchesByCollection { get { return this.SearchesByCollectionOption.Value; } set { this.SearchesByCollectionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AverageResponseTime
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AverageResponseTime
         /// </summary>
         [JsonPropertyName("averageResponseTime")]
-        public decimal? AverageResponseTime { get { return this.AverageResponseTimeOption; } set { this.AverageResponseTimeOption = new(value); } }
+        public decimal? AverageResponseTime { get { return this.AverageResponseTimeOption.Value; } set { this.AverageResponseTimeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSearchAnalytics200Response" />
     /// </summary>
-    public class GetSearchAnalytics200ResponseJsonConverter : JsonConverter<GetSearchAnalytics200Response>
+    public partial class GetSearchAnalytics200ResponseJsonConverter : JsonConverter<GetSearchAnalytics200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSearchAnalytics200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetSearchAnalytics200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSearchAnalytics200Response" />
         /// </summary>

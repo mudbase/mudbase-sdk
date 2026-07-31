@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Email
         /// </summary>
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MonitoringLogsResponseLogsInnerUser" />
     /// </summary>
-    public class MonitoringLogsResponseLogsInnerUserJsonConverter : JsonConverter<MonitoringLogsResponseLogsInnerUser>
+    public partial class MonitoringLogsResponseLogsInnerUserJsonConverter : JsonConverter<MonitoringLogsResponseLogsInnerUser>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonitoringLogsResponseLogsInnerUserJsonConverter" /> class.
+        /// </summary>
+        public MonitoringLogsResponseLogsInnerUserJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MonitoringLogsResponseLogsInnerUser" />
         /// </summary>

@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("valid")]
-        public bool? Valid { get { return this.ValidOption; } set { this.ValidOption = new(value); } }
+        public bool? Valid { get { return this.ValidOption.Value; } set { this.ValidOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ValidatePasswordResetToken200Response" />
     /// </summary>
-    public class ValidatePasswordResetToken200ResponseJsonConverter : JsonConverter<ValidatePasswordResetToken200Response>
+    public partial class ValidatePasswordResetToken200ResponseJsonConverter : JsonConverter<ValidatePasswordResetToken200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValidatePasswordResetToken200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ValidatePasswordResetToken200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ValidatePasswordResetToken200Response" />
         /// </summary>

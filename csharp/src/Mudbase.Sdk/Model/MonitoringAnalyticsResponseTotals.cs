@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalApiCalls
         /// </summary>
         [JsonPropertyName("totalApiCalls")]
-        public int? TotalApiCalls { get { return this.TotalApiCallsOption; } set { this.TotalApiCallsOption = new(value); } }
+        public int? TotalApiCalls { get { return this.TotalApiCallsOption.Value; } set { this.TotalApiCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalDbReads
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalDbReads
         /// </summary>
         [JsonPropertyName("totalDbReads")]
-        public int? TotalDbReads { get { return this.TotalDbReadsOption; } set { this.TotalDbReadsOption = new(value); } }
+        public int? TotalDbReads { get { return this.TotalDbReadsOption.Value; } set { this.TotalDbReadsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalDbWrites
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalDbWrites
         /// </summary>
         [JsonPropertyName("totalDbWrites")]
-        public int? TotalDbWrites { get { return this.TotalDbWritesOption; } set { this.TotalDbWritesOption = new(value); } }
+        public int? TotalDbWrites { get { return this.TotalDbWritesOption.Value; } set { this.TotalDbWritesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalStorage
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalStorage
         /// </summary>
         [JsonPropertyName("totalStorage")]
-        public int? TotalStorage { get { return this.TotalStorageOption; } set { this.TotalStorageOption = new(value); } }
+        public int? TotalStorage { get { return this.TotalStorageOption.Value; } set { this.TotalStorageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalBandwidth
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalBandwidth
         /// </summary>
         [JsonPropertyName("totalBandwidth")]
-        public int? TotalBandwidth { get { return this.TotalBandwidthOption; } set { this.TotalBandwidthOption = new(value); } }
+        public int? TotalBandwidth { get { return this.TotalBandwidthOption.Value; } set { this.TotalBandwidthOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MonitoringAnalyticsResponseTotals" />
     /// </summary>
-    public class MonitoringAnalyticsResponseTotalsJsonConverter : JsonConverter<MonitoringAnalyticsResponseTotals>
+    public partial class MonitoringAnalyticsResponseTotalsJsonConverter : JsonConverter<MonitoringAnalyticsResponseTotals>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonitoringAnalyticsResponseTotalsJsonConverter" /> class.
+        /// </summary>
+        public MonitoringAnalyticsResponseTotalsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MonitoringAnalyticsResponseTotals" />
         /// </summary>

@@ -166,7 +166,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>[&quot;65a1b2c3d4e5f6789012345a&quot;]</example> */
         [JsonPropertyName("addresses")]
-        public List<string>? Addresses { get { return this.AddressesOption; } set { this.AddressesOption = new(value); } }
+        public List<string>? Addresses { get { return this.AddressesOption.Value; } set { this.AddressesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Chains
@@ -180,7 +180,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>[&quot;ethereum&quot;]</example> */
         [JsonPropertyName("chains")]
-        public List<WalletWebhookFilters.ChainsEnum>? Chains { get { return this.ChainsOption; } set { this.ChainsOption = new(value); } }
+        public List<WalletWebhookFilters.ChainsEnum>? Chains { get { return this.ChainsOption.Value; } set { this.ChainsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -210,8 +210,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WalletWebhookFilters" />
     /// </summary>
-    public class WalletWebhookFiltersJsonConverter : JsonConverter<WalletWebhookFilters>
+    public partial class WalletWebhookFiltersJsonConverter : JsonConverter<WalletWebhookFilters>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WalletWebhookFiltersJsonConverter" /> class.
+        /// </summary>
+        public WalletWebhookFiltersJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="WalletWebhookFilters" />
         /// </summary>

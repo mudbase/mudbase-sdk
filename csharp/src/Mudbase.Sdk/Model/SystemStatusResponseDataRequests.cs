@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Successful
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Successful
         /// </summary>
         [JsonPropertyName("successful")]
-        public int? Successful { get { return this.SuccessfulOption; } set { this.SuccessfulOption = new(value); } }
+        public int? Successful { get { return this.SuccessfulOption.Value; } set { this.SuccessfulOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Errors
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Errors
         /// </summary>
         [JsonPropertyName("errors")]
-        public int? Errors { get { return this.ErrorsOption; } set { this.ErrorsOption = new(value); } }
+        public int? Errors { get { return this.ErrorsOption.Value; } set { this.ErrorsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ErrorRate
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ErrorRate
         /// </summary>
         [JsonPropertyName("errorRate")]
-        public decimal? ErrorRate { get { return this.ErrorRateOption; } set { this.ErrorRateOption = new(value); } }
+        public decimal? ErrorRate { get { return this.ErrorRateOption.Value; } set { this.ErrorRateOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SystemStatusResponseDataRequests" />
     /// </summary>
-    public class SystemStatusResponseDataRequestsJsonConverter : JsonConverter<SystemStatusResponseDataRequests>
+    public partial class SystemStatusResponseDataRequestsJsonConverter : JsonConverter<SystemStatusResponseDataRequests>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SystemStatusResponseDataRequestsJsonConverter" /> class.
+        /// </summary>
+        public SystemStatusResponseDataRequestsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SystemStatusResponseDataRequests" />
         /// </summary>

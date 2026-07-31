@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Mudbase</example> */
         [JsonPropertyName("orgName")]
-        public string? OrgName { get { return this.OrgNameOption; } set { this.OrgNameOption = new(value); } }
+        public string? OrgName { get { return this.OrgNameOption.Value; } set { this.OrgNameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -131,8 +131,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RegisterRequest" />
     /// </summary>
-    public class RegisterRequestJsonConverter : JsonConverter<RegisterRequest>
+    public partial class RegisterRequestJsonConverter : JsonConverter<RegisterRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterRequestJsonConverter" /> class.
+        /// </summary>
+        public RegisterRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RegisterRequest" />
         /// </summary>

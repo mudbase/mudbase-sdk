@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Contains requests, activeUsers, requestVolume14d, latency, platformUptimePct30d, platformUptimeSamples</value>
         [JsonPropertyName("data")]
-        public Object? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public Object? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectUsageSummaryResponse" />
     /// </summary>
-    public class ProjectUsageSummaryResponseJsonConverter : JsonConverter<ProjectUsageSummaryResponse>
+    public partial class ProjectUsageSummaryResponseJsonConverter : JsonConverter<ProjectUsageSummaryResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectUsageSummaryResponseJsonConverter" /> class.
+        /// </summary>
+        public ProjectUsageSummaryResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectUsageSummaryResponse" />
         /// </summary>

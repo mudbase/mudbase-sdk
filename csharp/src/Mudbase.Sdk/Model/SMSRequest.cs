@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets From
         /// </summary>
         [JsonPropertyName("from")]
-        public string? From { get { return this.FromOption; } set { this.FromOption = new(value); } }
+        public string? From { get { return this.FromOption.Value; } set { this.FromOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SMSRequest" />
     /// </summary>
-    public class SMSRequestJsonConverter : JsonConverter<SMSRequest>
+    public partial class SMSRequestJsonConverter : JsonConverter<SMSRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SMSRequestJsonConverter" /> class.
+        /// </summary>
+        public SMSRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SMSRequest" />
         /// </summary>

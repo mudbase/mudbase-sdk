@@ -155,7 +155,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Provider
         /// </summary>
         [JsonPropertyName("provider")]
-        public ProviderEnum? Provider { get { return this.ProviderOption; } set { this.ProviderOption = new(value); } }
+        public ProviderEnum? Provider { get { return this.ProviderOption.Value; } set { this.ProviderOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Enabled
@@ -168,7 +168,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Enabled
         /// </summary>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultFrom
@@ -182,7 +182,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Default sender (E.164 for Twilio; Termii/Africa&#39;s Talking may use alphanumeric or approved sender IDs per provider rules).</value>
         [JsonPropertyName("defaultFrom")]
-        public string? DefaultFrom { get { return this.DefaultFromOption; } set { this.DefaultFromOption = new(value); } }
+        public string? DefaultFrom { get { return this.DefaultFromOption.Value; } set { this.DefaultFromOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Config
@@ -196,7 +196,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Provider credentials and options (encrypted at rest). Required keys when enabling BYO: **twilio** — &#x60;accountSid&#x60;, &#x60;authToken&#x60;. Optional &#x60;from&#x60;. **termii** — &#x60;apiKey&#x60;. Optional &#x60;from&#x60;. **africastalking** — &#x60;username&#x60;, &#x60;apiKey&#x60;. Optional &#x60;from&#x60;. </value>
         [JsonPropertyName("config")]
-        public Dictionary<string, Object>? Config { get { return this.ConfigOption; } set { this.ConfigOption = new(value); } }
+        public Dictionary<string, Object>? Config { get { return this.ConfigOption.Value; } set { this.ConfigOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -228,8 +228,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectSmsByoPatchRequest" />
     /// </summary>
-    public class ProjectSmsByoPatchRequestJsonConverter : JsonConverter<ProjectSmsByoPatchRequest>
+    public partial class ProjectSmsByoPatchRequestJsonConverter : JsonConverter<ProjectSmsByoPatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectSmsByoPatchRequestJsonConverter" /> class.
+        /// </summary>
+        public ProjectSmsByoPatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectSmsByoPatchRequest" />
         /// </summary>

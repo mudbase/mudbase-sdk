@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public Object? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public Object? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Permissions
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Permissions
         /// </summary>
         [JsonPropertyName("permissions")]
-        public CheckPermissions200ResponsePermissions? Permissions { get { return this.PermissionsOption; } set { this.PermissionsOption = new(value); } }
+        public CheckPermissions200ResponsePermissions? Permissions { get { return this.PermissionsOption.Value; } set { this.PermissionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckPermissions200Response" />
     /// </summary>
-    public class CheckPermissions200ResponseJsonConverter : JsonConverter<CheckPermissions200Response>
+    public partial class CheckPermissions200ResponseJsonConverter : JsonConverter<CheckPermissions200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckPermissions200ResponseJsonConverter" /> class.
+        /// </summary>
+        public CheckPermissions200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CheckPermissions200Response" />
         /// </summary>

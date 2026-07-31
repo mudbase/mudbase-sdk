@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Query
         /// </summary>
         [JsonPropertyName("query")]
-        public string? Query { get { return this.QueryOption; } set { this.QueryOption = new(value); } }
+        public string? Query { get { return this.QueryOption.Value; } set { this.QueryOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Count
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Count
         /// </summary>
         [JsonPropertyName("count")]
-        public int? Count { get { return this.CountOption; } set { this.CountOption = new(value); } }
+        public int? Count { get { return this.CountOption.Value; } set { this.CountOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSearchAnalytics200ResponseTopQueriesInner" />
     /// </summary>
-    public class GetSearchAnalytics200ResponseTopQueriesInnerJsonConverter : JsonConverter<GetSearchAnalytics200ResponseTopQueriesInner>
+    public partial class GetSearchAnalytics200ResponseTopQueriesInnerJsonConverter : JsonConverter<GetSearchAnalytics200ResponseTopQueriesInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSearchAnalytics200ResponseTopQueriesInnerJsonConverter" /> class.
+        /// </summary>
+        public GetSearchAnalytics200ResponseTopQueriesInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSearchAnalytics200ResponseTopQueriesInner" />
         /// </summary>

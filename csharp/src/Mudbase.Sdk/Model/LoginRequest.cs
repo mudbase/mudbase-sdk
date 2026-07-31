@@ -88,8 +88,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LoginRequest" />
     /// </summary>
-    public class LoginRequestJsonConverter : JsonConverter<LoginRequest>
+    public partial class LoginRequestJsonConverter : JsonConverter<LoginRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginRequestJsonConverter" /> class.
+        /// </summary>
+        public LoginRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LoginRequest" />
         /// </summary>

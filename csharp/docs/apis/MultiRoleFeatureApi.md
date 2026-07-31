@@ -245,7 +245,7 @@ No authorization required
 
 <a id="registerwithrole"></a>
 # **RegisterWithRole**
-> void RegisterWithRole (string role, RegisterWithRoleRequest registerWithRoleRequest)
+> RegisterWithRole201Response RegisterWithRole (string role, RegisterWithRoleRequest registerWithRoleRequest)
 
 Register user with specific role (Local Auth)
 
@@ -261,7 +261,7 @@ Public endpoint for user registration with a specific role. The path segment mus
 
 ### Return type
 
-void (empty response body)
+[**RegisterWithRole201Response**](RegisterWithRole201Response.md)
 
 ### Authorization
 
@@ -270,13 +270,15 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Registration successful |  -  |
+| **201** | Registration successful. Two response shapes depending on the project&#39;s &#x60;requireEmailVerification&#x60; setting - see &#x60;requireVerification&#x60; to distinguish them; &#x60;token&#x60;/&#x60;refreshToken&#x60;/&#x60;expiresIn&#x60; are only present when a session was issued immediately. |  -  |
+| **400** | Validation failed, or a user with this email already exists for the project |  -  |
+| **403** | Role requires approval, payment, or KYC before it can be self-assigned |  -  |
 | **404** | Role not found or not enabled |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

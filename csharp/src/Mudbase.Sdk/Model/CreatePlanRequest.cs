@@ -173,7 +173,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Features
@@ -187,7 +187,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Strings become &#x60;{ name, included: true }&#x60;. You may send full feature objects instead. </value>
         [JsonPropertyName("features")]
-        public List<CreatePlanRequestFeaturesInner>? Features { get { return this.FeaturesOption; } set { this.FeaturesOption = new(value); } }
+        public List<CreatePlanRequestFeaturesInner>? Features { get { return this.FeaturesOption.Value; } set { this.FeaturesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -200,7 +200,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limits
         /// </summary>
         [JsonPropertyName("limits")]
-        public CreatePlanRequestLimits? Limits { get { return this.LimitsOption; } set { this.LimitsOption = new(value); } }
+        public CreatePlanRequestLimits? Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Trial
@@ -213,7 +213,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Trial
         /// </summary>
         [JsonPropertyName("trial")]
-        public CreatePlanRequestTrial? Trial { get { return this.TrialOption; } set { this.TrialOption = new(value); } }
+        public CreatePlanRequestTrial? Trial { get { return this.TrialOption.Value; } set { this.TrialOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -226,7 +226,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsActive
         /// </summary>
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsDefault
@@ -240,7 +240,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Only one default plan per project is allowed server-side.</value>
         [JsonPropertyName("isDefault")]
-        public bool? IsDefault { get { return this.IsDefaultOption; } set { this.IsDefaultOption = new(value); } }
+        public bool? IsDefault { get { return this.IsDefaultOption.Value; } set { this.IsDefaultOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SortOrder
@@ -254,7 +254,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Lower numbers list first in UIs.</value>
         [JsonPropertyName("sortOrder")]
-        public decimal? SortOrder { get { return this.SortOrderOption; } set { this.SortOrderOption = new(value); } }
+        public decimal? SortOrder { get { return this.SortOrderOption.Value; } set { this.SortOrderOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -268,7 +268,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Arbitrary key/value data stored on the plan document.</value>
         [JsonPropertyName("metadata")]
-        public Dictionary<string, Object>? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Dictionary<string, Object>? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -308,8 +308,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreatePlanRequest" />
     /// </summary>
-    public class CreatePlanRequestJsonConverter : JsonConverter<CreatePlanRequest>
+    public partial class CreatePlanRequestJsonConverter : JsonConverter<CreatePlanRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreatePlanRequestJsonConverter" /> class.
+        /// </summary>
+        public CreatePlanRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreatePlanRequest" />
         /// </summary>

@@ -223,7 +223,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>&#x60;all&#x60; &#x3D; no automatic row-owner filter. &#x60;own&#x60; &#x3D; only documents where the owner field matches the authenticated app user.</value>
         [JsonPropertyName("dataScope")]
-        public DataScopeEnum? DataScope { get { return this.DataScopeOption; } set { this.DataScopeOption = new(value); } }
+        public DataScopeEnum? DataScope { get { return this.DataScopeOption.Value; } set { this.DataScopeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Actions
@@ -237,7 +237,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>[&quot;create&quot;,&quot;read&quot;,&quot;update&quot;,&quot;delete&quot;]</example> */
         [JsonPropertyName("actions")]
-        public List<UpdateCollectionPermissionsRequest.ActionsEnum>? Actions { get { return this.ActionsOption; } set { this.ActionsOption = new(value); } }
+        public List<UpdateCollectionPermissionsRequest.ActionsEnum>? Actions { get { return this.ActionsOption.Value; } set { this.ActionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Conditions
@@ -251,7 +251,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>{&quot;status&quot;:&quot;active&quot;}</example> */
         [JsonPropertyName("conditions")]
-        public Object? Conditions { get { return this.ConditionsOption; } set { this.ConditionsOption = new(value); } }
+        public Object? Conditions { get { return this.ConditionsOption.Value; } set { this.ConditionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OwnerField
@@ -265,7 +265,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional override for the document field when dataScope is &#x60;own&#x60; (default &#x60;settings.dataOwnerField&#x60;, usually &#x60;createdBy&#x60;).</value>
         [JsonPropertyName("ownerField")]
-        public string? OwnerField { get { return this.OwnerFieldOption; } set { this.OwnerFieldOption = new(value); } }
+        public string? OwnerField { get { return this.OwnerFieldOption.Value; } set { this.OwnerFieldOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -297,8 +297,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateCollectionPermissionsRequest" />
     /// </summary>
-    public class UpdateCollectionPermissionsRequestJsonConverter : JsonConverter<UpdateCollectionPermissionsRequest>
+    public partial class UpdateCollectionPermissionsRequestJsonConverter : JsonConverter<UpdateCollectionPermissionsRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateCollectionPermissionsRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateCollectionPermissionsRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateCollectionPermissionsRequest" />
         /// </summary>

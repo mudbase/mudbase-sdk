@@ -155,7 +155,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Role
         /// </summary>
         [JsonPropertyName("role")]
-        public string? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public string? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Actions
@@ -168,7 +168,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Actions
         /// </summary>
         [JsonPropertyName("actions")]
-        public List<Permission.ActionsEnum>? Actions { get { return this.ActionsOption; } set { this.ActionsOption = new(value); } }
+        public List<Permission.ActionsEnum>? Actions { get { return this.ActionsOption.Value; } set { this.ActionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Fields
@@ -181,7 +181,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Fields
         /// </summary>
         [JsonPropertyName("fields")]
-        public List<string>? Fields { get { return this.FieldsOption; } set { this.FieldsOption = new(value); } }
+        public List<string>? Fields { get { return this.FieldsOption.Value; } set { this.FieldsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Condition
@@ -194,7 +194,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Condition
         /// </summary>
         [JsonPropertyName("condition")]
-        public Object? Condition { get { return this.ConditionOption; } set { this.ConditionOption = new(value); } }
+        public Object? Condition { get { return this.ConditionOption.Value; } set { this.ConditionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -226,8 +226,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Permission" />
     /// </summary>
-    public class PermissionJsonConverter : JsonConverter<Permission>
+    public partial class PermissionJsonConverter : JsonConverter<Permission>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PermissionJsonConverter" /> class.
+        /// </summary>
+        public PermissionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Permission" />
         /// </summary>

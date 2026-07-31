@@ -327,7 +327,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Transaction
         /// </summary>
         [JsonPropertyName("transaction")]
-        public EstimateNonCustodialGasRequestTransaction? Transaction { get { return this.TransactionOption; } set { this.TransactionOption = new(value); } }
+        public EstimateNonCustodialGasRequestTransaction? Transaction { get { return this.TransactionOption.Value; } set { this.TransactionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -357,8 +357,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EstimateNonCustodialGasRequest" />
     /// </summary>
-    public class EstimateNonCustodialGasRequestJsonConverter : JsonConverter<EstimateNonCustodialGasRequest>
+    public partial class EstimateNonCustodialGasRequestJsonConverter : JsonConverter<EstimateNonCustodialGasRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EstimateNonCustodialGasRequestJsonConverter" /> class.
+        /// </summary>
+        public EstimateNonCustodialGasRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EstimateNonCustodialGasRequest" />
         /// </summary>

@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Type
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public string? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public string? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastMessage
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastMessage
         /// </summary>
         [JsonPropertyName("lastMessage")]
-        public GetUserChats200ResponseDataChatsInnerLastMessage? LastMessage { get { return this.LastMessageOption; } set { this.LastMessageOption = new(value); } }
+        public GetUserChats200ResponseDataChatsInnerLastMessage? LastMessage { get { return this.LastMessageOption.Value; } set { this.LastMessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UnreadCount
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UnreadCount
         /// </summary>
         [JsonPropertyName("unreadCount")]
-        public int? UnreadCount { get { return this.UnreadCountOption; } set { this.UnreadCountOption = new(value); } }
+        public int? UnreadCount { get { return this.UnreadCountOption.Value; } set { this.UnreadCountOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetUserChats200ResponseDataChatsInner" />
     /// </summary>
-    public class GetUserChats200ResponseDataChatsInnerJsonConverter : JsonConverter<GetUserChats200ResponseDataChatsInner>
+    public partial class GetUserChats200ResponseDataChatsInnerJsonConverter : JsonConverter<GetUserChats200ResponseDataChatsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetUserChats200ResponseDataChatsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetUserChats200ResponseDataChatsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetUserChats200ResponseDataChatsInner" />
         /// </summary>

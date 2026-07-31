@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectId
         /// </summary>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UploadSize
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Bytes</value>
         [JsonPropertyName("uploadSize")]
-        public decimal? UploadSize { get { return this.UploadSizeOption; } set { this.UploadSizeOption = new(value); } }
+        public decimal? UploadSize { get { return this.UploadSizeOption.Value; } set { this.UploadSizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RuntimeMinutes
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RuntimeMinutes
         /// </summary>
         [JsonPropertyName("runtimeMinutes")]
-        public decimal? RuntimeMinutes { get { return this.RuntimeMinutesOption; } set { this.RuntimeMinutesOption = new(value); } }
+        public decimal? RuntimeMinutes { get { return this.RuntimeMinutesOption.Value; } set { this.RuntimeMinutesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StartBugAnalysisScanRequest" />
     /// </summary>
-    public class StartBugAnalysisScanRequestJsonConverter : JsonConverter<StartBugAnalysisScanRequest>
+    public partial class StartBugAnalysisScanRequestJsonConverter : JsonConverter<StartBugAnalysisScanRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StartBugAnalysisScanRequestJsonConverter" /> class.
+        /// </summary>
+        public StartBugAnalysisScanRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="StartBugAnalysisScanRequest" />
         /// </summary>

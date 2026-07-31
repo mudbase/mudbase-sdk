@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Main organization</example> */
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Logo
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>https://example.com/logo.png</example> */
         [JsonPropertyName("logo")]
-        public string? Logo { get { return this.LogoOption; } set { this.LogoOption = new(value); } }
+        public string? Logo { get { return this.LogoOption.Value; } set { this.LogoOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Website
@@ -99,7 +99,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>https://mudbase.dev</example> */
         [JsonPropertyName("website")]
-        public string? Website { get { return this.WebsiteOption; } set { this.WebsiteOption = new(value); } }
+        public string? Website { get { return this.WebsiteOption.Value; } set { this.WebsiteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ParentOrgId
@@ -113,7 +113,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>685acbe0e129932fbb7a0fc3</example> */
         [JsonPropertyName("parentOrgId")]
-        public string? ParentOrgId { get { return this.ParentOrgIdOption; } set { this.ParentOrgIdOption = new(value); } }
+        public string? ParentOrgId { get { return this.ParentOrgIdOption.Value; } set { this.ParentOrgIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -146,8 +146,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateOrganizationRequest" />
     /// </summary>
-    public class CreateOrganizationRequestJsonConverter : JsonConverter<CreateOrganizationRequest>
+    public partial class CreateOrganizationRequestJsonConverter : JsonConverter<CreateOrganizationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateOrganizationRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateOrganizationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateOrganizationRequest" />
         /// </summary>

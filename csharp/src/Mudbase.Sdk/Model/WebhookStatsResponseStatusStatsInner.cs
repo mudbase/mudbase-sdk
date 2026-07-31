@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Status key (pending, success, failed, retrying)</value>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Count
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Count
         /// </summary>
         [JsonPropertyName("count")]
-        public int? Count { get { return this.CountOption; } set { this.CountOption = new(value); } }
+        public int? Count { get { return this.CountOption.Value; } set { this.CountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AvgDuration
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Average duration in ms for that status bucket</value>
         [JsonPropertyName("avgDuration")]
-        public decimal? AvgDuration { get { return this.AvgDurationOption; } set { this.AvgDurationOption = new(value); } }
+        public decimal? AvgDuration { get { return this.AvgDurationOption.Value; } set { this.AvgDurationOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WebhookStatsResponseStatusStatsInner" />
     /// </summary>
-    public class WebhookStatsResponseStatusStatsInnerJsonConverter : JsonConverter<WebhookStatsResponseStatusStatsInner>
+    public partial class WebhookStatsResponseStatusStatsInnerJsonConverter : JsonConverter<WebhookStatsResponseStatusStatsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebhookStatsResponseStatusStatsInnerJsonConverter" /> class.
+        /// </summary>
+        public WebhookStatsResponseStatusStatsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="WebhookStatsResponseStatusStatsInner" />
         /// </summary>

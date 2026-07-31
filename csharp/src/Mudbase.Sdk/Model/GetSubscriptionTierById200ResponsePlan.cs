@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Price
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Price
         /// </summary>
         [JsonPropertyName("price")]
-        public decimal? Price { get { return this.PriceOption; } set { this.PriceOption = new(value); } }
+        public decimal? Price { get { return this.PriceOption.Value; } set { this.PriceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PriceYearly
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PriceYearly
         /// </summary>
         [JsonPropertyName("priceYearly")]
-        public decimal? PriceYearly { get { return this.PriceYearlyOption; } set { this.PriceYearlyOption = new(value); } }
+        public decimal? PriceYearly { get { return this.PriceYearlyOption.Value; } set { this.PriceYearlyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limits
         /// </summary>
         [JsonPropertyName("limits")]
-        public Object? Limits { get { return this.LimitsOption; } set { this.LimitsOption = new(value); } }
+        public Object? Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Overages
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Overages
         /// </summary>
         [JsonPropertyName("overages")]
-        public Object? Overages { get { return this.OveragesOption; } set { this.OveragesOption = new(value); } }
+        public Object? Overages { get { return this.OveragesOption.Value; } set { this.OveragesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,8 +196,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSubscriptionTierById200ResponsePlan" />
     /// </summary>
-    public class GetSubscriptionTierById200ResponsePlanJsonConverter : JsonConverter<GetSubscriptionTierById200ResponsePlan>
+    public partial class GetSubscriptionTierById200ResponsePlanJsonConverter : JsonConverter<GetSubscriptionTierById200ResponsePlan>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSubscriptionTierById200ResponsePlanJsonConverter" /> class.
+        /// </summary>
+        public GetSubscriptionTierById200ResponsePlanJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSubscriptionTierById200ResponsePlan" />
         /// </summary>

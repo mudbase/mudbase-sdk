@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Invitation sent successfully</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>user@suborg.example.com</example> */
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Role
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>viewer</example> */
         [JsonPropertyName("role")]
-        public string? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public string? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InviteSubOrganizationMember200Response" />
     /// </summary>
-    public class InviteSubOrganizationMember200ResponseJsonConverter : JsonConverter<InviteSubOrganizationMember200Response>
+    public partial class InviteSubOrganizationMember200ResponseJsonConverter : JsonConverter<InviteSubOrganizationMember200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InviteSubOrganizationMember200ResponseJsonConverter" /> class.
+        /// </summary>
+        public InviteSubOrganizationMember200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InviteSubOrganizationMember200Response" />
         /// </summary>

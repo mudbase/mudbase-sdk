@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets StartDate
         /// </summary>
         [JsonPropertyName("startDate")]
-        public DateTime? StartDate { get { return this.StartDateOption; } set { this.StartDateOption = new(value); } }
+        public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EndDate
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EndDate
         /// </summary>
         [JsonPropertyName("endDate")]
-        public DateTime? EndDate { get { return this.EndDateOption; } set { this.EndDateOption = new(value); } }
+        public DateTime? EndDate { get { return this.EndDateOption.Value; } set { this.EndDateOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,17 +100,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageStatsResponseDataPeriod" />
     /// </summary>
-    public class MessageStatsResponseDataPeriodJsonConverter : JsonConverter<MessageStatsResponseDataPeriod>
+    public partial class MessageStatsResponseDataPeriodJsonConverter : JsonConverter<MessageStatsResponseDataPeriod>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageStatsResponseDataPeriodJsonConverter" /> class.
+        /// </summary>
+        public MessageStatsResponseDataPeriodJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize StartDate
         /// </summary>
-        public static string StartDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize EndDate
         /// </summary>
-        public static string EndDateFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="MessageStatsResponseDataPeriod" />

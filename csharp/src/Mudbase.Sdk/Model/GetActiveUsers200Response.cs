@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Users
         /// </summary>
         [JsonPropertyName("users")]
-        public List<GetActiveUsers200ResponseUsersInner>? Users { get { return this.UsersOption; } set { this.UsersOption = new(value); } }
+        public List<GetActiveUsers200ResponseUsersInner>? Users { get { return this.UsersOption.Value; } set { this.UsersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Count
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Count
         /// </summary>
         [JsonPropertyName("count")]
-        public int? Count { get { return this.CountOption; } set { this.CountOption = new(value); } }
+        public int? Count { get { return this.CountOption.Value; } set { this.CountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Timestamp
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,12 +116,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetActiveUsers200Response" />
     /// </summary>
-    public class GetActiveUsers200ResponseJsonConverter : JsonConverter<GetActiveUsers200Response>
+    public partial class GetActiveUsers200ResponseJsonConverter : JsonConverter<GetActiveUsers200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetActiveUsers200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetActiveUsers200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetActiveUsers200Response" />

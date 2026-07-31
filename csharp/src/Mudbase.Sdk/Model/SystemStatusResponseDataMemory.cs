@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Used
         /// </summary>
         [JsonPropertyName("used")]
-        public int? Used { get { return this.UsedOption; } set { this.UsedOption = new(value); } }
+        public int? Used { get { return this.UsedOption.Value; } set { this.UsedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Percentage
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Percentage
         /// </summary>
         [JsonPropertyName("percentage")]
-        public decimal? Percentage { get { return this.PercentageOption; } set { this.PercentageOption = new(value); } }
+        public decimal? Percentage { get { return this.PercentageOption.Value; } set { this.PercentageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SystemStatusResponseDataMemory" />
     /// </summary>
-    public class SystemStatusResponseDataMemoryJsonConverter : JsonConverter<SystemStatusResponseDataMemory>
+    public partial class SystemStatusResponseDataMemoryJsonConverter : JsonConverter<SystemStatusResponseDataMemory>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SystemStatusResponseDataMemoryJsonConverter" /> class.
+        /// </summary>
+        public SystemStatusResponseDataMemoryJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SystemStatusResponseDataMemory" />
         /// </summary>

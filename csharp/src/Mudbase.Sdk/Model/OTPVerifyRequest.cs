@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Identifier
         /// </summary>
         [JsonPropertyName("identifier")]
-        public string? Identifier { get { return this.IdentifierOption; } set { this.IdentifierOption = new(value); } }
+        public string? Identifier { get { return this.IdentifierOption.Value; } set { this.IdentifierOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OTPVerifyRequest" />
     /// </summary>
-    public class OTPVerifyRequestJsonConverter : JsonConverter<OTPVerifyRequest>
+    public partial class OTPVerifyRequestJsonConverter : JsonConverter<OTPVerifyRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OTPVerifyRequestJsonConverter" /> class.
+        /// </summary>
+        public OTPVerifyRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OTPVerifyRequest" />
         /// </summary>

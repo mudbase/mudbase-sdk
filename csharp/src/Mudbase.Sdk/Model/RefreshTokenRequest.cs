@@ -78,8 +78,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RefreshTokenRequest" />
     /// </summary>
-    public class RefreshTokenRequestJsonConverter : JsonConverter<RefreshTokenRequest>
+    public partial class RefreshTokenRequestJsonConverter : JsonConverter<RefreshTokenRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RefreshTokenRequestJsonConverter" /> class.
+        /// </summary>
+        public RefreshTokenRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RefreshTokenRequest" />
         /// </summary>

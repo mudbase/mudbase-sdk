@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WebhookUrl
         /// </summary>
         [JsonPropertyName("webhookUrl")]
-        public string? WebhookUrl { get { return this.WebhookUrlOption; } set { this.WebhookUrlOption = new(value); } }
+        public string? WebhookUrl { get { return this.WebhookUrlOption.Value; } set { this.WebhookUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SecretSet
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SecretSet
         /// </summary>
         [JsonPropertyName("secretSet")]
-        public bool? SecretSet { get { return this.SecretSetOption; } set { this.SecretSetOption = new(value); } }
+        public bool? SecretSet { get { return this.SecretSetOption.Value; } set { this.SecretSetOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiKycWebhookConfigGet200Response" />
     /// </summary>
-    public class ApiKycWebhookConfigGet200ResponseJsonConverter : JsonConverter<ApiKycWebhookConfigGet200Response>
+    public partial class ApiKycWebhookConfigGet200ResponseJsonConverter : JsonConverter<ApiKycWebhookConfigGet200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKycWebhookConfigGet200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ApiKycWebhookConfigGet200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiKycWebhookConfigGet200Response" />
         /// </summary>

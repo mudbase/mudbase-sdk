@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WalletId
         /// </summary>
         [JsonPropertyName("walletId")]
-        public string? WalletId { get { return this.WalletIdOption; } set { this.WalletIdOption = new(value); } }
+        public string? WalletId { get { return this.WalletIdOption.Value; } set { this.WalletIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Address
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Address
         /// </summary>
         [JsonPropertyName("address")]
-        public string? Address { get { return this.AddressOption; } set { this.AddressOption = new(value); } }
+        public string? Address { get { return this.AddressOption.Value; } set { this.AddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PrivateKey
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PrivateKey
         /// </summary>
         [JsonPropertyName("privateKey")]
-        public string? PrivateKey { get { return this.PrivateKeyOption; } set { this.PrivateKeyOption = new(value); } }
+        public string? PrivateKey { get { return this.PrivateKeyOption.Value; } set { this.PrivateKeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsCustomKey
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsCustomKey
         /// </summary>
         [JsonPropertyName("isCustomKey")]
-        public bool? IsCustomKey { get { return this.IsCustomKeyOption; } set { this.IsCustomKeyOption = new(value); } }
+        public bool? IsCustomKey { get { return this.IsCustomKeyOption.Value; } set { this.IsCustomKeyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetWalletPrivateKey200ResponseData" />
     /// </summary>
-    public class GetWalletPrivateKey200ResponseDataJsonConverter : JsonConverter<GetWalletPrivateKey200ResponseData>
+    public partial class GetWalletPrivateKey200ResponseDataJsonConverter : JsonConverter<GetWalletPrivateKey200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetWalletPrivateKey200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetWalletPrivateKey200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetWalletPrivateKey200ResponseData" />
         /// </summary>

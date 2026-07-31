@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Collections
         /// </summary>
         [JsonPropertyName("collections")]
-        public List<string>? Collections { get { return this.CollectionsOption; } set { this.CollectionsOption = new(value); } }
+        public List<string>? Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DatabaseConfig" />
     /// </summary>
-    public class DatabaseConfigJsonConverter : JsonConverter<DatabaseConfig>
+    public partial class DatabaseConfigJsonConverter : JsonConverter<DatabaseConfig>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseConfigJsonConverter" /> class.
+        /// </summary>
+        public DatabaseConfigJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DatabaseConfig" />
         /// </summary>

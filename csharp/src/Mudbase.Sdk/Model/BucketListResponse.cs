@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Buckets
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Buckets
         /// </summary>
         [JsonPropertyName("buckets")]
-        public List<Bucket>? Buckets { get { return this.BucketsOption; } set { this.BucketsOption = new(value); } }
+        public List<Bucket>? Buckets { get { return this.BucketsOption.Value; } set { this.BucketsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pagination
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pagination
         /// </summary>
         [JsonPropertyName("pagination")]
-        public Pagination? Pagination { get { return this.PaginationOption; } set { this.PaginationOption = new(value); } }
+        public Pagination? Pagination { get { return this.PaginationOption.Value; } set { this.PaginationOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BucketListResponse" />
     /// </summary>
-    public class BucketListResponseJsonConverter : JsonConverter<BucketListResponse>
+    public partial class BucketListResponseJsonConverter : JsonConverter<BucketListResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BucketListResponseJsonConverter" /> class.
+        /// </summary>
+        public BucketListResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BucketListResponse" />
         /// </summary>

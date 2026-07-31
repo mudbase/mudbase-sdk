@@ -87,8 +87,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GenerateAccessReviewRequest" />
     /// </summary>
-    public class GenerateAccessReviewRequestJsonConverter : JsonConverter<GenerateAccessReviewRequest>
+    public partial class GenerateAccessReviewRequestJsonConverter : JsonConverter<GenerateAccessReviewRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateAccessReviewRequestJsonConverter" /> class.
+        /// </summary>
+        public GenerateAccessReviewRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GenerateAccessReviewRequest" />
         /// </summary>

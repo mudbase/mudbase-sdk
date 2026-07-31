@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ContractBillingInterval
         /// </summary>
         [JsonPropertyName("contractBillingInterval")]
-        public ContractBillingIntervalEnum? ContractBillingInterval { get { return this.ContractBillingIntervalOption; } set { this.ContractBillingIntervalOption = new(value); } }
+        public ContractBillingIntervalEnum? ContractBillingInterval { get { return this.ContractBillingIntervalOption.Value; } set { this.ContractBillingIntervalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ContractAmountCents
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ContractAmountCents
         /// </summary>
         [JsonPropertyName("contractAmountCents")]
-        public int? ContractAmountCents { get { return this.ContractAmountCentsOption; } set { this.ContractAmountCentsOption = new(value); } }
+        public int? ContractAmountCents { get { return this.ContractAmountCentsOption.Value; } set { this.ContractAmountCentsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ContractCurrency
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ContractCurrency
         /// </summary>
         [JsonPropertyName("contractCurrency")]
-        public string? ContractCurrency { get { return this.ContractCurrencyOption; } set { this.ContractCurrencyOption = new(value); } }
+        public string? ContractCurrency { get { return this.ContractCurrencyOption.Value; } set { this.ContractCurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ContractEffectiveFrom
@@ -173,7 +173,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ContractEffectiveFrom
         /// </summary>
         [JsonPropertyName("contractEffectiveFrom")]
-        public DateTime? ContractEffectiveFrom { get { return this.ContractEffectiveFromOption; } set { this.ContractEffectiveFromOption = new(value); } }
+        public DateTime? ContractEffectiveFrom { get { return this.ContractEffectiveFromOption.Value; } set { this.ContractEffectiveFromOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ContractNotes
@@ -186,7 +186,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ContractNotes
         /// </summary>
         [JsonPropertyName("contractNotes")]
-        public string? ContractNotes { get { return this.ContractNotesOption; } set { this.ContractNotesOption = new(value); } }
+        public string? ContractNotes { get { return this.ContractNotesOption.Value; } set { this.ContractNotesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Reason
@@ -199,7 +199,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("reason")]
-        public string? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public string? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -239,12 +239,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminOrgBillingContractPatchRequest" />
     /// </summary>
-    public class AdminOrgBillingContractPatchRequestJsonConverter : JsonConverter<AdminOrgBillingContractPatchRequest>
+    public partial class AdminOrgBillingContractPatchRequestJsonConverter : JsonConverter<AdminOrgBillingContractPatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminOrgBillingContractPatchRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminOrgBillingContractPatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ContractEffectiveFrom
         /// </summary>
-        public static string ContractEffectiveFromFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string ContractEffectiveFromFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="AdminOrgBillingContractPatchRequest" />
@@ -293,8 +303,7 @@ namespace Mudbase.Sdk.Model
                             break;
                         case "contractBillingInterval":
                             string? contractBillingIntervalRawValue = utf8JsonReader.GetString();
-                            if (contractBillingIntervalRawValue != null)
-                                contractBillingInterval = new Option<AdminOrgBillingContractPatchRequest.ContractBillingIntervalEnum?>(AdminOrgBillingContractPatchRequest.ContractBillingIntervalEnumFromStringOrDefault(contractBillingIntervalRawValue));
+                            contractBillingInterval = new Option<AdminOrgBillingContractPatchRequest.ContractBillingIntervalEnum?>(contractBillingIntervalRawValue == null ? null : AdminOrgBillingContractPatchRequest.ContractBillingIntervalEnumFromStringOrDefault(contractBillingIntervalRawValue));
                             break;
                         case "contractEffectiveFrom":
                             contractEffectiveFrom = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));

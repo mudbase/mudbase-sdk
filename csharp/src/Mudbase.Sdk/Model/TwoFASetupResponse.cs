@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Secret
         /// </summary>
         [JsonPropertyName("secret")]
-        public string? Secret { get { return this.SecretOption; } set { this.SecretOption = new(value); } }
+        public string? Secret { get { return this.SecretOption.Value; } set { this.SecretOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of QrCode
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets QrCode
         /// </summary>
         [JsonPropertyName("qrCode")]
-        public string? QrCode { get { return this.QrCodeOption; } set { this.QrCodeOption = new(value); } }
+        public string? QrCode { get { return this.QrCodeOption.Value; } set { this.QrCodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ManualEntryKey
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ManualEntryKey
         /// </summary>
         [JsonPropertyName("manualEntryKey")]
-        public string? ManualEntryKey { get { return this.ManualEntryKeyOption; } set { this.ManualEntryKeyOption = new(value); } }
+        public string? ManualEntryKey { get { return this.ManualEntryKeyOption.Value; } set { this.ManualEntryKeyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TwoFASetupResponse" />
     /// </summary>
-    public class TwoFASetupResponseJsonConverter : JsonConverter<TwoFASetupResponse>
+    public partial class TwoFASetupResponseJsonConverter : JsonConverter<TwoFASetupResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TwoFASetupResponseJsonConverter" /> class.
+        /// </summary>
+        public TwoFASetupResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TwoFASetupResponse" />
         /// </summary>

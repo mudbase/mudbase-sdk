@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Scope
         /// </summary>
         [JsonPropertyName("scope")]
-        public ScopeEnum? Scope { get { return this.ScopeOption; } set { this.ScopeOption = new(value); } }
+        public ScopeEnum? Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AvgMsToday
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AvgMsToday
         /// </summary>
         [JsonPropertyName("avgMsToday")]
-        public int? AvgMsToday { get { return this.AvgMsTodayOption; } set { this.AvgMsTodayOption = new(value); } }
+        public int? AvgMsToday { get { return this.AvgMsTodayOption.Value; } set { this.AvgMsTodayOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AvgMs7d
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AvgMs7d
         /// </summary>
         [JsonPropertyName("avgMs7d")]
-        public int? AvgMs7d { get { return this.AvgMs7dOption; } set { this.AvgMs7dOption = new(value); } }
+        public int? AvgMs7d { get { return this.AvgMs7dOption.Value; } set { this.AvgMs7dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LatencySamplesToday
@@ -161,7 +161,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Count of openapi-docs–scoped latency samples for this project (UTC today)</value>
         [JsonPropertyName("latencySamplesToday")]
-        public int? LatencySamplesToday { get { return this.LatencySamplesTodayOption; } set { this.LatencySamplesTodayOption = new(value); } }
+        public int? LatencySamplesToday { get { return this.LatencySamplesTodayOption.Value; } set { this.LatencySamplesTodayOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LatencyNeedsTraffic
@@ -174,7 +174,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LatencyNeedsTraffic
         /// </summary>
         [JsonPropertyName("latencyNeedsTraffic")]
-        public bool? LatencyNeedsTraffic { get { return this.LatencyNeedsTrafficOption; } set { this.LatencyNeedsTrafficOption = new(value); } }
+        public bool? LatencyNeedsTraffic { get { return this.LatencyNeedsTrafficOption.Value; } set { this.LatencyNeedsTrafficOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Interpretation
@@ -188,7 +188,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Why mean can differ from typical latency; points to latency-insights</value>
         [JsonPropertyName("interpretation")]
-        public string? Interpretation { get { return this.InterpretationOption; } set { this.InterpretationOption = new(value); } }
+        public string? Interpretation { get { return this.InterpretationOption.Value; } set { this.InterpretationOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InstanceRollup
@@ -201,7 +201,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets InstanceRollup
         /// </summary>
         [JsonPropertyName("instanceRollup")]
-        public DashboardOverviewDataLatencyInstanceRollup? InstanceRollup { get { return this.InstanceRollupOption; } set { this.InstanceRollupOption = new(value); } }
+        public DashboardOverviewDataLatencyInstanceRollup? InstanceRollup { get { return this.InstanceRollupOption.Value; } set { this.InstanceRollupOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TopRoutesByImpactHint
@@ -215,7 +215,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Top route templates by impact score on this instance (debugging hint)</value>
         [JsonPropertyName("topRoutesByImpactHint")]
-        public List<DashboardOverviewDataLatencyTopRoutesByImpactHintInner>? TopRoutesByImpactHint { get { return this.TopRoutesByImpactHintOption; } set { this.TopRoutesByImpactHintOption = new(value); } }
+        public List<DashboardOverviewDataLatencyTopRoutesByImpactHintInner>? TopRoutesByImpactHint { get { return this.TopRoutesByImpactHintOption.Value; } set { this.TopRoutesByImpactHintOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -251,8 +251,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DashboardOverviewDataLatency" />
     /// </summary>
-    public class DashboardOverviewDataLatencyJsonConverter : JsonConverter<DashboardOverviewDataLatency>
+    public partial class DashboardOverviewDataLatencyJsonConverter : JsonConverter<DashboardOverviewDataLatency>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardOverviewDataLatencyJsonConverter" /> class.
+        /// </summary>
+        public DashboardOverviewDataLatencyJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DashboardOverviewDataLatency" />
         /// </summary>

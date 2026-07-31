@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Integration
         /// </summary>
         [JsonPropertyName("integration")]
-        public GetIntegration200ResponseIntegration? Integration { get { return this.IntegrationOption; } set { this.IntegrationOption = new(value); } }
+        public GetIntegration200ResponseIntegration? Integration { get { return this.IntegrationOption.Value; } set { this.IntegrationOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetIntegration200Response" />
     /// </summary>
-    public class GetIntegration200ResponseJsonConverter : JsonConverter<GetIntegration200Response>
+    public partial class GetIntegration200ResponseJsonConverter : JsonConverter<GetIntegration200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetIntegration200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetIntegration200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetIntegration200Response" />
         /// </summary>

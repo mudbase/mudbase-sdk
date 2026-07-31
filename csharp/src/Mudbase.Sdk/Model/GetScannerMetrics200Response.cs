@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Metrics
         /// </summary>
         [JsonPropertyName("metrics")]
-        public Dictionary<string, GetScannerMetrics200ResponseMetricsValue>? Metrics { get { return this.MetricsOption; } set { this.MetricsOption = new(value); } }
+        public Dictionary<string, GetScannerMetrics200ResponseMetricsValue>? Metrics { get { return this.MetricsOption.Value; } set { this.MetricsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LagAlertThreshold
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Block lag threshold above which alerts are raised</value>
         [JsonPropertyName("lagAlertThreshold")]
-        public decimal? LagAlertThreshold { get { return this.LagAlertThresholdOption; } set { this.LagAlertThresholdOption = new(value); } }
+        public decimal? LagAlertThreshold { get { return this.LagAlertThresholdOption.Value; } set { this.LagAlertThresholdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Alerts
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Alerts
         /// </summary>
         [JsonPropertyName("alerts")]
-        public List<GetScannerMetrics200ResponseAlertsInner>? Alerts { get { return this.AlertsOption; } set { this.AlertsOption = new(value); } }
+        public List<GetScannerMetrics200ResponseAlertsInner>? Alerts { get { return this.AlertsOption.Value; } set { this.AlertsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetScannerMetrics200Response" />
     /// </summary>
-    public class GetScannerMetrics200ResponseJsonConverter : JsonConverter<GetScannerMetrics200Response>
+    public partial class GetScannerMetrics200ResponseJsonConverter : JsonConverter<GetScannerMetrics200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetScannerMetrics200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetScannerMetrics200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetScannerMetrics200Response" />
         /// </summary>

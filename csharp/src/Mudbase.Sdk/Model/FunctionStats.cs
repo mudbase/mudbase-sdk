@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalExecutions
         /// </summary>
         [JsonPropertyName("totalExecutions")]
-        public int? TotalExecutions { get { return this.TotalExecutionsOption; } set { this.TotalExecutionsOption = new(value); } }
+        public int? TotalExecutions { get { return this.TotalExecutionsOption.Value; } set { this.TotalExecutionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SuccessfulExecutions
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SuccessfulExecutions
         /// </summary>
         [JsonPropertyName("successfulExecutions")]
-        public int? SuccessfulExecutions { get { return this.SuccessfulExecutionsOption; } set { this.SuccessfulExecutionsOption = new(value); } }
+        public int? SuccessfulExecutions { get { return this.SuccessfulExecutionsOption.Value; } set { this.SuccessfulExecutionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FailedExecutions
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FailedExecutions
         /// </summary>
         [JsonPropertyName("failedExecutions")]
-        public int? FailedExecutions { get { return this.FailedExecutionsOption; } set { this.FailedExecutionsOption = new(value); } }
+        public int? FailedExecutions { get { return this.FailedExecutionsOption.Value; } set { this.FailedExecutionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AvgExecutionTime
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AvgExecutionTime
         /// </summary>
         [JsonPropertyName("avgExecutionTime")]
-        public decimal? AvgExecutionTime { get { return this.AvgExecutionTimeOption; } set { this.AvgExecutionTimeOption = new(value); } }
+        public decimal? AvgExecutionTime { get { return this.AvgExecutionTimeOption.Value; } set { this.AvgExecutionTimeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastExecution
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastExecution
         /// </summary>
         [JsonPropertyName("lastExecution")]
-        public DateTime? LastExecution { get { return this.LastExecutionOption; } set { this.LastExecutionOption = new(value); } }
+        public DateTime? LastExecution { get { return this.LastExecutionOption.Value; } set { this.LastExecutionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,12 +148,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FunctionStats" />
     /// </summary>
-    public class FunctionStatsJsonConverter : JsonConverter<FunctionStats>
+    public partial class FunctionStatsJsonConverter : JsonConverter<FunctionStats>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FunctionStatsJsonConverter" /> class.
+        /// </summary>
+        public FunctionStatsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastExecution
         /// </summary>
-        public static string LastExecutionFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastExecutionFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="FunctionStats" />

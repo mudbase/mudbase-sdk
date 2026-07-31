@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets HasSubscription
         /// </summary>
         [JsonPropertyName("hasSubscription")]
-        public bool? HasSubscription { get { return this.HasSubscriptionOption; } set { this.HasSubscriptionOption = new(value); } }
+        public bool? HasSubscription { get { return this.HasSubscriptionOption.Value; } set { this.HasSubscriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Subscription
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Subscription
         /// </summary>
         [JsonPropertyName("subscription")]
-        public CheckSubscription200ResponseSubscription? Subscription { get { return this.SubscriptionOption; } set { this.SubscriptionOption = new(value); } }
+        public CheckSubscription200ResponseSubscription? Subscription { get { return this.SubscriptionOption.Value; } set { this.SubscriptionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckSubscription200Response" />
     /// </summary>
-    public class CheckSubscription200ResponseJsonConverter : JsonConverter<CheckSubscription200Response>
+    public partial class CheckSubscription200ResponseJsonConverter : JsonConverter<CheckSubscription200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckSubscription200ResponseJsonConverter" /> class.
+        /// </summary>
+        public CheckSubscription200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CheckSubscription200Response" />
         /// </summary>

@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Organizations
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Organizations
         /// </summary>
         [JsonPropertyName("organizations")]
-        public List<GetDashboardOrganizations200ResponseOrganizationsInner>? Organizations { get { return this.OrganizationsOption; } set { this.OrganizationsOption = new(value); } }
+        public List<GetDashboardOrganizations200ResponseOrganizationsInner>? Organizations { get { return this.OrganizationsOption.Value; } set { this.OrganizationsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Page
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Present when limit query was used</value>
         [JsonPropertyName("page")]
-        public int? Page { get { return this.PageOption; } set { this.PageOption = new(value); } }
+        public int? Page { get { return this.PageOption.Value; } set { this.PageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limit
@@ -118,7 +118,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limit
         /// </summary>
         [JsonPropertyName("limit")]
-        public int? Limit { get { return this.LimitOption; } set { this.LimitOption = new(value); } }
+        public int? Limit { get { return this.LimitOption.Value; } set { this.LimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pages
@@ -131,7 +131,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pages
         /// </summary>
         [JsonPropertyName("pages")]
-        public int? Pages { get { return this.PagesOption; } set { this.PagesOption = new(value); } }
+        public int? Pages { get { return this.PagesOption.Value; } set { this.PagesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -165,8 +165,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetDashboardOrganizations200Response" />
     /// </summary>
-    public class GetDashboardOrganizations200ResponseJsonConverter : JsonConverter<GetDashboardOrganizations200Response>
+    public partial class GetDashboardOrganizations200ResponseJsonConverter : JsonConverter<GetDashboardOrganizations200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetDashboardOrganizations200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetDashboardOrganizations200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetDashboardOrganizations200Response" />
         /// </summary>

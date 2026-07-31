@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Plan upgrades must be done through the billing system</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Please use /api/billing routes to upgrade your plan</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateOrganizationPlan200ResponseOneOf1" />
     /// </summary>
-    public class UpdateOrganizationPlan200ResponseOneOf1JsonConverter : JsonConverter<UpdateOrganizationPlan200ResponseOneOf1>
+    public partial class UpdateOrganizationPlan200ResponseOneOf1JsonConverter : JsonConverter<UpdateOrganizationPlan200ResponseOneOf1>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateOrganizationPlan200ResponseOneOf1JsonConverter" /> class.
+        /// </summary>
+        public UpdateOrganizationPlan200ResponseOneOf1JsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateOrganizationPlan200ResponseOneOf1" />
         /// </summary>

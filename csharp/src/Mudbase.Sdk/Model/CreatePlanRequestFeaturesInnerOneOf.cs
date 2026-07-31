@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Included
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Included
         /// </summary>
         [JsonPropertyName("included")]
-        public bool? Included { get { return this.IncludedOption; } set { this.IncludedOption = new(value); } }
+        public bool? Included { get { return this.IncludedOption.Value; } set { this.IncludedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limit
@@ -101,7 +101,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Usage cap for this feature; omit or null for unlimited.</value>
         [JsonPropertyName("limit")]
-        public decimal? Limit { get { return this.LimitOption; } set { this.LimitOption = new(value); } }
+        public decimal? Limit { get { return this.LimitOption.Value; } set { this.LimitOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -133,8 +133,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreatePlanRequestFeaturesInnerOneOf" />
     /// </summary>
-    public class CreatePlanRequestFeaturesInnerOneOfJsonConverter : JsonConverter<CreatePlanRequestFeaturesInnerOneOf>
+    public partial class CreatePlanRequestFeaturesInnerOneOfJsonConverter : JsonConverter<CreatePlanRequestFeaturesInnerOneOf>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreatePlanRequestFeaturesInnerOneOfJsonConverter" /> class.
+        /// </summary>
+        public CreatePlanRequestFeaturesInnerOneOfJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreatePlanRequestFeaturesInnerOneOf" />
         /// </summary>

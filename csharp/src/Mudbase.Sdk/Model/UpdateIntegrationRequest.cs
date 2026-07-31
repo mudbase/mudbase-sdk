@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Config
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Config
         /// </summary>
         [JsonPropertyName("config")]
-        public Object? Config { get { return this.ConfigOption; } set { this.ConfigOption = new(value); } }
+        public Object? Config { get { return this.ConfigOption.Value; } set { this.ConfigOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Credentials
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Credentials
         /// </summary>
         [JsonPropertyName("credentials")]
-        public Object? Credentials { get { return this.CredentialsOption; } set { this.CredentialsOption = new(value); } }
+        public Object? Credentials { get { return this.CredentialsOption.Value; } set { this.CredentialsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateIntegrationRequest" />
     /// </summary>
-    public class UpdateIntegrationRequestJsonConverter : JsonConverter<UpdateIntegrationRequest>
+    public partial class UpdateIntegrationRequestJsonConverter : JsonConverter<UpdateIntegrationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateIntegrationRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateIntegrationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateIntegrationRequest" />
         /// </summary>

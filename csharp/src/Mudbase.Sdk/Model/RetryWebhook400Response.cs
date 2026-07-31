@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Webhook already succeeded</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RetryWebhook400Response" />
     /// </summary>
-    public class RetryWebhook400ResponseJsonConverter : JsonConverter<RetryWebhook400Response>
+    public partial class RetryWebhook400ResponseJsonConverter : JsonConverter<RetryWebhook400Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RetryWebhook400ResponseJsonConverter" /> class.
+        /// </summary>
+        public RetryWebhook400ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RetryWebhook400Response" />
         /// </summary>

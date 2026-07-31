@@ -66,7 +66,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Required for project-based reset (sends OTP). Omit for org token link.</value>
         /* <example>685ad30be129932fbb7a1047</example> */
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -96,8 +96,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RequestLocalPasswordResetRequest" />
     /// </summary>
-    public class RequestLocalPasswordResetRequestJsonConverter : JsonConverter<RequestLocalPasswordResetRequest>
+    public partial class RequestLocalPasswordResetRequestJsonConverter : JsonConverter<RequestLocalPasswordResetRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RequestLocalPasswordResetRequestJsonConverter" /> class.
+        /// </summary>
+        public RequestLocalPasswordResetRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RequestLocalPasswordResetRequest" />
         /// </summary>

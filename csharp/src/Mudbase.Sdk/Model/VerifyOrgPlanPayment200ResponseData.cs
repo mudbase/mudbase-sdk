@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>New plan name (e.g. starter)</value>
         [JsonPropertyName("plan")]
-        public string? Plan { get { return this.PlanOption; } set { this.PlanOption = new(value); } }
+        public string? Plan { get { return this.PlanOption.Value; } set { this.PlanOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BillingCycle
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets BillingCycle
         /// </summary>
         [JsonPropertyName("billingCycle")]
-        public string? BillingCycle { get { return this.BillingCycleOption; } set { this.BillingCycleOption = new(value); } }
+        public string? BillingCycle { get { return this.BillingCycleOption.Value; } set { this.BillingCycleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OrgId
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OrgId
         /// </summary>
         [JsonPropertyName("orgId")]
-        public string? OrgId { get { return this.OrgIdOption; } set { this.OrgIdOption = new(value); } }
+        public string? OrgId { get { return this.OrgIdOption.Value; } set { this.OrgIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="VerifyOrgPlanPayment200ResponseData" />
     /// </summary>
-    public class VerifyOrgPlanPayment200ResponseDataJsonConverter : JsonConverter<VerifyOrgPlanPayment200ResponseData>
+    public partial class VerifyOrgPlanPayment200ResponseDataJsonConverter : JsonConverter<VerifyOrgPlanPayment200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifyOrgPlanPayment200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public VerifyOrgPlanPayment200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VerifyOrgPlanPayment200ResponseData" />
         /// </summary>

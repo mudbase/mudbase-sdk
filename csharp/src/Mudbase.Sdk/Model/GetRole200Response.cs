@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Role
         /// </summary>
         [JsonPropertyName("role")]
-        public Object? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public Object? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetRole200Response" />
     /// </summary>
-    public class GetRole200ResponseJsonConverter : JsonConverter<GetRole200Response>
+    public partial class GetRole200ResponseJsonConverter : JsonConverter<GetRole200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetRole200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetRole200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetRole200Response" />
         /// </summary>

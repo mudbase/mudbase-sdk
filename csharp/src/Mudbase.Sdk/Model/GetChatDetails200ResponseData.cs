@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Participants
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Participants
         /// </summary>
         [JsonPropertyName("participants")]
-        public List<GetChatDetails200ResponseDataParticipantsInner>? Participants { get { return this.ParticipantsOption; } set { this.ParticipantsOption = new(value); } }
+        public List<GetChatDetails200ResponseDataParticipantsInner>? Participants { get { return this.ParticipantsOption.Value; } set { this.ParticipantsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetChatDetails200ResponseData" />
     /// </summary>
-    public class GetChatDetails200ResponseDataJsonConverter : JsonConverter<GetChatDetails200ResponseData>
+    public partial class GetChatDetails200ResponseDataJsonConverter : JsonConverter<GetChatDetails200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetChatDetails200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetChatDetails200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetChatDetails200ResponseData" />
         /// </summary>

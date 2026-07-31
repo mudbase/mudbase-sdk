@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Plan
         /// </summary>
         [JsonPropertyName("plan")]
-        public GetSubscriptionTierById200ResponsePlan? Plan { get { return this.PlanOption; } set { this.PlanOption = new(value); } }
+        public GetSubscriptionTierById200ResponsePlan? Plan { get { return this.PlanOption.Value; } set { this.PlanOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSubscriptionTierById200Response" />
     /// </summary>
-    public class GetSubscriptionTierById200ResponseJsonConverter : JsonConverter<GetSubscriptionTierById200Response>
+    public partial class GetSubscriptionTierById200ResponseJsonConverter : JsonConverter<GetSubscriptionTierById200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSubscriptionTierById200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetSubscriptionTierById200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSubscriptionTierById200Response" />
         /// </summary>

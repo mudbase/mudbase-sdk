@@ -62,7 +62,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Max execution time in ms (default 30000)</value>
         [JsonPropertyName("timeout")]
-        public int? Timeout { get { return this.TimeoutOption; } set { this.TimeoutOption = new(value); } }
+        public int? Timeout { get { return this.TimeoutOption.Value; } set { this.TimeoutOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxPayloadSize
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Max payload size in bytes (default 1MB)</value>
         [JsonPropertyName("maxPayloadSize")]
-        public int? MaxPayloadSize { get { return this.MaxPayloadSizeOption; } set { this.MaxPayloadSizeOption = new(value); } }
+        public int? MaxPayloadSize { get { return this.MaxPayloadSizeOption.Value; } set { this.MaxPayloadSizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxExecutionsPerMinute
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxExecutionsPerMinute
         /// </summary>
         [JsonPropertyName("maxExecutionsPerMinute")]
-        public int? MaxExecutionsPerMinute { get { return this.MaxExecutionsPerMinuteOption; } set { this.MaxExecutionsPerMinuteOption = new(value); } }
+        public int? MaxExecutionsPerMinute { get { return this.MaxExecutionsPerMinuteOption.Value; } set { this.MaxExecutionsPerMinuteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxExecutionsPerHour
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxExecutionsPerHour
         /// </summary>
         [JsonPropertyName("maxExecutionsPerHour")]
-        public int? MaxExecutionsPerHour { get { return this.MaxExecutionsPerHourOption; } set { this.MaxExecutionsPerHourOption = new(value); } }
+        public int? MaxExecutionsPerHour { get { return this.MaxExecutionsPerHourOption.Value; } set { this.MaxExecutionsPerHourOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -134,8 +134,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateFunctionRequestLimits" />
     /// </summary>
-    public class UpdateFunctionRequestLimitsJsonConverter : JsonConverter<UpdateFunctionRequestLimits>
+    public partial class UpdateFunctionRequestLimitsJsonConverter : JsonConverter<UpdateFunctionRequestLimits>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateFunctionRequestLimitsJsonConverter" /> class.
+        /// </summary>
+        public UpdateFunctionRequestLimitsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateFunctionRequestLimits" />
         /// </summary>

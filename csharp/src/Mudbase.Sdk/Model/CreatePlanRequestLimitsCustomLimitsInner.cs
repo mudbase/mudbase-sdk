@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Value
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Value
         /// </summary>
         [JsonPropertyName("value")]
-        public decimal? Value { get { return this.ValueOption; } set { this.ValueOption = new(value); } }
+        public decimal? Value { get { return this.ValueOption.Value; } set { this.ValueOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreatePlanRequestLimitsCustomLimitsInner" />
     /// </summary>
-    public class CreatePlanRequestLimitsCustomLimitsInnerJsonConverter : JsonConverter<CreatePlanRequestLimitsCustomLimitsInner>
+    public partial class CreatePlanRequestLimitsCustomLimitsInnerJsonConverter : JsonConverter<CreatePlanRequestLimitsCustomLimitsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreatePlanRequestLimitsCustomLimitsInnerJsonConverter" /> class.
+        /// </summary>
+        public CreatePlanRequestLimitsCustomLimitsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreatePlanRequestLimitsCustomLimitsInner" />
         /// </summary>

@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -84,7 +84,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GrossAmount
@@ -97,7 +97,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets GrossAmount
         /// </summary>
         [JsonPropertyName("grossAmount")]
-        public decimal? GrossAmount { get { return this.GrossAmountOption; } set { this.GrossAmountOption = new(value); } }
+        public decimal? GrossAmount { get { return this.GrossAmountOption.Value; } set { this.GrossAmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NetworkFee
@@ -110,7 +110,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets NetworkFee
         /// </summary>
         [JsonPropertyName("networkFee")]
-        public decimal? NetworkFee { get { return this.NetworkFeeOption; } set { this.NetworkFeeOption = new(value); } }
+        public decimal? NetworkFee { get { return this.NetworkFeeOption.Value; } set { this.NetworkFeeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NetAmount
@@ -123,7 +123,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets NetAmount
         /// </summary>
         [JsonPropertyName("netAmount")]
-        public decimal? NetAmount { get { return this.NetAmountOption; } set { this.NetAmountOption = new(value); } }
+        public decimal? NetAmount { get { return this.NetAmountOption.Value; } set { this.NetAmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ToAddress
@@ -136,7 +136,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ToAddress
         /// </summary>
         [JsonPropertyName("toAddress")]
-        public string? ToAddress { get { return this.ToAddressOption; } set { this.ToAddressOption = new(value); } }
+        public string? ToAddress { get { return this.ToAddressOption.Value; } set { this.ToAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TxHash
@@ -149,7 +149,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TxHash
         /// </summary>
         [JsonPropertyName("txHash")]
-        public string? TxHash { get { return this.TxHashOption; } set { this.TxHashOption = new(value); } }
+        public string? TxHash { get { return this.TxHashOption.Value; } set { this.TxHashOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -162,7 +162,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -175,7 +175,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -212,12 +212,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetPayoutHistory200ResponseDataInner" />
     /// </summary>
-    public class GetPayoutHistory200ResponseDataInnerJsonConverter : JsonConverter<GetPayoutHistory200ResponseDataInner>
+    public partial class GetPayoutHistory200ResponseDataInnerJsonConverter : JsonConverter<GetPayoutHistory200ResponseDataInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetPayoutHistory200ResponseDataInnerJsonConverter" /> class.
+        /// </summary>
+        public GetPayoutHistory200ResponseDataInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetPayoutHistory200ResponseDataInner" />

@@ -123,7 +123,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TransactionId
@@ -136,7 +136,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TransactionId
         /// </summary>
         [JsonPropertyName("transactionId")]
-        public string? TransactionId { get { return this.TransactionIdOption; } set { this.TransactionIdOption = new(value); } }
+        public string? TransactionId { get { return this.TransactionIdOption.Value; } set { this.TransactionIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SignedTx
@@ -150,7 +150,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Signed transaction (hex for EVM/UTXO, base64 for Solana, object for Tron). Send as-is in broadcast body.</value>
         [JsonPropertyName("signedTx")]
-        public string? SignedTx { get { return this.SignedTxOption; } set { this.SignedTxOption = new(value); } }
+        public string? SignedTx { get { return this.SignedTxOption.Value; } set { this.SignedTxOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Chain
@@ -164,7 +164,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Chain id for broadcast (e.g. ethereum, bitcoin, solana).</value>
         [JsonPropertyName("chain")]
-        public string? Chain { get { return this.ChainOption; } set { this.ChainOption = new(value); } }
+        public string? Chain { get { return this.ChainOption.Value; } set { this.ChainOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FromAddress
@@ -178,7 +178,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Sender address; must be registered for org when broadcasting.</value>
         [JsonPropertyName("fromAddress")]
-        public string? FromAddress { get { return this.FromAddressOption; } set { this.FromAddressOption = new(value); } }
+        public string? FromAddress { get { return this.FromAddressOption.Value; } set { this.FromAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -191,7 +191,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -204,7 +204,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ToAddress
@@ -217,7 +217,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ToAddress
         /// </summary>
         [JsonPropertyName("toAddress")]
-        public string? ToAddress { get { return this.ToAddressOption; } set { this.ToAddressOption = new(value); } }
+        public string? ToAddress { get { return this.ToAddressOption.Value; } set { this.ToAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -230,7 +230,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -267,8 +267,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Withdraw200ResponseData" />
     /// </summary>
-    public class Withdraw200ResponseDataJsonConverter : JsonConverter<Withdraw200ResponseData>
+    public partial class Withdraw200ResponseDataJsonConverter : JsonConverter<Withdraw200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Withdraw200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public Withdraw200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Withdraw200ResponseData" />
         /// </summary>

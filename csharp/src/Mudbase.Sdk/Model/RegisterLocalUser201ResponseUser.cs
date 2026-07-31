@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Email
         /// </summary>
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FirstName
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FirstName
         /// </summary>
         [JsonPropertyName("firstName")]
-        public string? FirstName { get { return this.FirstNameOption; } set { this.FirstNameOption = new(value); } }
+        public string? FirstName { get { return this.FirstNameOption.Value; } set { this.FirstNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastName
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastName
         /// </summary>
         [JsonPropertyName("lastName")]
-        public string? LastName { get { return this.LastNameOption; } set { this.LastNameOption = new(value); } }
+        public string? LastName { get { return this.LastNameOption.Value; } set { this.LastNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EmailVerified
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EmailVerified
         /// </summary>
         [JsonPropertyName("emailVerified")]
-        public bool? EmailVerified { get { return this.EmailVerifiedOption; } set { this.EmailVerifiedOption = new(value); } }
+        public bool? EmailVerified { get { return this.EmailVerifiedOption.Value; } set { this.EmailVerifiedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CustomRole
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CustomRole
         /// </summary>
         [JsonPropertyName("customRole")]
-        public string? CustomRole { get { return this.CustomRoleOption; } set { this.CustomRoleOption = new(value); } }
+        public string? CustomRole { get { return this.CustomRoleOption.Value; } set { this.CustomRoleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RegisterLocalUser201ResponseUser" />
     /// </summary>
-    public class RegisterLocalUser201ResponseUserJsonConverter : JsonConverter<RegisterLocalUser201ResponseUser>
+    public partial class RegisterLocalUser201ResponseUserJsonConverter : JsonConverter<RegisterLocalUser201ResponseUser>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterLocalUser201ResponseUserJsonConverter" /> class.
+        /// </summary>
+        public RegisterLocalUser201ResponseUserJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RegisterLocalUser201ResponseUser" />
         /// </summary>

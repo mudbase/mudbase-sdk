@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>If true, cancel immediately; otherwise at period end</value>
         [JsonPropertyName("cancelImmediately")]
-        public bool? CancelImmediately { get { return this.CancelImmediatelyOption; } set { this.CancelImmediatelyOption = new(value); } }
+        public bool? CancelImmediately { get { return this.CancelImmediatelyOption.Value; } set { this.CancelImmediatelyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CancelSubscriptionRequest" />
     /// </summary>
-    public class CancelSubscriptionRequestJsonConverter : JsonConverter<CancelSubscriptionRequest>
+    public partial class CancelSubscriptionRequestJsonConverter : JsonConverter<CancelSubscriptionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CancelSubscriptionRequestJsonConverter" /> class.
+        /// </summary>
+        public CancelSubscriptionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CancelSubscriptionRequest" />
         /// </summary>

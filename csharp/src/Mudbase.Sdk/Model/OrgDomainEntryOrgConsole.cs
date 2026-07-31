@@ -171,7 +171,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Source
         /// </summary>
         [JsonPropertyName("source")]
-        public SourceEnum? Source { get { return this.SourceOption; } set { this.SourceOption = new(value); } }
+        public SourceEnum? Source { get { return this.SourceOption.Value; } set { this.SourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -184,7 +184,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Hostname
@@ -197,7 +197,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Hostname
         /// </summary>
         [JsonPropertyName("hostname")]
-        public string? Hostname { get { return this.HostnameOption; } set { this.HostnameOption = new(value); } }
+        public string? Hostname { get { return this.HostnameOption.Value; } set { this.HostnameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -210,7 +210,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsPrimary
@@ -223,7 +223,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsPrimary
         /// </summary>
         [JsonPropertyName("isPrimary")]
-        public bool? IsPrimary { get { return this.IsPrimaryOption; } set { this.IsPrimaryOption = new(value); } }
+        public bool? IsPrimary { get { return this.IsPrimaryOption.Value; } set { this.IsPrimaryOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -236,7 +236,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VerifiedAt
@@ -249,7 +249,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VerifiedAt
         /// </summary>
         [JsonPropertyName("verifiedAt")]
-        public DateTime? VerifiedAt { get { return this.VerifiedAtOption; } set { this.VerifiedAtOption = new(value); } }
+        public DateTime? VerifiedAt { get { return this.VerifiedAtOption.Value; } set { this.VerifiedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastVerifiedAt
@@ -262,7 +262,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastVerifiedAt
         /// </summary>
         [JsonPropertyName("lastVerifiedAt")]
-        public DateTime? LastVerifiedAt { get { return this.LastVerifiedAtOption; } set { this.LastVerifiedAtOption = new(value); } }
+        public DateTime? LastVerifiedAt { get { return this.LastVerifiedAtOption.Value; } set { this.LastVerifiedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CnameSubmittedAt
@@ -275,7 +275,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CnameSubmittedAt
         /// </summary>
         [JsonPropertyName("cnameSubmittedAt")]
-        public DateTime? CnameSubmittedAt { get { return this.CnameSubmittedAtOption; } set { this.CnameSubmittedAtOption = new(value); } }
+        public DateTime? CnameSubmittedAt { get { return this.CnameSubmittedAtOption.Value; } set { this.CnameSubmittedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CnameApprovedAt
@@ -288,7 +288,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CnameApprovedAt
         /// </summary>
         [JsonPropertyName("cnameApprovedAt")]
-        public DateTime? CnameApprovedAt { get { return this.CnameApprovedAtOption; } set { this.CnameApprovedAtOption = new(value); } }
+        public DateTime? CnameApprovedAt { get { return this.CnameApprovedAtOption.Value; } set { this.CnameApprovedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CustomDomainVerificationStep
@@ -301,7 +301,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CustomDomainVerificationStep
         /// </summary>
         [JsonPropertyName("customDomainVerificationStep")]
-        public int? CustomDomainVerificationStep { get { return this.CustomDomainVerificationStepOption; } set { this.CustomDomainVerificationStepOption = new(value); } }
+        public int? CustomDomainVerificationStep { get { return this.CustomDomainVerificationStepOption.Value; } set { this.CustomDomainVerificationStepOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RoutingCnameTarget
@@ -314,7 +314,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RoutingCnameTarget
         /// </summary>
         [JsonPropertyName("routingCnameTarget")]
-        public string? RoutingCnameTarget { get { return this.RoutingCnameTargetOption; } set { this.RoutingCnameTargetOption = new(value); } }
+        public string? RoutingCnameTarget { get { return this.RoutingCnameTargetOption.Value; } set { this.RoutingCnameTargetOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DnsRecords
@@ -327,7 +327,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DnsRecords
         /// </summary>
         [JsonPropertyName("dnsRecords")]
-        public List<OrgDnsRecord>? DnsRecords { get { return this.DnsRecordsOption; } set { this.DnsRecordsOption = new(value); } }
+        public List<OrgDnsRecord>? DnsRecords { get { return this.DnsRecordsOption.Value; } set { this.DnsRecordsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformActivationPending
@@ -340,7 +340,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformActivationPending
         /// </summary>
         [JsonPropertyName("platformActivationPending")]
-        public bool? PlatformActivationPending { get { return this.PlatformActivationPendingOption; } set { this.PlatformActivationPendingOption = new(value); } }
+        public bool? PlatformActivationPending { get { return this.PlatformActivationPendingOption.Value; } set { this.PlatformActivationPendingOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CustomDomainLiveForApiTraffic
@@ -353,7 +353,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CustomDomainLiveForApiTraffic
         /// </summary>
         [JsonPropertyName("customDomainLiveForApiTraffic")]
-        public bool? CustomDomainLiveForApiTraffic { get { return this.CustomDomainLiveForApiTrafficOption; } set { this.CustomDomainLiveForApiTrafficOption = new(value); } }
+        public bool? CustomDomainLiveForApiTraffic { get { return this.CustomDomainLiveForApiTrafficOption.Value; } set { this.CustomDomainLiveForApiTrafficOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CloudflareEdge
@@ -366,7 +366,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CloudflareEdge
         /// </summary>
         [JsonPropertyName("cloudflareEdge")]
-        public OrgCloudflareEdgeHints? CloudflareEdge { get { return this.CloudflareEdgeOption; } set { this.CloudflareEdgeOption = new(value); } }
+        public OrgCloudflareEdgeHints? CloudflareEdge { get { return this.CloudflareEdgeOption.Value; } set { this.CloudflareEdgeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FlyCertificateStatus
@@ -379,7 +379,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FlyCertificateStatus
         /// </summary>
         [JsonPropertyName("flyCertificateStatus")]
-        public string? FlyCertificateStatus { get { return this.FlyCertificateStatusOption; } set { this.FlyCertificateStatusOption = new(value); } }
+        public string? FlyCertificateStatus { get { return this.FlyCertificateStatusOption.Value; } set { this.FlyCertificateStatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformDnsVerification
@@ -392,7 +392,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformDnsVerification
         /// </summary>
         [JsonPropertyName("platformDnsVerification")]
-        public OrgPlatformDnsVerificationCustomer? PlatformDnsVerification { get { return this.PlatformDnsVerificationOption; } set { this.PlatformDnsVerificationOption = new(value); } }
+        public OrgPlatformDnsVerificationCustomer? PlatformDnsVerification { get { return this.PlatformDnsVerificationOption.Value; } set { this.PlatformDnsVerificationOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformDnsVerificationSubmittedAt
@@ -405,7 +405,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformDnsVerificationSubmittedAt
         /// </summary>
         [JsonPropertyName("platformDnsVerificationSubmittedAt")]
-        public DateTime? PlatformDnsVerificationSubmittedAt { get { return this.PlatformDnsVerificationSubmittedAtOption; } set { this.PlatformDnsVerificationSubmittedAtOption = new(value); } }
+        public DateTime? PlatformDnsVerificationSubmittedAt { get { return this.PlatformDnsVerificationSubmittedAtOption.Value; } set { this.PlatformDnsVerificationSubmittedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -452,37 +452,47 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgDomainEntryOrgConsole" />
     /// </summary>
-    public class OrgDomainEntryOrgConsoleJsonConverter : JsonConverter<OrgDomainEntryOrgConsole>
+    public partial class OrgDomainEntryOrgConsoleJsonConverter : JsonConverter<OrgDomainEntryOrgConsole>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgDomainEntryOrgConsoleJsonConverter" /> class.
+        /// </summary>
+        public OrgDomainEntryOrgConsoleJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize VerifiedAt
         /// </summary>
-        public static string VerifiedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string VerifiedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize LastVerifiedAt
         /// </summary>
-        public static string LastVerifiedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastVerifiedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CnameSubmittedAt
         /// </summary>
-        public static string CnameSubmittedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CnameSubmittedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CnameApprovedAt
         /// </summary>
-        public static string CnameApprovedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CnameApprovedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize PlatformDnsVerificationSubmittedAt
         /// </summary>
-        public static string PlatformDnsVerificationSubmittedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string PlatformDnsVerificationSubmittedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="OrgDomainEntryOrgConsole" />

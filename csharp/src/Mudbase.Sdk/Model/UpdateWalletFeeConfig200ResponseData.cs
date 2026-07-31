@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Enabled
         /// </summary>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FeePercentage
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FeePercentage
         /// </summary>
         [JsonPropertyName("feePercentage")]
-        public decimal? FeePercentage { get { return this.FeePercentageOption; } set { this.FeePercentageOption = new(value); } }
+        public decimal? FeePercentage { get { return this.FeePercentageOption.Value; } set { this.FeePercentageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateWalletFeeConfig200ResponseData" />
     /// </summary>
-    public class UpdateWalletFeeConfig200ResponseDataJsonConverter : JsonConverter<UpdateWalletFeeConfig200ResponseData>
+    public partial class UpdateWalletFeeConfig200ResponseDataJsonConverter : JsonConverter<UpdateWalletFeeConfig200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateWalletFeeConfig200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public UpdateWalletFeeConfig200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateWalletFeeConfig200ResponseData" />
         /// </summary>

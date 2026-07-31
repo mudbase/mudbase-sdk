@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Connections
         /// </summary>
         [JsonPropertyName("connections")]
-        public int? Connections { get { return this.ConnectionsOption; } set { this.ConnectionsOption = new(value); } }
+        public int? Connections { get { return this.ConnectionsOption.Value; } set { this.ConnectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxConnections
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxConnections
         /// </summary>
         [JsonPropertyName("maxConnections")]
-        public int? MaxConnections { get { return this.MaxConnectionsOption; } set { this.MaxConnectionsOption = new(value); } }
+        public int? MaxConnections { get { return this.MaxConnectionsOption.Value; } set { this.MaxConnectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ResponseTime
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ResponseTime
         /// </summary>
         [JsonPropertyName("responseTime")]
-        public int? ResponseTime { get { return this.ResponseTimeOption; } set { this.ResponseTimeOption = new(value); } }
+        public int? ResponseTime { get { return this.ResponseTimeOption.Value; } set { this.ResponseTimeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SystemStatusResponseDataDatabase" />
     /// </summary>
-    public class SystemStatusResponseDataDatabaseJsonConverter : JsonConverter<SystemStatusResponseDataDatabase>
+    public partial class SystemStatusResponseDataDatabaseJsonConverter : JsonConverter<SystemStatusResponseDataDatabase>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SystemStatusResponseDataDatabaseJsonConverter" /> class.
+        /// </summary>
+        public SystemStatusResponseDataDatabaseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SystemStatusResponseDataDatabase" />
         /// </summary>

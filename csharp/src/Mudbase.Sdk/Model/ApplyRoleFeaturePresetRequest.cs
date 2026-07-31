@@ -157,8 +157,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApplyRoleFeaturePresetRequest" />
     /// </summary>
-    public class ApplyRoleFeaturePresetRequestJsonConverter : JsonConverter<ApplyRoleFeaturePresetRequest>
+    public partial class ApplyRoleFeaturePresetRequestJsonConverter : JsonConverter<ApplyRoleFeaturePresetRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplyRoleFeaturePresetRequestJsonConverter" /> class.
+        /// </summary>
+        public ApplyRoleFeaturePresetRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApplyRoleFeaturePresetRequest" />
         /// </summary>

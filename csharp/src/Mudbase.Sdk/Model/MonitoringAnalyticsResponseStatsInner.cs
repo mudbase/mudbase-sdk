@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Date
         /// </summary>
         [JsonPropertyName("date")]
-        public string? Date { get { return this.DateOption; } set { this.DateOption = new(value); } }
+        public string? Date { get { return this.DateOption.Value; } set { this.DateOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiCalls
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiCalls
         /// </summary>
         [JsonPropertyName("apiCalls")]
-        public int? ApiCalls { get { return this.ApiCallsOption; } set { this.ApiCallsOption = new(value); } }
+        public int? ApiCalls { get { return this.ApiCallsOption.Value; } set { this.ApiCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DbReads
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DbReads
         /// </summary>
         [JsonPropertyName("dbReads")]
-        public int? DbReads { get { return this.DbReadsOption; } set { this.DbReadsOption = new(value); } }
+        public int? DbReads { get { return this.DbReadsOption.Value; } set { this.DbReadsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DbWrites
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DbWrites
         /// </summary>
         [JsonPropertyName("dbWrites")]
-        public int? DbWrites { get { return this.DbWritesOption; } set { this.DbWritesOption = new(value); } }
+        public int? DbWrites { get { return this.DbWritesOption.Value; } set { this.DbWritesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Storage
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Storage
         /// </summary>
         [JsonPropertyName("storage")]
-        public int? Storage { get { return this.StorageOption; } set { this.StorageOption = new(value); } }
+        public int? Storage { get { return this.StorageOption.Value; } set { this.StorageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Bandwidth
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Bandwidth
         /// </summary>
         [JsonPropertyName("bandwidth")]
-        public int? Bandwidth { get { return this.BandwidthOption; } set { this.BandwidthOption = new(value); } }
+        public int? Bandwidth { get { return this.BandwidthOption.Value; } set { this.BandwidthOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MonitoringAnalyticsResponseStatsInner" />
     /// </summary>
-    public class MonitoringAnalyticsResponseStatsInnerJsonConverter : JsonConverter<MonitoringAnalyticsResponseStatsInner>
+    public partial class MonitoringAnalyticsResponseStatsInnerJsonConverter : JsonConverter<MonitoringAnalyticsResponseStatsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonitoringAnalyticsResponseStatsInnerJsonConverter" /> class.
+        /// </summary>
+        public MonitoringAnalyticsResponseStatsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MonitoringAnalyticsResponseStatsInner" />
         /// </summary>

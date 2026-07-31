@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Sent
         /// </summary>
         [JsonPropertyName("sent")]
-        public int? Sent { get { return this.SentOption; } set { this.SentOption = new(value); } }
+        public int? Sent { get { return this.SentOption.Value; } set { this.SentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Failed
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Failed
         /// </summary>
         [JsonPropertyName("failed")]
-        public int? Failed { get { return this.FailedOption; } set { this.FailedOption = new(value); } }
+        public int? Failed { get { return this.FailedOption.Value; } set { this.FailedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pending
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pending
         /// </summary>
         [JsonPropertyName("pending")]
-        public int? Pending { get { return this.PendingOption; } set { this.PendingOption = new(value); } }
+        public int? Pending { get { return this.PendingOption.Value; } set { this.PendingOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageStatsResponseDataByStatus" />
     /// </summary>
-    public class MessageStatsResponseDataByStatusJsonConverter : JsonConverter<MessageStatsResponseDataByStatus>
+    public partial class MessageStatsResponseDataByStatusJsonConverter : JsonConverter<MessageStatsResponseDataByStatus>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageStatsResponseDataByStatusJsonConverter" /> class.
+        /// </summary>
+        public MessageStatsResponseDataByStatusJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageStatsResponseDataByStatus" />
         /// </summary>

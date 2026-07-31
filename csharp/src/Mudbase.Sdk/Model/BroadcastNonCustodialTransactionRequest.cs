@@ -363,8 +363,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="BroadcastNonCustodialTransactionRequest" />
     /// </summary>
-    public class BroadcastNonCustodialTransactionRequestJsonConverter : JsonConverter<BroadcastNonCustodialTransactionRequest>
+    public partial class BroadcastNonCustodialTransactionRequestJsonConverter : JsonConverter<BroadcastNonCustodialTransactionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BroadcastNonCustodialTransactionRequestJsonConverter" /> class.
+        /// </summary>
+        public BroadcastNonCustodialTransactionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="BroadcastNonCustodialTransactionRequest" />
         /// </summary>

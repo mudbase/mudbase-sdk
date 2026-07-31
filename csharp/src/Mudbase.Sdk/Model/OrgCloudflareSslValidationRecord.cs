@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TxtName
         /// </summary>
         [JsonPropertyName("txtName")]
-        public string? TxtName { get { return this.TxtNameOption; } set { this.TxtNameOption = new(value); } }
+        public string? TxtName { get { return this.TxtNameOption.Value; } set { this.TxtNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TxtValue
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TxtValue
         /// </summary>
         [JsonPropertyName("txtValue")]
-        public string? TxtValue { get { return this.TxtValueOption; } set { this.TxtValueOption = new(value); } }
+        public string? TxtValue { get { return this.TxtValueOption.Value; } set { this.TxtValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HttpUrl
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets HttpUrl
         /// </summary>
         [JsonPropertyName("httpUrl")]
-        public string? HttpUrl { get { return this.HttpUrlOption; } set { this.HttpUrlOption = new(value); } }
+        public string? HttpUrl { get { return this.HttpUrlOption.Value; } set { this.HttpUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HttpBody
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets HttpBody
         /// </summary>
         [JsonPropertyName("httpBody")]
-        public string? HttpBody { get { return this.HttpBodyOption; } set { this.HttpBodyOption = new(value); } }
+        public string? HttpBody { get { return this.HttpBodyOption.Value; } set { this.HttpBodyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Cname
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Cname
         /// </summary>
         [JsonPropertyName("cname")]
-        public string? Cname { get { return this.CnameOption; } set { this.CnameOption = new(value); } }
+        public string? Cname { get { return this.CnameOption.Value; } set { this.CnameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CnameTarget
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CnameTarget
         /// </summary>
         [JsonPropertyName("cnameTarget")]
-        public string? CnameTarget { get { return this.CnameTargetOption; } set { this.CnameTargetOption = new(value); } }
+        public string? CnameTarget { get { return this.CnameTargetOption.Value; } set { this.CnameTargetOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgCloudflareSslValidationRecord" />
     /// </summary>
-    public class OrgCloudflareSslValidationRecordJsonConverter : JsonConverter<OrgCloudflareSslValidationRecord>
+    public partial class OrgCloudflareSslValidationRecordJsonConverter : JsonConverter<OrgCloudflareSslValidationRecord>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgCloudflareSslValidationRecordJsonConverter" /> class.
+        /// </summary>
+        public OrgCloudflareSslValidationRecordJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgCloudflareSslValidationRecord" />
         /// </summary>

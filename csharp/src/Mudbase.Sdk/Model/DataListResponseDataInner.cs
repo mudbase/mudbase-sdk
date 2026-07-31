@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Document ID (MongoDB ObjectId) - use this as documentId in API calls</value>
         /* <example>696bbe5b99eeb7f929a93e0b</example> */
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -75,7 +75,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Document creation timestamp</value>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Document last update timestamp</value>
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -127,17 +127,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DataListResponseDataInner" />
     /// </summary>
-    public class DataListResponseDataInnerJsonConverter : JsonConverter<DataListResponseDataInner>
+    public partial class DataListResponseDataInnerJsonConverter : JsonConverter<DataListResponseDataInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataListResponseDataInnerJsonConverter" /> class.
+        /// </summary>
+        public DataListResponseDataInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="DataListResponseDataInner" />

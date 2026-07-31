@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Messages
         /// </summary>
         [JsonPropertyName("messages")]
-        public List<Message>? Messages { get { return this.MessagesOption; } set { this.MessagesOption = new(value); } }
+        public List<Message>? Messages { get { return this.MessagesOption.Value; } set { this.MessagesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pagination
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pagination
         /// </summary>
         [JsonPropertyName("pagination")]
-        public Pagination? Pagination { get { return this.PaginationOption; } set { this.PaginationOption = new(value); } }
+        public Pagination? Pagination { get { return this.PaginationOption.Value; } set { this.PaginationOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageHistoryResponseData" />
     /// </summary>
-    public class MessageHistoryResponseDataJsonConverter : JsonConverter<MessageHistoryResponseData>
+    public partial class MessageHistoryResponseDataJsonConverter : JsonConverter<MessageHistoryResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageHistoryResponseDataJsonConverter" /> class.
+        /// </summary>
+        public MessageHistoryResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageHistoryResponseData" />
         /// </summary>

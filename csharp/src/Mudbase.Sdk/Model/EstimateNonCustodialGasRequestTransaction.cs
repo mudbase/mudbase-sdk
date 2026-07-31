@@ -75,7 +75,7 @@ namespace Mudbase.Sdk.Model
         /// <value>For native transfers: recipient address. For token transfers: recipient address (tokenAddress must be provided separately). For raw format: contract or recipient address. </value>
         /* <example>0x53d284357ec70cE289D6D64134DfAc8E511c8a3D</example> */
         [JsonPropertyName("to")]
-        public string? To { get { return this.ToOption; } set { this.ToOption = new(value); } }
+        public string? To { get { return this.ToOption.Value; } set { this.ToOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Value
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Amount in native currency (ETH/BNB/MATIC). Can be provided as decimal string (e.g., \&quot;1.0\&quot;) or wei string. Required for native transfers. </value>
         /* <example>1.0</example> */
         [JsonPropertyName("value")]
-        public string? Value { get { return this.ValueOption; } set { this.ValueOption = new(value); } }
+        public string? Value { get { return this.ValueOption.Value; } set { this.ValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Raw transaction data (hex string starting with 0x). Used for raw format or contract calls. For token transfers, this is auto-generated from tokenAddress, to, and amount. </value>
         /* <example>0xa9059cbb000000000000000000000000...</example> */
         [JsonPropertyName("data")]
-        public string? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public string? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TokenAddress
@@ -120,7 +120,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Token contract address (for token transfers). When provided with &#39;amount&#39;, automatically encodes the transfer. </value>
         /* <example>0xdAC17F958D2ee523a2206206994597C13D831ec7</example> */
         [JsonPropertyName("tokenAddress")]
-        public string? TokenAddress { get { return this.TokenAddressOption; } set { this.TokenAddressOption = new(value); } }
+        public string? TokenAddress { get { return this.TokenAddressOption.Value; } set { this.TokenAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -135,7 +135,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Token amount in human-readable format (e.g., \&quot;1.0\&quot; for 1 token). Used with tokenAddress for user-friendly token transfers. Automatically converted to token units based on token decimals. </value>
         /* <example>1.0</example> */
         [JsonPropertyName("amount")]
-        public string? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public string? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -169,8 +169,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EstimateNonCustodialGasRequestTransaction" />
     /// </summary>
-    public class EstimateNonCustodialGasRequestTransactionJsonConverter : JsonConverter<EstimateNonCustodialGasRequestTransaction>
+    public partial class EstimateNonCustodialGasRequestTransactionJsonConverter : JsonConverter<EstimateNonCustodialGasRequestTransaction>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EstimateNonCustodialGasRequestTransactionJsonConverter" /> class.
+        /// </summary>
+        public EstimateNonCustodialGasRequestTransactionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EstimateNonCustodialGasRequestTransaction" />
         /// </summary>

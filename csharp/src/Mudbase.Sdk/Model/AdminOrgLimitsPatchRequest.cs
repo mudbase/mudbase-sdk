@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Projects
         /// </summary>
         [JsonPropertyName("projects")]
-        public int? Projects { get { return this.ProjectsOption; } set { this.ProjectsOption = new(value); } }
+        public int? Projects { get { return this.ProjectsOption.Value; } set { this.ProjectsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Storage
@@ -118,7 +118,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Storage
         /// </summary>
         [JsonPropertyName("storage")]
-        public int? Storage { get { return this.StorageOption; } set { this.StorageOption = new(value); } }
+        public int? Storage { get { return this.StorageOption.Value; } set { this.StorageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Bandwidth
@@ -131,7 +131,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Bandwidth
         /// </summary>
         [JsonPropertyName("bandwidth")]
-        public int? Bandwidth { get { return this.BandwidthOption; } set { this.BandwidthOption = new(value); } }
+        public int? Bandwidth { get { return this.BandwidthOption.Value; } set { this.BandwidthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiCalls
@@ -144,7 +144,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiCalls
         /// </summary>
         [JsonPropertyName("apiCalls")]
-        public int? ApiCalls { get { return this.ApiCallsOption; } set { this.ApiCallsOption = new(value); } }
+        public int? ApiCalls { get { return this.ApiCallsOption.Value; } set { this.ApiCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Buckets
@@ -157,7 +157,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Buckets
         /// </summary>
         [JsonPropertyName("buckets")]
-        public int? Buckets { get { return this.BucketsOption; } set { this.BucketsOption = new(value); } }
+        public int? Buckets { get { return this.BucketsOption.Value; } set { this.BucketsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Collections
@@ -170,7 +170,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Collections
         /// </summary>
         [JsonPropertyName("collections")]
-        public int? Collections { get { return this.CollectionsOption; } set { this.CollectionsOption = new(value); } }
+        public int? Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RealtimeConnections
@@ -183,7 +183,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RealtimeConnections
         /// </summary>
         [JsonPropertyName("realtimeConnections")]
-        public int? RealtimeConnections { get { return this.RealtimeConnectionsOption; } set { this.RealtimeConnectionsOption = new(value); } }
+        public int? RealtimeConnections { get { return this.RealtimeConnectionsOption.Value; } set { this.RealtimeConnectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RealtimeMessages
@@ -196,7 +196,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RealtimeMessages
         /// </summary>
         [JsonPropertyName("realtimeMessages")]
-        public int? RealtimeMessages { get { return this.RealtimeMessagesOption; } set { this.RealtimeMessagesOption = new(value); } }
+        public int? RealtimeMessages { get { return this.RealtimeMessagesOption.Value; } set { this.RealtimeMessagesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ChatMessagesPerMonth
@@ -209,7 +209,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ChatMessagesPerMonth
         /// </summary>
         [JsonPropertyName("chatMessagesPerMonth")]
-        public int? ChatMessagesPerMonth { get { return this.ChatMessagesPerMonthOption; } set { this.ChatMessagesPerMonthOption = new(value); } }
+        public int? ChatMessagesPerMonth { get { return this.ChatMessagesPerMonthOption.Value; } set { this.ChatMessagesPerMonthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MonitoredWallets
@@ -222,7 +222,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MonitoredWallets
         /// </summary>
         [JsonPropertyName("monitoredWallets")]
-        public int? MonitoredWallets { get { return this.MonitoredWalletsOption; } set { this.MonitoredWalletsOption = new(value); } }
+        public int? MonitoredWallets { get { return this.MonitoredWalletsOption.Value; } set { this.MonitoredWalletsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WalletWebhooksPerOrg
@@ -235,7 +235,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WalletWebhooksPerOrg
         /// </summary>
         [JsonPropertyName("walletWebhooksPerOrg")]
-        public int? WalletWebhooksPerOrg { get { return this.WalletWebhooksPerOrgOption; } set { this.WalletWebhooksPerOrgOption = new(value); } }
+        public int? WalletWebhooksPerOrg { get { return this.WalletWebhooksPerOrgOption.Value; } set { this.WalletWebhooksPerOrgOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKeysPerProject
@@ -248,7 +248,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiKeysPerProject
         /// </summary>
         [JsonPropertyName("apiKeysPerProject")]
-        public int? ApiKeysPerProject { get { return this.ApiKeysPerProjectOption; } set { this.ApiKeysPerProjectOption = new(value); } }
+        public int? ApiKeysPerProject { get { return this.ApiKeysPerProjectOption.Value; } set { this.ApiKeysPerProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhooksPerProject
@@ -261,7 +261,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WebhooksPerProject
         /// </summary>
         [JsonPropertyName("webhooksPerProject")]
-        public int? WebhooksPerProject { get { return this.WebhooksPerProjectOption; } set { this.WebhooksPerProjectOption = new(value); } }
+        public int? WebhooksPerProject { get { return this.WebhooksPerProjectOption.Value; } set { this.WebhooksPerProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FunctionsPerProject
@@ -274,7 +274,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FunctionsPerProject
         /// </summary>
         [JsonPropertyName("functionsPerProject")]
-        public int? FunctionsPerProject { get { return this.FunctionsPerProjectOption; } set { this.FunctionsPerProjectOption = new(value); } }
+        public int? FunctionsPerProject { get { return this.FunctionsPerProjectOption.Value; } set { this.FunctionsPerProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FunctionInvocationsPerMonth
@@ -287,7 +287,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FunctionInvocationsPerMonth
         /// </summary>
         [JsonPropertyName("functionInvocationsPerMonth")]
-        public int? FunctionInvocationsPerMonth { get { return this.FunctionInvocationsPerMonthOption; } set { this.FunctionInvocationsPerMonthOption = new(value); } }
+        public int? FunctionInvocationsPerMonth { get { return this.FunctionInvocationsPerMonthOption.Value; } set { this.FunctionInvocationsPerMonthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MessagingMessagesPerMonth
@@ -300,7 +300,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MessagingMessagesPerMonth
         /// </summary>
         [JsonPropertyName("messagingMessagesPerMonth")]
-        public int? MessagingMessagesPerMonth { get { return this.MessagingMessagesPerMonthOption; } set { this.MessagingMessagesPerMonthOption = new(value); } }
+        public int? MessagingMessagesPerMonth { get { return this.MessagingMessagesPerMonthOption.Value; } set { this.MessagingMessagesPerMonthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SmsPerMonth
@@ -313,7 +313,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SmsPerMonth
         /// </summary>
         [JsonPropertyName("smsPerMonth")]
-        public int? SmsPerMonth { get { return this.SmsPerMonthOption; } set { this.SmsPerMonthOption = new(value); } }
+        public int? SmsPerMonth { get { return this.SmsPerMonthOption.Value; } set { this.SmsPerMonthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ChatChannelsPerProject
@@ -326,7 +326,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ChatChannelsPerProject
         /// </summary>
         [JsonPropertyName("chatChannelsPerProject")]
-        public int? ChatChannelsPerProject { get { return this.ChatChannelsPerProjectOption; } set { this.ChatChannelsPerProjectOption = new(value); } }
+        public int? ChatChannelsPerProject { get { return this.ChatChannelsPerProjectOption.Value; } set { this.ChatChannelsPerProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BackupsPerProject
@@ -339,7 +339,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets BackupsPerProject
         /// </summary>
         [JsonPropertyName("backupsPerProject")]
-        public int? BackupsPerProject { get { return this.BackupsPerProjectOption; } set { this.BackupsPerProjectOption = new(value); } }
+        public int? BackupsPerProject { get { return this.BackupsPerProjectOption.Value; } set { this.BackupsPerProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RestoresPerMonth
@@ -352,7 +352,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RestoresPerMonth
         /// </summary>
         [JsonPropertyName("restoresPerMonth")]
-        public int? RestoresPerMonth { get { return this.RestoresPerMonthOption; } set { this.RestoresPerMonthOption = new(value); } }
+        public int? RestoresPerMonth { get { return this.RestoresPerMonthOption.Value; } set { this.RestoresPerMonthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IntegrationsPerProject
@@ -365,7 +365,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IntegrationsPerProject
         /// </summary>
         [JsonPropertyName("integrationsPerProject")]
-        public int? IntegrationsPerProject { get { return this.IntegrationsPerProjectOption; } set { this.IntegrationsPerProjectOption = new(value); } }
+        public int? IntegrationsPerProject { get { return this.IntegrationsPerProjectOption.Value; } set { this.IntegrationsPerProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RolesPerOrg
@@ -378,7 +378,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RolesPerOrg
         /// </summary>
         [JsonPropertyName("rolesPerOrg")]
-        public int? RolesPerOrg { get { return this.RolesPerOrgOption; } set { this.RolesPerOrgOption = new(value); } }
+        public int? RolesPerOrg { get { return this.RolesPerOrgOption.Value; } set { this.RolesPerOrgOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AlertsPerProject
@@ -391,7 +391,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AlertsPerProject
         /// </summary>
         [JsonPropertyName("alertsPerProject")]
-        public int? AlertsPerProject { get { return this.AlertsPerProjectOption; } set { this.AlertsPerProjectOption = new(value); } }
+        public int? AlertsPerProject { get { return this.AlertsPerProjectOption.Value; } set { this.AlertsPerProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BlockchainChains
@@ -404,7 +404,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets BlockchainChains
         /// </summary>
         [JsonPropertyName("blockchainChains")]
-        public int? BlockchainChains { get { return this.BlockchainChainsOption; } set { this.BlockchainChainsOption = new(value); } }
+        public int? BlockchainChains { get { return this.BlockchainChainsOption.Value; } set { this.BlockchainChainsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TeamUsers
@@ -417,7 +417,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TeamUsers
         /// </summary>
         [JsonPropertyName("teamUsers")]
-        public int? TeamUsers { get { return this.TeamUsersOption; } set { this.TeamUsersOption = new(value); } }
+        public int? TeamUsers { get { return this.TeamUsersOption.Value; } set { this.TeamUsersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BugAnalysis
@@ -430,7 +430,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets BugAnalysis
         /// </summary>
         [JsonPropertyName("bugAnalysis")]
-        public AdminOrgLimitsPatchRequestBugAnalysis? BugAnalysis { get { return this.BugAnalysisOption; } set { this.BugAnalysisOption = new(value); } }
+        public AdminOrgLimitsPatchRequestBugAnalysis? BugAnalysis { get { return this.BugAnalysisOption.Value; } set { this.BugAnalysisOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -634,8 +634,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminOrgLimitsPatchRequest" />
     /// </summary>
-    public class AdminOrgLimitsPatchRequestJsonConverter : JsonConverter<AdminOrgLimitsPatchRequest>
+    public partial class AdminOrgLimitsPatchRequestJsonConverter : JsonConverter<AdminOrgLimitsPatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminOrgLimitsPatchRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminOrgLimitsPatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminOrgLimitsPatchRequest" />
         /// </summary>

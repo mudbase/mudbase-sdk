@@ -357,7 +357,7 @@ namespace Mudbase.Sdk.Model
         /// <value>HD wallet derivation path (metadata only)</value>
         /* <example>m/44&#39;/60&#39;/0&#39;/0/5</example> */
         [JsonPropertyName("derivationPath")]
-        public string? DerivationPath { get { return this.DerivationPathOption; } set { this.DerivationPathOption = new(value); } }
+        public string? DerivationPath { get { return this.DerivationPathOption.Value; } set { this.DerivationPathOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Label
@@ -372,7 +372,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Optional label for the address</value>
         /* <example>User Wallet 5</example> */
         [JsonPropertyName("label")]
-        public string? Label { get { return this.LabelOption; } set { this.LabelOption = new(value); } }
+        public string? Label { get { return this.LabelOption.Value; } set { this.LabelOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectId
@@ -386,7 +386,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional project ID</value>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -419,8 +419,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RegisterNonCustodialAddressRequest" />
     /// </summary>
-    public class RegisterNonCustodialAddressRequestJsonConverter : JsonConverter<RegisterNonCustodialAddressRequest>
+    public partial class RegisterNonCustodialAddressRequestJsonConverter : JsonConverter<RegisterNonCustodialAddressRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterNonCustodialAddressRequestJsonConverter" /> class.
+        /// </summary>
+        public RegisterNonCustodialAddressRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RegisterNonCustodialAddressRequest" />
         /// </summary>

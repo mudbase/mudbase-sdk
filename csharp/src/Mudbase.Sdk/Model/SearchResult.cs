@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Collection
         /// </summary>
         [JsonPropertyName("collection")]
-        public string? Collection { get { return this.CollectionOption; } set { this.CollectionOption = new(value); } }
+        public string? Collection { get { return this.CollectionOption.Value; } set { this.CollectionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Item
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Item
         /// </summary>
         [JsonPropertyName("item")]
-        public SearchResultItem? Item { get { return this.ItemOption; } set { this.ItemOption = new(value); } }
+        public SearchResultItem? Item { get { return this.ItemOption.Value; } set { this.ItemOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Highlight
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Highlight
         /// </summary>
         [JsonPropertyName("highlight")]
-        public Object? Highlight { get { return this.HighlightOption; } set { this.HighlightOption = new(value); } }
+        public Object? Highlight { get { return this.HighlightOption.Value; } set { this.HighlightOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SearchResult" />
     /// </summary>
-    public class SearchResultJsonConverter : JsonConverter<SearchResult>
+    public partial class SearchResultJsonConverter : JsonConverter<SearchResult>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchResultJsonConverter" /> class.
+        /// </summary>
+        public SearchResultJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SearchResult" />
         /// </summary>

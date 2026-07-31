@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectId
         /// </summary>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveConnections
@@ -77,7 +77,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>42</example> */
         [JsonPropertyName("activeConnections")]
-        public int? ActiveConnections { get { return this.ActiveConnectionsOption; } set { this.ActiveConnectionsOption = new(value); } }
+        public int? ActiveConnections { get { return this.ActiveConnectionsOption.Value; } set { this.ActiveConnectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalEvents
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>15234</example> */
         [JsonPropertyName("totalEvents")]
-        public int? TotalEvents { get { return this.TotalEventsOption; } set { this.TotalEventsOption = new(value); } }
+        public int? TotalEvents { get { return this.TotalEventsOption.Value; } set { this.TotalEventsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastActivity
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastActivity
         /// </summary>
         [JsonPropertyName("lastActivity")]
-        public DateTime? LastActivity { get { return this.LastActivityOption; } set { this.LastActivityOption = new(value); } }
+        public DateTime? LastActivity { get { return this.LastActivityOption.Value; } set { this.LastActivityOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Timestamp
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -150,17 +150,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetProjectAnalytics200Response" />
     /// </summary>
-    public class GetProjectAnalytics200ResponseJsonConverter : JsonConverter<GetProjectAnalytics200Response>
+    public partial class GetProjectAnalytics200ResponseJsonConverter : JsonConverter<GetProjectAnalytics200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetProjectAnalytics200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetProjectAnalytics200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastActivity
         /// </summary>
-        public static string LastActivityFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastActivityFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetProjectAnalytics200Response" />

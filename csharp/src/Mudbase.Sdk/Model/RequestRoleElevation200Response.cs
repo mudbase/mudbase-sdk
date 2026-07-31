@@ -159,7 +159,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Workflow
         /// </summary>
         [JsonPropertyName("workflow")]
-        public WorkflowEnum? Workflow { get { return this.WorkflowOption; } set { this.WorkflowOption = new(value); } }
+        public WorkflowEnum? Workflow { get { return this.WorkflowOption.Value; } set { this.WorkflowOption = new(value); } }
 
         /// <summary>
         /// Defines Status
@@ -238,7 +238,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -251,7 +251,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequestId
@@ -264,7 +264,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RequestId
         /// </summary>
         [JsonPropertyName("requestId")]
-        public string? RequestId { get { return this.RequestIdOption; } set { this.RequestIdOption = new(value); } }
+        public string? RequestId { get { return this.RequestIdOption.Value; } set { this.RequestIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NextSteps
@@ -277,7 +277,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets NextSteps
         /// </summary>
         [JsonPropertyName("nextSteps")]
-        public List<string>? NextSteps { get { return this.NextStepsOption; } set { this.NextStepsOption = new(value); } }
+        public List<string>? NextSteps { get { return this.NextStepsOption.Value; } set { this.NextStepsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EstimatedApprovalTime
@@ -290,7 +290,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EstimatedApprovalTime
         /// </summary>
         [JsonPropertyName("estimatedApprovalTime")]
-        public string? EstimatedApprovalTime { get { return this.EstimatedApprovalTimeOption; } set { this.EstimatedApprovalTimeOption = new(value); } }
+        public string? EstimatedApprovalTime { get { return this.EstimatedApprovalTimeOption.Value; } set { this.EstimatedApprovalTimeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -324,8 +324,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RequestRoleElevation200Response" />
     /// </summary>
-    public class RequestRoleElevation200ResponseJsonConverter : JsonConverter<RequestRoleElevation200Response>
+    public partial class RequestRoleElevation200ResponseJsonConverter : JsonConverter<RequestRoleElevation200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RequestRoleElevation200ResponseJsonConverter" /> class.
+        /// </summary>
+        public RequestRoleElevation200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RequestRoleElevation200Response" />
         /// </summary>

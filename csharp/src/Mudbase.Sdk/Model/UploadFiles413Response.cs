@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxFileUploadBytes
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxFileUploadBytes
         /// </summary>
         [JsonPropertyName("maxFileUploadBytes")]
-        public long? MaxFileUploadBytes { get { return this.MaxFileUploadBytesOption; } set { this.MaxFileUploadBytesOption = new(value); } }
+        public long? MaxFileUploadBytes { get { return this.MaxFileUploadBytesOption.Value; } set { this.MaxFileUploadBytesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UploadFiles413Response" />
     /// </summary>
-    public class UploadFiles413ResponseJsonConverter : JsonConverter<UploadFiles413Response>
+    public partial class UploadFiles413ResponseJsonConverter : JsonConverter<UploadFiles413Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadFiles413ResponseJsonConverter" /> class.
+        /// </summary>
+        public UploadFiles413ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UploadFiles413Response" />
         /// </summary>

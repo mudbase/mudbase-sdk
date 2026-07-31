@@ -104,8 +104,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FieldDefault" />
     /// </summary>
-    public class FieldDefaultJsonConverter : JsonConverter<FieldDefault>
+    public partial class FieldDefaultJsonConverter : JsonConverter<FieldDefault>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FieldDefaultJsonConverter" /> class.
+        /// </summary>
+        public FieldDefaultJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FieldDefault" />
         /// </summary>

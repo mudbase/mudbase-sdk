@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Compliance
         /// </summary>
         [JsonPropertyName("compliance")]
-        public GetComplianceSummary200ResponseCompliance? Compliance { get { return this.ComplianceOption; } set { this.ComplianceOption = new(value); } }
+        public GetComplianceSummary200ResponseCompliance? Compliance { get { return this.ComplianceOption.Value; } set { this.ComplianceOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetComplianceSummary200Response" />
     /// </summary>
-    public class GetComplianceSummary200ResponseJsonConverter : JsonConverter<GetComplianceSummary200Response>
+    public partial class GetComplianceSummary200ResponseJsonConverter : JsonConverter<GetComplianceSummary200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetComplianceSummary200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetComplianceSummary200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetComplianceSummary200Response" />
         /// </summary>

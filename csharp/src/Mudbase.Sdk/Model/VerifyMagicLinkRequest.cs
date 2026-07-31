@@ -78,8 +78,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="VerifyMagicLinkRequest" />
     /// </summary>
-    public class VerifyMagicLinkRequestJsonConverter : JsonConverter<VerifyMagicLinkRequest>
+    public partial class VerifyMagicLinkRequestJsonConverter : JsonConverter<VerifyMagicLinkRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifyMagicLinkRequestJsonConverter" /> class.
+        /// </summary>
+        public VerifyMagicLinkRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VerifyMagicLinkRequest" />
         /// </summary>

@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>File not found</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DownloadBucketFile404Response" />
     /// </summary>
-    public class DownloadBucketFile404ResponseJsonConverter : JsonConverter<DownloadBucketFile404Response>
+    public partial class DownloadBucketFile404ResponseJsonConverter : JsonConverter<DownloadBucketFile404Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DownloadBucketFile404ResponseJsonConverter" /> class.
+        /// </summary>
+        public DownloadBucketFile404ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DownloadBucketFile404Response" />
         /// </summary>

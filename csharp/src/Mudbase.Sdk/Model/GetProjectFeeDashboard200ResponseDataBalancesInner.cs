@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Balance
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Balance
         /// </summary>
         [JsonPropertyName("balance")]
-        public string? Balance { get { return this.BalanceOption; } set { this.BalanceOption = new(value); } }
+        public string? Balance { get { return this.BalanceOption.Value; } set { this.BalanceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pending
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pending
         /// </summary>
         [JsonPropertyName("pending")]
-        public string? Pending { get { return this.PendingOption; } set { this.PendingOption = new(value); } }
+        public string? Pending { get { return this.PendingOption.Value; } set { this.PendingOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetProjectFeeDashboard200ResponseDataBalancesInner" />
     /// </summary>
-    public class GetProjectFeeDashboard200ResponseDataBalancesInnerJsonConverter : JsonConverter<GetProjectFeeDashboard200ResponseDataBalancesInner>
+    public partial class GetProjectFeeDashboard200ResponseDataBalancesInnerJsonConverter : JsonConverter<GetProjectFeeDashboard200ResponseDataBalancesInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetProjectFeeDashboard200ResponseDataBalancesInnerJsonConverter" /> class.
+        /// </summary>
+        public GetProjectFeeDashboard200ResponseDataBalancesInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetProjectFeeDashboard200ResponseDataBalancesInner" />
         /// </summary>

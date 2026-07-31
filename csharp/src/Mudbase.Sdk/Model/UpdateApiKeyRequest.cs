@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Permissions
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Permissions
         /// </summary>
         [JsonPropertyName("permissions")]
-        public List<ApiKeyPermission>? Permissions { get { return this.PermissionsOption; } set { this.PermissionsOption = new(value); } }
+        public List<ApiKeyPermission>? Permissions { get { return this.PermissionsOption.Value; } set { this.PermissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RateLimit
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RateLimit
         /// </summary>
         [JsonPropertyName("rateLimit")]
-        public RateLimit? RateLimit { get { return this.RateLimitOption; } set { this.RateLimitOption = new(value); } }
+        public RateLimit? RateLimit { get { return this.RateLimitOption.Value; } set { this.RateLimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsActive
         /// </summary>
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -144,8 +144,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateApiKeyRequest" />
     /// </summary>
-    public class UpdateApiKeyRequestJsonConverter : JsonConverter<UpdateApiKeyRequest>
+    public partial class UpdateApiKeyRequestJsonConverter : JsonConverter<UpdateApiKeyRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateApiKeyRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateApiKeyRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateApiKeyRequest" />
         /// </summary>

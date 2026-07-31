@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectId
         /// </summary>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LoginLocalUserRequest" />
     /// </summary>
-    public class LoginLocalUserRequestJsonConverter : JsonConverter<LoginLocalUserRequest>
+    public partial class LoginLocalUserRequestJsonConverter : JsonConverter<LoginLocalUserRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginLocalUserRequestJsonConverter" /> class.
+        /// </summary>
+        public LoginLocalUserRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LoginLocalUserRequest" />
         /// </summary>

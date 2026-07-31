@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Current month YYYY-MM</value>
         [JsonPropertyName("period")]
-        public string? Period { get { return this.PeriodOption; } set { this.PeriodOption = new(value); } }
+        public string? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LineItems
@@ -83,7 +83,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LineItems
         /// </summary>
         [JsonPropertyName("lineItems")]
-        public List<GetBillingEstimate200ResponseLineItemsInner>? LineItems { get { return this.LineItemsOption; } set { this.LineItemsOption = new(value); } }
+        public List<GetBillingEstimate200ResponseLineItemsInner>? LineItems { get { return this.LineItemsOption.Value; } set { this.LineItemsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EstimatedOverageCents
@@ -96,7 +96,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EstimatedOverageCents
         /// </summary>
         [JsonPropertyName("estimatedOverageCents")]
-        public decimal? EstimatedOverageCents { get { return this.EstimatedOverageCentsOption; } set { this.EstimatedOverageCentsOption = new(value); } }
+        public decimal? EstimatedOverageCents { get { return this.EstimatedOverageCentsOption.Value; } set { this.EstimatedOverageCentsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EstimatedOverage
@@ -110,7 +110,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>$12.50</example> */
         [JsonPropertyName("estimatedOverage")]
-        public string? EstimatedOverage { get { return this.EstimatedOverageOption; } set { this.EstimatedOverageOption = new(value); } }
+        public string? EstimatedOverage { get { return this.EstimatedOverageOption.Value; } set { this.EstimatedOverageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ForecastOverageCents
@@ -123,7 +123,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ForecastOverageCents
         /// </summary>
         [JsonPropertyName("forecastOverageCents")]
-        public decimal? ForecastOverageCents { get { return this.ForecastOverageCentsOption; } set { this.ForecastOverageCentsOption = new(value); } }
+        public decimal? ForecastOverageCents { get { return this.ForecastOverageCentsOption.Value; } set { this.ForecastOverageCentsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ForecastOverage
@@ -137,7 +137,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>$38.00</example> */
         [JsonPropertyName("forecastOverage")]
-        public string? ForecastOverage { get { return this.ForecastOverageOption; } set { this.ForecastOverageOption = new(value); } }
+        public string? ForecastOverage { get { return this.ForecastOverageOption.Value; } set { this.ForecastOverageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -151,7 +151,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Human-readable forecast when applicable</value>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SpendLimits
@@ -164,7 +164,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SpendLimits
         /// </summary>
         [JsonPropertyName("spendLimits")]
-        public GetBillingEstimate200ResponseSpendLimits? SpendLimits { get { return this.SpendLimitsOption; } set { this.SpendLimitsOption = new(value); } }
+        public GetBillingEstimate200ResponseSpendLimits? SpendLimits { get { return this.SpendLimitsOption.Value; } set { this.SpendLimitsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -200,8 +200,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetBillingEstimate200Response" />
     /// </summary>
-    public class GetBillingEstimate200ResponseJsonConverter : JsonConverter<GetBillingEstimate200Response>
+    public partial class GetBillingEstimate200ResponseJsonConverter : JsonConverter<GetBillingEstimate200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetBillingEstimate200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetBillingEstimate200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetBillingEstimate200Response" />
         /// </summary>

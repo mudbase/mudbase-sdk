@@ -155,7 +155,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("reason")]
-        public ReasonEnum? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public ReasonEnum? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Success
@@ -168,7 +168,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Allowed
@@ -181,7 +181,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Allowed
         /// </summary>
         [JsonPropertyName("allowed")]
-        public bool? Allowed { get { return this.AllowedOption; } set { this.AllowedOption = new(value); } }
+        public bool? Allowed { get { return this.AllowedOption.Value; } set { this.AllowedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Evaluated
@@ -194,7 +194,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Evaluated
         /// </summary>
         [JsonPropertyName("evaluated")]
-        public SimulateAppPermissions200ResponseEvaluated? Evaluated { get { return this.EvaluatedOption; } set { this.EvaluatedOption = new(value); } }
+        public SimulateAppPermissions200ResponseEvaluated? Evaluated { get { return this.EvaluatedOption.Value; } set { this.EvaluatedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -226,8 +226,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SimulateAppPermissions200Response" />
     /// </summary>
-    public class SimulateAppPermissions200ResponseJsonConverter : JsonConverter<SimulateAppPermissions200Response>
+    public partial class SimulateAppPermissions200ResponseJsonConverter : JsonConverter<SimulateAppPermissions200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimulateAppPermissions200ResponseJsonConverter" /> class.
+        /// </summary>
+        public SimulateAppPermissions200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SimulateAppPermissions200Response" />
         /// </summary>

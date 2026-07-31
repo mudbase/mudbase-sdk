@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SetPrimary
         /// </summary>
         [JsonPropertyName("setPrimary")]
-        public bool? SetPrimary { get { return this.SetPrimaryOption; } set { this.SetPrimaryOption = new(value); } }
+        public bool? SetPrimary { get { return this.SetPrimaryOption.Value; } set { this.SetPrimaryOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,8 +93,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddOrgDomainRequest" />
     /// </summary>
-    public class AddOrgDomainRequestJsonConverter : JsonConverter<AddOrgDomainRequest>
+    public partial class AddOrgDomainRequestJsonConverter : JsonConverter<AddOrgDomainRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddOrgDomainRequestJsonConverter" /> class.
+        /// </summary>
+        public AddOrgDomainRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddOrgDomainRequest" />
         /// </summary>

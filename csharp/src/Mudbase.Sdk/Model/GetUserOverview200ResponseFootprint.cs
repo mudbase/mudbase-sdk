@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FileCount
         /// </summary>
         [JsonPropertyName("fileCount")]
-        public int? FileCount { get { return this.FileCountOption; } set { this.FileCountOption = new(value); } }
+        public int? FileCount { get { return this.FileCountOption.Value; } set { this.FileCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of StorageUsed
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets StorageUsed
         /// </summary>
         [JsonPropertyName("storageUsed")]
-        public int? StorageUsed { get { return this.StorageUsedOption; } set { this.StorageUsedOption = new(value); } }
+        public int? StorageUsed { get { return this.StorageUsedOption.Value; } set { this.StorageUsedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SessionCount
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SessionCount
         /// </summary>
         [JsonPropertyName("sessionCount")]
-        public int? SessionCount { get { return this.SessionCountOption; } set { this.SessionCountOption = new(value); } }
+        public int? SessionCount { get { return this.SessionCountOption.Value; } set { this.SessionCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ApiKeyCount
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiKeyCount
         /// </summary>
         [JsonPropertyName("apiKeyCount")]
-        public int? ApiKeyCount { get { return this.ApiKeyCountOption; } set { this.ApiKeyCountOption = new(value); } }
+        public int? ApiKeyCount { get { return this.ApiKeyCountOption.Value; } set { this.ApiKeyCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CollectionsInProject
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CollectionsInProject
         /// </summary>
         [JsonPropertyName("collectionsInProject")]
-        public int? CollectionsInProject { get { return this.CollectionsInProjectOption; } set { this.CollectionsInProjectOption = new(value); } }
+        public int? CollectionsInProject { get { return this.CollectionsInProjectOption.Value; } set { this.CollectionsInProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Collections
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Collections
         /// </summary>
         [JsonPropertyName("collections")]
-        public List<GetOrganizationUsers200ResponseUsersInnerProject>? Collections { get { return this.CollectionsOption; } set { this.CollectionsOption = new(value); } }
+        public List<GetOrganizationUsers200ResponseUsersInnerProject>? Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetUserOverview200ResponseFootprint" />
     /// </summary>
-    public class GetUserOverview200ResponseFootprintJsonConverter : JsonConverter<GetUserOverview200ResponseFootprint>
+    public partial class GetUserOverview200ResponseFootprintJsonConverter : JsonConverter<GetUserOverview200ResponseFootprint>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetUserOverview200ResponseFootprintJsonConverter" /> class.
+        /// </summary>
+        public GetUserOverview200ResponseFootprintJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetUserOverview200ResponseFootprint" />
         /// </summary>

@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Direction
         /// </summary>
         [JsonPropertyName("direction")]
-        public DirectionEnum? Direction { get { return this.DirectionOption; } set { this.DirectionOption = new(value); } }
+        public DirectionEnum? Direction { get { return this.DirectionOption.Value; } set { this.DirectionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Today
@@ -161,7 +161,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Billing trackApiCall count (UTC day)</value>
         [JsonPropertyName("today")]
-        public int? Today { get { return this.TodayOption; } set { this.TodayOption = new(value); } }
+        public int? Today { get { return this.TodayOption.Value; } set { this.TodayOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Yesterday
@@ -174,7 +174,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Yesterday
         /// </summary>
         [JsonPropertyName("yesterday")]
-        public int? Yesterday { get { return this.YesterdayOption; } set { this.YesterdayOption = new(value); } }
+        public int? Yesterday { get { return this.YesterdayOption.Value; } set { this.YesterdayOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LatencyTrackedToday
@@ -188,7 +188,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>UsageStat latencyCount for this project (middleware-metered responses)</value>
         [JsonPropertyName("latencyTrackedToday")]
-        public int? LatencyTrackedToday { get { return this.LatencyTrackedTodayOption; } set { this.LatencyTrackedTodayOption = new(value); } }
+        public int? LatencyTrackedToday { get { return this.LatencyTrackedTodayOption.Value; } set { this.LatencyTrackedTodayOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LatencyTrackedYesterday
@@ -201,7 +201,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LatencyTrackedYesterday
         /// </summary>
         [JsonPropertyName("latencyTrackedYesterday")]
-        public int? LatencyTrackedYesterday { get { return this.LatencyTrackedYesterdayOption; } set { this.LatencyTrackedYesterdayOption = new(value); } }
+        public int? LatencyTrackedYesterday { get { return this.LatencyTrackedYesterdayOption.Value; } set { this.LatencyTrackedYesterdayOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MeteringNote
@@ -214,7 +214,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MeteringNote
         /// </summary>
         [JsonPropertyName("meteringNote")]
-        public string? MeteringNote { get { return this.MeteringNoteOption; } set { this.MeteringNoteOption = new(value); } }
+        public string? MeteringNote { get { return this.MeteringNoteOption.Value; } set { this.MeteringNoteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ChangePct
@@ -227,7 +227,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ChangePct
         /// </summary>
         [JsonPropertyName("changePct")]
-        public decimal? ChangePct { get { return this.ChangePctOption; } set { this.ChangePctOption = new(value); } }
+        public decimal? ChangePct { get { return this.ChangePctOption.Value; } set { this.ChangePctOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -262,8 +262,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DashboardOverviewDataRequests" />
     /// </summary>
-    public class DashboardOverviewDataRequestsJsonConverter : JsonConverter<DashboardOverviewDataRequests>
+    public partial class DashboardOverviewDataRequestsJsonConverter : JsonConverter<DashboardOverviewDataRequests>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardOverviewDataRequestsJsonConverter" /> class.
+        /// </summary>
+        public DashboardOverviewDataRequestsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DashboardOverviewDataRequests" />
         /// </summary>

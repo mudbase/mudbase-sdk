@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WebhookUrl
         /// </summary>
         [JsonPropertyName("webhookUrl")]
-        public string? WebhookUrl { get { return this.WebhookUrlOption; } set { this.WebhookUrlOption = new(value); } }
+        public string? WebhookUrl { get { return this.WebhookUrlOption.Value; } set { this.WebhookUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookEvents
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WebhookEvents
         /// </summary>
         [JsonPropertyName("webhookEvents")]
-        public List<string>? WebhookEvents { get { return this.WebhookEventsOption; } set { this.WebhookEventsOption = new(value); } }
+        public List<string>? WebhookEvents { get { return this.WebhookEventsOption.Value; } set { this.WebhookEventsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookVersion
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WebhookVersion
         /// </summary>
         [JsonPropertyName("webhookVersion")]
-        public string? WebhookVersion { get { return this.WebhookVersionOption; } set { this.WebhookVersionOption = new(value); } }
+        public string? WebhookVersion { get { return this.WebhookVersionOption.Value; } set { this.WebhookVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Transformations
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Transformation rules applied to payloads</value>
         [JsonPropertyName("transformations")]
-        public List<GetWebhookConfig200ResponseDataTransformationsInner>? Transformations { get { return this.TransformationsOption; } set { this.TransformationsOption = new(value); } }
+        public List<GetWebhookConfig200ResponseDataTransformationsInner>? Transformations { get { return this.TransformationsOption.Value; } set { this.TransformationsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HasSecret
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Whether a webhook secret is configured (value not returned)</value>
         [JsonPropertyName("hasSecret")]
-        public bool? HasSecret { get { return this.HasSecretOption; } set { this.HasSecretOption = new(value); } }
+        public bool? HasSecret { get { return this.HasSecretOption.Value; } set { this.HasSecretOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -150,8 +150,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetWebhookConfig200ResponseData" />
     /// </summary>
-    public class GetWebhookConfig200ResponseDataJsonConverter : JsonConverter<GetWebhookConfig200ResponseData>
+    public partial class GetWebhookConfig200ResponseDataJsonConverter : JsonConverter<GetWebhookConfig200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetWebhookConfig200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetWebhookConfig200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetWebhookConfig200ResponseData" />
         /// </summary>

@@ -141,7 +141,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Scope
         /// </summary>
         [JsonPropertyName("scope")]
-        public ScopeEnum? Scope { get { return this.ScopeOption; } set { this.ScopeOption = new(value); } }
+        public ScopeEnum? Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DisplayPct30d
@@ -154,7 +154,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DisplayPct30d
         /// </summary>
         [JsonPropertyName("displayPct30d")]
-        public decimal? DisplayPct30d { get { return this.DisplayPct30dOption; } set { this.DisplayPct30dOption = new(value); } }
+        public decimal? DisplayPct30d { get { return this.DisplayPct30dOption.Value; } set { this.DisplayPct30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DisplaySource
@@ -167,7 +167,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DisplaySource
         /// </summary>
         [JsonPropertyName("displaySource")]
-        public string? DisplaySource { get { return this.DisplaySourceOption; } set { this.DisplaySourceOption = new(value); } }
+        public string? DisplaySource { get { return this.DisplaySourceOption.Value; } set { this.DisplaySourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsPreliminary
@@ -180,7 +180,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsPreliminary
         /// </summary>
         [JsonPropertyName("isPreliminary")]
-        public bool? IsPreliminary { get { return this.IsPreliminaryOption; } set { this.IsPreliminaryOption = new(value); } }
+        public bool? IsPreliminary { get { return this.IsPreliminaryOption.Value; } set { this.IsPreliminaryOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformProbePct30d
@@ -193,7 +193,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformProbePct30d
         /// </summary>
         [JsonPropertyName("platformProbePct30d")]
-        public decimal? PlatformProbePct30d { get { return this.PlatformProbePct30dOption; } set { this.PlatformProbePct30dOption = new(value); } }
+        public decimal? PlatformProbePct30d { get { return this.PlatformProbePct30dOption.Value; } set { this.PlatformProbePct30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformSamples
@@ -206,7 +206,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformSamples
         /// </summary>
         [JsonPropertyName("platformSamples")]
-        public int? PlatformSamples { get { return this.PlatformSamplesOption; } set { this.PlatformSamplesOption = new(value); } }
+        public int? PlatformSamples { get { return this.PlatformSamplesOption.Value; } set { this.PlatformSamplesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformOkSamples
@@ -219,7 +219,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformOkSamples
         /// </summary>
         [JsonPropertyName("platformOkSamples")]
-        public int? PlatformOkSamples { get { return this.PlatformOkSamplesOption; } set { this.PlatformOkSamplesOption = new(value); } }
+        public int? PlatformOkSamples { get { return this.PlatformOkSamplesOption.Value; } set { this.PlatformOkSamplesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OrgHttpNon5xxPct30d
@@ -232,7 +232,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OrgHttpNon5xxPct30d
         /// </summary>
         [JsonPropertyName("orgHttpNon5xxPct30d")]
-        public decimal? OrgHttpNon5xxPct30d { get { return this.OrgHttpNon5xxPct30dOption; } set { this.OrgHttpNon5xxPct30dOption = new(value); } }
+        public decimal? OrgHttpNon5xxPct30d { get { return this.OrgHttpNon5xxPct30dOption.Value; } set { this.OrgHttpNon5xxPct30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OrgHttpSampled30d
@@ -245,7 +245,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OrgHttpSampled30d
         /// </summary>
         [JsonPropertyName("orgHttpSampled30d")]
-        public int? OrgHttpSampled30d { get { return this.OrgHttpSampled30dOption; } set { this.OrgHttpSampled30dOption = new(value); } }
+        public int? OrgHttpSampled30d { get { return this.OrgHttpSampled30dOption.Value; } set { this.OrgHttpSampled30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OrgHttp5xx30d
@@ -259,7 +259,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Metered 5xx count from UsageStat (trackApiCall)</value>
         [JsonPropertyName("orgHttp5xx30d")]
-        public int? OrgHttp5xx30d { get { return this.OrgHttp5xx30dOption; } set { this.OrgHttp5xx30dOption = new(value); } }
+        public int? OrgHttp5xx30d { get { return this.OrgHttp5xx30dOption.Value; } set { this.OrgHttp5xx30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectHttp5xx30d
@@ -273,7 +273,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>This project’s metered 5xx count (30d)</value>
         [JsonPropertyName("projectHttp5xx30d")]
-        public int? ProjectHttp5xx30d { get { return this.ProjectHttp5xx30dOption; } set { this.ProjectHttp5xx30dOption = new(value); } }
+        public int? ProjectHttp5xx30d { get { return this.ProjectHttp5xx30dOption.Value; } set { this.ProjectHttp5xx30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GlobalHttpNon5xxPct30d
@@ -287,7 +287,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Deprecated alias for orgHttpNon5xxPct30d</value>
         [JsonPropertyName("globalHttpNon5xxPct30d")]
-        public decimal? GlobalHttpNon5xxPct30d { get { return this.GlobalHttpNon5xxPct30dOption; } set { this.GlobalHttpNon5xxPct30dOption = new(value); } }
+        public decimal? GlobalHttpNon5xxPct30d { get { return this.GlobalHttpNon5xxPct30dOption.Value; } set { this.GlobalHttpNon5xxPct30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GlobalHttpSampled30d
@@ -301,7 +301,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Deprecated alias for orgHttpSampled30d</value>
         [JsonPropertyName("globalHttpSampled30d")]
-        public int? GlobalHttpSampled30d { get { return this.GlobalHttpSampled30dOption; } set { this.GlobalHttpSampled30dOption = new(value); } }
+        public int? GlobalHttpSampled30d { get { return this.GlobalHttpSampled30dOption.Value; } set { this.GlobalHttpSampled30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequestNon5xxPct30d
@@ -315,7 +315,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Deprecated alias for orgHttpNon5xxPct30d</value>
         [JsonPropertyName("requestNon5xxPct30d")]
-        public decimal? RequestNon5xxPct30d { get { return this.RequestNon5xxPct30dOption; } set { this.RequestNon5xxPct30dOption = new(value); } }
+        public decimal? RequestNon5xxPct30d { get { return this.RequestNon5xxPct30dOption.Value; } set { this.RequestNon5xxPct30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequestSampled30d
@@ -329,7 +329,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Deprecated alias for orgHttpSampled30d</value>
         [JsonPropertyName("requestSampled30d")]
-        public int? RequestSampled30d { get { return this.RequestSampled30dOption; } set { this.RequestSampled30dOption = new(value); } }
+        public int? RequestSampled30d { get { return this.RequestSampled30dOption.Value; } set { this.RequestSampled30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectHttpNon5xxPct30d
@@ -342,7 +342,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectHttpNon5xxPct30d
         /// </summary>
         [JsonPropertyName("projectHttpNon5xxPct30d")]
-        public decimal? ProjectHttpNon5xxPct30d { get { return this.ProjectHttpNon5xxPct30dOption; } set { this.ProjectHttpNon5xxPct30dOption = new(value); } }
+        public decimal? ProjectHttpNon5xxPct30d { get { return this.ProjectHttpNon5xxPct30dOption.Value; } set { this.ProjectHttpNon5xxPct30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectHttpSampled30d
@@ -355,7 +355,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectHttpSampled30d
         /// </summary>
         [JsonPropertyName("projectHttpSampled30d")]
-        public int? ProjectHttpSampled30d { get { return this.ProjectHttpSampled30dOption; } set { this.ProjectHttpSampled30dOption = new(value); } }
+        public int? ProjectHttpSampled30d { get { return this.ProjectHttpSampled30dOption.Value; } set { this.ProjectHttpSampled30dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Help
@@ -368,7 +368,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Help
         /// </summary>
         [JsonPropertyName("help")]
-        public string? Help { get { return this.HelpOption; } set { this.HelpOption = new(value); } }
+        public string? Help { get { return this.HelpOption.Value; } set { this.HelpOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -414,8 +414,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DashboardOverviewDataUptime" />
     /// </summary>
-    public class DashboardOverviewDataUptimeJsonConverter : JsonConverter<DashboardOverviewDataUptime>
+    public partial class DashboardOverviewDataUptimeJsonConverter : JsonConverter<DashboardOverviewDataUptime>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardOverviewDataUptimeJsonConverter" /> class.
+        /// </summary>
+        public DashboardOverviewDataUptimeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DashboardOverviewDataUptime" />
         /// </summary>

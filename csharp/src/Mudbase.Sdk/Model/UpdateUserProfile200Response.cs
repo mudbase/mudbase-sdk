@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public User? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public User? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateUserProfile200Response" />
     /// </summary>
-    public class UpdateUserProfile200ResponseJsonConverter : JsonConverter<UpdateUserProfile200Response>
+    public partial class UpdateUserProfile200ResponseJsonConverter : JsonConverter<UpdateUserProfile200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateUserProfile200ResponseJsonConverter" /> class.
+        /// </summary>
+        public UpdateUserProfile200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateUserProfile200Response" />
         /// </summary>

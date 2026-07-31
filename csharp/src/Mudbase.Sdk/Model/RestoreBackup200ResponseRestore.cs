@@ -143,7 +143,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -156,7 +156,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RestoreMode
@@ -169,7 +169,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RestoreMode
         /// </summary>
         [JsonPropertyName("restoreMode")]
-        public string? RestoreMode { get { return this.RestoreModeOption; } set { this.RestoreModeOption = new(value); } }
+        public string? RestoreMode { get { return this.RestoreModeOption.Value; } set { this.RestoreModeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of StartedAt
@@ -182,7 +182,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets StartedAt
         /// </summary>
         [JsonPropertyName("startedAt")]
-        public DateTime? StartedAt { get { return this.StartedAtOption; } set { this.StartedAtOption = new(value); } }
+        public DateTime? StartedAt { get { return this.StartedAtOption.Value; } set { this.StartedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EstimatedCompletion
@@ -195,7 +195,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EstimatedCompletion
         /// </summary>
         [JsonPropertyName("estimatedCompletion")]
-        public DateTime? EstimatedCompletion { get { return this.EstimatedCompletionOption; } set { this.EstimatedCompletionOption = new(value); } }
+        public DateTime? EstimatedCompletion { get { return this.EstimatedCompletionOption.Value; } set { this.EstimatedCompletionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -228,17 +228,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RestoreBackup200ResponseRestore" />
     /// </summary>
-    public class RestoreBackup200ResponseRestoreJsonConverter : JsonConverter<RestoreBackup200ResponseRestore>
+    public partial class RestoreBackup200ResponseRestoreJsonConverter : JsonConverter<RestoreBackup200ResponseRestore>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RestoreBackup200ResponseRestoreJsonConverter" /> class.
+        /// </summary>
+        public RestoreBackup200ResponseRestoreJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize StartedAt
         /// </summary>
-        public static string StartedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string StartedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize EstimatedCompletion
         /// </summary>
-        public static string EstimatedCompletionFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string EstimatedCompletionFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="RestoreBackup200ResponseRestore" />

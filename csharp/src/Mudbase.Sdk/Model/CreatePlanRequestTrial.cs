@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Enabled
         /// </summary>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Days
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Days
         /// </summary>
         [JsonPropertyName("days")]
-        public decimal? Days { get { return this.DaysOption; } set { this.DaysOption = new(value); } }
+        public decimal? Days { get { return this.DaysOption.Value; } set { this.DaysOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreatePlanRequestTrial" />
     /// </summary>
-    public class CreatePlanRequestTrialJsonConverter : JsonConverter<CreatePlanRequestTrial>
+    public partial class CreatePlanRequestTrialJsonConverter : JsonConverter<CreatePlanRequestTrial>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreatePlanRequestTrialJsonConverter" /> class.
+        /// </summary>
+        public CreatePlanRequestTrialJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreatePlanRequestTrial" />
         /// </summary>

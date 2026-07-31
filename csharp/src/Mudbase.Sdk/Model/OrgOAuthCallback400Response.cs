@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Email not provided by OAuth provider</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgOAuthCallback400Response" />
     /// </summary>
-    public class OrgOAuthCallback400ResponseJsonConverter : JsonConverter<OrgOAuthCallback400Response>
+    public partial class OrgOAuthCallback400ResponseJsonConverter : JsonConverter<OrgOAuthCallback400Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgOAuthCallback400ResponseJsonConverter" /> class.
+        /// </summary>
+        public OrgOAuthCallback400ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgOAuthCallback400Response" />
         /// </summary>

@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Pre-deployment backup</example> */
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IncludeFiles
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("includeFiles")]
-        public bool? IncludeFiles { get { return this.IncludeFilesOption; } set { this.IncludeFilesOption = new(value); } }
+        public bool? IncludeFiles { get { return this.IncludeFilesOption.Value; } set { this.IncludeFilesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IncludeWallets
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>false</example> */
         [JsonPropertyName("includeWallets")]
-        public bool? IncludeWallets { get { return this.IncludeWalletsOption; } set { this.IncludeWalletsOption = new(value); } }
+        public bool? IncludeWallets { get { return this.IncludeWalletsOption.Value; } set { this.IncludeWalletsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateBackupRequest" />
     /// </summary>
-    public class CreateBackupRequestJsonConverter : JsonConverter<CreateBackupRequest>
+    public partial class CreateBackupRequestJsonConverter : JsonConverter<CreateBackupRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateBackupRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateBackupRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateBackupRequest" />
         /// </summary>

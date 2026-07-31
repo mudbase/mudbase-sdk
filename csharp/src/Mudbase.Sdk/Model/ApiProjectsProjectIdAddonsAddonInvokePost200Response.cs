@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Job
         /// </summary>
         [JsonPropertyName("job")]
-        public Object? Job { get { return this.JobOption; } set { this.JobOption = new(value); } }
+        public Object? Job { get { return this.JobOption.Value; } set { this.JobOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiProjectsProjectIdAddonsAddonInvokePost200Response" />
     /// </summary>
-    public class ApiProjectsProjectIdAddonsAddonInvokePost200ResponseJsonConverter : JsonConverter<ApiProjectsProjectIdAddonsAddonInvokePost200Response>
+    public partial class ApiProjectsProjectIdAddonsAddonInvokePost200ResponseJsonConverter : JsonConverter<ApiProjectsProjectIdAddonsAddonInvokePost200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiProjectsProjectIdAddonsAddonInvokePost200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ApiProjectsProjectIdAddonsAddonInvokePost200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiProjectsProjectIdAddonsAddonInvokePost200Response" />
         /// </summary>

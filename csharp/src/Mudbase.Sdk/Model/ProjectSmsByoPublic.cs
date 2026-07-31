@@ -155,7 +155,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Provider
         /// </summary>
         [JsonPropertyName("provider")]
-        public ProviderEnum? Provider { get { return this.ProviderOption; } set { this.ProviderOption = new(value); } }
+        public ProviderEnum? Provider { get { return this.ProviderOption.Value; } set { this.ProviderOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Enabled
@@ -168,7 +168,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Enabled
         /// </summary>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultFrom
@@ -181,7 +181,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DefaultFrom
         /// </summary>
         [JsonPropertyName("defaultFrom")]
-        public string? DefaultFrom { get { return this.DefaultFromOption; } set { this.DefaultFromOption = new(value); } }
+        public string? DefaultFrom { get { return this.DefaultFromOption.Value; } set { this.DefaultFromOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of HasCredentials
@@ -194,7 +194,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets HasCredentials
         /// </summary>
         [JsonPropertyName("hasCredentials")]
-        public bool? HasCredentials { get { return this.HasCredentialsOption; } set { this.HasCredentialsOption = new(value); } }
+        public bool? HasCredentials { get { return this.HasCredentialsOption.Value; } set { this.HasCredentialsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -226,8 +226,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectSmsByoPublic" />
     /// </summary>
-    public class ProjectSmsByoPublicJsonConverter : JsonConverter<ProjectSmsByoPublic>
+    public partial class ProjectSmsByoPublicJsonConverter : JsonConverter<ProjectSmsByoPublic>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectSmsByoPublicJsonConverter" /> class.
+        /// </summary>
+        public ProjectSmsByoPublicJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectSmsByoPublic" />
         /// </summary>

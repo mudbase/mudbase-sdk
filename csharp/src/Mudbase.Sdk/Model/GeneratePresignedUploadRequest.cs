@@ -75,7 +75,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Bucket
         /// </summary>
         [JsonPropertyName("bucket")]
-        public string? Bucket { get { return this.BucketOption; } set { this.BucketOption = new(value); } }
+        public string? Bucket { get { return this.BucketOption.Value; } set { this.BucketOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ContentType
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ContentType
         /// </summary>
         [JsonPropertyName("contentType")]
-        public string? ContentType { get { return this.ContentTypeOption; } set { this.ContentTypeOption = new(value); } }
+        public string? ContentType { get { return this.ContentTypeOption.Value; } set { this.ContentTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsPublic
@@ -101,7 +101,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsPublic
         /// </summary>
         [JsonPropertyName("isPublic")]
-        public bool? IsPublic { get { return this.IsPublicOption; } set { this.IsPublicOption = new(value); } }
+        public bool? IsPublic { get { return this.IsPublicOption.Value; } set { this.IsPublicOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -134,8 +134,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GeneratePresignedUploadRequest" />
     /// </summary>
-    public class GeneratePresignedUploadRequestJsonConverter : JsonConverter<GeneratePresignedUploadRequest>
+    public partial class GeneratePresignedUploadRequestJsonConverter : JsonConverter<GeneratePresignedUploadRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeneratePresignedUploadRequestJsonConverter" /> class.
+        /// </summary>
+        public GeneratePresignedUploadRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GeneratePresignedUploadRequest" />
         /// </summary>

@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>New plaintext (non-E2EE messages only)</value>
         [JsonPropertyName("content")]
-        public string? Content { get { return this.ContentOption; } set { this.ContentOption = new(value); } }
+        public string? Content { get { return this.ContentOption.Value; } set { this.ContentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of E2ee
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets E2ee
         /// </summary>
         [JsonPropertyName("e2ee")]
-        public EditMessageRequestE2ee? E2ee { get { return this.E2eeOption; } set { this.E2eeOption = new(value); } }
+        public EditMessageRequestE2ee? E2ee { get { return this.E2eeOption.Value; } set { this.E2eeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EditMessageRequest" />
     /// </summary>
-    public class EditMessageRequestJsonConverter : JsonConverter<EditMessageRequest>
+    public partial class EditMessageRequestJsonConverter : JsonConverter<EditMessageRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditMessageRequestJsonConverter" /> class.
+        /// </summary>
+        public EditMessageRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EditMessageRequest" />
         /// </summary>

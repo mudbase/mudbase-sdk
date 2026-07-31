@@ -77,8 +77,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MarkMessagesAsReadRequest" />
     /// </summary>
-    public class MarkMessagesAsReadRequestJsonConverter : JsonConverter<MarkMessagesAsReadRequest>
+    public partial class MarkMessagesAsReadRequestJsonConverter : JsonConverter<MarkMessagesAsReadRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MarkMessagesAsReadRequestJsonConverter" /> class.
+        /// </summary>
+        public MarkMessagesAsReadRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MarkMessagesAsReadRequest" />
         /// </summary>

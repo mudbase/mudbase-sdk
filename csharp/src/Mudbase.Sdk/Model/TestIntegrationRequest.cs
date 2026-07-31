@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Endpoint
         /// </summary>
         [JsonPropertyName("endpoint")]
-        public string? Endpoint { get { return this.EndpointOption; } set { this.EndpointOption = new(value); } }
+        public string? Endpoint { get { return this.EndpointOption.Value; } set { this.EndpointOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Method
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Method
         /// </summary>
         [JsonPropertyName("method")]
-        public string? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public string? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Params
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Params
         /// </summary>
         [JsonPropertyName("params")]
-        public Object? Params { get { return this.ParamsOption; } set { this.ParamsOption = new(value); } }
+        public Object? Params { get { return this.ParamsOption.Value; } set { this.ParamsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TestIntegrationRequest" />
     /// </summary>
-    public class TestIntegrationRequestJsonConverter : JsonConverter<TestIntegrationRequest>
+    public partial class TestIntegrationRequestJsonConverter : JsonConverter<TestIntegrationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestIntegrationRequestJsonConverter" /> class.
+        /// </summary>
+        public TestIntegrationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TestIntegrationRequest" />
         /// </summary>

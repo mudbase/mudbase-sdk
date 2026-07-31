@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Resource
         /// </summary>
         [JsonPropertyName("resource")]
-        public string? Resource { get { return this.ResourceOption; } set { this.ResourceOption = new(value); } }
+        public string? Resource { get { return this.ResourceOption.Value; } set { this.ResourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Actions
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Actions
         /// </summary>
         [JsonPropertyName("actions")]
-        public List<string>? Actions { get { return this.ActionsOption; } set { this.ActionsOption = new(value); } }
+        public List<string>? Actions { get { return this.ActionsOption.Value; } set { this.ActionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Conditions
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Conditions
         /// </summary>
         [JsonPropertyName("conditions")]
-        public Object? Conditions { get { return this.ConditionsOption; } set { this.ConditionsOption = new(value); } }
+        public Object? Conditions { get { return this.ConditionsOption.Value; } set { this.ConditionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateRole201ResponseRolePermissionsInner" />
     /// </summary>
-    public class CreateRole201ResponseRolePermissionsInnerJsonConverter : JsonConverter<CreateRole201ResponseRolePermissionsInner>
+    public partial class CreateRole201ResponseRolePermissionsInnerJsonConverter : JsonConverter<CreateRole201ResponseRolePermissionsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateRole201ResponseRolePermissionsInnerJsonConverter" /> class.
+        /// </summary>
+        public CreateRole201ResponseRolePermissionsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateRole201ResponseRolePermissionsInner" />
         /// </summary>

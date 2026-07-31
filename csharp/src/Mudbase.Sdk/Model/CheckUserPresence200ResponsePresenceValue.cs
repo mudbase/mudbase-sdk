@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Online
         /// </summary>
         [JsonPropertyName("online")]
-        public bool? Online { get { return this.OnlineOption; } set { this.OnlineOption = new(value); } }
+        public bool? Online { get { return this.OnlineOption.Value; } set { this.OnlineOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastSeen
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastSeen
         /// </summary>
         [JsonPropertyName("lastSeen")]
-        public DateTime? LastSeen { get { return this.LastSeenOption; } set { this.LastSeenOption = new(value); } }
+        public DateTime? LastSeen { get { return this.LastSeenOption.Value; } set { this.LastSeenOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,12 +100,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckUserPresence200ResponsePresenceValue" />
     /// </summary>
-    public class CheckUserPresence200ResponsePresenceValueJsonConverter : JsonConverter<CheckUserPresence200ResponsePresenceValue>
+    public partial class CheckUserPresence200ResponsePresenceValueJsonConverter : JsonConverter<CheckUserPresence200ResponsePresenceValue>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckUserPresence200ResponsePresenceValueJsonConverter" /> class.
+        /// </summary>
+        public CheckUserPresence200ResponsePresenceValueJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastSeen
         /// </summary>
-        public static string LastSeenFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastSeenFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="CheckUserPresence200ResponsePresenceValue" />

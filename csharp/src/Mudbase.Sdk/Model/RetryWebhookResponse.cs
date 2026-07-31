@@ -88,8 +88,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RetryWebhookResponse" />
     /// </summary>
-    public class RetryWebhookResponseJsonConverter : JsonConverter<RetryWebhookResponse>
+    public partial class RetryWebhookResponseJsonConverter : JsonConverter<RetryWebhookResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RetryWebhookResponseJsonConverter" /> class.
+        /// </summary>
+        public RetryWebhookResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RetryWebhookResponse" />
         /// </summary>

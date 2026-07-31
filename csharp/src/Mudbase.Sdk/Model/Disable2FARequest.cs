@@ -88,8 +88,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Disable2FARequest" />
     /// </summary>
-    public class Disable2FARequestJsonConverter : JsonConverter<Disable2FARequest>
+    public partial class Disable2FARequestJsonConverter : JsonConverter<Disable2FARequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Disable2FARequestJsonConverter" /> class.
+        /// </summary>
+        public Disable2FARequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Disable2FARequest" />
         /// </summary>

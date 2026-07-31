@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Custom input merged with trigger context</value>
         [JsonPropertyName("payload")]
-        public Object? Payload { get { return this.PayloadOption; } set { this.PayloadOption = new(value); } }
+        public Object? Payload { get { return this.PayloadOption.Value; } set { this.PayloadOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExecuteFunctionRequest" />
     /// </summary>
-    public class ExecuteFunctionRequestJsonConverter : JsonConverter<ExecuteFunctionRequest>
+    public partial class ExecuteFunctionRequestJsonConverter : JsonConverter<ExecuteFunctionRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExecuteFunctionRequestJsonConverter" /> class.
+        /// </summary>
+        public ExecuteFunctionRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ExecuteFunctionRequest" />
         /// </summary>

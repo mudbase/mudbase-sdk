@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Actions
         /// </summary>
         [JsonPropertyName("actions")]
-        public List<CollectionAction>? Actions { get { return this.ActionsOption; } set { this.ActionsOption = new(value); } }
+        public List<CollectionAction>? Actions { get { return this.ActionsOption.Value; } set { this.ActionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Conditions
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Conditions
         /// </summary>
         [JsonPropertyName("conditions")]
-        public Object? Conditions { get { return this.ConditionsOption; } set { this.ConditionsOption = new(value); } }
+        public Object? Conditions { get { return this.ConditionsOption.Value; } set { this.ConditionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CollectionPermissionRule" />
     /// </summary>
-    public class CollectionPermissionRuleJsonConverter : JsonConverter<CollectionPermissionRule>
+    public partial class CollectionPermissionRuleJsonConverter : JsonConverter<CollectionPermissionRule>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CollectionPermissionRuleJsonConverter" /> class.
+        /// </summary>
+        public CollectionPermissionRuleJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CollectionPermissionRule" />
         /// </summary>

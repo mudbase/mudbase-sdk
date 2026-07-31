@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Address registered successfully</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public NonCustodialAddress? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public NonCustodialAddress? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NonCustodialAddressResponse" />
     /// </summary>
-    public class NonCustodialAddressResponseJsonConverter : JsonConverter<NonCustodialAddressResponse>
+    public partial class NonCustodialAddressResponseJsonConverter : JsonConverter<NonCustodialAddressResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NonCustodialAddressResponseJsonConverter" /> class.
+        /// </summary>
+        public NonCustodialAddressResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="NonCustodialAddressResponse" />
         /// </summary>

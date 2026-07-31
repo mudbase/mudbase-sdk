@@ -241,7 +241,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets BillingCycle
         /// </summary>
         [JsonPropertyName("billingCycle")]
-        public BillingCycleEnum? BillingCycle { get { return this.BillingCycleOption; } set { this.BillingCycleOption = new(value); } }
+        public BillingCycleEnum? BillingCycle { get { return this.BillingCycleOption.Value; } set { this.BillingCycleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AmountCents
@@ -255,7 +255,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Monthly amount in cents (overrides catalog; enterprise default is contract)</value>
         [JsonPropertyName("amountCents")]
-        public int? AmountCents { get { return this.AmountCentsOption; } set { this.AmountCentsOption = new(value); } }
+        public int? AmountCents { get { return this.AmountCentsOption.Value; } set { this.AmountCentsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ChargeAmountCents
@@ -269,7 +269,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Exact charge in cents for this checkout (overrides monthly math)</value>
         [JsonPropertyName("chargeAmountCents")]
-        public int? ChargeAmountCents { get { return this.ChargeAmountCentsOption; } set { this.ChargeAmountCentsOption = new(value); } }
+        public int? ChargeAmountCents { get { return this.ChargeAmountCentsOption.Value; } set { this.ChargeAmountCentsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -282,7 +282,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -295,7 +295,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Email
         /// </summary>
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -308,7 +308,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RedirectUrl
@@ -321,7 +321,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RedirectUrl
         /// </summary>
         [JsonPropertyName("redirectUrl")]
-        public string? RedirectUrl { get { return this.RedirectUrlOption; } set { this.RedirectUrlOption = new(value); } }
+        public string? RedirectUrl { get { return this.RedirectUrlOption.Value; } set { this.RedirectUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SendEmail
@@ -334,7 +334,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SendEmail
         /// </summary>
         [JsonPropertyName("sendEmail")]
-        public bool? SendEmail { get { return this.SendEmailOption; } set { this.SendEmailOption = new(value); } }
+        public bool? SendEmail { get { return this.SendEmailOption.Value; } set { this.SendEmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ToEmail
@@ -347,7 +347,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ToEmail
         /// </summary>
         [JsonPropertyName("toEmail")]
-        public string? ToEmail { get { return this.ToEmailOption; } set { this.ToEmailOption = new(value); } }
+        public string? ToEmail { get { return this.ToEmailOption.Value; } set { this.ToEmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -361,7 +361,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional note shown in org_billing_checkout email</value>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -412,8 +412,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminBillingCheckoutLinkRequest" />
     /// </summary>
-    public class AdminBillingCheckoutLinkRequestJsonConverter : JsonConverter<AdminBillingCheckoutLinkRequest>
+    public partial class AdminBillingCheckoutLinkRequestJsonConverter : JsonConverter<AdminBillingCheckoutLinkRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminBillingCheckoutLinkRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminBillingCheckoutLinkRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminBillingCheckoutLinkRequest" />
         /// </summary>

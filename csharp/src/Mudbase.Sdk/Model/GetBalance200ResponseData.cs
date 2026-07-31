@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WalletId
         /// </summary>
         [JsonPropertyName("walletId")]
-        public string? WalletId { get { return this.WalletIdOption; } set { this.WalletIdOption = new(value); } }
+        public string? WalletId { get { return this.WalletIdOption.Value; } set { this.WalletIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Address
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Address
         /// </summary>
         [JsonPropertyName("address")]
-        public string? Address { get { return this.AddressOption; } set { this.AddressOption = new(value); } }
+        public string? Address { get { return this.AddressOption.Value; } set { this.AddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Balance
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Balance
         /// </summary>
         [JsonPropertyName("balance")]
-        public string? Balance { get { return this.BalanceOption; } set { this.BalanceOption = new(value); } }
+        public string? Balance { get { return this.BalanceOption.Value; } set { this.BalanceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BalanceInUSD
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets BalanceInUSD
         /// </summary>
         [JsonPropertyName("balanceInUSD")]
-        public decimal? BalanceInUSD { get { return this.BalanceInUSDOption; } set { this.BalanceInUSDOption = new(value); } }
+        public decimal? BalanceInUSD { get { return this.BalanceInUSDOption.Value; } set { this.BalanceInUSDOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetBalance200ResponseData" />
     /// </summary>
-    public class GetBalance200ResponseDataJsonConverter : JsonConverter<GetBalance200ResponseData>
+    public partial class GetBalance200ResponseDataJsonConverter : JsonConverter<GetBalance200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetBalance200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetBalance200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetBalance200ResponseData" />
         /// </summary>

@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public ProjectUsageStatsResponseProject? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public ProjectUsageStatsResponseProject? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Usage
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public ProjectUsage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public ProjectUsage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Period
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Period
         /// </summary>
         [JsonPropertyName("period")]
-        public string? Period { get { return this.PeriodOption; } set { this.PeriodOption = new(value); } }
+        public string? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectUsageStatsResponse" />
     /// </summary>
-    public class ProjectUsageStatsResponseJsonConverter : JsonConverter<ProjectUsageStatsResponse>
+    public partial class ProjectUsageStatsResponseJsonConverter : JsonConverter<ProjectUsageStatsResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectUsageStatsResponseJsonConverter" /> class.
+        /// </summary>
+        public ProjectUsageStatsResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectUsageStatsResponse" />
         /// </summary>

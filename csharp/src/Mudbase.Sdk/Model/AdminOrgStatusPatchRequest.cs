@@ -67,7 +67,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformSuspendedReason
         /// </summary>
         [JsonPropertyName("platformSuspendedReason")]
-        public string? PlatformSuspendedReason { get { return this.PlatformSuspendedReasonOption; } set { this.PlatformSuspendedReasonOption = new(value); } }
+        public string? PlatformSuspendedReason { get { return this.PlatformSuspendedReasonOption.Value; } set { this.PlatformSuspendedReasonOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformAdminNote
@@ -80,7 +80,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformAdminNote
         /// </summary>
         [JsonPropertyName("platformAdminNote")]
-        public string? PlatformAdminNote { get { return this.PlatformAdminNoteOption; } set { this.PlatformAdminNoteOption = new(value); } }
+        public string? PlatformAdminNote { get { return this.PlatformAdminNoteOption.Value; } set { this.PlatformAdminNoteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Reason
@@ -93,7 +93,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("reason")]
-        public string? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public string? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -125,8 +125,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminOrgStatusPatchRequest" />
     /// </summary>
-    public class AdminOrgStatusPatchRequestJsonConverter : JsonConverter<AdminOrgStatusPatchRequest>
+    public partial class AdminOrgStatusPatchRequestJsonConverter : JsonConverter<AdminOrgStatusPatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminOrgStatusPatchRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminOrgStatusPatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminOrgStatusPatchRequest" />
         /// </summary>

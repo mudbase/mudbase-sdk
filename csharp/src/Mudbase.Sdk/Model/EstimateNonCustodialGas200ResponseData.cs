@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Chain id (e.g. bsc, ethereum, bitcoin)</value>
         [JsonPropertyName("chain")]
-        public string? Chain { get { return this.ChainOption; } set { this.ChainOption = new(value); } }
+        public string? Chain { get { return this.ChainOption.Value; } set { this.ChainOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GasLimit
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// <value>(EVM only) Estimated gas limit from RPC eth_estimateGas</value>
         /* <example>21000</example> */
         [JsonPropertyName("gasLimit")]
-        public string? GasLimit { get { return this.GasLimitOption; } set { this.GasLimitOption = new(value); } }
+        public string? GasLimit { get { return this.GasLimitOption.Value; } set { this.GasLimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GasPrice
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// <value>(EVM only) Gas price in wei</value>
         /* <example>3000000000</example> */
         [JsonPropertyName("gasPrice")]
-        public string? GasPrice { get { return this.GasPriceOption; } set { this.GasPriceOption = new(value); } }
+        public string? GasPrice { get { return this.GasPriceOption.Value; } set { this.GasPriceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GasPriceGwei
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// <value>(EVM only) Gas price in Gwei</value>
         /* <example>3</example> */
         [JsonPropertyName("gasPriceGwei")]
-        public decimal? GasPriceGwei { get { return this.GasPriceGweiOption; } set { this.GasPriceGweiOption = new(value); } }
+        public decimal? GasPriceGwei { get { return this.GasPriceGweiOption.Value; } set { this.GasPriceGweiOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EstimatedCost
@@ -136,7 +136,7 @@ namespace Mudbase.Sdk.Model
         /// <value>(EVM only) Total cost in wei (gasLimit * gasPrice)</value>
         /* <example>63000000000000</example> */
         [JsonPropertyName("estimatedCost")]
-        public string? EstimatedCost { get { return this.EstimatedCostOption; } set { this.EstimatedCostOption = new(value); } }
+        public string? EstimatedCost { get { return this.EstimatedCostOption.Value; } set { this.EstimatedCostOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NetworkFee
@@ -151,7 +151,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Human-readable network fee from blockchain (e.g. \&quot;0.00063 ETH\&quot;, \&quot;0.00001 BTC\&quot;)</value>
         /* <example>0.00063 ETH</example> */
         [JsonPropertyName("networkFee")]
-        public string? NetworkFee { get { return this.NetworkFeeOption; } set { this.NetworkFeeOption = new(value); } }
+        public string? NetworkFee { get { return this.NetworkFeeOption.Value; } set { this.NetworkFeeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EstimatedTime
@@ -166,7 +166,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Estimated confirmation time when available</value>
         /* <example>15 seconds</example> */
         [JsonPropertyName("estimatedTime")]
-        public string? EstimatedTime { get { return this.EstimatedTimeOption; } set { this.EstimatedTimeOption = new(value); } }
+        public string? EstimatedTime { get { return this.EstimatedTimeOption.Value; } set { this.EstimatedTimeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -180,7 +180,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Native currency for the chain (ETH, BNB, MATIC, BTC, SOL, TRX, etc.)</value>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SatPerVb
@@ -194,7 +194,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>(UTXO only) Satoshis per virtual byte</value>
         [JsonPropertyName("satPerVb")]
-        public int? SatPerVb { get { return this.SatPerVbOption; } set { this.SatPerVbOption = new(value); } }
+        public int? SatPerVb { get { return this.SatPerVbOption.Value; } set { this.SatPerVbOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FeeSat
@@ -208,7 +208,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>(UTXO only) Estimated fee in satoshis</value>
         [JsonPropertyName("feeSat")]
-        public int? FeeSat { get { return this.FeeSatOption; } set { this.FeeSatOption = new(value); } }
+        public int? FeeSat { get { return this.FeeSatOption.Value; } set { this.FeeSatOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Lamports
@@ -222,7 +222,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>(Solana only) Fee in lamports</value>
         [JsonPropertyName("lamports")]
-        public int? Lamports { get { return this.LamportsOption; } set { this.LamportsOption = new(value); } }
+        public int? Lamports { get { return this.LamportsOption.Value; } set { this.LamportsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -261,8 +261,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EstimateNonCustodialGas200ResponseData" />
     /// </summary>
-    public class EstimateNonCustodialGas200ResponseDataJsonConverter : JsonConverter<EstimateNonCustodialGas200ResponseData>
+    public partial class EstimateNonCustodialGas200ResponseDataJsonConverter : JsonConverter<EstimateNonCustodialGas200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EstimateNonCustodialGas200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public EstimateNonCustodialGas200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EstimateNonCustodialGas200ResponseData" />
         /// </summary>

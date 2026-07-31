@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Buckets
         /// </summary>
         [JsonPropertyName("buckets")]
-        public List<string>? Buckets { get { return this.BucketsOption; } set { this.BucketsOption = new(value); } }
+        public List<string>? Buckets { get { return this.BucketsOption.Value; } set { this.BucketsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="StorageConfig" />
     /// </summary>
-    public class StorageConfigJsonConverter : JsonConverter<StorageConfig>
+    public partial class StorageConfigJsonConverter : JsonConverter<StorageConfig>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StorageConfigJsonConverter" /> class.
+        /// </summary>
+        public StorageConfigJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="StorageConfig" />
         /// </summary>

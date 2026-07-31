@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Requests
         /// </summary>
         [JsonPropertyName("requests")]
-        public List<Object>? Requests { get { return this.RequestsOption; } set { this.RequestsOption = new(value); } }
+        public List<Object>? Requests { get { return this.RequestsOption.Value; } set { this.RequestsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pagination
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pagination
         /// </summary>
         [JsonPropertyName("pagination")]
-        public Object? Pagination { get { return this.PaginationOption; } set { this.PaginationOption = new(value); } }
+        public Object? Pagination { get { return this.PaginationOption.Value; } set { this.PaginationOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetPendingRoleElevationRequests200Response" />
     /// </summary>
-    public class GetPendingRoleElevationRequests200ResponseJsonConverter : JsonConverter<GetPendingRoleElevationRequests200Response>
+    public partial class GetPendingRoleElevationRequests200ResponseJsonConverter : JsonConverter<GetPendingRoleElevationRequests200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetPendingRoleElevationRequests200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetPendingRoleElevationRequests200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetPendingRoleElevationRequests200Response" />
         /// </summary>

@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Overage
         /// </summary>
         [JsonPropertyName("overage")]
-        public List<GetOverage200ResponseOverageInner>? Overage { get { return this.OverageOption; } set { this.OverageOption = new(value); } }
+        public List<GetOverage200ResponseOverageInner>? Overage { get { return this.OverageOption.Value; } set { this.OverageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetOverage200Response" />
     /// </summary>
-    public class GetOverage200ResponseJsonConverter : JsonConverter<GetOverage200Response>
+    public partial class GetOverage200ResponseJsonConverter : JsonConverter<GetOverage200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetOverage200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetOverage200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetOverage200Response" />
         /// </summary>

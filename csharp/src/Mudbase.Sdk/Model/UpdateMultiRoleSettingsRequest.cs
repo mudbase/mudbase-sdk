@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("isEnabled")]
-        public bool? IsEnabled { get { return this.IsEnabledOption; } set { this.IsEnabledOption = new(value); } }
+        public bool? IsEnabled { get { return this.IsEnabledOption.Value; } set { this.IsEnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultRole
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>customer</example> */
         [JsonPropertyName("defaultRole")]
-        public string? DefaultRole { get { return this.DefaultRoleOption; } set { this.DefaultRoleOption = new(value); } }
+        public string? DefaultRole { get { return this.DefaultRoleOption.Value; } set { this.DefaultRoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Settings
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Settings
         /// </summary>
         [JsonPropertyName("settings")]
-        public UpdateMultiRoleSettingsRequestSettings? Settings { get { return this.SettingsOption; } set { this.SettingsOption = new(value); } }
+        public UpdateMultiRoleSettingsRequestSettings? Settings { get { return this.SettingsOption.Value; } set { this.SettingsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateMultiRoleSettingsRequest" />
     /// </summary>
-    public class UpdateMultiRoleSettingsRequestJsonConverter : JsonConverter<UpdateMultiRoleSettingsRequest>
+    public partial class UpdateMultiRoleSettingsRequestJsonConverter : JsonConverter<UpdateMultiRoleSettingsRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateMultiRoleSettingsRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateMultiRoleSettingsRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateMultiRoleSettingsRequest" />
         /// </summary>

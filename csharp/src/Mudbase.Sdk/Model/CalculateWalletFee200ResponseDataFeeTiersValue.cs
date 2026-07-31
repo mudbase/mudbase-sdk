@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets GasPriceGwei
         /// </summary>
         [JsonPropertyName("gasPriceGwei")]
-        public decimal? GasPriceGwei { get { return this.GasPriceGweiOption; } set { this.GasPriceGweiOption = new(value); } }
+        public decimal? GasPriceGwei { get { return this.GasPriceGweiOption.Value; } set { this.GasPriceGweiOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NetworkFee
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets NetworkFee
         /// </summary>
         [JsonPropertyName("networkFee")]
-        public string? NetworkFee { get { return this.NetworkFeeOption; } set { this.NetworkFeeOption = new(value); } }
+        public string? NetworkFee { get { return this.NetworkFeeOption.Value; } set { this.NetworkFeeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CalculateWalletFee200ResponseDataFeeTiersValue" />
     /// </summary>
-    public class CalculateWalletFee200ResponseDataFeeTiersValueJsonConverter : JsonConverter<CalculateWalletFee200ResponseDataFeeTiersValue>
+    public partial class CalculateWalletFee200ResponseDataFeeTiersValueJsonConverter : JsonConverter<CalculateWalletFee200ResponseDataFeeTiersValue>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CalculateWalletFee200ResponseDataFeeTiersValueJsonConverter" /> class.
+        /// </summary>
+        public CalculateWalletFee200ResponseDataFeeTiersValueJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CalculateWalletFee200ResponseDataFeeTiersValue" />
         /// </summary>

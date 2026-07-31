@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Url
@@ -75,7 +75,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Signed URL for file access</value>
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresAt
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Expiration time of the signed URL (optional - some endpoints return expiresIn instead)</value>
         [JsonPropertyName("expiresAt")]
-        public DateTime? ExpiresAt { get { return this.ExpiresAtOption; } set { this.ExpiresAtOption = new(value); } }
+        public DateTime? ExpiresAt { get { return this.ExpiresAtOption.Value; } set { this.ExpiresAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresIn
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Time-to-live in seconds for the signed URL (optional)</value>
         [JsonPropertyName("expiresIn")]
-        public int? ExpiresIn { get { return this.ExpiresInOption; } set { this.ExpiresInOption = new(value); } }
+        public int? ExpiresIn { get { return this.ExpiresInOption.Value; } set { this.ExpiresInOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,12 +135,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SignedUrlResponse" />
     /// </summary>
-    public class SignedUrlResponseJsonConverter : JsonConverter<SignedUrlResponse>
+    public partial class SignedUrlResponseJsonConverter : JsonConverter<SignedUrlResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SignedUrlResponseJsonConverter" /> class.
+        /// </summary>
+        public SignedUrlResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize ExpiresAt
         /// </summary>
-        public static string ExpiresAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string ExpiresAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="SignedUrlResponse" />

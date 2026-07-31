@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Whether the OAuth provider is enabled</value>
         /* <example>true</example> */
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ClientId
@@ -80,7 +80,7 @@ namespace Mudbase.Sdk.Model
         /// <value>OAuth client ID from the provider</value>
         /* <example>123456789-abcdefghijklmnop.apps.googleusercontent.com</example> */
         [JsonPropertyName("clientId")]
-        public string? ClientId { get { return this.ClientIdOption; } set { this.ClientIdOption = new(value); } }
+        public string? ClientId { get { return this.ClientIdOption.Value; } set { this.ClientIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ClientSecret
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// <value>OAuth client secret from the provider</value>
         /* <example>GOCSPX-abcdefghijklmnopqrstuvwxyz</example> */
         [JsonPropertyName("clientSecret")]
-        public string? ClientSecret { get { return this.ClientSecretOption; } set { this.ClientSecretOption = new(value); } }
+        public string? ClientSecret { get { return this.ClientSecretOption.Value; } set { this.ClientSecretOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Scope
@@ -110,7 +110,7 @@ namespace Mudbase.Sdk.Model
         /// <value>OAuth scopes to request</value>
         /* <example>[&quot;profile&quot;,&quot;email&quot;]</example> */
         [JsonPropertyName("scope")]
-        public List<string>? Scope { get { return this.ScopeOption; } set { this.ScopeOption = new(value); } }
+        public List<string>? Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DisplayName
@@ -125,7 +125,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Custom display name for the provider</value>
         /* <example>Sign in with Google</example> */
         [JsonPropertyName("displayName")]
-        public string? DisplayName { get { return this.DisplayNameOption; } set { this.DisplayNameOption = new(value); } }
+        public string? DisplayName { get { return this.DisplayNameOption.Value; } set { this.DisplayNameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -158,8 +158,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateOAuthProviderConfigRequest" />
     /// </summary>
-    public class UpdateOAuthProviderConfigRequestJsonConverter : JsonConverter<UpdateOAuthProviderConfigRequest>
+    public partial class UpdateOAuthProviderConfigRequestJsonConverter : JsonConverter<UpdateOAuthProviderConfigRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateOAuthProviderConfigRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateOAuthProviderConfigRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateOAuthProviderConfigRequest" />
         /// </summary>

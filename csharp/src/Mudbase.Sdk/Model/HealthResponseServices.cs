@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Database
         /// </summary>
         [JsonPropertyName("database")]
-        public string? Database { get { return this.DatabaseOption; } set { this.DatabaseOption = new(value); } }
+        public string? Database { get { return this.DatabaseOption.Value; } set { this.DatabaseOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Redis
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Redis
         /// </summary>
         [JsonPropertyName("redis")]
-        public string? Redis { get { return this.RedisOption; } set { this.RedisOption = new(value); } }
+        public string? Redis { get { return this.RedisOption.Value; } set { this.RedisOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Storage
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Storage
         /// </summary>
         [JsonPropertyName("storage")]
-        public string? Storage { get { return this.StorageOption; } set { this.StorageOption = new(value); } }
+        public string? Storage { get { return this.StorageOption.Value; } set { this.StorageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Email
         /// </summary>
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Sms
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Sms
         /// </summary>
         [JsonPropertyName("sms")]
-        public string? Sms { get { return this.SmsOption; } set { this.SmsOption = new(value); } }
+        public string? Sms { get { return this.SmsOption.Value; } set { this.SmsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="HealthResponseServices" />
     /// </summary>
-    public class HealthResponseServicesJsonConverter : JsonConverter<HealthResponseServices>
+    public partial class HealthResponseServicesJsonConverter : JsonConverter<HealthResponseServices>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HealthResponseServicesJsonConverter" /> class.
+        /// </summary>
+        public HealthResponseServicesJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="HealthResponseServices" />
         /// </summary>

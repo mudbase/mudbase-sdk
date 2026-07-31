@@ -317,7 +317,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Details
         /// </summary>
         [JsonPropertyName("details")]
-        public LogSecurityEventRequestDetails? Details { get { return this.DetailsOption; } set { this.DetailsOption = new(value); } }
+        public LogSecurityEventRequestDetails? Details { get { return this.DetailsOption.Value; } set { this.DetailsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -348,8 +348,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LogSecurityEventRequest" />
     /// </summary>
-    public class LogSecurityEventRequestJsonConverter : JsonConverter<LogSecurityEventRequest>
+    public partial class LogSecurityEventRequestJsonConverter : JsonConverter<LogSecurityEventRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogSecurityEventRequestJsonConverter" /> class.
+        /// </summary>
+        public LogSecurityEventRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LogSecurityEventRequest" />
         /// </summary>

@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Providers
         /// </summary>
         [JsonPropertyName("providers")]
-        public List<GetAvailableOAuthProviders200ResponseProvidersInner>? Providers { get { return this.ProvidersOption; } set { this.ProvidersOption = new(value); } }
+        public List<GetAvailableOAuthProviders200ResponseProvidersInner>? Providers { get { return this.ProvidersOption.Value; } set { this.ProvidersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>29</example> */
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetAvailableOAuthProviders200Response" />
     /// </summary>
-    public class GetAvailableOAuthProviders200ResponseJsonConverter : JsonConverter<GetAvailableOAuthProviders200Response>
+    public partial class GetAvailableOAuthProviders200ResponseJsonConverter : JsonConverter<GetAvailableOAuthProviders200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetAvailableOAuthProviders200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetAvailableOAuthProviders200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetAvailableOAuthProviders200Response" />
         /// </summary>

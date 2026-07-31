@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets WebhookUrl
         /// </summary>
         [JsonPropertyName("webhookUrl")]
-        public string? WebhookUrl { get { return this.WebhookUrlOption; } set { this.WebhookUrlOption = new(value); } }
+        public string? WebhookUrl { get { return this.WebhookUrlOption.Value; } set { this.WebhookUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SecretSet
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SecretSet
         /// </summary>
         [JsonPropertyName("secretSet")]
-        public bool? SecretSet { get { return this.SecretSetOption; } set { this.SecretSetOption = new(value); } }
+        public bool? SecretSet { get { return this.SecretSetOption.Value; } set { this.SecretSetOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookSecret
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Only present when generateSecret was true.</value>
         [JsonPropertyName("webhookSecret")]
-        public string? WebhookSecret { get { return this.WebhookSecretOption; } set { this.WebhookSecretOption = new(value); } }
+        public string? WebhookSecret { get { return this.WebhookSecretOption.Value; } set { this.WebhookSecretOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiKycWebhookConfigPut200Response" />
     /// </summary>
-    public class ApiKycWebhookConfigPut200ResponseJsonConverter : JsonConverter<ApiKycWebhookConfigPut200Response>
+    public partial class ApiKycWebhookConfigPut200ResponseJsonConverter : JsonConverter<ApiKycWebhookConfigPut200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKycWebhookConfigPut200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ApiKycWebhookConfigPut200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiKycWebhookConfigPut200Response" />
         /// </summary>

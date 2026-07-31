@@ -185,7 +185,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Chain
         /// </summary>
         [JsonPropertyName("chain")]
-        public ChainEnum? Chain { get { return this.ChainOption; } set { this.ChainOption = new(value); } }
+        public ChainEnum? Chain { get { return this.ChainOption.Value; } set { this.ChainOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -199,7 +199,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>65a1b2c3d4e5f6789012345a</example> */
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Address
@@ -213,7 +213,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb</example> */
         [JsonPropertyName("address")]
-        public string? Address { get { return this.AddressOption; } set { this.AddressOption = new(value); } }
+        public string? Address { get { return this.AddressOption.Value; } set { this.AddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Org
@@ -227,7 +227,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>685acbe0e129932fbb7a0fc3</example> */
         [JsonPropertyName("org")]
-        public string? Org { get { return this.OrgOption; } set { this.OrgOption = new(value); } }
+        public string? Org { get { return this.OrgOption.Value; } set { this.OrgOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Project
@@ -241,7 +241,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>685ad30be129932fbb7a1047</example> */
         [JsonPropertyName("project")]
-        public string? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public string? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DerivationPath
@@ -255,7 +255,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>m/44&#39;/60&#39;/0&#39;/0/5</example> */
         [JsonPropertyName("derivationPath")]
-        public string? DerivationPath { get { return this.DerivationPathOption; } set { this.DerivationPathOption = new(value); } }
+        public string? DerivationPath { get { return this.DerivationPathOption.Value; } set { this.DerivationPathOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Label
@@ -269,7 +269,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>User Wallet 5</example> */
         [JsonPropertyName("label")]
-        public string? Label { get { return this.LabelOption; } set { this.LabelOption = new(value); } }
+        public string? Label { get { return this.LabelOption.Value; } set { this.LabelOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -283,7 +283,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RegisteredAt
@@ -297,7 +297,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:00Z</example> */
         [JsonPropertyName("registeredAt")]
-        public DateTime? RegisteredAt { get { return this.RegisteredAtOption; } set { this.RegisteredAtOption = new(value); } }
+        public DateTime? RegisteredAt { get { return this.RegisteredAtOption.Value; } set { this.RegisteredAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastSyncedAt
@@ -311,7 +311,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:05Z</example> */
         [JsonPropertyName("lastSyncedAt")]
-        public DateTime? LastSyncedAt { get { return this.LastSyncedAtOption; } set { this.LastSyncedAtOption = new(value); } }
+        public DateTime? LastSyncedAt { get { return this.LastSyncedAtOption.Value; } set { this.LastSyncedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -325,7 +325,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:00Z</example> */
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -339,7 +339,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:00Z</example> */
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -379,27 +379,37 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="NonCustodialAddress" />
     /// </summary>
-    public class NonCustodialAddressJsonConverter : JsonConverter<NonCustodialAddress>
+    public partial class NonCustodialAddressJsonConverter : JsonConverter<NonCustodialAddress>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NonCustodialAddressJsonConverter" /> class.
+        /// </summary>
+        public NonCustodialAddressJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize RegisteredAt
         /// </summary>
-        public static string RegisteredAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string RegisteredAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize LastSyncedAt
         /// </summary>
-        public static string LastSyncedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastSyncedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="NonCustodialAddress" />

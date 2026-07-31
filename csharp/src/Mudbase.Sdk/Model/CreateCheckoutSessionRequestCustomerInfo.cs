@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,8 +93,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateCheckoutSessionRequestCustomerInfo" />
     /// </summary>
-    public class CreateCheckoutSessionRequestCustomerInfoJsonConverter : JsonConverter<CreateCheckoutSessionRequestCustomerInfo>
+    public partial class CreateCheckoutSessionRequestCustomerInfoJsonConverter : JsonConverter<CreateCheckoutSessionRequestCustomerInfo>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateCheckoutSessionRequestCustomerInfoJsonConverter" /> class.
+        /// </summary>
+        public CreateCheckoutSessionRequestCustomerInfoJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateCheckoutSessionRequestCustomerInfo" />
         /// </summary>

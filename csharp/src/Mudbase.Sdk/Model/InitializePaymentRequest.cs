@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectId
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional project scope</value>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>title, description, redirectUrl, etc.</value>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -143,8 +143,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InitializePaymentRequest" />
     /// </summary>
-    public class InitializePaymentRequestJsonConverter : JsonConverter<InitializePaymentRequest>
+    public partial class InitializePaymentRequestJsonConverter : JsonConverter<InitializePaymentRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InitializePaymentRequestJsonConverter" /> class.
+        /// </summary>
+        public InitializePaymentRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InitializePaymentRequest" />
         /// </summary>

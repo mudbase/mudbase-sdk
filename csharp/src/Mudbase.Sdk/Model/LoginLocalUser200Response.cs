@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Token
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Token
         /// </summary>
         [JsonPropertyName("token")]
-        public string? Token { get { return this.TokenOption; } set { this.TokenOption = new(value); } }
+        public string? Token { get { return this.TokenOption.Value; } set { this.TokenOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RefreshToken
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RefreshToken
         /// </summary>
         [JsonPropertyName("refreshToken")]
-        public string? RefreshToken { get { return this.RefreshTokenOption; } set { this.RefreshTokenOption = new(value); } }
+        public string? RefreshToken { get { return this.RefreshTokenOption.Value; } set { this.RefreshTokenOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresIn
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Access token TTL in seconds</value>
         [JsonPropertyName("expiresIn")]
-        public int? ExpiresIn { get { return this.ExpiresInOption; } set { this.ExpiresInOption = new(value); } }
+        public int? ExpiresIn { get { return this.ExpiresInOption.Value; } set { this.ExpiresInOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -116,7 +116,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public LoginLocalUser200ResponseUser? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public LoginLocalUser200ResponseUser? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -149,8 +149,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LoginLocalUser200Response" />
     /// </summary>
-    public class LoginLocalUser200ResponseJsonConverter : JsonConverter<LoginLocalUser200Response>
+    public partial class LoginLocalUser200ResponseJsonConverter : JsonConverter<LoginLocalUser200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginLocalUser200ResponseJsonConverter" /> class.
+        /// </summary>
+        public LoginLocalUser200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LoginLocalUser200Response" />
         /// </summary>

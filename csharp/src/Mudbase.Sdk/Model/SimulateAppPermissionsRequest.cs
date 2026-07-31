@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Alias for &#x60;role&#x60;</value>
         [JsonPropertyName("roleSlug")]
-        public string? RoleSlug { get { return this.RoleSlugOption; } set { this.RoleSlugOption = new(value); } }
+        public string? RoleSlug { get { return this.RoleSlugOption.Value; } set { this.RoleSlugOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OperationId
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// <value>OpenAPI operationId (e.g. &#x60;sendEmail&#x60;, &#x60;executeIntegration&#x60;). When set, path simulation is optional.</value>
         /* <example>sendEmail</example> */
         [JsonPropertyName("operationId")]
-        public string? OperationId { get { return this.OperationIdOption; } set { this.OperationIdOption = new(value); } }
+        public string? OperationId { get { return this.OperationIdOption.Value; } set { this.OperationIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Method
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>POST</example> */
         [JsonPropertyName("method")]
-        public string? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public string? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pathname
@@ -118,7 +118,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Full path e.g. &#x60;/api/messaging/projects/{id}/messaging/email&#x60;</value>
         /* <example>/api/messaging/projects/685ad30be129932fbb7a1047/messaging/email</example> */
         [JsonPropertyName("pathname")]
-        public string? Pathname { get { return this.PathnameOption; } set { this.PathnameOption = new(value); } }
+        public string? Pathname { get { return this.PathnameOption.Value; } set { this.PathnameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Path
@@ -132,7 +132,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Alias for &#x60;pathname&#x60;</value>
         [JsonPropertyName("path")]
-        public string? Path { get { return this.PathOption; } set { this.PathOption = new(value); } }
+        public string? Path { get { return this.PathOption.Value; } set { this.PathOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -166,8 +166,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SimulateAppPermissionsRequest" />
     /// </summary>
-    public class SimulateAppPermissionsRequestJsonConverter : JsonConverter<SimulateAppPermissionsRequest>
+    public partial class SimulateAppPermissionsRequestJsonConverter : JsonConverter<SimulateAppPermissionsRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimulateAppPermissionsRequestJsonConverter" /> class.
+        /// </summary>
+        public SimulateAppPermissionsRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SimulateAppPermissionsRequest" />
         /// </summary>

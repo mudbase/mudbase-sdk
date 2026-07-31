@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Presence
         /// </summary>
         [JsonPropertyName("presence")]
-        public Dictionary<string, CheckUserPresence200ResponsePresenceValue>? Presence { get { return this.PresenceOption; } set { this.PresenceOption = new(value); } }
+        public Dictionary<string, CheckUserPresence200ResponsePresenceValue>? Presence { get { return this.PresenceOption.Value; } set { this.PresenceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Timestamp
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,12 +100,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckUserPresence200Response" />
     /// </summary>
-    public class CheckUserPresence200ResponseJsonConverter : JsonConverter<CheckUserPresence200Response>
+    public partial class CheckUserPresence200ResponseJsonConverter : JsonConverter<CheckUserPresence200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckUserPresence200ResponseJsonConverter" /> class.
+        /// </summary>
+        public CheckUserPresence200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="CheckUserPresence200Response" />

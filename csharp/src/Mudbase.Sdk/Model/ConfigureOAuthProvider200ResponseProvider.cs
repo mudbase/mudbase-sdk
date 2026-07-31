@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>google</example> */
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Enabled
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DisplayName
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Sign in with Google</example> */
         [JsonPropertyName("displayName")]
-        public string? DisplayName { get { return this.DisplayNameOption; } set { this.DisplayNameOption = new(value); } }
+        public string? DisplayName { get { return this.DisplayNameOption.Value; } set { this.DisplayNameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfigureOAuthProvider200ResponseProvider" />
     /// </summary>
-    public class ConfigureOAuthProvider200ResponseProviderJsonConverter : JsonConverter<ConfigureOAuthProvider200ResponseProvider>
+    public partial class ConfigureOAuthProvider200ResponseProviderJsonConverter : JsonConverter<ConfigureOAuthProvider200ResponseProvider>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigureOAuthProvider200ResponseProviderJsonConverter" /> class.
+        /// </summary>
+        public ConfigureOAuthProvider200ResponseProviderJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfigureOAuthProvider200ResponseProvider" />
         /// </summary>

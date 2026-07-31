@@ -185,7 +185,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>replace</example> */
         [JsonPropertyName("restoreMode")]
-        public RestoreModeEnum? RestoreMode { get { return this.RestoreModeOption; } set { this.RestoreModeOption = new(value); } }
+        public RestoreModeEnum? RestoreMode { get { return this.RestoreModeOption.Value; } set { this.RestoreModeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Collections
@@ -200,7 +200,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Optional: specific collections to restore</value>
         /* <example>[&quot;products&quot;,&quot;orders&quot;]</example> */
         [JsonPropertyName("collections")]
-        public List<string>? Collections { get { return this.CollectionsOption; } set { this.CollectionsOption = new(value); } }
+        public List<string>? Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -231,8 +231,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RestoreBackupRequest" />
     /// </summary>
-    public class RestoreBackupRequestJsonConverter : JsonConverter<RestoreBackupRequest>
+    public partial class RestoreBackupRequestJsonConverter : JsonConverter<RestoreBackupRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RestoreBackupRequestJsonConverter" /> class.
+        /// </summary>
+        public RestoreBackupRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RestoreBackupRequest" />
         /// </summary>

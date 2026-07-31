@@ -179,7 +179,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public TypeEnum? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public TypeEnum? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Defines MainTxStatus
@@ -286,7 +286,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MainTxStatus
         /// </summary>
         [JsonPropertyName("mainTxStatus")]
-        public MainTxStatusEnum? MainTxStatus { get { return this.MainTxStatusOption; } set { this.MainTxStatusOption = new(value); } }
+        public MainTxStatusEnum? MainTxStatus { get { return this.MainTxStatusOption.Value; } set { this.MainTxStatusOption = new(value); } }
 
         /// <summary>
         /// Defines RefundStatus
@@ -393,7 +393,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RefundStatus
         /// </summary>
         [JsonPropertyName("refundStatus")]
-        public RefundStatusEnum? RefundStatus { get { return this.RefundStatusOption; } set { this.RefundStatusOption = new(value); } }
+        public RefundStatusEnum? RefundStatus { get { return this.RefundStatusOption.Value; } set { this.RefundStatusOption = new(value); } }
 
         /// <summary>
         /// Defines Status
@@ -500,7 +500,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -513,7 +513,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -526,7 +526,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -539,7 +539,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ToAddress
@@ -552,7 +552,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ToAddress
         /// </summary>
         [JsonPropertyName("toAddress")]
-        public string? ToAddress { get { return this.ToAddressOption; } set { this.ToAddressOption = new(value); } }
+        public string? ToAddress { get { return this.ToAddressOption.Value; } set { this.ToAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FromAddress
@@ -565,7 +565,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FromAddress
         /// </summary>
         [JsonPropertyName("fromAddress")]
-        public string? FromAddress { get { return this.FromAddressOption; } set { this.FromAddressOption = new(value); } }
+        public string? FromAddress { get { return this.FromAddressOption.Value; } set { this.FromAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MainTxHash
@@ -578,7 +578,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MainTxHash
         /// </summary>
         [JsonPropertyName("mainTxHash")]
-        public string? MainTxHash { get { return this.MainTxHashOption; } set { this.MainTxHashOption = new(value); } }
+        public string? MainTxHash { get { return this.MainTxHashOption.Value; } set { this.MainTxHashOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NetworkFee
@@ -591,7 +591,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets NetworkFee
         /// </summary>
         [JsonPropertyName("networkFee")]
-        public decimal? NetworkFee { get { return this.NetworkFeeOption; } set { this.NetworkFeeOption = new(value); } }
+        public decimal? NetworkFee { get { return this.NetworkFeeOption.Value; } set { this.NetworkFeeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformFee
@@ -604,7 +604,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformFee
         /// </summary>
         [JsonPropertyName("platformFee")]
-        public decimal? PlatformFee { get { return this.PlatformFeeOption; } set { this.PlatformFeeOption = new(value); } }
+        public decimal? PlatformFee { get { return this.PlatformFeeOption.Value; } set { this.PlatformFeeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectFee
@@ -617,7 +617,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectFee
         /// </summary>
         [JsonPropertyName("projectFee")]
-        public decimal? ProjectFee { get { return this.ProjectFeeOption; } set { this.ProjectFeeOption = new(value); } }
+        public decimal? ProjectFee { get { return this.ProjectFeeOption.Value; } set { this.ProjectFeeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RefundTxHash
@@ -630,7 +630,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RefundTxHash
         /// </summary>
         [JsonPropertyName("refundTxHash")]
-        public string? RefundTxHash { get { return this.RefundTxHashOption; } set { this.RefundTxHashOption = new(value); } }
+        public string? RefundTxHash { get { return this.RefundTxHashOption.Value; } set { this.RefundTxHashOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Error
@@ -643,7 +643,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -656,7 +656,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -700,12 +700,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetTransaction200ResponseData" />
     /// </summary>
-    public class GetTransaction200ResponseDataJsonConverter : JsonConverter<GetTransaction200ResponseData>
+    public partial class GetTransaction200ResponseDataJsonConverter : JsonConverter<GetTransaction200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetTransaction200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetTransaction200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetTransaction200ResponseData" />

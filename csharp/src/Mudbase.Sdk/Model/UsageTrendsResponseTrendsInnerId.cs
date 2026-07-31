@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Year
         /// </summary>
         [JsonPropertyName("year")]
-        public int? Year { get { return this.YearOption; } set { this.YearOption = new(value); } }
+        public int? Year { get { return this.YearOption.Value; } set { this.YearOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Month
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Month
         /// </summary>
         [JsonPropertyName("month")]
-        public int? Month { get { return this.MonthOption; } set { this.MonthOption = new(value); } }
+        public int? Month { get { return this.MonthOption.Value; } set { this.MonthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Day
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Day
         /// </summary>
         [JsonPropertyName("day")]
-        public int? Day { get { return this.DayOption; } set { this.DayOption = new(value); } }
+        public int? Day { get { return this.DayOption.Value; } set { this.DayOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UsageTrendsResponseTrendsInnerId" />
     /// </summary>
-    public class UsageTrendsResponseTrendsInnerIdJsonConverter : JsonConverter<UsageTrendsResponseTrendsInnerId>
+    public partial class UsageTrendsResponseTrendsInnerIdJsonConverter : JsonConverter<UsageTrendsResponseTrendsInnerId>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageTrendsResponseTrendsInnerIdJsonConverter" /> class.
+        /// </summary>
+        public UsageTrendsResponseTrendsInnerIdJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UsageTrendsResponseTrendsInnerId" />
         /// </summary>

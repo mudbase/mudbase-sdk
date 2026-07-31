@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional ISO language code for the verification UI.</value>
         [JsonPropertyName("language")]
-        public string? Language { get { return this.LanguageOption; } set { this.LanguageOption = new(value); } }
+        public string? Language { get { return this.LanguageOption.Value; } set { this.LanguageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiKycSessionsPostRequest" />
     /// </summary>
-    public class ApiKycSessionsPostRequestJsonConverter : JsonConverter<ApiKycSessionsPostRequest>
+    public partial class ApiKycSessionsPostRequestJsonConverter : JsonConverter<ApiKycSessionsPostRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKycSessionsPostRequestJsonConverter" /> class.
+        /// </summary>
+        public ApiKycSessionsPostRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiKycSessionsPostRequest" />
         /// </summary>

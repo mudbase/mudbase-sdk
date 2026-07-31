@@ -125,7 +125,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Org self-serve reset only; go-live is via admin activate.</value>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RegenerateToken
@@ -138,7 +138,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RegenerateToken
         /// </summary>
         [JsonPropertyName("regenerateToken")]
-        public bool? RegenerateToken { get { return this.RegenerateTokenOption; } set { this.RegenerateTokenOption = new(value); } }
+        public bool? RegenerateToken { get { return this.RegenerateTokenOption.Value; } set { this.RegenerateTokenOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -168,8 +168,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PatchOrgDomainRequest" />
     /// </summary>
-    public class PatchOrgDomainRequestJsonConverter : JsonConverter<PatchOrgDomainRequest>
+    public partial class PatchOrgDomainRequestJsonConverter : JsonConverter<PatchOrgDomainRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PatchOrgDomainRequestJsonConverter" /> class.
+        /// </summary>
+        public PatchOrgDomainRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PatchOrgDomainRequest" />
         /// </summary>

@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Users
         /// </summary>
         [JsonPropertyName("users")]
-        public List<GetOrganizationUsers200ResponseUsersInner>? Users { get { return this.UsersOption; } set { this.UsersOption = new(value); } }
+        public List<GetOrganizationUsers200ResponseUsersInner>? Users { get { return this.UsersOption.Value; } set { this.UsersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Project
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public GetOrganizationUsers200ResponseUsersInnerProject? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public GetOrganizationUsers200ResponseUsersInnerProject? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetProjectUsers200Response" />
     /// </summary>
-    public class GetProjectUsers200ResponseJsonConverter : JsonConverter<GetProjectUsers200Response>
+    public partial class GetProjectUsers200ResponseJsonConverter : JsonConverter<GetProjectUsers200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetProjectUsers200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetProjectUsers200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetProjectUsers200Response" />
         /// </summary>

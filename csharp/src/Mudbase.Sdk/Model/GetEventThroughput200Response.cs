@@ -64,7 +64,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>60000</example> */
         [JsonPropertyName("windowMs")]
-        public int? WindowMs { get { return this.WindowMsOption; } set { this.WindowMsOption = new(value); } }
+        public int? WindowMs { get { return this.WindowMsOption.Value; } set { this.WindowMsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalEvents
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>523</example> */
         [JsonPropertyName("totalEvents")]
-        public int? TotalEvents { get { return this.TotalEventsOption; } set { this.TotalEventsOption = new(value); } }
+        public int? TotalEvents { get { return this.TotalEventsOption.Value; } set { this.TotalEventsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EventsPerSecond
@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>8.72</example> */
         [JsonPropertyName("eventsPerSecond")]
-        public decimal? EventsPerSecond { get { return this.EventsPerSecondOption; } set { this.EventsPerSecondOption = new(value); } }
+        public decimal? EventsPerSecond { get { return this.EventsPerSecondOption.Value; } set { this.EventsPerSecondOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ByType
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ByType
         /// </summary>
         [JsonPropertyName("byType")]
-        public Dictionary<string, int>? ByType { get { return this.ByTypeOption; } set { this.ByTypeOption = new(value); } }
+        public Dictionary<string, int>? ByType { get { return this.ByTypeOption.Value; } set { this.ByTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Timestamp
@@ -118,7 +118,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,12 +151,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetEventThroughput200Response" />
     /// </summary>
-    public class GetEventThroughput200ResponseJsonConverter : JsonConverter<GetEventThroughput200Response>
+    public partial class GetEventThroughput200ResponseJsonConverter : JsonConverter<GetEventThroughput200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetEventThroughput200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetEventThroughput200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetEventThroughput200Response" />

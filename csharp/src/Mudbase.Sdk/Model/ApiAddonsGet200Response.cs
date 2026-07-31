@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Addons
         /// </summary>
         [JsonPropertyName("addons")]
-        public List<Object>? Addons { get { return this.AddonsOption; } set { this.AddonsOption = new(value); } }
+        public List<Object>? Addons { get { return this.AddonsOption.Value; } set { this.AddonsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiAddonsGet200Response" />
     /// </summary>
-    public class ApiAddonsGet200ResponseJsonConverter : JsonConverter<ApiAddonsGet200Response>
+    public partial class ApiAddonsGet200ResponseJsonConverter : JsonConverter<ApiAddonsGet200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiAddonsGet200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ApiAddonsGet200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiAddonsGet200Response" />
         /// </summary>

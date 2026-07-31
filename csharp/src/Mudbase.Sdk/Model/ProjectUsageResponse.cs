@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public ProjectUsage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public ProjectUsage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limits
         /// </summary>
         [JsonPropertyName("limits")]
-        public Limits? Limits { get { return this.LimitsOption; } set { this.LimitsOption = new(value); } }
+        public Limits? Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectUsageResponse" />
     /// </summary>
-    public class ProjectUsageResponseJsonConverter : JsonConverter<ProjectUsageResponse>
+    public partial class ProjectUsageResponseJsonConverter : JsonConverter<ProjectUsageResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectUsageResponseJsonConverter" /> class.
+        /// </summary>
+        public ProjectUsageResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectUsageResponse" />
         /// </summary>

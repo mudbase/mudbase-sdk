@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Token
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>JWT for the new user session</value>
         [JsonPropertyName("token")]
-        public string? Token { get { return this.TokenOption; } set { this.TokenOption = new(value); } }
+        public string? Token { get { return this.TokenOption.Value; } set { this.TokenOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public AcceptInvite201ResponseUser? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public AcceptInvite201ResponseUser? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AcceptInvite201Response" />
     /// </summary>
-    public class AcceptInvite201ResponseJsonConverter : JsonConverter<AcceptInvite201Response>
+    public partial class AcceptInvite201ResponseJsonConverter : JsonConverter<AcceptInvite201Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AcceptInvite201ResponseJsonConverter" /> class.
+        /// </summary>
+        public AcceptInvite201ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AcceptInvite201Response" />
         /// </summary>

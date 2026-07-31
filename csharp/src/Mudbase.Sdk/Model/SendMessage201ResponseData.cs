@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Content
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Content
         /// </summary>
         [JsonPropertyName("content")]
-        public string? Content { get { return this.ContentOption; } set { this.ContentOption = new(value); } }
+        public string? Content { get { return this.ContentOption.Value; } set { this.ContentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Sender
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Sender
         /// </summary>
         [JsonPropertyName("sender")]
-        public string? Sender { get { return this.SenderOption; } set { this.SenderOption = new(value); } }
+        public string? Sender { get { return this.SenderOption.Value; } set { this.SenderOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,12 +132,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SendMessage201ResponseData" />
     /// </summary>
-    public class SendMessage201ResponseDataJsonConverter : JsonConverter<SendMessage201ResponseData>
+    public partial class SendMessage201ResponseDataJsonConverter : JsonConverter<SendMessage201ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SendMessage201ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public SendMessage201ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="SendMessage201ResponseData" />

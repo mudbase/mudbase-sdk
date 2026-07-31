@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Plain-language reminder to add the ownership TXT from the domain’s DNS checklist, then use Verify DNS in the organization’s domain settings.</value>
         [JsonPropertyName("dnsVerificationInstructions")]
-        public string? DnsVerificationInstructions { get { return this.DnsVerificationInstructionsOption; } set { this.DnsVerificationInstructionsOption = new(value); } }
+        public string? DnsVerificationInstructions { get { return this.DnsVerificationInstructionsOption.Value; } set { this.DnsVerificationInstructionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -103,8 +103,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgAddDomainResponse" />
     /// </summary>
-    public class OrgAddDomainResponseJsonConverter : JsonConverter<OrgAddDomainResponse>
+    public partial class OrgAddDomainResponseJsonConverter : JsonConverter<OrgAddDomainResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgAddDomainResponseJsonConverter" /> class.
+        /// </summary>
+        public OrgAddDomainResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgAddDomainResponse" />
         /// </summary>

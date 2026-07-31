@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public List<GetFeeBalances200ResponseDataInner>? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public List<GetFeeBalances200ResponseDataInner>? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetFeeBalances200Response" />
     /// </summary>
-    public class GetFeeBalances200ResponseJsonConverter : JsonConverter<GetFeeBalances200Response>
+    public partial class GetFeeBalances200ResponseJsonConverter : JsonConverter<GetFeeBalances200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetFeeBalances200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetFeeBalances200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetFeeBalances200Response" />
         /// </summary>

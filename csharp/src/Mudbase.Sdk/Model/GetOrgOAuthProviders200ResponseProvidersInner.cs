@@ -64,7 +64,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>google</example> */
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DisplayName
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Google</example> */
         [JsonPropertyName("displayName")]
-        public string? DisplayName { get { return this.DisplayNameOption; } set { this.DisplayNameOption = new(value); } }
+        public string? DisplayName { get { return this.DisplayNameOption.Value; } set { this.DisplayNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Strategy
@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>google</example> */
         [JsonPropertyName("strategy")]
-        public string? Strategy { get { return this.StrategyOption; } set { this.StrategyOption = new(value); } }
+        public string? Strategy { get { return this.StrategyOption.Value; } set { this.StrategyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultScope
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>[&quot;profile&quot;,&quot;email&quot;]</example> */
         [JsonPropertyName("defaultScope")]
-        public List<string>? DefaultScope { get { return this.DefaultScopeOption; } set { this.DefaultScopeOption = new(value); } }
+        public List<string>? DefaultScope { get { return this.DefaultScopeOption.Value; } set { this.DefaultScopeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AuthUrl
@@ -120,7 +120,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>/api/auth/oauth-org/google</example> */
         [JsonPropertyName("authUrl")]
-        public string? AuthUrl { get { return this.AuthUrlOption; } set { this.AuthUrlOption = new(value); } }
+        public string? AuthUrl { get { return this.AuthUrlOption.Value; } set { this.AuthUrlOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -153,8 +153,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetOrgOAuthProviders200ResponseProvidersInner" />
     /// </summary>
-    public class GetOrgOAuthProviders200ResponseProvidersInnerJsonConverter : JsonConverter<GetOrgOAuthProviders200ResponseProvidersInner>
+    public partial class GetOrgOAuthProviders200ResponseProvidersInnerJsonConverter : JsonConverter<GetOrgOAuthProviders200ResponseProvidersInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetOrgOAuthProviders200ResponseProvidersInnerJsonConverter" /> class.
+        /// </summary>
+        public GetOrgOAuthProviders200ResponseProvidersInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetOrgOAuthProviders200ResponseProvidersInner" />
         /// </summary>

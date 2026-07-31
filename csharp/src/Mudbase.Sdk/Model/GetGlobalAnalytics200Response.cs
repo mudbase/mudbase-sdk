@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ActiveConnections
         /// </summary>
         [JsonPropertyName("activeConnections")]
-        public int? ActiveConnections { get { return this.ActiveConnectionsOption; } set { this.ActiveConnectionsOption = new(value); } }
+        public int? ActiveConnections { get { return this.ActiveConnectionsOption.Value; } set { this.ActiveConnectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PeakConnections
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PeakConnections
         /// </summary>
         [JsonPropertyName("peakConnections")]
-        public int? PeakConnections { get { return this.PeakConnectionsOption; } set { this.PeakConnectionsOption = new(value); } }
+        public int? PeakConnections { get { return this.PeakConnectionsOption.Value; } set { this.PeakConnectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TotalEvents
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalEvents
         /// </summary>
         [JsonPropertyName("totalEvents")]
-        public int? TotalEvents { get { return this.TotalEventsOption; } set { this.TotalEventsOption = new(value); } }
+        public int? TotalEvents { get { return this.TotalEventsOption.Value; } set { this.TotalEventsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EventsPerMinute
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EventsPerMinute
         /// </summary>
         [JsonPropertyName("eventsPerMinute")]
-        public int? EventsPerMinute { get { return this.EventsPerMinuteOption; } set { this.EventsPerMinuteOption = new(value); } }
+        public int? EventsPerMinute { get { return this.EventsPerMinuteOption.Value; } set { this.EventsPerMinuteOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetGlobalAnalytics200Response" />
     /// </summary>
-    public class GetGlobalAnalytics200ResponseJsonConverter : JsonConverter<GetGlobalAnalytics200Response>
+    public partial class GetGlobalAnalytics200ResponseJsonConverter : JsonConverter<GetGlobalAnalytics200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetGlobalAnalytics200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetGlobalAnalytics200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetGlobalAnalytics200Response" />
         /// </summary>

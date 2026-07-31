@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Fees
         /// </summary>
         [JsonPropertyName("fees")]
-        public Dictionary<string, Object>? Fees { get { return this.FeesOption; } set { this.FeesOption = new(value); } }
+        public Dictionary<string, Object>? Fees { get { return this.FeesOption.Value; } set { this.FeesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When the cache was last updated</value>
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Count
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Number of chains with cached fees</value>
         [JsonPropertyName("count")]
-        public int? Count { get { return this.CountOption; } set { this.CountOption = new(value); } }
+        public int? Count { get { return this.CountOption.Value; } set { this.CountOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,12 +118,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetAllFees200ResponseData" />
     /// </summary>
-    public class GetAllFees200ResponseDataJsonConverter : JsonConverter<GetAllFees200ResponseData>
+    public partial class GetAllFees200ResponseDataJsonConverter : JsonConverter<GetAllFees200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetAllFees200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetAllFees200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetAllFees200ResponseData" />

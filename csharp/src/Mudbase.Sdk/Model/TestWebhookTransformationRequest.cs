@@ -88,8 +88,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TestWebhookTransformationRequest" />
     /// </summary>
-    public class TestWebhookTransformationRequestJsonConverter : JsonConverter<TestWebhookTransformationRequest>
+    public partial class TestWebhookTransformationRequestJsonConverter : JsonConverter<TestWebhookTransformationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestWebhookTransformationRequestJsonConverter" /> class.
+        /// </summary>
+        public TestWebhookTransformationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TestWebhookTransformationRequest" />
         /// </summary>

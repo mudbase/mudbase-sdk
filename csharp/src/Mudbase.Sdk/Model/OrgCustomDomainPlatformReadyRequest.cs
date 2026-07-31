@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Note
         /// </summary>
         [JsonPropertyName("note")]
-        public string? Note { get { return this.NoteOption; } set { this.NoteOption = new(value); } }
+        public string? Note { get { return this.NoteOption.Value; } set { this.NoteOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -90,8 +90,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgCustomDomainPlatformReadyRequest" />
     /// </summary>
-    public class OrgCustomDomainPlatformReadyRequestJsonConverter : JsonConverter<OrgCustomDomainPlatformReadyRequest>
+    public partial class OrgCustomDomainPlatformReadyRequestJsonConverter : JsonConverter<OrgCustomDomainPlatformReadyRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgCustomDomainPlatformReadyRequestJsonConverter" /> class.
+        /// </summary>
+        public OrgCustomDomainPlatformReadyRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgCustomDomainPlatformReadyRequest" />
         /// </summary>

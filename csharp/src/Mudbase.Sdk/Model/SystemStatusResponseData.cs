@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Uptime
         /// </summary>
         [JsonPropertyName("uptime")]
-        public int? Uptime { get { return this.UptimeOption; } set { this.UptimeOption = new(value); } }
+        public int? Uptime { get { return this.UptimeOption.Value; } set { this.UptimeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Memory
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Memory
         /// </summary>
         [JsonPropertyName("memory")]
-        public SystemStatusResponseDataMemory? Memory { get { return this.MemoryOption; } set { this.MemoryOption = new(value); } }
+        public SystemStatusResponseDataMemory? Memory { get { return this.MemoryOption.Value; } set { this.MemoryOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Cpu
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Cpu
         /// </summary>
         [JsonPropertyName("cpu")]
-        public SystemStatusResponseDataCpu? Cpu { get { return this.CpuOption; } set { this.CpuOption = new(value); } }
+        public SystemStatusResponseDataCpu? Cpu { get { return this.CpuOption.Value; } set { this.CpuOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Requests
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Requests
         /// </summary>
         [JsonPropertyName("requests")]
-        public SystemStatusResponseDataRequests? Requests { get { return this.RequestsOption; } set { this.RequestsOption = new(value); } }
+        public SystemStatusResponseDataRequests? Requests { get { return this.RequestsOption.Value; } set { this.RequestsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Database
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Database
         /// </summary>
         [JsonPropertyName("database")]
-        public SystemStatusResponseDataDatabase? Database { get { return this.DatabaseOption; } set { this.DatabaseOption = new(value); } }
+        public SystemStatusResponseDataDatabase? Database { get { return this.DatabaseOption.Value; } set { this.DatabaseOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Storage
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Storage
         /// </summary>
         [JsonPropertyName("storage")]
-        public SystemStatusResponseDataStorage? Storage { get { return this.StorageOption; } set { this.StorageOption = new(value); } }
+        public SystemStatusResponseDataStorage? Storage { get { return this.StorageOption.Value; } set { this.StorageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SystemStatusResponseData" />
     /// </summary>
-    public class SystemStatusResponseDataJsonConverter : JsonConverter<SystemStatusResponseData>
+    public partial class SystemStatusResponseDataJsonConverter : JsonConverter<SystemStatusResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SystemStatusResponseDataJsonConverter" /> class.
+        /// </summary>
+        public SystemStatusResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SystemStatusResponseData" />
         /// </summary>

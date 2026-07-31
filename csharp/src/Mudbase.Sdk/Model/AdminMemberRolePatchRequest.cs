@@ -157,7 +157,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("reason")]
-        public string? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public string? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -187,8 +187,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminMemberRolePatchRequest" />
     /// </summary>
-    public class AdminMemberRolePatchRequestJsonConverter : JsonConverter<AdminMemberRolePatchRequest>
+    public partial class AdminMemberRolePatchRequestJsonConverter : JsonConverter<AdminMemberRolePatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminMemberRolePatchRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminMemberRolePatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminMemberRolePatchRequest" />
         /// </summary>

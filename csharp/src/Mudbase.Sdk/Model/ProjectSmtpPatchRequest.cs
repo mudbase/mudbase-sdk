@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Enabled
         /// </summary>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Host
@@ -84,7 +84,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Host
         /// </summary>
         [JsonPropertyName("host")]
-        public string? Host { get { return this.HostOption; } set { this.HostOption = new(value); } }
+        public string? Host { get { return this.HostOption.Value; } set { this.HostOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Port
@@ -97,7 +97,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Port
         /// </summary>
         [JsonPropertyName("port")]
-        public int? Port { get { return this.PortOption; } set { this.PortOption = new(value); } }
+        public int? Port { get { return this.PortOption.Value; } set { this.PortOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Secure
@@ -110,7 +110,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Secure
         /// </summary>
         [JsonPropertyName("secure")]
-        public bool? Secure { get { return this.SecureOption; } set { this.SecureOption = new(value); } }
+        public bool? Secure { get { return this.SecureOption.Value; } set { this.SecureOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AuthUser
@@ -123,7 +123,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AuthUser
         /// </summary>
         [JsonPropertyName("authUser")]
-        public string? AuthUser { get { return this.AuthUserOption; } set { this.AuthUserOption = new(value); } }
+        public string? AuthUser { get { return this.AuthUserOption.Value; } set { this.AuthUserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AuthPass
@@ -137,7 +137,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>SMTP password; stored encrypted, never returned on GET</value>
         [JsonPropertyName("authPass")]
-        public string? AuthPass { get { return this.AuthPassOption; } set { this.AuthPassOption = new(value); } }
+        public string? AuthPass { get { return this.AuthPassOption.Value; } set { this.AuthPassOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FromName
@@ -150,7 +150,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FromName
         /// </summary>
         [JsonPropertyName("fromName")]
-        public string? FromName { get { return this.FromNameOption; } set { this.FromNameOption = new(value); } }
+        public string? FromName { get { return this.FromNameOption.Value; } set { this.FromNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FromEmail
@@ -163,7 +163,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FromEmail
         /// </summary>
         [JsonPropertyName("fromEmail")]
-        public string? FromEmail { get { return this.FromEmailOption; } set { this.FromEmailOption = new(value); } }
+        public string? FromEmail { get { return this.FromEmailOption.Value; } set { this.FromEmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DomainVerifiedAt
@@ -176,7 +176,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DomainVerifiedAt
         /// </summary>
         [JsonPropertyName("domainVerifiedAt")]
-        public DateTime? DomainVerifiedAt { get { return this.DomainVerifiedAtOption; } set { this.DomainVerifiedAtOption = new(value); } }
+        public DateTime? DomainVerifiedAt { get { return this.DomainVerifiedAtOption.Value; } set { this.DomainVerifiedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -213,12 +213,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectSmtpPatchRequest" />
     /// </summary>
-    public class ProjectSmtpPatchRequestJsonConverter : JsonConverter<ProjectSmtpPatchRequest>
+    public partial class ProjectSmtpPatchRequestJsonConverter : JsonConverter<ProjectSmtpPatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectSmtpPatchRequestJsonConverter" /> class.
+        /// </summary>
+        public ProjectSmtpPatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize DomainVerifiedAt
         /// </summary>
-        public static string DomainVerifiedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string DomainVerifiedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="ProjectSmtpPatchRequest" />

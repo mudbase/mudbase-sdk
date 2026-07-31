@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Same shape as GET &#x60;/multi-role&#x60; — &#x60;isEnabled&#x60;, &#x60;defaultRole&#x60;, &#x60;settings&#x60;, and &#x60;roles&#x60; (no raw MultiRoleFeature document).</value>
         [JsonPropertyName("data")]
-        public Object? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public Object? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateMultiRoleSettings200Response" />
     /// </summary>
-    public class UpdateMultiRoleSettings200ResponseJsonConverter : JsonConverter<UpdateMultiRoleSettings200Response>
+    public partial class UpdateMultiRoleSettings200ResponseJsonConverter : JsonConverter<UpdateMultiRoleSettings200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateMultiRoleSettings200ResponseJsonConverter" /> class.
+        /// </summary>
+        public UpdateMultiRoleSettings200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateMultiRoleSettings200Response" />
         /// </summary>

@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Condition
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Condition
         /// </summary>
         [JsonPropertyName("condition")]
-        public string? Condition { get { return this.ConditionOption; } set { this.ConditionOption = new(value); } }
+        public string? Condition { get { return this.ConditionOption.Value; } set { this.ConditionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Threshold
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Threshold
         /// </summary>
         [JsonPropertyName("threshold")]
-        public decimal? Threshold { get { return this.ThresholdOption; } set { this.ThresholdOption = new(value); } }
+        public decimal? Threshold { get { return this.ThresholdOption.Value; } set { this.ThresholdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Action
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Action
         /// </summary>
         [JsonPropertyName("action")]
-        public string? Action { get { return this.ActionOption; } set { this.ActionOption = new(value); } }
+        public string? Action { get { return this.ActionOption.Value; } set { this.ActionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProjectId
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectId
         /// </summary>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateMonitoringAlertRequest" />
     /// </summary>
-    public class CreateMonitoringAlertRequestJsonConverter : JsonConverter<CreateMonitoringAlertRequest>
+    public partial class CreateMonitoringAlertRequestJsonConverter : JsonConverter<CreateMonitoringAlertRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateMonitoringAlertRequestJsonConverter" /> class.
+        /// </summary>
+        public CreateMonitoringAlertRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateMonitoringAlertRequest" />
         /// </summary>

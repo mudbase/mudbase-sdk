@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Type
         /// </summary>
         [JsonPropertyName("type")]
-        public string? Type { get { return this.TypeOption; } set { this.TypeOption = new(value); } }
+        public string? Type { get { return this.TypeOption.Value; } set { this.TypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Url
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Url
         /// </summary>
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UploadVerificationDocumentsRequestDocumentsInner" />
     /// </summary>
-    public class UploadVerificationDocumentsRequestDocumentsInnerJsonConverter : JsonConverter<UploadVerificationDocumentsRequestDocumentsInner>
+    public partial class UploadVerificationDocumentsRequestDocumentsInnerJsonConverter : JsonConverter<UploadVerificationDocumentsRequestDocumentsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UploadVerificationDocumentsRequestDocumentsInnerJsonConverter" /> class.
+        /// </summary>
+        public UploadVerificationDocumentsRequestDocumentsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UploadVerificationDocumentsRequestDocumentsInner" />
         /// </summary>

@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Request
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Request
         /// </summary>
         [JsonPropertyName("request")]
-        public Object? Request { get { return this.RequestOption; } set { this.RequestOption = new(value); } }
+        public Object? Request { get { return this.RequestOption.Value; } set { this.RequestOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApproveRoleElevation200Response" />
     /// </summary>
-    public class ApproveRoleElevation200ResponseJsonConverter : JsonConverter<ApproveRoleElevation200Response>
+    public partial class ApproveRoleElevation200ResponseJsonConverter : JsonConverter<ApproveRoleElevation200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApproveRoleElevation200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ApproveRoleElevation200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApproveRoleElevation200Response" />
         /// </summary>

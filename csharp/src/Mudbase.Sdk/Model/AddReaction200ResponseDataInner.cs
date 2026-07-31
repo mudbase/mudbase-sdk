@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Emoji
         /// </summary>
         [JsonPropertyName("emoji")]
-        public string? Emoji { get { return this.EmojiOption; } set { this.EmojiOption = new(value); } }
+        public string? Emoji { get { return this.EmojiOption.Value; } set { this.EmojiOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Users
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Users
         /// </summary>
         [JsonPropertyName("users")]
-        public List<string>? Users { get { return this.UsersOption; } set { this.UsersOption = new(value); } }
+        public List<string>? Users { get { return this.UsersOption.Value; } set { this.UsersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddReaction200ResponseDataInner" />
     /// </summary>
-    public class AddReaction200ResponseDataInnerJsonConverter : JsonConverter<AddReaction200ResponseDataInner>
+    public partial class AddReaction200ResponseDataInnerJsonConverter : JsonConverter<AddReaction200ResponseDataInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddReaction200ResponseDataInnerJsonConverter" /> class.
+        /// </summary>
+        public AddReaction200ResponseDataInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddReaction200ResponseDataInner" />
         /// </summary>

@@ -64,7 +64,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Mudbase Platform</example> */
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Main platform for Mudbase services</example> */
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LogoUrl
@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Public URL for the project logo/brand image. Prefer uploading via **POST /api/projects/{id}/logo** or **POST /api/projects/{orgId}/projects/{id}/logo** (stored under logo/project/ in platform storage). Used in project-related emails. </value>
         [JsonPropertyName("logoUrl")]
-        public string? LogoUrl { get { return this.LogoUrlOption; } set { this.LogoUrlOption = new(value); } }
+        public string? LogoUrl { get { return this.LogoUrlOption.Value; } set { this.LogoUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Settings
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Settings
         /// </summary>
         [JsonPropertyName("settings")]
-        public ProjectSettings? Settings { get { return this.SettingsOption; } set { this.SettingsOption = new(value); } }
+        public ProjectSettings? Settings { get { return this.SettingsOption.Value; } set { this.SettingsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Auth
@@ -118,7 +118,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Auth
         /// </summary>
         [JsonPropertyName("auth")]
-        public AuthConfig? Auth { get { return this.AuthOption; } set { this.AuthOption = new(value); } }
+        public AuthConfig? Auth { get { return this.AuthOption.Value; } set { this.AuthOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -151,8 +151,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateProjectRequest" />
     /// </summary>
-    public class UpdateProjectRequestJsonConverter : JsonConverter<UpdateProjectRequest>
+    public partial class UpdateProjectRequestJsonConverter : JsonConverter<UpdateProjectRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateProjectRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateProjectRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateProjectRequest" />
         /// </summary>

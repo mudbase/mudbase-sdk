@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Resource
         /// </summary>
         [JsonPropertyName("resource")]
-        public string? Resource { get { return this.ResourceOption; } set { this.ResourceOption = new(value); } }
+        public string? Resource { get { return this.ResourceOption.Value; } set { this.ResourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Actions
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Actions
         /// </summary>
         [JsonPropertyName("actions")]
-        public List<string>? Actions { get { return this.ActionsOption; } set { this.ActionsOption = new(value); } }
+        public List<string>? Actions { get { return this.ActionsOption.Value; } set { this.ActionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddCustomRoleRequestDefaultPermissionsInner" />
     /// </summary>
-    public class AddCustomRoleRequestDefaultPermissionsInnerJsonConverter : JsonConverter<AddCustomRoleRequestDefaultPermissionsInner>
+    public partial class AddCustomRoleRequestDefaultPermissionsInnerJsonConverter : JsonConverter<AddCustomRoleRequestDefaultPermissionsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddCustomRoleRequestDefaultPermissionsInnerJsonConverter" /> class.
+        /// </summary>
+        public AddCustomRoleRequestDefaultPermissionsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddCustomRoleRequestDefaultPermissionsInner" />
         /// </summary>

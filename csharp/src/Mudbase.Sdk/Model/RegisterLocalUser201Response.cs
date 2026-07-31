@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequireVerification
@@ -79,7 +79,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>true when email verification is required; no token in response</value>
         [JsonPropertyName("requireVerification")]
-        public bool? RequireVerification { get { return this.RequireVerificationOption; } set { this.RequireVerificationOption = new(value); } }
+        public bool? RequireVerification { get { return this.RequireVerificationOption.Value; } set { this.RequireVerificationOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Token
@@ -93,7 +93,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Present only when requireEmailVerification is false</value>
         [JsonPropertyName("token")]
-        public string? Token { get { return this.TokenOption; } set { this.TokenOption = new(value); } }
+        public string? Token { get { return this.TokenOption.Value; } set { this.TokenOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RefreshToken
@@ -107,7 +107,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Present only when requireEmailVerification is false</value>
         [JsonPropertyName("refreshToken")]
-        public string? RefreshToken { get { return this.RefreshTokenOption; } set { this.RefreshTokenOption = new(value); } }
+        public string? RefreshToken { get { return this.RefreshTokenOption.Value; } set { this.RefreshTokenOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresIn
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Present only when token is returned</value>
         [JsonPropertyName("expiresIn")]
-        public int? ExpiresIn { get { return this.ExpiresInOption; } set { this.ExpiresInOption = new(value); } }
+        public int? ExpiresIn { get { return this.ExpiresInOption.Value; } set { this.ExpiresInOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of User
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public RegisterLocalUser201ResponseUser? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public RegisterLocalUser201ResponseUser? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -168,8 +168,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RegisterLocalUser201Response" />
     /// </summary>
-    public class RegisterLocalUser201ResponseJsonConverter : JsonConverter<RegisterLocalUser201Response>
+    public partial class RegisterLocalUser201ResponseJsonConverter : JsonConverter<RegisterLocalUser201Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterLocalUser201ResponseJsonConverter" /> class.
+        /// </summary>
+        public RegisterLocalUser201ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RegisterLocalUser201Response" />
         /// </summary>

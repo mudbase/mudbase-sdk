@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSubscriptions200ResponseSubscriptionsInner" />
     /// </summary>
-    public class GetSubscriptions200ResponseSubscriptionsInnerJsonConverter : JsonConverter<GetSubscriptions200ResponseSubscriptionsInner>
+    public partial class GetSubscriptions200ResponseSubscriptionsInnerJsonConverter : JsonConverter<GetSubscriptions200ResponseSubscriptionsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSubscriptions200ResponseSubscriptionsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetSubscriptions200ResponseSubscriptionsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSubscriptions200ResponseSubscriptionsInner" />
         /// </summary>

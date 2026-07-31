@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Captcha
         /// </summary>
         [JsonPropertyName("captcha")]
-        public GetProjectCaptchaConfig200ResponseCaptcha? Captcha { get { return this.CaptchaOption; } set { this.CaptchaOption = new(value); } }
+        public GetProjectCaptchaConfig200ResponseCaptcha? Captcha { get { return this.CaptchaOption.Value; } set { this.CaptchaOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetProjectCaptchaConfig200Response" />
     /// </summary>
-    public class GetProjectCaptchaConfig200ResponseJsonConverter : JsonConverter<GetProjectCaptchaConfig200Response>
+    public partial class GetProjectCaptchaConfig200ResponseJsonConverter : JsonConverter<GetProjectCaptchaConfig200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetProjectCaptchaConfig200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetProjectCaptchaConfig200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetProjectCaptchaConfig200Response" />
         /// </summary>

@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VarError
         /// </summary>
         [JsonPropertyName("error")]
-        public string? VarError { get { return this.VarErrorOption; } set { this.VarErrorOption = new(value); } }
+        public string? VarError { get { return this.VarErrorOption.Value; } set { this.VarErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Code
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Code
         /// </summary>
         [JsonPropertyName("code")]
-        public string? Code { get { return this.CodeOption; } set { this.CodeOption = new(value); } }
+        public string? Code { get { return this.CodeOption.Value; } set { this.CodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Details
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Details
         /// </summary>
         [JsonPropertyName("details")]
-        public ErrorDetails? Details { get { return this.DetailsOption; } set { this.DetailsOption = new(value); } }
+        public ErrorDetails? Details { get { return this.DetailsOption.Value; } set { this.DetailsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Timestamp
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Path
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Path
         /// </summary>
         [JsonPropertyName("path")]
-        public string? Path { get { return this.PathOption; } set { this.PathOption = new(value); } }
+        public string? Path { get { return this.PathOption.Value; } set { this.PathOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequestId
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RequestId
         /// </summary>
         [JsonPropertyName("requestId")]
-        public string? RequestId { get { return this.RequestIdOption; } set { this.RequestIdOption = new(value); } }
+        public string? RequestId { get { return this.RequestIdOption.Value; } set { this.RequestIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,12 +164,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Error" />
     /// </summary>
-    public class ErrorJsonConverter : JsonConverter<Error>
+    public partial class ErrorJsonConverter : JsonConverter<Error>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorJsonConverter" /> class.
+        /// </summary>
+        public ErrorJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="Error" />

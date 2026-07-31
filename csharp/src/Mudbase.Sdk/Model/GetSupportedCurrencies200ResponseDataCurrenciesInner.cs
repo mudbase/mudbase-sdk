@@ -62,7 +62,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Currency symbol (BTC, ETH, MATIC, BNB, etc.)</value>
         [JsonPropertyName("code")]
-        public string? Code { get { return this.CodeOption; } set { this.CodeOption = new(value); } }
+        public string? Code { get { return this.CodeOption.Value; } set { this.CodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Display name (e.g. Bitcoin, Polygon, Arbitrum One)</value>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Chain
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Chain id for API use (e.g. ethereum, polygon, arbitrum)</value>
         [JsonPropertyName("chain")]
-        public string? Chain { get { return this.ChainOption; } set { this.ChainOption = new(value); } }
+        public string? Chain { get { return this.ChainOption.Value; } set { this.ChainOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Networks
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>For USDT only; networks on which USDT is supported (ETH, BSC, TRX, SOL, POLYGON)</value>
         [JsonPropertyName("networks")]
-        public List<string>? Networks { get { return this.NetworksOption; } set { this.NetworksOption = new(value); } }
+        public List<string>? Networks { get { return this.NetworksOption.Value; } set { this.NetworksOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,8 +136,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSupportedCurrencies200ResponseDataCurrenciesInner" />
     /// </summary>
-    public class GetSupportedCurrencies200ResponseDataCurrenciesInnerJsonConverter : JsonConverter<GetSupportedCurrencies200ResponseDataCurrenciesInner>
+    public partial class GetSupportedCurrencies200ResponseDataCurrenciesInnerJsonConverter : JsonConverter<GetSupportedCurrencies200ResponseDataCurrenciesInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSupportedCurrencies200ResponseDataCurrenciesInnerJsonConverter" /> class.
+        /// </summary>
+        public GetSupportedCurrencies200ResponseDataCurrenciesInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSupportedCurrencies200ResponseDataCurrenciesInner" />
         /// </summary>

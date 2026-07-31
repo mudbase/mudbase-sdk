@@ -77,8 +77,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RemoveParticipantRequest" />
     /// </summary>
-    public class RemoveParticipantRequestJsonConverter : JsonConverter<RemoveParticipantRequest>
+    public partial class RemoveParticipantRequestJsonConverter : JsonConverter<RemoveParticipantRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoveParticipantRequestJsonConverter" /> class.
+        /// </summary>
+        public RemoveParticipantRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RemoveParticipantRequest" />
         /// </summary>

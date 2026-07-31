@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Connections
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Connections
         /// </summary>
         [JsonPropertyName("connections")]
-        public int? Connections { get { return this.ConnectionsOption; } set { this.ConnectionsOption = new(value); } }
+        public int? Connections { get { return this.ConnectionsOption.Value; } set { this.ConnectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Events
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Events
         /// </summary>
         [JsonPropertyName("events")]
-        public int? Events { get { return this.EventsOption; } set { this.EventsOption = new(value); } }
+        public int? Events { get { return this.EventsOption.Value; } set { this.EventsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,12 +116,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetHistoricalAnalytics200ResponseDataInner" />
     /// </summary>
-    public class GetHistoricalAnalytics200ResponseDataInnerJsonConverter : JsonConverter<GetHistoricalAnalytics200ResponseDataInner>
+    public partial class GetHistoricalAnalytics200ResponseDataInnerJsonConverter : JsonConverter<GetHistoricalAnalytics200ResponseDataInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetHistoricalAnalytics200ResponseDataInnerJsonConverter" /> class.
+        /// </summary>
+        public GetHistoricalAnalytics200ResponseDataInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetHistoricalAnalytics200ResponseDataInner" />

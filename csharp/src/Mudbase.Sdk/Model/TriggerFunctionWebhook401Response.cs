@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>false</example> */
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Error
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Invalid webhook secret</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TriggerFunctionWebhook401Response" />
     /// </summary>
-    public class TriggerFunctionWebhook401ResponseJsonConverter : JsonConverter<TriggerFunctionWebhook401Response>
+    public partial class TriggerFunctionWebhook401ResponseJsonConverter : JsonConverter<TriggerFunctionWebhook401Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TriggerFunctionWebhook401ResponseJsonConverter" /> class.
+        /// </summary>
+        public TriggerFunctionWebhook401ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TriggerFunctionWebhook401Response" />
         /// </summary>

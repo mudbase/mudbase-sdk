@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Content
         /// </summary>
         [JsonPropertyName("content")]
-        public string? Content { get { return this.ContentOption; } set { this.ContentOption = new(value); } }
+        public string? Content { get { return this.ContentOption.Value; } set { this.ContentOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetUserChats200ResponseDataChatsInnerLastMessage" />
     /// </summary>
-    public class GetUserChats200ResponseDataChatsInnerLastMessageJsonConverter : JsonConverter<GetUserChats200ResponseDataChatsInnerLastMessage>
+    public partial class GetUserChats200ResponseDataChatsInnerLastMessageJsonConverter : JsonConverter<GetUserChats200ResponseDataChatsInnerLastMessage>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetUserChats200ResponseDataChatsInnerLastMessageJsonConverter" /> class.
+        /// </summary>
+        public GetUserChats200ResponseDataChatsInnerLastMessageJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetUserChats200ResponseDataChatsInnerLastMessage" />
         /// </summary>

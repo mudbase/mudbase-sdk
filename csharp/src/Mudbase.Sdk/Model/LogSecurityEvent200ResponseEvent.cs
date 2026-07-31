@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EventType
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EventType
         /// </summary>
         [JsonPropertyName("eventType")]
-        public string? EventType { get { return this.EventTypeOption; } set { this.EventTypeOption = new(value); } }
+        public string? EventType { get { return this.EventTypeOption.Value; } set { this.EventTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Severity
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Severity
         /// </summary>
         [JsonPropertyName("severity")]
-        public string? Severity { get { return this.SeverityOption; } set { this.SeverityOption = new(value); } }
+        public string? Severity { get { return this.SeverityOption.Value; } set { this.SeverityOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Timestamp
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,12 +132,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LogSecurityEvent200ResponseEvent" />
     /// </summary>
-    public class LogSecurityEvent200ResponseEventJsonConverter : JsonConverter<LogSecurityEvent200ResponseEvent>
+    public partial class LogSecurityEvent200ResponseEventJsonConverter : JsonConverter<LogSecurityEvent200ResponseEvent>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogSecurityEvent200ResponseEventJsonConverter" /> class.
+        /// </summary>
+        public LogSecurityEvent200ResponseEventJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="LogSecurityEvent200ResponseEvent" />

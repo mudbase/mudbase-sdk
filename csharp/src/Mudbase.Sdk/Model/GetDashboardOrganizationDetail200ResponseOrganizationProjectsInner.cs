@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Name
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Slug
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Slug
         /// </summary>
         [JsonPropertyName("slug")]
-        public string? Slug { get { return this.SlugOption; } set { this.SlugOption = new(value); } }
+        public string? Slug { get { return this.SlugOption.Value; } set { this.SlugOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsArchived
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsArchived
         /// </summary>
         [JsonPropertyName("isArchived")]
-        public bool? IsArchived { get { return this.IsArchivedOption; } set { this.IsArchivedOption = new(value); } }
+        public bool? IsArchived { get { return this.IsArchivedOption.Value; } set { this.IsArchivedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UserCount
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UserCount
         /// </summary>
         [JsonPropertyName("userCount")]
-        public int? UserCount { get { return this.UserCountOption; } set { this.UserCountOption = new(value); } }
+        public int? UserCount { get { return this.UserCountOption.Value; } set { this.UserCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Users
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Users
         /// </summary>
         [JsonPropertyName("users")]
-        public List<GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerUsersInner>? Users { get { return this.UsersOption; } set { this.UsersOption = new(value); } }
+        public List<GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerUsersInner>? Users { get { return this.UsersOption.Value; } set { this.UsersOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,12 +196,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner" />
     /// </summary>
-    public class GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerJsonConverter : JsonConverter<GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner>
+    public partial class GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerJsonConverter : JsonConverter<GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetDashboardOrganizationDetail200ResponseOrganizationProjectsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetDashboardOrganizationDetail200ResponseOrganizationProjectsInner" />

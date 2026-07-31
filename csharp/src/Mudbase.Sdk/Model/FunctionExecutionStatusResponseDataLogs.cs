@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Stdout
         /// </summary>
         [JsonPropertyName("stdout")]
-        public string? Stdout { get { return this.StdoutOption; } set { this.StdoutOption = new(value); } }
+        public string? Stdout { get { return this.StdoutOption.Value; } set { this.StdoutOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Stderr
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Stderr
         /// </summary>
         [JsonPropertyName("stderr")]
-        public string? Stderr { get { return this.StderrOption; } set { this.StderrOption = new(value); } }
+        public string? Stderr { get { return this.StderrOption.Value; } set { this.StderrOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Truncated
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Truncated
         /// </summary>
         [JsonPropertyName("truncated")]
-        public bool? Truncated { get { return this.TruncatedOption; } set { this.TruncatedOption = new(value); } }
+        public bool? Truncated { get { return this.TruncatedOption.Value; } set { this.TruncatedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Bytes
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Bytes
         /// </summary>
         [JsonPropertyName("bytes")]
-        public int? Bytes { get { return this.BytesOption; } set { this.BytesOption = new(value); } }
+        public int? Bytes { get { return this.BytesOption.Value; } set { this.BytesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FunctionExecutionStatusResponseDataLogs" />
     /// </summary>
-    public class FunctionExecutionStatusResponseDataLogsJsonConverter : JsonConverter<FunctionExecutionStatusResponseDataLogs>
+    public partial class FunctionExecutionStatusResponseDataLogsJsonConverter : JsonConverter<FunctionExecutionStatusResponseDataLogs>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FunctionExecutionStatusResponseDataLogsJsonConverter" /> class.
+        /// </summary>
+        public FunctionExecutionStatusResponseDataLogsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FunctionExecutionStatusResponseDataLogs" />
         /// </summary>

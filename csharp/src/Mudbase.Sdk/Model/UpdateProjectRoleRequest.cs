@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>App user</example> */
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>End users of the app</example> */
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SignupEndpoint
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>customer</example> */
         [JsonPropertyName("signupEndpoint")]
-        public string? SignupEndpoint { get { return this.SignupEndpointOption; } set { this.SignupEndpointOption = new(value); } }
+        public string? SignupEndpoint { get { return this.SignupEndpointOption.Value; } set { this.SignupEndpointOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequiresApproval
@@ -116,7 +116,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>false</example> */
         [JsonPropertyName("requiresApproval")]
-        public bool? RequiresApproval { get { return this.RequiresApprovalOption; } set { this.RequiresApprovalOption = new(value); } }
+        public bool? RequiresApproval { get { return this.RequiresApprovalOption.Value; } set { this.RequiresApprovalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequiresPayment
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>false</example> */
         [JsonPropertyName("requiresPayment")]
-        public bool? RequiresPayment { get { return this.RequiresPaymentOption; } set { this.RequiresPaymentOption = new(value); } }
+        public bool? RequiresPayment { get { return this.RequiresPaymentOption.Value; } set { this.RequiresPaymentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequiresKYC
@@ -144,7 +144,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>false</example> */
         [JsonPropertyName("requiresKYC")]
-        public bool? RequiresKYC { get { return this.RequiresKYCOption; } set { this.RequiresKYCOption = new(value); } }
+        public bool? RequiresKYC { get { return this.RequiresKYCOption.Value; } set { this.RequiresKYCOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultPermissions
@@ -157,7 +157,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DefaultPermissions
         /// </summary>
         [JsonPropertyName("defaultPermissions")]
-        public List<Object>? DefaultPermissions { get { return this.DefaultPermissionsOption; } set { this.DefaultPermissionsOption = new(value); } }
+        public List<Object>? DefaultPermissions { get { return this.DefaultPermissionsOption.Value; } set { this.DefaultPermissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CollectionPermissions
@@ -171,7 +171,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Per-collection CRUD map (same as POST add role).</value>
         [JsonPropertyName("collectionPermissions")]
-        public Dictionary<string, CreateRoleRequestCollectionPermissionsValue>? CollectionPermissions { get { return this.CollectionPermissionsOption; } set { this.CollectionPermissionsOption = new(value); } }
+        public Dictionary<string, CreateRoleRequestCollectionPermissionsValue>? CollectionPermissions { get { return this.CollectionPermissionsOption.Value; } set { this.CollectionPermissionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Metadata
@@ -184,7 +184,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Metadata
         /// </summary>
         [JsonPropertyName("metadata")]
-        public Object? Metadata { get { return this.MetadataOption; } set { this.MetadataOption = new(value); } }
+        public Object? Metadata { get { return this.MetadataOption.Value; } set { this.MetadataOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FeaturePermissions
@@ -199,7 +199,7 @@ namespace Mudbase.Sdk.Model
         /// <value>App JWT feature toggles stored on &#x60;MultiRoleFeature.roles[].featurePermissions&#x60;. Structure: &#x60;{ [resource: string]: { [action: string]: boolean } }&#x60;. Only **explicit &#x60;false&#x60;** on a key that matches the resolved gate denies; missing resources/actions imply no extra denial.  **Canonical map** of &#x60;(resource, action)&#x60; pairs enforced at runtime: &#x60;services/appRoleFeatureMap.js&#x60; (&#x60;RULES&#x60;). Regenerate inventory: &#x60;node scripts/verify-app-role-feature-map.js&#x60;.  **Messaging** also accepts legacy keys (&#x60;email&#x60;, &#x60;sms&#x60;, &#x60;push&#x60;, &#x60;history&#x60;, &#x60;stats&#x60;) alongside &#x60;send_email&#x60;, &#x60;send_sms&#x60;, &#x60;send_push&#x60;, &#x60;read_history&#x60;, &#x60;read_stats&#x60; — see &#x60;services/appRoleFeatureService.js&#x60; (&#x60;MESSAGING_SYNONYMS&#x60;).  | Resource | Actions (boolean keys under the resource object) | |- -- -- -- -- -|- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -| | &#x60;messaging&#x60; | &#x60;send_email&#x60;, &#x60;send_sms&#x60;, &#x60;send_push&#x60;, &#x60;read_history&#x60;, &#x60;read_stats&#x60; (legacy: &#x60;email&#x60;, &#x60;sms&#x60;, &#x60;push&#x60;, &#x60;history&#x60;, &#x60;stats&#x60;) | | &#x60;integration&#x60; | &#x60;read&#x60;, &#x60;create&#x60;, &#x60;update&#x60;, &#x60;delete&#x60;, &#x60;execute&#x60;, &#x60;test&#x60;, &#x60;export&#x60;, &#x60;read_usage&#x60; | | &#x60;functions&#x60; | &#x60;create&#x60;, &#x60;read&#x60;, &#x60;update&#x60;, &#x60;delete&#x60;, &#x60;execute&#x60;, &#x60;simulate&#x60; | | &#x60;data&#x60; | &#x60;create&#x60;, &#x60;read&#x60;, &#x60;update&#x60;, &#x60;delete&#x60; | | &#x60;search&#x60; | &#x60;query&#x60;, &#x60;suggestions&#x60;, &#x60;read_analytics&#x60; | | &#x60;usage&#x60; | &#x60;read&#x60; | | &#x60;storage&#x60; | &#x60;read&#x60;, &#x60;create&#x60;, &#x60;update&#x60;, &#x60;delete&#x60;, &#x60;upload&#x60; | | &#x60;chat&#x60; | &#x60;read&#x60;, &#x60;create&#x60;, &#x60;update&#x60;, &#x60;delete&#x60; | | &#x60;realtime&#x60; | &#x60;read_analytics&#x60;, &#x60;read_active_users&#x60;, &#x60;presence&#x60;, &#x60;read_throughput&#x60;, &#x60;read_history&#x60; | | &#x60;roleElevation&#x60; | &#x60;request&#x60;, &#x60;status&#x60;, &#x60;documents&#x60; | | &#x60;webhooks&#x60; | &#x60;config_read&#x60;, &#x60;config_update&#x60;, &#x60;test_transformation&#x60; | </value>
         /* <example>{&quot;messaging&quot;:{&quot;email&quot;:true,&quot;sms&quot;:true,&quot;push&quot;:false,&quot;history&quot;:true,&quot;stats&quot;:true},&quot;integration&quot;:{&quot;read&quot;:true,&quot;execute&quot;:true},&quot;storage&quot;:{&quot;read&quot;:true,&quot;upload&quot;:true}}</example> */
         [JsonPropertyName("featurePermissions")]
-        public Dictionary<string, Dictionary<string, bool>>? FeaturePermissions { get { return this.FeaturePermissionsOption; } set { this.FeaturePermissionsOption = new(value); } }
+        public Dictionary<string, Dictionary<string, bool>>? FeaturePermissions { get { return this.FeaturePermissionsOption.Value; } set { this.FeaturePermissionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -237,8 +237,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateProjectRoleRequest" />
     /// </summary>
-    public class UpdateProjectRoleRequestJsonConverter : JsonConverter<UpdateProjectRoleRequest>
+    public partial class UpdateProjectRoleRequestJsonConverter : JsonConverter<UpdateProjectRoleRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateProjectRoleRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateProjectRoleRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateProjectRoleRequest" />
         /// </summary>

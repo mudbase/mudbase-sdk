@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiKeys
         /// </summary>
         [JsonPropertyName("apiKeys")]
-        public List<ApiKey>? ApiKeys { get { return this.ApiKeysOption; } set { this.ApiKeysOption = new(value); } }
+        public List<ApiKey>? ApiKeys { get { return this.ApiKeysOption.Value; } set { this.ApiKeysOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ListApiKeys200Response" />
     /// </summary>
-    public class ListApiKeys200ResponseJsonConverter : JsonConverter<ListApiKeys200Response>
+    public partial class ListApiKeys200ResponseJsonConverter : JsonConverter<ListApiKeys200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListApiKeys200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ListApiKeys200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ListApiKeys200Response" />
         /// </summary>

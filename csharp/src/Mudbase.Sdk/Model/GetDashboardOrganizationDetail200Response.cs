@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Organization
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Organization
         /// </summary>
         [JsonPropertyName("organization")]
-        public GetDashboardOrganizationDetail200ResponseOrganization? Organization { get { return this.OrganizationOption; } set { this.OrganizationOption = new(value); } }
+        public GetDashboardOrganizationDetail200ResponseOrganization? Organization { get { return this.OrganizationOption.Value; } set { this.OrganizationOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetDashboardOrganizationDetail200Response" />
     /// </summary>
-    public class GetDashboardOrganizationDetail200ResponseJsonConverter : JsonConverter<GetDashboardOrganizationDetail200Response>
+    public partial class GetDashboardOrganizationDetail200ResponseJsonConverter : JsonConverter<GetDashboardOrganizationDetail200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetDashboardOrganizationDetail200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetDashboardOrganizationDetail200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetDashboardOrganizationDetail200Response" />
         /// </summary>

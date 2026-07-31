@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Role
         /// </summary>
         [JsonPropertyName("role")]
-        public string? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public string? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Method
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Method
         /// </summary>
         [JsonPropertyName("method")]
-        public string? Method { get { return this.MethodOption; } set { this.MethodOption = new(value); } }
+        public string? Method { get { return this.MethodOption.Value; } set { this.MethodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pathname
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pathname
         /// </summary>
         [JsonPropertyName("pathname")]
-        public string? Pathname { get { return this.PathnameOption; } set { this.PathnameOption = new(value); } }
+        public string? Pathname { get { return this.PathnameOption.Value; } set { this.PathnameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OperationId
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OperationId
         /// </summary>
         [JsonPropertyName("operationId")]
-        public string? OperationId { get { return this.OperationIdOption; } set { this.OperationIdOption = new(value); } }
+        public string? OperationId { get { return this.OperationIdOption.Value; } set { this.OperationIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Resource
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Resource
         /// </summary>
         [JsonPropertyName("resource")]
-        public string? Resource { get { return this.ResourceOption; } set { this.ResourceOption = new(value); } }
+        public string? Resource { get { return this.ResourceOption.Value; } set { this.ResourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Action
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Action
         /// </summary>
         [JsonPropertyName("action")]
-        public string? Action { get { return this.ActionOption; } set { this.ActionOption = new(value); } }
+        public string? Action { get { return this.ActionOption.Value; } set { this.ActionOption = new(value); } }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -171,8 +171,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SimulateAppPermissions200ResponseEvaluated" />
     /// </summary>
-    public class SimulateAppPermissions200ResponseEvaluatedJsonConverter : JsonConverter<SimulateAppPermissions200ResponseEvaluated>
+    public partial class SimulateAppPermissions200ResponseEvaluatedJsonConverter : JsonConverter<SimulateAppPermissions200ResponseEvaluated>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimulateAppPermissions200ResponseEvaluatedJsonConverter" /> class.
+        /// </summary>
+        public SimulateAppPermissions200ResponseEvaluatedJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SimulateAppPermissions200ResponseEvaluated" />
         /// </summary>

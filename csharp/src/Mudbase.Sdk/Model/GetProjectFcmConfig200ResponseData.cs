@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets HasCredentials
         /// </summary>
         [JsonPropertyName("hasCredentials")]
-        public bool? HasCredentials { get { return this.HasCredentialsOption; } set { this.HasCredentialsOption = new(value); } }
+        public bool? HasCredentials { get { return this.HasCredentialsOption.Value; } set { this.HasCredentialsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetProjectFcmConfig200ResponseData" />
     /// </summary>
-    public class GetProjectFcmConfig200ResponseDataJsonConverter : JsonConverter<GetProjectFcmConfig200ResponseData>
+    public partial class GetProjectFcmConfig200ResponseDataJsonConverter : JsonConverter<GetProjectFcmConfig200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetProjectFcmConfig200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetProjectFcmConfig200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetProjectFcmConfig200ResponseData" />
         /// </summary>

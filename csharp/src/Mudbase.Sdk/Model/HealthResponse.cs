@@ -129,7 +129,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Timestamp
@@ -142,7 +142,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Services
@@ -155,7 +155,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Services
         /// </summary>
         [JsonPropertyName("services")]
-        public HealthResponseServices? Services { get { return this.ServicesOption; } set { this.ServicesOption = new(value); } }
+        public HealthResponseServices? Services { get { return this.ServicesOption.Value; } set { this.ServicesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VarVersion
@@ -168,7 +168,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VarVersion
         /// </summary>
         [JsonPropertyName("version")]
-        public string? VarVersion { get { return this.VarVersionOption; } set { this.VarVersionOption = new(value); } }
+        public string? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Uptime
@@ -181,7 +181,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Uptime
         /// </summary>
         [JsonPropertyName("uptime")]
-        public int? Uptime { get { return this.UptimeOption; } set { this.UptimeOption = new(value); } }
+        public int? Uptime { get { return this.UptimeOption.Value; } set { this.UptimeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -214,12 +214,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="HealthResponse" />
     /// </summary>
-    public class HealthResponseJsonConverter : JsonConverter<HealthResponse>
+    public partial class HealthResponseJsonConverter : JsonConverter<HealthResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HealthResponseJsonConverter" /> class.
+        /// </summary>
+        public HealthResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="HealthResponse" />

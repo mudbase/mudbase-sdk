@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PrivateKey
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PrivateKey
         /// </summary>
         [JsonPropertyName("privateKey")]
-        public string? PrivateKey { get { return this.PrivateKeyOption; } set { this.PrivateKeyOption = new(value); } }
+        public string? PrivateKey { get { return this.PrivateKeyOption.Value; } set { this.PrivateKeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PublicKey
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PublicKey
         /// </summary>
         [JsonPropertyName("publicKey")]
-        public string? PublicKey { get { return this.PublicKeyOption; } set { this.PublicKeyOption = new(value); } }
+        public string? PublicKey { get { return this.PublicKeyOption.Value; } set { this.PublicKeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Warning
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Warning
         /// </summary>
         [JsonPropertyName("warning")]
-        public string? Warning { get { return this.WarningOption; } set { this.WarningOption = new(value); } }
+        public string? Warning { get { return this.WarningOption.Value; } set { this.WarningOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GeneratePrivateKey200ResponseData" />
     /// </summary>
-    public class GeneratePrivateKey200ResponseDataJsonConverter : JsonConverter<GeneratePrivateKey200ResponseData>
+    public partial class GeneratePrivateKey200ResponseDataJsonConverter : JsonConverter<GeneratePrivateKey200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeneratePrivateKey200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GeneratePrivateKey200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GeneratePrivateKey200ResponseData" />
         /// </summary>

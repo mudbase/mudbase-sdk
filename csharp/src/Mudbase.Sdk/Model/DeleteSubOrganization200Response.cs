@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Sub-organization deleted successfully</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DeleteSubOrganization200Response" />
     /// </summary>
-    public class DeleteSubOrganization200ResponseJsonConverter : JsonConverter<DeleteSubOrganization200Response>
+    public partial class DeleteSubOrganization200ResponseJsonConverter : JsonConverter<DeleteSubOrganization200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteSubOrganization200ResponseJsonConverter" /> class.
+        /// </summary>
+        public DeleteSubOrganization200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DeleteSubOrganization200Response" />
         /// </summary>

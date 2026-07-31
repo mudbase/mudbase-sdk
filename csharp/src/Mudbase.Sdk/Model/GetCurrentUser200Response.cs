@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public User? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public User? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetCurrentUser200Response" />
     /// </summary>
-    public class GetCurrentUser200ResponseJsonConverter : JsonConverter<GetCurrentUser200Response>
+    public partial class GetCurrentUser200ResponseJsonConverter : JsonConverter<GetCurrentUser200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetCurrentUser200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetCurrentUser200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetCurrentUser200Response" />
         /// </summary>

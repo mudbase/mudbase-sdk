@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Url
         /// </summary>
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExpiresIn
@@ -75,7 +75,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Seconds until the signed URL expires; null for public files.</value>
         [JsonPropertyName("expiresIn")]
-        public int? ExpiresIn { get { return this.ExpiresInOption; } set { this.ExpiresInOption = new(value); } }
+        public int? ExpiresIn { get { return this.ExpiresInOption.Value; } set { this.ExpiresInOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsPublic
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Present and true only when the file is public.</value>
         [JsonPropertyName("isPublic")]
-        public bool? IsPublic { get { return this.IsPublicOption; } set { this.IsPublicOption = new(value); } }
+        public bool? IsPublic { get { return this.IsPublicOption.Value; } set { this.IsPublicOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Warning
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Present only for public files — explains the URL is permanent and unprotected.</value>
         [JsonPropertyName("warning")]
-        public string? Warning { get { return this.WarningOption; } set { this.WarningOption = new(value); } }
+        public string? Warning { get { return this.WarningOption.Value; } set { this.WarningOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,8 +135,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiFilesDownloadFileIdGet200Response" />
     /// </summary>
-    public class ApiFilesDownloadFileIdGet200ResponseJsonConverter : JsonConverter<ApiFilesDownloadFileIdGet200Response>
+    public partial class ApiFilesDownloadFileIdGet200ResponseJsonConverter : JsonConverter<ApiFilesDownloadFileIdGet200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiFilesDownloadFileIdGet200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ApiFilesDownloadFileIdGet200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiFilesDownloadFileIdGet200Response" />
         /// </summary>

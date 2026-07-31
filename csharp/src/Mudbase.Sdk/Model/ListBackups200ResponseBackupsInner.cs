@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Size
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Size
         /// </summary>
         [JsonPropertyName("size")]
-        public int? Size { get { return this.SizeOption; } set { this.SizeOption = new(value); } }
+        public int? Size { get { return this.SizeOption.Value; } set { this.SizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Collections
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Collections
         /// </summary>
         [JsonPropertyName("collections")]
-        public List<string>? Collections { get { return this.CollectionsOption; } set { this.CollectionsOption = new(value); } }
+        public List<string>? Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FileCount
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FileCount
         /// </summary>
         [JsonPropertyName("fileCount")]
-        public int? FileCount { get { return this.FileCountOption; } set { this.FileCountOption = new(value); } }
+        public int? FileCount { get { return this.FileCountOption.Value; } set { this.FileCountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CompletedAt
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CompletedAt
         /// </summary>
         [JsonPropertyName("completedAt")]
-        public DateTime? CompletedAt { get { return this.CompletedAtOption; } set { this.CompletedAtOption = new(value); } }
+        public DateTime? CompletedAt { get { return this.CompletedAtOption.Value; } set { this.CompletedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,17 +196,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ListBackups200ResponseBackupsInner" />
     /// </summary>
-    public class ListBackups200ResponseBackupsInnerJsonConverter : JsonConverter<ListBackups200ResponseBackupsInner>
+    public partial class ListBackups200ResponseBackupsInnerJsonConverter : JsonConverter<ListBackups200ResponseBackupsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListBackups200ResponseBackupsInnerJsonConverter" /> class.
+        /// </summary>
+        public ListBackups200ResponseBackupsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CompletedAt
         /// </summary>
-        public static string CompletedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CompletedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="ListBackups200ResponseBackupsInner" />

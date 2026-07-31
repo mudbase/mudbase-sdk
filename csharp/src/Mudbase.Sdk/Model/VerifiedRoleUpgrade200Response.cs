@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Role
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Role
         /// </summary>
         [JsonPropertyName("role")]
-        public string? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public string? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PreviousRole
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PreviousRole
         /// </summary>
         [JsonPropertyName("previousRole")]
-        public string? PreviousRole { get { return this.PreviousRoleOption; } set { this.PreviousRoleOption = new(value); } }
+        public string? PreviousRole { get { return this.PreviousRoleOption.Value; } set { this.PreviousRoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpgradeLog
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UpgradeLog
         /// </summary>
         [JsonPropertyName("upgradeLog")]
-        public string? UpgradeLog { get { return this.UpgradeLogOption; } set { this.UpgradeLogOption = new(value); } }
+        public string? UpgradeLog { get { return this.UpgradeLogOption.Value; } set { this.UpgradeLogOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="VerifiedRoleUpgrade200Response" />
     /// </summary>
-    public class VerifiedRoleUpgrade200ResponseJsonConverter : JsonConverter<VerifiedRoleUpgrade200Response>
+    public partial class VerifiedRoleUpgrade200ResponseJsonConverter : JsonConverter<VerifiedRoleUpgrade200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifiedRoleUpgrade200ResponseJsonConverter" /> class.
+        /// </summary>
+        public VerifiedRoleUpgrade200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VerifiedRoleUpgrade200Response" />
         /// </summary>

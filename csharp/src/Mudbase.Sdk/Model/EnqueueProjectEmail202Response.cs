@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of JobId
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets JobId
         /// </summary>
         [JsonPropertyName("jobId")]
-        public string? JobId { get { return this.JobIdOption; } set { this.JobIdOption = new(value); } }
+        public string? JobId { get { return this.JobIdOption.Value; } set { this.JobIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EnqueueProjectEmail202Response" />
     /// </summary>
-    public class EnqueueProjectEmail202ResponseJsonConverter : JsonConverter<EnqueueProjectEmail202Response>
+    public partial class EnqueueProjectEmail202ResponseJsonConverter : JsonConverter<EnqueueProjectEmail202Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnqueueProjectEmail202ResponseJsonConverter" /> class.
+        /// </summary>
+        public EnqueueProjectEmail202ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EnqueueProjectEmail202Response" />
         /// </summary>

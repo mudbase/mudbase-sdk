@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Domain
         /// </summary>
         [JsonPropertyName("domain")]
-        public string? Domain { get { return this.DomainOption; } set { this.DomainOption = new(value); } }
+        public string? Domain { get { return this.DomainOption.Value; } set { this.DomainOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FromEmail
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FromEmail
         /// </summary>
         [JsonPropertyName("fromEmail")]
-        public string? FromEmail { get { return this.FromEmailOption; } set { this.FromEmailOption = new(value); } }
+        public string? FromEmail { get { return this.FromEmailOption.Value; } set { this.FromEmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Persist
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>If true and checks pass, persist domainVerifiedAt on the project</value>
         [JsonPropertyName("persist")]
-        public bool? Persist { get { return this.PersistOption; } set { this.PersistOption = new(value); } }
+        public bool? Persist { get { return this.PersistOption.Value; } set { this.PersistOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -117,8 +117,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="VerifyProjectEmailSmtpDomainRequest" />
     /// </summary>
-    public class VerifyProjectEmailSmtpDomainRequestJsonConverter : JsonConverter<VerifyProjectEmailSmtpDomainRequest>
+    public partial class VerifyProjectEmailSmtpDomainRequestJsonConverter : JsonConverter<VerifyProjectEmailSmtpDomainRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifyProjectEmailSmtpDomainRequestJsonConverter" /> class.
+        /// </summary>
+        public VerifyProjectEmailSmtpDomainRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="VerifyProjectEmailSmtpDomainRequest" />
         /// </summary>

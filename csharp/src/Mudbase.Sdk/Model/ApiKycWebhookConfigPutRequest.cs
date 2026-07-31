@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Destination URL. Send null or empty string to clear.</value>
         [JsonPropertyName("webhookUrl")]
-        public string? WebhookUrl { get { return this.WebhookUrlOption; } set { this.WebhookUrlOption = new(value); } }
+        public string? WebhookUrl { get { return this.WebhookUrlOption.Value; } set { this.WebhookUrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of WebhookSecret
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Explicit signing secret (min 16 chars). Send null or empty string to clear.</value>
         [JsonPropertyName("webhookSecret")]
-        public string? WebhookSecret { get { return this.WebhookSecretOption; } set { this.WebhookSecretOption = new(value); } }
+        public string? WebhookSecret { get { return this.WebhookSecretOption.Value; } set { this.WebhookSecretOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GenerateSecret
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When true, the server generates a new secret and returns it once.</value>
         [JsonPropertyName("generateSecret")]
-        public bool? GenerateSecret { get { return this.GenerateSecretOption; } set { this.GenerateSecretOption = new(value); } }
+        public bool? GenerateSecret { get { return this.GenerateSecretOption.Value; } set { this.GenerateSecretOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -125,8 +125,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApiKycWebhookConfigPutRequest" />
     /// </summary>
-    public class ApiKycWebhookConfigPutRequestJsonConverter : JsonConverter<ApiKycWebhookConfigPutRequest>
+    public partial class ApiKycWebhookConfigPutRequestJsonConverter : JsonConverter<ApiKycWebhookConfigPutRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiKycWebhookConfigPutRequestJsonConverter" /> class.
+        /// </summary>
+        public ApiKycWebhookConfigPutRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApiKycWebhookConfigPutRequest" />
         /// </summary>

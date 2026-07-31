@@ -67,7 +67,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -80,7 +80,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Address
@@ -93,7 +93,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Address
         /// </summary>
         [JsonPropertyName("address")]
-        public string? Address { get { return this.AddressOption; } set { this.AddressOption = new(value); } }
+        public string? Address { get { return this.AddressOption.Value; } set { this.AddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Balance
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Balance
         /// </summary>
         [JsonPropertyName("balance")]
-        public string? Balance { get { return this.BalanceOption; } set { this.BalanceOption = new(value); } }
+        public string? Balance { get { return this.BalanceOption.Value; } set { this.BalanceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsCustomKey
@@ -119,7 +119,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsCustomKey
         /// </summary>
         [JsonPropertyName("isCustomKey")]
-        public bool? IsCustomKey { get { return this.IsCustomKeyOption; } set { this.IsCustomKeyOption = new(value); } }
+        public bool? IsCustomKey { get { return this.IsCustomKeyOption.Value; } set { this.IsCustomKeyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Project
@@ -132,7 +132,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public string? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public string? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -145,7 +145,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -180,12 +180,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateWallet201ResponseData" />
     /// </summary>
-    public class CreateWallet201ResponseDataJsonConverter : JsonConverter<CreateWallet201ResponseData>
+    public partial class CreateWallet201ResponseDataJsonConverter : JsonConverter<CreateWallet201ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateWallet201ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public CreateWallet201ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateWallet201ResponseData" />

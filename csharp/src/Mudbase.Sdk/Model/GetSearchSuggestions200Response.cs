@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Suggestions
         /// </summary>
         [JsonPropertyName("suggestions")]
-        public List<string>? Suggestions { get { return this.SuggestionsOption; } set { this.SuggestionsOption = new(value); } }
+        public List<string>? Suggestions { get { return this.SuggestionsOption.Value; } set { this.SuggestionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSearchSuggestions200Response" />
     /// </summary>
-    public class GetSearchSuggestions200ResponseJsonConverter : JsonConverter<GetSearchSuggestions200Response>
+    public partial class GetSearchSuggestions200ResponseJsonConverter : JsonConverter<GetSearchSuggestions200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSearchSuggestions200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetSearchSuggestions200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSearchSuggestions200Response" />
         /// </summary>

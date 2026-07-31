@@ -56,7 +56,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Invalid or expired download token</example> */
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,8 +85,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DownloadBucketFile403Response" />
     /// </summary>
-    public class DownloadBucketFile403ResponseJsonConverter : JsonConverter<DownloadBucketFile403Response>
+    public partial class DownloadBucketFile403ResponseJsonConverter : JsonConverter<DownloadBucketFile403Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DownloadBucketFile403ResponseJsonConverter" /> class.
+        /// </summary>
+        public DownloadBucketFile403ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DownloadBucketFile403Response" />
         /// </summary>

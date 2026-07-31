@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets HasAccess
         /// </summary>
         [JsonPropertyName("hasAccess")]
-        public bool? HasAccess { get { return this.HasAccessOption; } set { this.HasAccessOption = new(value); } }
+        public bool? HasAccess { get { return this.HasAccessOption.Value; } set { this.HasAccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Reason
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("reason")]
-        public string? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public string? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckFeatureAccess200Response" />
     /// </summary>
-    public class CheckFeatureAccess200ResponseJsonConverter : JsonConverter<CheckFeatureAccess200Response>
+    public partial class CheckFeatureAccess200ResponseJsonConverter : JsonConverter<CheckFeatureAccess200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckFeatureAccess200ResponseJsonConverter" /> class.
+        /// </summary>
+        public CheckFeatureAccess200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CheckFeatureAccess200Response" />
         /// </summary>

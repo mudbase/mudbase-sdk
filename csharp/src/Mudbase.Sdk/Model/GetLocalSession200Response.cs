@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets User
         /// </summary>
         [JsonPropertyName("user")]
-        public Object? User { get { return this.UserOption; } set { this.UserOption = new(value); } }
+        public Object? User { get { return this.UserOption.Value; } set { this.UserOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Authenticated
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Authenticated
         /// </summary>
         [JsonPropertyName("authenticated")]
-        public bool? Authenticated { get { return this.AuthenticatedOption; } set { this.AuthenticatedOption = new(value); } }
+        public bool? Authenticated { get { return this.AuthenticatedOption.Value; } set { this.AuthenticatedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetLocalSession200Response" />
     /// </summary>
-    public class GetLocalSession200ResponseJsonConverter : JsonConverter<GetLocalSession200Response>
+    public partial class GetLocalSession200ResponseJsonConverter : JsonConverter<GetLocalSession200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetLocalSession200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetLocalSession200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetLocalSession200Response" />
         /// </summary>

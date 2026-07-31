@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Invoice
         /// </summary>
         [JsonPropertyName("invoice")]
-        public GetInvoice200ResponseInvoice? Invoice { get { return this.InvoiceOption; } set { this.InvoiceOption = new(value); } }
+        public GetInvoice200ResponseInvoice? Invoice { get { return this.InvoiceOption.Value; } set { this.InvoiceOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetInvoice200Response" />
     /// </summary>
-    public class GetInvoice200ResponseJsonConverter : JsonConverter<GetInvoice200Response>
+    public partial class GetInvoice200ResponseJsonConverter : JsonConverter<GetInvoice200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetInvoice200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetInvoice200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetInvoice200Response" />
         /// </summary>

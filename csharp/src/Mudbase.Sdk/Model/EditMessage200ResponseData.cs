@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Content
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Content
         /// </summary>
         [JsonPropertyName("content")]
-        public string? Content { get { return this.ContentOption; } set { this.ContentOption = new(value); } }
+        public string? Content { get { return this.ContentOption.Value; } set { this.ContentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsE2ee
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsE2ee
         /// </summary>
         [JsonPropertyName("isE2ee")]
-        public bool? IsE2ee { get { return this.IsE2eeOption; } set { this.IsE2eeOption = new(value); } }
+        public bool? IsE2ee { get { return this.IsE2eeOption.Value; } set { this.IsE2eeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of E2ee
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets E2ee
         /// </summary>
         [JsonPropertyName("e2ee")]
-        public Object? E2ee { get { return this.E2eeOption; } set { this.E2eeOption = new(value); } }
+        public Object? E2ee { get { return this.E2eeOption.Value; } set { this.E2eeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EditedAt
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EditedAt
         /// </summary>
         [JsonPropertyName("editedAt")]
-        public string? EditedAt { get { return this.EditedAtOption; } set { this.EditedAtOption = new(value); } }
+        public string? EditedAt { get { return this.EditedAtOption.Value; } set { this.EditedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EditMessage200ResponseData" />
     /// </summary>
-    public class EditMessage200ResponseDataJsonConverter : JsonConverter<EditMessage200ResponseData>
+    public partial class EditMessage200ResponseDataJsonConverter : JsonConverter<EditMessage200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditMessage200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public EditMessage200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EditMessage200ResponseData" />
         /// </summary>

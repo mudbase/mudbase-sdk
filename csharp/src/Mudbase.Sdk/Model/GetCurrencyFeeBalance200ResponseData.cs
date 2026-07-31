@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CollectedAmount
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CollectedAmount
         /// </summary>
         [JsonPropertyName("collectedAmount")]
-        public decimal? CollectedAmount { get { return this.CollectedAmountOption; } set { this.CollectedAmountOption = new(value); } }
+        public decimal? CollectedAmount { get { return this.CollectedAmountOption.Value; } set { this.CollectedAmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Threshold
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Threshold
         /// </summary>
         [JsonPropertyName("threshold")]
-        public decimal? Threshold { get { return this.ThresholdOption; } set { this.ThresholdOption = new(value); } }
+        public decimal? Threshold { get { return this.ThresholdOption.Value; } set { this.ThresholdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Status
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetCurrencyFeeBalance200ResponseData" />
     /// </summary>
-    public class GetCurrencyFeeBalance200ResponseDataJsonConverter : JsonConverter<GetCurrencyFeeBalance200ResponseData>
+    public partial class GetCurrencyFeeBalance200ResponseDataJsonConverter : JsonConverter<GetCurrencyFeeBalance200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetCurrencyFeeBalance200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetCurrencyFeeBalance200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetCurrencyFeeBalance200ResponseData" />
         /// </summary>

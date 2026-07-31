@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Role created successfully</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Role
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Role
         /// </summary>
         [JsonPropertyName("role")]
-        public CreateRole201ResponseRole? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public CreateRole201ResponseRole? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateRole201Response" />
     /// </summary>
-    public class CreateRole201ResponseJsonConverter : JsonConverter<CreateRole201Response>
+    public partial class CreateRole201ResponseJsonConverter : JsonConverter<CreateRole201Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateRole201ResponseJsonConverter" /> class.
+        /// </summary>
+        public CreateRole201ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreateRole201Response" />
         /// </summary>

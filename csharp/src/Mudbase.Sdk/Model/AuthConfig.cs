@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Providers
         /// </summary>
         [JsonPropertyName("providers")]
-        public List<AuthProvider>? Providers { get { return this.ProvidersOption; } set { this.ProvidersOption = new(value); } }
+        public List<AuthProvider>? Providers { get { return this.ProvidersOption.Value; } set { this.ProvidersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NotifyOnNewSignIn
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When true, a \&quot;new sign-in detected\&quot; email is sent to the user on each project-based sign-in (local or OAuth). Counts against the org&#39;s messaging/email plan quota. Default false. Organization-based sign-in always sends this email (no quota deduction). </value>
         [JsonPropertyName("notifyOnNewSignIn")]
-        public bool? NotifyOnNewSignIn { get { return this.NotifyOnNewSignInOption; } set { this.NotifyOnNewSignInOption = new(value); } }
+        public bool? NotifyOnNewSignIn { get { return this.NotifyOnNewSignInOption.Value; } set { this.NotifyOnNewSignInOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AuthConfig" />
     /// </summary>
-    public class AuthConfigJsonConverter : JsonConverter<AuthConfig>
+    public partial class AuthConfigJsonConverter : JsonConverter<AuthConfig>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthConfigJsonConverter" /> class.
+        /// </summary>
+        public AuthConfigJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AuthConfig" />
         /// </summary>

@@ -77,8 +77,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ImportIntegrationRequest" />
     /// </summary>
-    public class ImportIntegrationRequestJsonConverter : JsonConverter<ImportIntegrationRequest>
+    public partial class ImportIntegrationRequestJsonConverter : JsonConverter<ImportIntegrationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImportIntegrationRequestJsonConverter" /> class.
+        /// </summary>
+        public ImportIntegrationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ImportIntegrationRequest" />
         /// </summary>

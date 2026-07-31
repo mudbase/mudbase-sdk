@@ -77,8 +77,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SetOrgPrimaryDomainRequest" />
     /// </summary>
-    public class SetOrgPrimaryDomainRequestJsonConverter : JsonConverter<SetOrgPrimaryDomainRequest>
+    public partial class SetOrgPrimaryDomainRequestJsonConverter : JsonConverter<SetOrgPrimaryDomainRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SetOrgPrimaryDomainRequestJsonConverter" /> class.
+        /// </summary>
+        public SetOrgPrimaryDomainRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SetOrgPrimaryDomainRequest" />
         /// </summary>

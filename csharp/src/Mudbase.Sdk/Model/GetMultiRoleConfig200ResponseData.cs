@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsEnabled
         /// </summary>
         [JsonPropertyName("isEnabled")]
-        public bool? IsEnabled { get { return this.IsEnabledOption; } set { this.IsEnabledOption = new(value); } }
+        public bool? IsEnabled { get { return this.IsEnabledOption.Value; } set { this.IsEnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DefaultRole
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets DefaultRole
         /// </summary>
         [JsonPropertyName("defaultRole")]
-        public string? DefaultRole { get { return this.DefaultRoleOption; } set { this.DefaultRoleOption = new(value); } }
+        public string? DefaultRole { get { return this.DefaultRoleOption.Value; } set { this.DefaultRoleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Settings
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Settings
         /// </summary>
         [JsonPropertyName("settings")]
-        public Object? Settings { get { return this.SettingsOption; } set { this.SettingsOption = new(value); } }
+        public Object? Settings { get { return this.SettingsOption.Value; } set { this.SettingsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Roles
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Roles
         /// </summary>
         [JsonPropertyName("roles")]
-        public List<Object>? Roles { get { return this.RolesOption; } set { this.RolesOption = new(value); } }
+        public List<Object>? Roles { get { return this.RolesOption.Value; } set { this.RolesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetMultiRoleConfig200ResponseData" />
     /// </summary>
-    public class GetMultiRoleConfig200ResponseDataJsonConverter : JsonConverter<GetMultiRoleConfig200ResponseData>
+    public partial class GetMultiRoleConfig200ResponseDataJsonConverter : JsonConverter<GetMultiRoleConfig200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetMultiRoleConfig200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetMultiRoleConfig200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetMultiRoleConfig200ResponseData" />
         /// </summary>

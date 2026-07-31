@@ -67,7 +67,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Code
@@ -80,7 +80,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Code
         /// </summary>
         [JsonPropertyName("code")]
-        public string? Code { get { return this.CodeOption; } set { this.CodeOption = new(value); } }
+        public string? Code { get { return this.CodeOption.Value; } set { this.CodeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Details
@@ -93,7 +93,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Details
         /// </summary>
         [JsonPropertyName("details")]
-        public ErrorDetails? Details { get { return this.DetailsOption; } set { this.DetailsOption = new(value); } }
+        public ErrorDetails? Details { get { return this.DetailsOption.Value; } set { this.DetailsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Timestamp
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
-        public DateTime? Timestamp { get { return this.TimestampOption; } set { this.TimestampOption = new(value); } }
+        public DateTime? Timestamp { get { return this.TimestampOption.Value; } set { this.TimestampOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Path
@@ -119,7 +119,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Path
         /// </summary>
         [JsonPropertyName("path")]
-        public string? Path { get { return this.PathOption; } set { this.PathOption = new(value); } }
+        public string? Path { get { return this.PathOption.Value; } set { this.PathOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequestId
@@ -132,7 +132,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RequestId
         /// </summary>
         [JsonPropertyName("requestId")]
-        public string? RequestId { get { return this.RequestIdOption; } set { this.RequestIdOption = new(value); } }
+        public string? RequestId { get { return this.RequestIdOption.Value; } set { this.RequestIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RetryAfter
@@ -145,7 +145,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RetryAfter
         /// </summary>
         [JsonPropertyName("retryAfter")]
-        public int? RetryAfter { get { return this.RetryAfterOption; } set { this.RetryAfterOption = new(value); } }
+        public int? RetryAfter { get { return this.RetryAfterOption.Value; } set { this.RetryAfterOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -180,12 +180,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RegisterUser429Response" />
     /// </summary>
-    public class RegisterUser429ResponseJsonConverter : JsonConverter<RegisterUser429Response>
+    public partial class RegisterUser429ResponseJsonConverter : JsonConverter<RegisterUser429Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterUser429ResponseJsonConverter" /> class.
+        /// </summary>
+        public RegisterUser429ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize Timestamp
         /// </summary>
-        public static string TimestampFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="RegisterUser429Response" />

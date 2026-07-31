@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Success
         /// </summary>
         [JsonPropertyName("success")]
-        public bool? Success { get { return this.SuccessOption; } set { this.SuccessOption = new(value); } }
+        public bool? Success { get { return this.SuccessOption.Value; } set { this.SuccessOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Message
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Message
         /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of VerificationStatus
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets VerificationStatus
         /// </summary>
         [JsonPropertyName("verificationStatus")]
-        public string? VerificationStatus { get { return this.VerificationStatusOption; } set { this.VerificationStatusOption = new(value); } }
+        public string? VerificationStatus { get { return this.VerificationStatusOption.Value; } set { this.VerificationStatusOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InitiateAddressVerification200Response" />
     /// </summary>
-    public class InitiateAddressVerification200ResponseJsonConverter : JsonConverter<InitiateAddressVerification200Response>
+    public partial class InitiateAddressVerification200ResponseJsonConverter : JsonConverter<InitiateAddressVerification200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InitiateAddressVerification200ResponseJsonConverter" /> class.
+        /// </summary>
+        public InitiateAddressVerification200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InitiateAddressVerification200Response" />
         /// </summary>

@@ -108,8 +108,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="OrgDnsRecord" />
     /// </summary>
-    public class OrgDnsRecordJsonConverter : JsonConverter<OrgDnsRecord>
+    public partial class OrgDnsRecordJsonConverter : JsonConverter<OrgDnsRecord>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrgDnsRecordJsonConverter" /> class.
+        /// </summary>
+        public OrgDnsRecordJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="OrgDnsRecord" />
         /// </summary>

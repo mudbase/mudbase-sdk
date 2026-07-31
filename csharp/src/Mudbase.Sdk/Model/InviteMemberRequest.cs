@@ -166,8 +166,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InviteMemberRequest" />
     /// </summary>
-    public class InviteMemberRequestJsonConverter : JsonConverter<InviteMemberRequest>
+    public partial class InviteMemberRequestJsonConverter : JsonConverter<InviteMemberRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InviteMemberRequestJsonConverter" /> class.
+        /// </summary>
+        public InviteMemberRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InviteMemberRequest" />
         /// </summary>

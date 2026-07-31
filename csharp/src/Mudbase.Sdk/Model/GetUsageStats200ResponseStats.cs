@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TotalCalls
         /// </summary>
         [JsonPropertyName("totalCalls")]
-        public int? TotalCalls { get { return this.TotalCallsOption; } set { this.TotalCallsOption = new(value); } }
+        public int? TotalCalls { get { return this.TotalCallsOption.Value; } set { this.TotalCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SuccessCalls
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SuccessCalls
         /// </summary>
         [JsonPropertyName("successCalls")]
-        public int? SuccessCalls { get { return this.SuccessCallsOption; } set { this.SuccessCallsOption = new(value); } }
+        public int? SuccessCalls { get { return this.SuccessCallsOption.Value; } set { this.SuccessCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FailedCalls
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FailedCalls
         /// </summary>
         [JsonPropertyName("failedCalls")]
-        public int? FailedCalls { get { return this.FailedCallsOption; } set { this.FailedCallsOption = new(value); } }
+        public int? FailedCalls { get { return this.FailedCallsOption.Value; } set { this.FailedCallsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetUsageStats200ResponseStats" />
     /// </summary>
-    public class GetUsageStats200ResponseStatsJsonConverter : JsonConverter<GetUsageStats200ResponseStats>
+    public partial class GetUsageStats200ResponseStatsJsonConverter : JsonConverter<GetUsageStats200ResponseStats>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetUsageStats200ResponseStatsJsonConverter" /> class.
+        /// </summary>
+        public GetUsageStats200ResponseStatsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetUsageStats200ResponseStats" />
         /// </summary>

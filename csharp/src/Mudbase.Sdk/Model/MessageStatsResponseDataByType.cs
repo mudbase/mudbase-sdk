@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Push
         /// </summary>
         [JsonPropertyName("push")]
-        public int? Push { get { return this.PushOption; } set { this.PushOption = new(value); } }
+        public int? Push { get { return this.PushOption.Value; } set { this.PushOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Email
         /// </summary>
         [JsonPropertyName("email")]
-        public int? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public int? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Sms
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Sms
         /// </summary>
         [JsonPropertyName("sms")]
-        public int? Sms { get { return this.SmsOption; } set { this.SmsOption = new(value); } }
+        public int? Sms { get { return this.SmsOption.Value; } set { this.SmsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MessageStatsResponseDataByType" />
     /// </summary>
-    public class MessageStatsResponseDataByTypeJsonConverter : JsonConverter<MessageStatsResponseDataByType>
+    public partial class MessageStatsResponseDataByTypeJsonConverter : JsonConverter<MessageStatsResponseDataByType>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageStatsResponseDataByTypeJsonConverter" /> class.
+        /// </summary>
+        public MessageStatsResponseDataByTypeJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MessageStatsResponseDataByType" />
         /// </summary>

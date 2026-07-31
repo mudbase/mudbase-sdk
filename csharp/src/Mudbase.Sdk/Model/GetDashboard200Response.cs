@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Revenue
         /// </summary>
         [JsonPropertyName("revenue")]
-        public decimal? Revenue { get { return this.RevenueOption; } set { this.RevenueOption = new(value); } }
+        public decimal? Revenue { get { return this.RevenueOption.Value; } set { this.RevenueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Subscriptions
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Subscriptions
         /// </summary>
         [JsonPropertyName("subscriptions")]
-        public int? Subscriptions { get { return this.SubscriptionsOption; } set { this.SubscriptionsOption = new(value); } }
+        public int? Subscriptions { get { return this.SubscriptionsOption.Value; } set { this.SubscriptionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ActivePlans
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ActivePlans
         /// </summary>
         [JsonPropertyName("activePlans")]
-        public int? ActivePlans { get { return this.ActivePlansOption; } set { this.ActivePlansOption = new(value); } }
+        public int? ActivePlans { get { return this.ActivePlansOption.Value; } set { this.ActivePlansOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetDashboard200Response" />
     /// </summary>
-    public class GetDashboard200ResponseJsonConverter : JsonConverter<GetDashboard200Response>
+    public partial class GetDashboard200ResponseJsonConverter : JsonConverter<GetDashboard200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetDashboard200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetDashboard200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetDashboard200Response" />
         /// </summary>

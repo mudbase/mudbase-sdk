@@ -135,7 +135,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Default account status for new signups. **active** &#x3D; user can use the app immediately. **pending** &#x3D; user must be approved by an org owner/admin (PATCH org user status to active) before they can perform protected operations. </value>
         [JsonPropertyName("defaultUserAccountStatus")]
-        public DefaultUserAccountStatusEnum? DefaultUserAccountStatus { get { return this.DefaultUserAccountStatusOption; } set { this.DefaultUserAccountStatusOption = new(value); } }
+        public DefaultUserAccountStatusEnum? DefaultUserAccountStatus { get { return this.DefaultUserAccountStatusOption.Value; } set { this.DefaultUserAccountStatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AllowAnonymousAuth
@@ -149,7 +149,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Allow anonymous (unauthenticated) users</value>
         [JsonPropertyName("allowAnonymousAuth")]
-        public bool? AllowAnonymousAuth { get { return this.AllowAnonymousAuthOption; } set { this.AllowAnonymousAuthOption = new(value); } }
+        public bool? AllowAnonymousAuth { get { return this.AllowAnonymousAuthOption.Value; } set { this.AllowAnonymousAuthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequireEmailVerification
@@ -163,7 +163,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When true, users who sign up with email do not receive a token until they verify their email; login is blocked until verified.</value>
         [JsonPropertyName("requireEmailVerification")]
-        public bool? RequireEmailVerification { get { return this.RequireEmailVerificationOption; } set { this.RequireEmailVerificationOption = new(value); } }
+        public bool? RequireEmailVerification { get { return this.RequireEmailVerificationOption.Value; } set { this.RequireEmailVerificationOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequirePhoneVerification
@@ -177,7 +177,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When true, users who sign in with phone (e.g. OTP) must have verified their phone before receiving a token.</value>
         [JsonPropertyName("requirePhoneVerification")]
-        public bool? RequirePhoneVerification { get { return this.RequirePhoneVerificationOption; } set { this.RequirePhoneVerificationOption = new(value); } }
+        public bool? RequirePhoneVerification { get { return this.RequirePhoneVerificationOption.Value; } set { this.RequirePhoneVerificationOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EnableRealtime
@@ -190,7 +190,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EnableRealtime
         /// </summary>
         [JsonPropertyName("enableRealtime")]
-        public bool? EnableRealtime { get { return this.EnableRealtimeOption; } set { this.EnableRealtimeOption = new(value); } }
+        public bool? EnableRealtime { get { return this.EnableRealtimeOption.Value; } set { this.EnableRealtimeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EnableStorage
@@ -203,7 +203,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EnableStorage
         /// </summary>
         [JsonPropertyName("enableStorage")]
-        public bool? EnableStorage { get { return this.EnableStorageOption; } set { this.EnableStorageOption = new(value); } }
+        public bool? EnableStorage { get { return this.EnableStorageOption.Value; } set { this.EnableStorageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EnableFunctions
@@ -216,7 +216,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EnableFunctions
         /// </summary>
         [JsonPropertyName("enableFunctions")]
-        public bool? EnableFunctions { get { return this.EnableFunctionsOption; } set { this.EnableFunctionsOption = new(value); } }
+        public bool? EnableFunctions { get { return this.EnableFunctionsOption.Value; } set { this.EnableFunctionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -251,8 +251,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ProjectSettings" />
     /// </summary>
-    public class ProjectSettingsJsonConverter : JsonConverter<ProjectSettings>
+    public partial class ProjectSettingsJsonConverter : JsonConverter<ProjectSettings>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectSettingsJsonConverter" /> class.
+        /// </summary>
+        public ProjectSettingsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ProjectSettings" />
         /// </summary>

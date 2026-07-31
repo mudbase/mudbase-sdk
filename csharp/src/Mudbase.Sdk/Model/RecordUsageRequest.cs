@@ -98,8 +98,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="RecordUsageRequest" />
     /// </summary>
-    public class RecordUsageRequestJsonConverter : JsonConverter<RecordUsageRequest>
+    public partial class RecordUsageRequestJsonConverter : JsonConverter<RecordUsageRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecordUsageRequestJsonConverter" /> class.
+        /// </summary>
+        public RecordUsageRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="RecordUsageRequest" />
         /// </summary>

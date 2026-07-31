@@ -141,7 +141,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Congestion
         /// </summary>
         [JsonPropertyName("congestion")]
-        public CongestionEnum? Congestion { get { return this.CongestionOption; } set { this.CongestionOption = new(value); } }
+        public CongestionEnum? Congestion { get { return this.CongestionOption.Value; } set { this.CongestionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GasPriceGwei
@@ -155,7 +155,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>EVM only</value>
         [JsonPropertyName("gasPriceGwei")]
-        public decimal? GasPriceGwei { get { return this.GasPriceGweiOption; } set { this.GasPriceGweiOption = new(value); } }
+        public decimal? GasPriceGwei { get { return this.GasPriceGweiOption.Value; } set { this.GasPriceGweiOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SatPerVb
@@ -169,7 +169,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>UTXO only</value>
         [JsonPropertyName("satPerVb")]
-        public decimal? SatPerVb { get { return this.SatPerVbOption; } set { this.SatPerVbOption = new(value); } }
+        public decimal? SatPerVb { get { return this.SatPerVbOption.Value; } set { this.SatPerVbOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NetworkFee
@@ -182,7 +182,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets NetworkFee
         /// </summary>
         [JsonPropertyName("networkFee")]
-        public string? NetworkFee { get { return this.NetworkFeeOption; } set { this.NetworkFeeOption = new(value); } }
+        public string? NetworkFee { get { return this.NetworkFeeOption.Value; } set { this.NetworkFeeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -214,8 +214,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetNetworkStatus200ResponseDataValue" />
     /// </summary>
-    public class GetNetworkStatus200ResponseDataValueJsonConverter : JsonConverter<GetNetworkStatus200ResponseDataValue>
+    public partial class GetNetworkStatus200ResponseDataValueJsonConverter : JsonConverter<GetNetworkStatus200ResponseDataValue>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetNetworkStatus200ResponseDataValueJsonConverter" /> class.
+        /// </summary>
+        public GetNetworkStatus200ResponseDataValueJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetNetworkStatus200ResponseDataValue" />
         /// </summary>

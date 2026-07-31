@@ -89,8 +89,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ErrorDetails" />
     /// </summary>
-    public class ErrorDetailsJsonConverter : JsonConverter<ErrorDetails>
+    public partial class ErrorDetailsJsonConverter : JsonConverter<ErrorDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorDetailsJsonConverter" /> class.
+        /// </summary>
+        public ErrorDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ErrorDetails" />
         /// </summary>

@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SoleOwnedOrgs
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SoleOwnedOrgs
         /// </summary>
         [JsonPropertyName("soleOwnedOrgs")]
-        public List<string>? SoleOwnedOrgs { get { return this.SoleOwnedOrgsOption; } set { this.SoleOwnedOrgsOption = new(value); } }
+        public List<string>? SoleOwnedOrgs { get { return this.SoleOwnedOrgsOption.Value; } set { this.SoleOwnedOrgsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EraseUserData409Response" />
     /// </summary>
-    public class EraseUserData409ResponseJsonConverter : JsonConverter<EraseUserData409Response>
+    public partial class EraseUserData409ResponseJsonConverter : JsonConverter<EraseUserData409Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EraseUserData409ResponseJsonConverter" /> class.
+        /// </summary>
+        public EraseUserData409ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EraseUserData409Response" />
         /// </summary>

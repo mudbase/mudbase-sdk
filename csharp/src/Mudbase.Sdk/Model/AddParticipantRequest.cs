@@ -123,7 +123,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Role
         /// </summary>
         [JsonPropertyName("role")]
-        public RoleEnum? Role { get { return this.RoleOption; } set { this.RoleOption = new(value); } }
+        public RoleEnum? Role { get { return this.RoleOption.Value; } set { this.RoleOption = new(value); } }
 
         /// <summary>
         /// Gets or Sets UserId
@@ -159,8 +159,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AddParticipantRequest" />
     /// </summary>
-    public class AddParticipantRequestJsonConverter : JsonConverter<AddParticipantRequest>
+    public partial class AddParticipantRequestJsonConverter : JsonConverter<AddParticipantRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddParticipantRequestJsonConverter" /> class.
+        /// </summary>
+        public AddParticipantRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AddParticipantRequest" />
         /// </summary>

@@ -68,7 +68,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb</example> */
         [JsonPropertyName("address")]
-        public string? Address { get { return this.AddressOption; } set { this.AddressOption = new(value); } }
+        public string? Address { get { return this.AddressOption.Value; } set { this.AddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Chain
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>ethereum</example> */
         [JsonPropertyName("chain")]
-        public string? Chain { get { return this.ChainOption; } set { this.ChainOption = new(value); } }
+        public string? Chain { get { return this.ChainOption.Value; } set { this.ChainOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Confirmed
@@ -97,7 +97,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Confirmed balance (string to handle large numbers)</value>
         /* <example>1.5</example> */
         [JsonPropertyName("confirmed")]
-        public string? Confirmed { get { return this.ConfirmedOption; } set { this.ConfirmedOption = new(value); } }
+        public string? Confirmed { get { return this.ConfirmedOption.Value; } set { this.ConfirmedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Unconfirmed
@@ -112,7 +112,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Unconfirmed balance (string to handle large numbers)</value>
         /* <example>0.0</example> */
         [JsonPropertyName("unconfirmed")]
-        public string? Unconfirmed { get { return this.UnconfirmedOption; } set { this.UnconfirmedOption = new(value); } }
+        public string? Unconfirmed { get { return this.UnconfirmedOption.Value; } set { this.UnconfirmedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -127,7 +127,7 @@ namespace Mudbase.Sdk.Model
         /// <value>Total balance (string to handle large numbers)</value>
         /* <example>1.5</example> */
         [JsonPropertyName("total")]
-        public string? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public string? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -141,7 +141,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>ETH</example> */
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastUpdated
@@ -155,7 +155,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:05Z</example> */
         [JsonPropertyName("lastUpdated")]
-        public DateTime? LastUpdated { get { return this.LastUpdatedOption; } set { this.LastUpdatedOption = new(value); } }
+        public DateTime? LastUpdated { get { return this.LastUpdatedOption.Value; } set { this.LastUpdatedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -190,12 +190,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WalletBalance" />
     /// </summary>
-    public class WalletBalanceJsonConverter : JsonConverter<WalletBalance>
+    public partial class WalletBalanceJsonConverter : JsonConverter<WalletBalance>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WalletBalanceJsonConverter" /> class.
+        /// </summary>
+        public WalletBalanceJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastUpdated
         /// </summary>
-        public static string LastUpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastUpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="WalletBalance" />

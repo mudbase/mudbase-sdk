@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Usage
         /// </summary>
         [JsonPropertyName("usage")]
-        public Usage? Usage { get { return this.UsageOption; } set { this.UsageOption = new(value); } }
+        public Usage? Usage { get { return this.UsageOption.Value; } set { this.UsageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Limits
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Limits
         /// </summary>
         [JsonPropertyName("limits")]
-        public Limits? Limits { get { return this.LimitsOption; } set { this.LimitsOption = new(value); } }
+        public Limits? Limits { get { return this.LimitsOption.Value; } set { this.LimitsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Plan
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Plan
         /// </summary>
         [JsonPropertyName("plan")]
-        public Plan? Plan { get { return this.PlanOption; } set { this.PlanOption = new(value); } }
+        public Plan? Plan { get { return this.PlanOption.Value; } set { this.PlanOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Period
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Period
         /// </summary>
         [JsonPropertyName("period")]
-        public string? Period { get { return this.PeriodOption; } set { this.PeriodOption = new(value); } }
+        public string? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Percentages
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Percentages
         /// </summary>
         [JsonPropertyName("percentages")]
-        public UsageStatsResponsePercentages? Percentages { get { return this.PercentagesOption; } set { this.PercentagesOption = new(value); } }
+        public UsageStatsResponsePercentages? Percentages { get { return this.PercentagesOption.Value; } set { this.PercentagesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UsageStatsResponse" />
     /// </summary>
-    public class UsageStatsResponseJsonConverter : JsonConverter<UsageStatsResponse>
+    public partial class UsageStatsResponseJsonConverter : JsonConverter<UsageStatsResponse>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageStatsResponseJsonConverter" /> class.
+        /// </summary>
+        public UsageStatsResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UsageStatsResponse" />
         /// </summary>

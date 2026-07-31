@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RedirectUrl
         /// </summary>
         [JsonPropertyName("redirectUrl")]
-        public string? RedirectUrl { get { return this.RedirectUrlOption; } set { this.RedirectUrlOption = new(value); } }
+        public string? RedirectUrl { get { return this.RedirectUrlOption.Value; } set { this.RedirectUrlOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +102,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="MagicLinkRequest" />
     /// </summary>
-    public class MagicLinkRequestJsonConverter : JsonConverter<MagicLinkRequest>
+    public partial class MagicLinkRequestJsonConverter : JsonConverter<MagicLinkRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MagicLinkRequestJsonConverter" /> class.
+        /// </summary>
+        public MagicLinkRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="MagicLinkRequest" />
         /// </summary>

@@ -179,6 +179,9 @@ namespace Mudbase.Sdk.Model
         /// <returns></returns>
         public override CollectionAction? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
+            if (reader.TokenType == JsonTokenType.Null)
+                return null;
+
             string? rawValue = reader.GetString();
 
             CollectionAction? result = rawValue == null
@@ -199,7 +202,10 @@ namespace Mudbase.Sdk.Model
         /// <param name="options"></param>
         public override void Write(Utf8JsonWriter writer, CollectionAction? collectionAction, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(collectionAction.HasValue ? CollectionActionValueConverter.ToJsonValue(collectionAction.Value).ToString() : "null");
+            if (collectionAction.HasValue)
+                writer.WriteStringValue(CollectionActionValueConverter.ToJsonValue(collectionAction.Value).ToString());
+            else
+                writer.WriteNullValue();
         }
     }
 }

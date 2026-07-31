@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get { return this.NameOption; } set { this.NameOption = new(value); } }
+        public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Logo
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional logo URL. Not used for emails (org emails use platform logo).</value>
         [JsonPropertyName("logo")]
-        public string? Logo { get { return this.LogoOption; } set { this.LogoOption = new(value); } }
+        public string? Logo { get { return this.LogoOption.Value; } set { this.LogoOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Website
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Website
         /// </summary>
         [JsonPropertyName("website")]
-        public string? Website { get { return this.WebsiteOption; } set { this.WebsiteOption = new(value); } }
+        public string? Website { get { return this.WebsiteOption.Value; } set { this.WebsiteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Settings
@@ -116,7 +116,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Settings
         /// </summary>
         [JsonPropertyName("settings")]
-        public Object? Settings { get { return this.SettingsOption; } set { this.SettingsOption = new(value); } }
+        public Object? Settings { get { return this.SettingsOption.Value; } set { this.SettingsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -149,8 +149,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateOrganizationRequest" />
     /// </summary>
-    public class UpdateOrganizationRequestJsonConverter : JsonConverter<UpdateOrganizationRequest>
+    public partial class UpdateOrganizationRequestJsonConverter : JsonConverter<UpdateOrganizationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateOrganizationRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateOrganizationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateOrganizationRequest" />
         /// </summary>

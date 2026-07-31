@@ -109,7 +109,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExecutionId
@@ -122,7 +122,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ExecutionId
         /// </summary>
         [JsonPropertyName("executionId")]
-        public string? ExecutionId { get { return this.ExecutionIdOption; } set { this.ExecutionIdOption = new(value); } }
+        public string? ExecutionId { get { return this.ExecutionIdOption.Value; } set { this.ExecutionIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -152,8 +152,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FunctionExecutionResponseData" />
     /// </summary>
-    public class FunctionExecutionResponseDataJsonConverter : JsonConverter<FunctionExecutionResponseData>
+    public partial class FunctionExecutionResponseDataJsonConverter : JsonConverter<FunctionExecutionResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FunctionExecutionResponseDataJsonConverter" /> class.
+        /// </summary>
+        public FunctionExecutionResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FunctionExecutionResponseData" />
         /// </summary>

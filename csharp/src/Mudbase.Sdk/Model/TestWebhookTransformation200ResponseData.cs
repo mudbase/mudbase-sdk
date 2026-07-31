@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Original
         /// </summary>
         [JsonPropertyName("original")]
-        public Object? Original { get { return this.OriginalOption; } set { this.OriginalOption = new(value); } }
+        public Object? Original { get { return this.OriginalOption.Value; } set { this.OriginalOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Transformed
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Transformed
         /// </summary>
         [JsonPropertyName("transformed")]
-        public Object? Transformed { get { return this.TransformedOption; } set { this.TransformedOption = new(value); } }
+        public Object? Transformed { get { return this.TransformedOption.Value; } set { this.TransformedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="TestWebhookTransformation200ResponseData" />
     /// </summary>
-    public class TestWebhookTransformation200ResponseDataJsonConverter : JsonConverter<TestWebhookTransformation200ResponseData>
+    public partial class TestWebhookTransformation200ResponseDataJsonConverter : JsonConverter<TestWebhookTransformation200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestWebhookTransformation200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public TestWebhookTransformation200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="TestWebhookTransformation200ResponseData" />
         /// </summary>

@@ -78,8 +78,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Verify2FARequest" />
     /// </summary>
-    public class Verify2FARequestJsonConverter : JsonConverter<Verify2FARequest>
+    public partial class Verify2FARequestJsonConverter : JsonConverter<Verify2FARequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Verify2FARequestJsonConverter" /> class.
+        /// </summary>
+        public Verify2FARequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Verify2FARequest" />
         /// </summary>

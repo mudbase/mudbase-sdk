@@ -69,7 +69,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public DashboardOverviewDataProject? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public DashboardOverviewDataProject? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Requests
@@ -82,7 +82,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Requests
         /// </summary>
         [JsonPropertyName("requests")]
-        public DashboardOverviewDataRequests? Requests { get { return this.RequestsOption; } set { this.RequestsOption = new(value); } }
+        public DashboardOverviewDataRequests? Requests { get { return this.RequestsOption.Value; } set { this.RequestsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ActiveUsers
@@ -95,7 +95,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ActiveUsers
         /// </summary>
         [JsonPropertyName("activeUsers")]
-        public DashboardOverviewDataActiveUsers? ActiveUsers { get { return this.ActiveUsersOption; } set { this.ActiveUsersOption = new(value); } }
+        public DashboardOverviewDataActiveUsers? ActiveUsers { get { return this.ActiveUsersOption.Value; } set { this.ActiveUsersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Latency
@@ -108,7 +108,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Latency
         /// </summary>
         [JsonPropertyName("latency")]
-        public DashboardOverviewDataLatency? Latency { get { return this.LatencyOption; } set { this.LatencyOption = new(value); } }
+        public DashboardOverviewDataLatency? Latency { get { return this.LatencyOption.Value; } set { this.LatencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Uptime
@@ -121,7 +121,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Uptime
         /// </summary>
         [JsonPropertyName("uptime")]
-        public DashboardOverviewDataUptime? Uptime { get { return this.UptimeOption; } set { this.UptimeOption = new(value); } }
+        public DashboardOverviewDataUptime? Uptime { get { return this.UptimeOption.Value; } set { this.UptimeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequestVolume14d
@@ -134,7 +134,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RequestVolume14d
         /// </summary>
         [JsonPropertyName("requestVolume14d")]
-        public List<DashboardOverviewDataRequestVolume14dInner>? RequestVolume14d { get { return this.RequestVolume14dOption; } set { this.RequestVolume14dOption = new(value); } }
+        public List<DashboardOverviewDataRequestVolume14dInner>? RequestVolume14d { get { return this.RequestVolume14dOption.Value; } set { this.RequestVolume14dOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RecentActivity
@@ -147,7 +147,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RecentActivity
         /// </summary>
         [JsonPropertyName("recentActivity")]
-        public List<DashboardActivityItem>? RecentActivity { get { return this.RecentActivityOption; } set { this.RecentActivityOption = new(value); } }
+        public List<DashboardActivityItem>? RecentActivity { get { return this.RecentActivityOption.Value; } set { this.RecentActivityOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GeneratedAt
@@ -160,7 +160,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets GeneratedAt
         /// </summary>
         [JsonPropertyName("generatedAt")]
-        public DateTime? GeneratedAt { get { return this.GeneratedAtOption; } set { this.GeneratedAtOption = new(value); } }
+        public DateTime? GeneratedAt { get { return this.GeneratedAtOption.Value; } set { this.GeneratedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,12 +196,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DashboardOverviewData" />
     /// </summary>
-    public class DashboardOverviewDataJsonConverter : JsonConverter<DashboardOverviewData>
+    public partial class DashboardOverviewDataJsonConverter : JsonConverter<DashboardOverviewData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardOverviewDataJsonConverter" /> class.
+        /// </summary>
+        public DashboardOverviewDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize GeneratedAt
         /// </summary>
-        public static string GeneratedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string GeneratedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="DashboardOverviewData" />

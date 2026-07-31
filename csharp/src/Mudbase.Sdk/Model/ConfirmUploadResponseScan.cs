@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Provider
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Provider
         /// </summary>
         [JsonPropertyName("provider")]
-        public string? Provider { get { return this.ProviderOption; } set { this.ProviderOption = new(value); } }
+        public string? Provider { get { return this.ProviderOption.Value; } set { this.ProviderOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Detections
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Detections
         /// </summary>
         [JsonPropertyName("detections")]
-        public int? Detections { get { return this.DetectionsOption; } set { this.DetectionsOption = new(value); } }
+        public int? Detections { get { return this.DetectionsOption.Value; } set { this.DetectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Analysis
@@ -101,7 +101,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Raw analysis object returned by the scanner (e.g., VirusTotal)</value>
         [JsonPropertyName("analysis")]
-        public Object? Analysis { get { return this.AnalysisOption; } set { this.AnalysisOption = new(value); } }
+        public Object? Analysis { get { return this.AnalysisOption.Value; } set { this.AnalysisOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -133,8 +133,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfirmUploadResponseScan" />
     /// </summary>
-    public class ConfirmUploadResponseScanJsonConverter : JsonConverter<ConfirmUploadResponseScan>
+    public partial class ConfirmUploadResponseScanJsonConverter : JsonConverter<ConfirmUploadResponseScan>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfirmUploadResponseScanJsonConverter" /> class.
+        /// </summary>
+        public ConfirmUploadResponseScanJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfirmUploadResponseScan" />
         /// </summary>

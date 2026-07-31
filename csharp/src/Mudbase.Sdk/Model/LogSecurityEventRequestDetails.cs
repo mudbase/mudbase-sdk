@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UserId
         /// </summary>
         [JsonPropertyName("userId")]
-        public string? UserId { get { return this.UserIdOption; } set { this.UserIdOption = new(value); } }
+        public string? UserId { get { return this.UserIdOption.Value; } set { this.UserIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Resource
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Resource
         /// </summary>
         [JsonPropertyName("resource")]
-        public string? Resource { get { return this.ResourceOption; } set { this.ResourceOption = new(value); } }
+        public string? Resource { get { return this.ResourceOption.Value; } set { this.ResourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IpAddress
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IpAddress
         /// </summary>
         [JsonPropertyName("ipAddress")]
-        public string? IpAddress { get { return this.IpAddressOption; } set { this.IpAddressOption = new(value); } }
+        public string? IpAddress { get { return this.IpAddressOption.Value; } set { this.IpAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UserAgent
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets UserAgent
         /// </summary>
         [JsonPropertyName("userAgent")]
-        public string? UserAgent { get { return this.UserAgentOption; } set { this.UserAgentOption = new(value); } }
+        public string? UserAgent { get { return this.UserAgentOption.Value; } set { this.UserAgentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Action
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Action
         /// </summary>
         [JsonPropertyName("action")]
-        public string? Action { get { return this.ActionOption; } set { this.ActionOption = new(value); } }
+        public string? Action { get { return this.ActionOption.Value; } set { this.ActionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Reason
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Reason
         /// </summary>
         [JsonPropertyName("reason")]
-        public string? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public string? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="LogSecurityEventRequestDetails" />
     /// </summary>
-    public class LogSecurityEventRequestDetailsJsonConverter : JsonConverter<LogSecurityEventRequestDetails>
+    public partial class LogSecurityEventRequestDetailsJsonConverter : JsonConverter<LogSecurityEventRequestDetails>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogSecurityEventRequestDetailsJsonConverter" /> class.
+        /// </summary>
+        public LogSecurityEventRequestDetailsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="LogSecurityEventRequestDetails" />
         /// </summary>

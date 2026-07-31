@@ -77,8 +77,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PlatformAdminCustomDomainAddonRequest" />
     /// </summary>
-    public class PlatformAdminCustomDomainAddonRequestJsonConverter : JsonConverter<PlatformAdminCustomDomainAddonRequest>
+    public partial class PlatformAdminCustomDomainAddonRequestJsonConverter : JsonConverter<PlatformAdminCustomDomainAddonRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlatformAdminCustomDomainAddonRequestJsonConverter" /> class.
+        /// </summary>
+        public PlatformAdminCustomDomainAddonRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PlatformAdminCustomDomainAddonRequest" />
         /// </summary>

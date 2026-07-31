@@ -60,7 +60,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Simulated trigger (type, event)</value>
         [JsonPropertyName("trigger")]
-        public Object? Trigger { get { return this.TriggerOption; } set { this.TriggerOption = new(value); } }
+        public Object? Trigger { get { return this.TriggerOption.Value; } set { this.TriggerOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EventContext
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Simulated event context (document, file, webhook, wallet, message)</value>
         [JsonPropertyName("eventContext")]
-        public Object? EventContext { get { return this.EventContextOption; } set { this.EventContextOption = new(value); } }
+        public Object? EventContext { get { return this.EventContextOption.Value; } set { this.EventContextOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Payload
@@ -88,7 +88,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Additional payload</value>
         [JsonPropertyName("payload")]
-        public Object? Payload { get { return this.PayloadOption; } set { this.PayloadOption = new(value); } }
+        public Object? Payload { get { return this.PayloadOption.Value; } set { this.PayloadOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -119,8 +119,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SimulateFunctionTriggerRequest" />
     /// </summary>
-    public class SimulateFunctionTriggerRequestJsonConverter : JsonConverter<SimulateFunctionTriggerRequest>
+    public partial class SimulateFunctionTriggerRequestJsonConverter : JsonConverter<SimulateFunctionTriggerRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimulateFunctionTriggerRequestJsonConverter" /> class.
+        /// </summary>
+        public SimulateFunctionTriggerRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SimulateFunctionTriggerRequest" />
         /// </summary>

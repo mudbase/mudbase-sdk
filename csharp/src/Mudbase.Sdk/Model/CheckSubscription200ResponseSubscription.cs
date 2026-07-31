@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public string? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public string? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Plan
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Plan
         /// </summary>
         [JsonPropertyName("plan")]
-        public string? Plan { get { return this.PlanOption; } set { this.PlanOption = new(value); } }
+        public string? Plan { get { return this.PlanOption.Value; } set { this.PlanOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CheckSubscription200ResponseSubscription" />
     /// </summary>
-    public class CheckSubscription200ResponseSubscriptionJsonConverter : JsonConverter<CheckSubscription200ResponseSubscription>
+    public partial class CheckSubscription200ResponseSubscriptionJsonConverter : JsonConverter<CheckSubscription200ResponseSubscription>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckSubscription200ResponseSubscriptionJsonConverter" /> class.
+        /// </summary>
+        public CheckSubscription200ResponseSubscriptionJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CheckSubscription200ResponseSubscription" />
         /// </summary>

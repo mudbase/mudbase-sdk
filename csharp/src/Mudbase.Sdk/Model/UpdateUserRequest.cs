@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FirstName
         /// </summary>
         [JsonPropertyName("firstName")]
-        public string? FirstName { get { return this.FirstNameOption; } set { this.FirstNameOption = new(value); } }
+        public string? FirstName { get { return this.FirstNameOption.Value; } set { this.FirstNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastName
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastName
         /// </summary>
         [JsonPropertyName("lastName")]
-        public string? LastName { get { return this.LastNameOption; } set { this.LastNameOption = new(value); } }
+        public string? LastName { get { return this.LastNameOption.Value; } set { this.LastNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Avatar
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Avatar
         /// </summary>
         [JsonPropertyName("avatar")]
-        public string? Avatar { get { return this.AvatarOption; } set { this.AvatarOption = new(value); } }
+        public string? Avatar { get { return this.AvatarOption.Value; } set { this.AvatarOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateUserRequest" />
     /// </summary>
-    public class UpdateUserRequestJsonConverter : JsonConverter<UpdateUserRequest>
+    public partial class UpdateUserRequestJsonConverter : JsonConverter<UpdateUserRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateUserRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateUserRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateUserRequest" />
         /// </summary>

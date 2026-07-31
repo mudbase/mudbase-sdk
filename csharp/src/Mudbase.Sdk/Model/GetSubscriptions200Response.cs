@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Subscriptions
         /// </summary>
         [JsonPropertyName("subscriptions")]
-        public List<GetSubscriptions200ResponseSubscriptionsInner>? Subscriptions { get { return this.SubscriptionsOption; } set { this.SubscriptionsOption = new(value); } }
+        public List<GetSubscriptions200ResponseSubscriptionsInner>? Subscriptions { get { return this.SubscriptionsOption.Value; } set { this.SubscriptionsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetSubscriptions200Response" />
     /// </summary>
-    public class GetSubscriptions200ResponseJsonConverter : JsonConverter<GetSubscriptions200Response>
+    public partial class GetSubscriptions200ResponseJsonConverter : JsonConverter<GetSubscriptions200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetSubscriptions200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetSubscriptions200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetSubscriptions200Response" />
         /// </summary>

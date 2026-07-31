@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Event type (e.g. charge.completed, payment.successful)</value>
         [JsonPropertyName("event")]
-        public string? Event { get { return this.EventOption; } set { this.EventOption = new(value); } }
+        public string? Event { get { return this.EventOption.Value; } set { this.EventOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public HandleFlutterwaveWebhookRequestData? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public HandleFlutterwaveWebhookRequestData? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="HandleFlutterwaveWebhookRequest" />
     /// </summary>
-    public class HandleFlutterwaveWebhookRequestJsonConverter : JsonConverter<HandleFlutterwaveWebhookRequest>
+    public partial class HandleFlutterwaveWebhookRequestJsonConverter : JsonConverter<HandleFlutterwaveWebhookRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HandleFlutterwaveWebhookRequestJsonConverter" /> class.
+        /// </summary>
+        public HandleFlutterwaveWebhookRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="HandleFlutterwaveWebhookRequest" />
         /// </summary>

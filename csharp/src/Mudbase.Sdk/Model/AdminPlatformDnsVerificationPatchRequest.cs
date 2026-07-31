@@ -79,7 +79,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RecordType
         /// </summary>
         [JsonPropertyName("recordType")]
-        public string? RecordType { get { return this.RecordTypeOption; } set { this.RecordTypeOption = new(value); } }
+        public string? RecordType { get { return this.RecordTypeOption.Value; } set { this.RecordTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TtlSeconds
@@ -92,7 +92,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TtlSeconds
         /// </summary>
         [JsonPropertyName("ttlSeconds")]
-        public int? TtlSeconds { get { return this.TtlSecondsOption; } set { this.TtlSecondsOption = new(value); } }
+        public int? TtlSeconds { get { return this.TtlSecondsOption.Value; } set { this.TtlSecondsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of StaffNote
@@ -105,7 +105,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets StaffNote
         /// </summary>
         [JsonPropertyName("staffNote")]
-        public string? StaffNote { get { return this.StaffNoteOption; } set { this.StaffNoteOption = new(value); } }
+        public string? StaffNote { get { return this.StaffNoteOption.Value; } set { this.StaffNoteOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ResetCustomerPlatformDnsSubmission
@@ -118,7 +118,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ResetCustomerPlatformDnsSubmission
         /// </summary>
         [JsonPropertyName("resetCustomerPlatformDnsSubmission")]
-        public bool? ResetCustomerPlatformDnsSubmission { get { return this.ResetCustomerPlatformDnsSubmissionOption; } set { this.ResetCustomerPlatformDnsSubmissionOption = new(value); } }
+        public bool? ResetCustomerPlatformDnsSubmission { get { return this.ResetCustomerPlatformDnsSubmissionOption.Value; } set { this.ResetCustomerPlatformDnsSubmissionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of NotifyOrg
@@ -132,7 +132,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When not false (default), email org billing contact with step-3 DNS instructions after save.</value>
         [JsonPropertyName("notifyOrg")]
-        public bool? NotifyOrg { get { return this.NotifyOrgOption; } set { this.NotifyOrgOption = new(value); } }
+        public bool? NotifyOrg { get { return this.NotifyOrgOption.Value; } set { this.NotifyOrgOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -203,8 +203,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminPlatformDnsVerificationPatchRequest" />
     /// </summary>
-    public class AdminPlatformDnsVerificationPatchRequestJsonConverter : JsonConverter<AdminPlatformDnsVerificationPatchRequest>
+    public partial class AdminPlatformDnsVerificationPatchRequestJsonConverter : JsonConverter<AdminPlatformDnsVerificationPatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminPlatformDnsVerificationPatchRequestJsonConverter" /> class.
+        /// </summary>
+        public AdminPlatformDnsVerificationPatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminPlatformDnsVerificationPatchRequest" />
         /// </summary>

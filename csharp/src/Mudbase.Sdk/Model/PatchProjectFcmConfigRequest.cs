@@ -89,8 +89,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PatchProjectFcmConfigRequest" />
     /// </summary>
-    public class PatchProjectFcmConfigRequestJsonConverter : JsonConverter<PatchProjectFcmConfigRequest>
+    public partial class PatchProjectFcmConfigRequestJsonConverter : JsonConverter<PatchProjectFcmConfigRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PatchProjectFcmConfigRequestJsonConverter" /> class.
+        /// </summary>
+        public PatchProjectFcmConfigRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PatchProjectFcmConfigRequest" />
         /// </summary>

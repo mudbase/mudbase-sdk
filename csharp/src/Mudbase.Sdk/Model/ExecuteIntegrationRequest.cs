@@ -181,7 +181,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Params
         /// </summary>
         [JsonPropertyName("params")]
-        public Object? Params { get { return this.ParamsOption; } set { this.ParamsOption = new(value); } }
+        public Object? Params { get { return this.ParamsOption.Value; } set { this.ParamsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Body
@@ -194,7 +194,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Body
         /// </summary>
         [JsonPropertyName("body")]
-        public Object? Body { get { return this.BodyOption; } set { this.BodyOption = new(value); } }
+        public Object? Body { get { return this.BodyOption.Value; } set { this.BodyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -226,8 +226,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ExecuteIntegrationRequest" />
     /// </summary>
-    public class ExecuteIntegrationRequestJsonConverter : JsonConverter<ExecuteIntegrationRequest>
+    public partial class ExecuteIntegrationRequestJsonConverter : JsonConverter<ExecuteIntegrationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExecuteIntegrationRequestJsonConverter" /> class.
+        /// </summary>
+        public ExecuteIntegrationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ExecuteIntegrationRequest" />
         /// </summary>

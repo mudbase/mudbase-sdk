@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Email
         /// </summary>
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FirstName
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FirstName
         /// </summary>
         [JsonPropertyName("firstName")]
-        public string? FirstName { get { return this.FirstNameOption; } set { this.FirstNameOption = new(value); } }
+        public string? FirstName { get { return this.FirstNameOption.Value; } set { this.FirstNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastName
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastName
         /// </summary>
         [JsonPropertyName("lastName")]
-        public string? LastName { get { return this.LastNameOption; } set { this.LastNameOption = new(value); } }
+        public string? LastName { get { return this.LastNameOption.Value; } set { this.LastNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AccountStatus
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AccountStatus
         /// </summary>
         [JsonPropertyName("accountStatus")]
-        public string? AccountStatus { get { return this.AccountStatusOption; } set { this.AccountStatusOption = new(value); } }
+        public string? AccountStatus { get { return this.AccountStatusOption.Value; } set { this.AccountStatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets IsActive
         /// </summary>
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateUserAccountStatus200ResponseUser" />
     /// </summary>
-    public class UpdateUserAccountStatus200ResponseUserJsonConverter : JsonConverter<UpdateUserAccountStatus200ResponseUser>
+    public partial class UpdateUserAccountStatus200ResponseUserJsonConverter : JsonConverter<UpdateUserAccountStatus200ResponseUser>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateUserAccountStatus200ResponseUserJsonConverter" /> class.
+        /// </summary>
+        public UpdateUserAccountStatus200ResponseUserJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateUserAccountStatus200ResponseUser" />
         /// </summary>

@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Results
         /// </summary>
         [JsonPropertyName("results")]
-        public List<SearchResult>? Results { get { return this.ResultsOption; } set { this.ResultsOption = new(value); } }
+        public List<SearchResult>? Results { get { return this.ResultsOption.Value; } set { this.ResultsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pagination
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pagination
         /// </summary>
         [JsonPropertyName("pagination")]
-        public Pagination? Pagination { get { return this.PaginationOption; } set { this.PaginationOption = new(value); } }
+        public Pagination? Pagination { get { return this.PaginationOption.Value; } set { this.PaginationOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Query
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Query
         /// </summary>
         [JsonPropertyName("query")]
-        public string? Query { get { return this.QueryOption; } set { this.QueryOption = new(value); } }
+        public string? Query { get { return this.QueryOption.Value; } set { this.QueryOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SearchTime
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SearchTime
         /// </summary>
         [JsonPropertyName("searchTime")]
-        public int? SearchTime { get { return this.SearchTimeOption; } set { this.SearchTimeOption = new(value); } }
+        public int? SearchTime { get { return this.SearchTimeOption.Value; } set { this.SearchTimeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="SearchResponseData" />
     /// </summary>
-    public class SearchResponseDataJsonConverter : JsonConverter<SearchResponseData>
+    public partial class SearchResponseDataJsonConverter : JsonConverter<SearchResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchResponseDataJsonConverter" /> class.
+        /// </summary>
+        public SearchResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="SearchResponseData" />
         /// </summary>

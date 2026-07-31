@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiCalls
         /// </summary>
         [JsonPropertyName("apiCalls")]
-        public decimal? ApiCalls { get { return this.ApiCallsOption; } set { this.ApiCallsOption = new(value); } }
+        public decimal? ApiCalls { get { return this.ApiCallsOption.Value; } set { this.ApiCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Storage
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Storage
         /// </summary>
         [JsonPropertyName("storage")]
-        public decimal? Storage { get { return this.StorageOption; } set { this.StorageOption = new(value); } }
+        public decimal? Storage { get { return this.StorageOption.Value; } set { this.StorageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Bandwidth
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Bandwidth
         /// </summary>
         [JsonPropertyName("bandwidth")]
-        public decimal? Bandwidth { get { return this.BandwidthOption; } set { this.BandwidthOption = new(value); } }
+        public decimal? Bandwidth { get { return this.BandwidthOption.Value; } set { this.BandwidthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Users
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Users
         /// </summary>
         [JsonPropertyName("users")]
-        public decimal? Users { get { return this.UsersOption; } set { this.UsersOption = new(value); } }
+        public decimal? Users { get { return this.UsersOption.Value; } set { this.UsersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CustomLimits
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CustomLimits
         /// </summary>
         [JsonPropertyName("customLimits")]
-        public List<CreatePlanRequestLimitsCustomLimitsInner>? CustomLimits { get { return this.CustomLimitsOption; } set { this.CustomLimitsOption = new(value); } }
+        public List<CreatePlanRequestLimitsCustomLimitsInner>? CustomLimits { get { return this.CustomLimitsOption.Value; } set { this.CustomLimitsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreatePlanRequestLimits" />
     /// </summary>
-    public class CreatePlanRequestLimitsJsonConverter : JsonConverter<CreatePlanRequestLimits>
+    public partial class CreatePlanRequestLimitsJsonConverter : JsonConverter<CreatePlanRequestLimits>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreatePlanRequestLimitsJsonConverter" /> class.
+        /// </summary>
+        public CreatePlanRequestLimitsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="CreatePlanRequestLimits" />
         /// </summary>

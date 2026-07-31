@@ -150,7 +150,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>65a1b2c3d4e5f6789012345c</example> */
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Url
@@ -164,7 +164,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>https://your-app.com/webhooks/wallet</example> */
         [JsonPropertyName("url")]
-        public string? Url { get { return this.UrlOption; } set { this.UrlOption = new(value); } }
+        public string? Url { get { return this.UrlOption.Value; } set { this.UrlOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Events
@@ -178,7 +178,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>[&quot;wallet.balance.updated&quot;,&quot;wallet.transaction.confirmed&quot;]</example> */
         [JsonPropertyName("events")]
-        public List<WalletWebhook.EventsEnum>? Events { get { return this.EventsOption; } set { this.EventsOption = new(value); } }
+        public List<WalletWebhook.EventsEnum>? Events { get { return this.EventsOption.Value; } set { this.EventsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Filters
@@ -191,7 +191,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Filters
         /// </summary>
         [JsonPropertyName("filters")]
-        public WalletWebhookFilters? Filters { get { return this.FiltersOption; } set { this.FiltersOption = new(value); } }
+        public WalletWebhookFilters? Filters { get { return this.FiltersOption.Value; } set { this.FiltersOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of IsActive
@@ -205,7 +205,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("isActive")]
-        public bool? IsActive { get { return this.IsActiveOption; } set { this.IsActiveOption = new(value); } }
+        public bool? IsActive { get { return this.IsActiveOption.Value; } set { this.IsActiveOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Stats
@@ -218,7 +218,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Stats
         /// </summary>
         [JsonPropertyName("stats")]
-        public WalletWebhookStats? Stats { get { return this.StatsOption; } set { this.StatsOption = new(value); } }
+        public WalletWebhookStats? Stats { get { return this.StatsOption.Value; } set { this.StatsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -232,7 +232,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:00Z</example> */
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of UpdatedAt
@@ -246,7 +246,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:00Z</example> */
         [JsonPropertyName("updatedAt")]
-        public DateTime? UpdatedAt { get { return this.UpdatedAtOption; } set { this.UpdatedAtOption = new(value); } }
+        public DateTime? UpdatedAt { get { return this.UpdatedAtOption.Value; } set { this.UpdatedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -282,17 +282,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WalletWebhook" />
     /// </summary>
-    public class WalletWebhookJsonConverter : JsonConverter<WalletWebhook>
+    public partial class WalletWebhookJsonConverter : JsonConverter<WalletWebhook>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WalletWebhookJsonConverter" /> class.
+        /// </summary>
+        public WalletWebhookJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize UpdatedAt
         /// </summary>
-        public static string UpdatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="WalletWebhook" />

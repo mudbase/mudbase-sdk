@@ -197,7 +197,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ExecutionId
@@ -210,7 +210,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ExecutionId
         /// </summary>
         [JsonPropertyName("executionId")]
-        public string? ExecutionId { get { return this.ExecutionIdOption; } set { this.ExecutionIdOption = new(value); } }
+        public string? ExecutionId { get { return this.ExecutionIdOption.Value; } set { this.ExecutionIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DurationMs
@@ -224,7 +224,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Duration in milliseconds (null until completed)</value>
         [JsonPropertyName("durationMs")]
-        public int? DurationMs { get { return this.DurationMsOption; } set { this.DurationMsOption = new(value); } }
+        public int? DurationMs { get { return this.DurationMsOption.Value; } set { this.DurationMsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Result
@@ -237,7 +237,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Result
         /// </summary>
         [JsonPropertyName("result")]
-        public Object? Result { get { return this.ResultOption; } set { this.ResultOption = new(value); } }
+        public Object? Result { get { return this.ResultOption.Value; } set { this.ResultOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Error
@@ -250,7 +250,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Error
         /// </summary>
         [JsonPropertyName("error")]
-        public string? Error { get { return this.ErrorOption; } set { this.ErrorOption = new(value); } }
+        public string? Error { get { return this.ErrorOption.Value; } set { this.ErrorOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ErrorClass
@@ -263,7 +263,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ErrorClass
         /// </summary>
         [JsonPropertyName("errorClass")]
-        public string? ErrorClass { get { return this.ErrorClassOption; } set { this.ErrorClassOption = new(value); } }
+        public string? ErrorClass { get { return this.ErrorClassOption.Value; } set { this.ErrorClassOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Logs
@@ -276,7 +276,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Logs
         /// </summary>
         [JsonPropertyName("logs")]
-        public FunctionExecutionStatusResponseDataLogs? Logs { get { return this.LogsOption; } set { this.LogsOption = new(value); } }
+        public FunctionExecutionStatusResponseDataLogs? Logs { get { return this.LogsOption.Value; } set { this.LogsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Machine
@@ -289,7 +289,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Machine
         /// </summary>
         [JsonPropertyName("machine")]
-        public Object? Machine { get { return this.MachineOption; } set { this.MachineOption = new(value); } }
+        public Object? Machine { get { return this.MachineOption.Value; } set { this.MachineOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -302,7 +302,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of StartedAt
@@ -315,7 +315,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets StartedAt
         /// </summary>
         [JsonPropertyName("startedAt")]
-        public DateTime? StartedAt { get { return this.StartedAtOption; } set { this.StartedAtOption = new(value); } }
+        public DateTime? StartedAt { get { return this.StartedAtOption.Value; } set { this.StartedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CompletedAt
@@ -328,7 +328,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CompletedAt
         /// </summary>
         [JsonPropertyName("completedAt")]
-        public DateTime? CompletedAt { get { return this.CompletedAtOption; } set { this.CompletedAtOption = new(value); } }
+        public DateTime? CompletedAt { get { return this.CompletedAtOption.Value; } set { this.CompletedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -367,22 +367,32 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FunctionExecutionStatusResponseData" />
     /// </summary>
-    public class FunctionExecutionStatusResponseDataJsonConverter : JsonConverter<FunctionExecutionStatusResponseData>
+    public partial class FunctionExecutionStatusResponseDataJsonConverter : JsonConverter<FunctionExecutionStatusResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FunctionExecutionStatusResponseDataJsonConverter" /> class.
+        /// </summary>
+        public FunctionExecutionStatusResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize StartedAt
         /// </summary>
-        public static string StartedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string StartedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize CompletedAt
         /// </summary>
-        public static string CompletedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CompletedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="FunctionExecutionStatusResponseData" />

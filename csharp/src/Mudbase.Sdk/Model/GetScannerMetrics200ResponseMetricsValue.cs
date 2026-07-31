@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastScannedBlock
         /// </summary>
         [JsonPropertyName("lastScannedBlock")]
-        public decimal? LastScannedBlock { get { return this.LastScannedBlockOption; } set { this.LastScannedBlockOption = new(value); } }
+        public decimal? LastScannedBlock { get { return this.LastScannedBlockOption.Value; } set { this.LastScannedBlockOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CurrentBlock
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CurrentBlock
         /// </summary>
         [JsonPropertyName("currentBlock")]
-        public decimal? CurrentBlock { get { return this.CurrentBlockOption; } set { this.CurrentBlockOption = new(value); } }
+        public decimal? CurrentBlock { get { return this.CurrentBlockOption.Value; } set { this.CurrentBlockOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Lag
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Lag
         /// </summary>
         [JsonPropertyName("lag")]
-        public decimal? Lag { get { return this.LagOption; } set { this.LagOption = new(value); } }
+        public decimal? Lag { get { return this.LagOption.Value; } set { this.LagOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastUpdated
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LastUpdated
         /// </summary>
         [JsonPropertyName("lastUpdated")]
-        public DateTime? LastUpdated { get { return this.LastUpdatedOption; } set { this.LastUpdatedOption = new(value); } }
+        public DateTime? LastUpdated { get { return this.LastUpdatedOption.Value; } set { this.LastUpdatedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,12 +132,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetScannerMetrics200ResponseMetricsValue" />
     /// </summary>
-    public class GetScannerMetrics200ResponseMetricsValueJsonConverter : JsonConverter<GetScannerMetrics200ResponseMetricsValue>
+    public partial class GetScannerMetrics200ResponseMetricsValueJsonConverter : JsonConverter<GetScannerMetrics200ResponseMetricsValue>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetScannerMetrics200ResponseMetricsValueJsonConverter" /> class.
+        /// </summary>
+        public GetScannerMetrics200ResponseMetricsValueJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastUpdated
         /// </summary>
-        public static string LastUpdatedFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastUpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetScannerMetrics200ResponseMetricsValue" />

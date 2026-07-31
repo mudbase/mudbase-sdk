@@ -62,7 +62,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>150</example> */
         [JsonPropertyName("totalDeliveries")]
-        public int? TotalDeliveries { get { return this.TotalDeliveriesOption; } set { this.TotalDeliveriesOption = new(value); } }
+        public int? TotalDeliveries { get { return this.TotalDeliveriesOption.Value; } set { this.TotalDeliveriesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SuccessfulDeliveries
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>148</example> */
         [JsonPropertyName("successfulDeliveries")]
-        public int? SuccessfulDeliveries { get { return this.SuccessfulDeliveriesOption; } set { this.SuccessfulDeliveriesOption = new(value); } }
+        public int? SuccessfulDeliveries { get { return this.SuccessfulDeliveriesOption.Value; } set { this.SuccessfulDeliveriesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FailedDeliveries
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2</example> */
         [JsonPropertyName("failedDeliveries")]
-        public int? FailedDeliveries { get { return this.FailedDeliveriesOption; } set { this.FailedDeliveriesOption = new(value); } }
+        public int? FailedDeliveries { get { return this.FailedDeliveriesOption.Value; } set { this.FailedDeliveriesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastDeliveryAt
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>2026-01-22T10:05Z</example> */
         [JsonPropertyName("lastDeliveryAt")]
-        public DateTime? LastDeliveryAt { get { return this.LastDeliveryAtOption; } set { this.LastDeliveryAtOption = new(value); } }
+        public DateTime? LastDeliveryAt { get { return this.LastDeliveryAtOption.Value; } set { this.LastDeliveryAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,12 +136,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="WalletWebhookStats" />
     /// </summary>
-    public class WalletWebhookStatsJsonConverter : JsonConverter<WalletWebhookStats>
+    public partial class WalletWebhookStatsJsonConverter : JsonConverter<WalletWebhookStats>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WalletWebhookStatsJsonConverter" /> class.
+        /// </summary>
+        public WalletWebhookStatsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LastDeliveryAt
         /// </summary>
-        public static string LastDeliveryAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LastDeliveryAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="WalletWebhookStats" />

@@ -63,7 +63,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Resource
         /// </summary>
         [JsonPropertyName("resource")]
-        public string? Resource { get { return this.ResourceOption; } set { this.ResourceOption = new(value); } }
+        public string? Resource { get { return this.ResourceOption.Value; } set { this.ResourceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Units
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Units
         /// </summary>
         [JsonPropertyName("units")]
-        public decimal? Units { get { return this.UnitsOption; } set { this.UnitsOption = new(value); } }
+        public decimal? Units { get { return this.UnitsOption.Value; } set { this.UnitsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -89,7 +89,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -102,7 +102,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Unit
@@ -115,7 +115,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Unit
         /// </summary>
         [JsonPropertyName("unit")]
-        public string? Unit { get { return this.UnitOption; } set { this.UnitOption = new(value); } }
+        public string? Unit { get { return this.UnitOption.Value; } set { this.UnitOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -148,8 +148,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetBillingEstimate200ResponseLineItemsInner" />
     /// </summary>
-    public class GetBillingEstimate200ResponseLineItemsInnerJsonConverter : JsonConverter<GetBillingEstimate200ResponseLineItemsInner>
+    public partial class GetBillingEstimate200ResponseLineItemsInnerJsonConverter : JsonConverter<GetBillingEstimate200ResponseLineItemsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetBillingEstimate200ResponseLineItemsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetBillingEstimate200ResponseLineItemsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetBillingEstimate200ResponseLineItemsInner" />
         /// </summary>

@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ChainId
         /// </summary>
         [JsonPropertyName("chainId")]
-        public int? ChainId { get { return this.ChainIdOption; } set { this.ChainIdOption = new(value); } }
+        public int? ChainId { get { return this.ChainIdOption.Value; } set { this.ChainIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of From
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets From
         /// </summary>
         [JsonPropertyName("from")]
-        public string? From { get { return this.FromOption; } set { this.FromOption = new(value); } }
+        public string? From { get { return this.FromOption.Value; } set { this.FromOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Nonce
@@ -99,7 +99,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Nonce
         /// </summary>
         [JsonPropertyName("nonce")]
-        public int? Nonce { get { return this.NonceOption; } set { this.NonceOption = new(value); } }
+        public int? Nonce { get { return this.NonceOption.Value; } set { this.NonceOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of To
@@ -113,7 +113,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Same as from (self)</value>
         [JsonPropertyName("to")]
-        public string? To { get { return this.ToOption; } set { this.ToOption = new(value); } }
+        public string? To { get { return this.ToOption.Value; } set { this.ToOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Value
@@ -127,7 +127,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>0</value>
         [JsonPropertyName("value")]
-        public string? Value { get { return this.ValueOption; } set { this.ValueOption = new(value); } }
+        public string? Value { get { return this.ValueOption.Value; } set { this.ValueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -141,7 +141,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>0x</value>
         [JsonPropertyName("data")]
-        public string? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public string? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GasLimit
@@ -154,7 +154,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets GasLimit
         /// </summary>
         [JsonPropertyName("gasLimit")]
-        public string? GasLimit { get { return this.GasLimitOption; } set { this.GasLimitOption = new(value); } }
+        public string? GasLimit { get { return this.GasLimitOption.Value; } set { this.GasLimitOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxFeePerGas
@@ -167,7 +167,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxFeePerGas
         /// </summary>
         [JsonPropertyName("maxFeePerGas")]
-        public string? MaxFeePerGas { get { return this.MaxFeePerGasOption; } set { this.MaxFeePerGasOption = new(value); } }
+        public string? MaxFeePerGas { get { return this.MaxFeePerGasOption.Value; } set { this.MaxFeePerGasOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxPriorityFeePerGas
@@ -180,7 +180,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxPriorityFeePerGas
         /// </summary>
         [JsonPropertyName("maxPriorityFeePerGas")]
-        public string? MaxPriorityFeePerGas { get { return this.MaxPriorityFeePerGasOption; } set { this.MaxPriorityFeePerGasOption = new(value); } }
+        public string? MaxPriorityFeePerGas { get { return this.MaxPriorityFeePerGasOption.Value; } set { this.MaxPriorityFeePerGasOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GasPrice
@@ -193,7 +193,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets GasPrice
         /// </summary>
         [JsonPropertyName("gasPrice")]
-        public string? GasPrice { get { return this.GasPriceOption; } set { this.GasPriceOption = new(value); } }
+        public string? GasPrice { get { return this.GasPriceOption.Value; } set { this.GasPriceOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -231,8 +231,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetCancelParams200ResponseData" />
     /// </summary>
-    public class GetCancelParams200ResponseDataJsonConverter : JsonConverter<GetCancelParams200ResponseData>
+    public partial class GetCancelParams200ResponseDataJsonConverter : JsonConverter<GetCancelParams200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetCancelParams200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetCancelParams200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetCancelParams200ResponseData" />
         /// </summary>

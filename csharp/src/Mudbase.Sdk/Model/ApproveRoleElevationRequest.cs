@@ -64,7 +64,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Required if approved is false</value>
         [JsonPropertyName("reason")]
-        public string? Reason { get { return this.ReasonOption; } set { this.ReasonOption = new(value); } }
+        public string? Reason { get { return this.ReasonOption.Value; } set { this.ReasonOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -94,8 +94,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ApproveRoleElevationRequest" />
     /// </summary>
-    public class ApproveRoleElevationRequestJsonConverter : JsonConverter<ApproveRoleElevationRequest>
+    public partial class ApproveRoleElevationRequestJsonConverter : JsonConverter<ApproveRoleElevationRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApproveRoleElevationRequestJsonConverter" /> class.
+        /// </summary>
+        public ApproveRoleElevationRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ApproveRoleElevationRequest" />
         /// </summary>

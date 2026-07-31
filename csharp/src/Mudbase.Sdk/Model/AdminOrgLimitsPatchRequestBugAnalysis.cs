@@ -157,7 +157,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets QueueType
         /// </summary>
         [JsonPropertyName("queueType")]
-        public QueueTypeEnum? QueueType { get { return this.QueueTypeOption; } set { this.QueueTypeOption = new(value); } }
+        public QueueTypeEnum? QueueType { get { return this.QueueTypeOption.Value; } set { this.QueueTypeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ScansPerMonth
@@ -170,7 +170,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ScansPerMonth
         /// </summary>
         [JsonPropertyName("scansPerMonth")]
-        public int? ScansPerMonth { get { return this.ScansPerMonthOption; } set { this.ScansPerMonthOption = new(value); } }
+        public int? ScansPerMonth { get { return this.ScansPerMonthOption.Value; } set { this.ScansPerMonthOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxUploadBytes
@@ -183,7 +183,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxUploadBytes
         /// </summary>
         [JsonPropertyName("maxUploadBytes")]
-        public int? MaxUploadBytes { get { return this.MaxUploadBytesOption; } set { this.MaxUploadBytesOption = new(value); } }
+        public int? MaxUploadBytes { get { return this.MaxUploadBytesOption.Value; } set { this.MaxUploadBytesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MaxRuntimeMinutes
@@ -196,7 +196,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxRuntimeMinutes
         /// </summary>
         [JsonPropertyName("maxRuntimeMinutes")]
-        public int? MaxRuntimeMinutes { get { return this.MaxRuntimeMinutesOption; } set { this.MaxRuntimeMinutesOption = new(value); } }
+        public int? MaxRuntimeMinutes { get { return this.MaxRuntimeMinutesOption.Value; } set { this.MaxRuntimeMinutesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LogRetentionDays
@@ -209,7 +209,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LogRetentionDays
         /// </summary>
         [JsonPropertyName("logRetentionDays")]
-        public int? LogRetentionDays { get { return this.LogRetentionDaysOption; } set { this.LogRetentionDaysOption = new(value); } }
+        public int? LogRetentionDays { get { return this.LogRetentionDaysOption.Value; } set { this.LogRetentionDaysOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -266,8 +266,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="AdminOrgLimitsPatchRequestBugAnalysis" />
     /// </summary>
-    public class AdminOrgLimitsPatchRequestBugAnalysisJsonConverter : JsonConverter<AdminOrgLimitsPatchRequestBugAnalysis>
+    public partial class AdminOrgLimitsPatchRequestBugAnalysisJsonConverter : JsonConverter<AdminOrgLimitsPatchRequestBugAnalysis>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminOrgLimitsPatchRequestBugAnalysisJsonConverter" /> class.
+        /// </summary>
+        public AdminOrgLimitsPatchRequestBugAnalysisJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="AdminOrgLimitsPatchRequestBugAnalysis" />
         /// </summary>

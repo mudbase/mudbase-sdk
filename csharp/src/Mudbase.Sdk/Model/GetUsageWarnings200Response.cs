@@ -55,7 +55,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Warnings
         /// </summary>
         [JsonPropertyName("warnings")]
-        public List<GetUsageWarnings200ResponseWarningsInner>? Warnings { get { return this.WarningsOption; } set { this.WarningsOption = new(value); } }
+        public List<GetUsageWarnings200ResponseWarningsInner>? Warnings { get { return this.WarningsOption.Value; } set { this.WarningsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,8 +84,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetUsageWarnings200Response" />
     /// </summary>
-    public class GetUsageWarnings200ResponseJsonConverter : JsonConverter<GetUsageWarnings200Response>
+    public partial class GetUsageWarnings200ResponseJsonConverter : JsonConverter<GetUsageWarnings200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetUsageWarnings200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetUsageWarnings200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetUsageWarnings200Response" />
         /// </summary>

@@ -78,8 +78,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ToggleRoleRequest" />
     /// </summary>
-    public class ToggleRoleRequestJsonConverter : JsonConverter<ToggleRoleRequest>
+    public partial class ToggleRoleRequestJsonConverter : JsonConverter<ToggleRoleRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToggleRoleRequestJsonConverter" /> class.
+        /// </summary>
+        public ToggleRoleRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ToggleRoleRequest" />
         /// </summary>

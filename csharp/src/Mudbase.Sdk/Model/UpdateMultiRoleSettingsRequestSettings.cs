@@ -62,7 +62,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Whether an end user may hold multiple app roles.</value>
         [JsonPropertyName("allowMultipleRoles")]
-        public bool? AllowMultipleRoles { get { return this.AllowMultipleRolesOption; } set { this.AllowMultipleRolesOption = new(value); } }
+        public bool? AllowMultipleRoles { get { return this.AllowMultipleRolesOption.Value; } set { this.AllowMultipleRolesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RequireRoleSelection
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>If true, signup must pick a role; if false and &#x60;autoAssignDefault&#x60; is true, &#x60;defaultRole&#x60; is used when omitted.</value>
         [JsonPropertyName("requireRoleSelection")]
-        public bool? RequireRoleSelection { get { return this.RequireRoleSelectionOption; } set { this.RequireRoleSelectionOption = new(value); } }
+        public bool? RequireRoleSelection { get { return this.RequireRoleSelectionOption.Value; } set { this.RequireRoleSelectionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AutoAssignDefault
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>When true, assigns &#x60;defaultRole&#x60; when the client does not specify a role at signup.</value>
         [JsonPropertyName("autoAssignDefault")]
-        public bool? AutoAssignDefault { get { return this.AutoAssignDefaultOption; } set { this.AutoAssignDefaultOption = new(value); } }
+        public bool? AutoAssignDefault { get { return this.AutoAssignDefaultOption.Value; } set { this.AutoAssignDefaultOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of DataOwnerField
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Default document field for dataScope &#x60;own&#x60; (e.g. createdBy, userId).</value>
         [JsonPropertyName("dataOwnerField")]
-        public string? DataOwnerField { get { return this.DataOwnerFieldOption; } set { this.DataOwnerFieldOption = new(value); } }
+        public string? DataOwnerField { get { return this.DataOwnerFieldOption.Value; } set { this.DataOwnerFieldOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,8 +136,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateMultiRoleSettingsRequestSettings" />
     /// </summary>
-    public class UpdateMultiRoleSettingsRequestSettingsJsonConverter : JsonConverter<UpdateMultiRoleSettingsRequestSettings>
+    public partial class UpdateMultiRoleSettingsRequestSettingsJsonConverter : JsonConverter<UpdateMultiRoleSettingsRequestSettings>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateMultiRoleSettingsRequestSettingsJsonConverter" /> class.
+        /// </summary>
+        public UpdateMultiRoleSettingsRequestSettingsJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateMultiRoleSettingsRequestSettings" />
         /// </summary>

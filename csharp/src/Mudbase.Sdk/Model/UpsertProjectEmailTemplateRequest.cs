@@ -73,7 +73,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TextBody
         /// </summary>
         [JsonPropertyName("textBody")]
-        public string? TextBody { get { return this.TextBodyOption; } set { this.TextBodyOption = new(value); } }
+        public string? TextBody { get { return this.TextBodyOption.Value; } set { this.TextBodyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Variables
@@ -86,7 +86,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Variables
         /// </summary>
         [JsonPropertyName("variables")]
-        public List<string>? Variables { get { return this.VariablesOption; } set { this.VariablesOption = new(value); } }
+        public List<string>? Variables { get { return this.VariablesOption.Value; } set { this.VariablesOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,8 +118,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpsertProjectEmailTemplateRequest" />
     /// </summary>
-    public class UpsertProjectEmailTemplateRequestJsonConverter : JsonConverter<UpsertProjectEmailTemplateRequest>
+    public partial class UpsertProjectEmailTemplateRequestJsonConverter : JsonConverter<UpsertProjectEmailTemplateRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpsertProjectEmailTemplateRequestJsonConverter" /> class.
+        /// </summary>
+        public UpsertProjectEmailTemplateRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpsertProjectEmailTemplateRequest" />
         /// </summary>

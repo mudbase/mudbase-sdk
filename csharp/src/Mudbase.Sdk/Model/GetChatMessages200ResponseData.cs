@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Messages
         /// </summary>
         [JsonPropertyName("messages")]
-        public List<GetChatMessages200ResponseDataMessagesInner>? Messages { get { return this.MessagesOption; } set { this.MessagesOption = new(value); } }
+        public List<GetChatMessages200ResponseDataMessagesInner>? Messages { get { return this.MessagesOption.Value; } set { this.MessagesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Total
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Total
         /// </summary>
         [JsonPropertyName("total")]
-        public int? Total { get { return this.TotalOption; } set { this.TotalOption = new(value); } }
+        public int? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetChatMessages200ResponseData" />
     /// </summary>
-    public class GetChatMessages200ResponseDataJsonConverter : JsonConverter<GetChatMessages200ResponseData>
+    public partial class GetChatMessages200ResponseDataJsonConverter : JsonConverter<GetChatMessages200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetChatMessages200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetChatMessages200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetChatMessages200ResponseData" />
         /// </summary>

@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Whether project-level fee is enabled (for non-custodial fee display/calculation)</value>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FeePercentage
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Project fee as decimal (e.g. 0.01 &#x3D; 1%)</value>
         [JsonPropertyName("feePercentage")]
-        public decimal? FeePercentage { get { return this.FeePercentageOption; } set { this.FeePercentageOption = new(value); } }
+        public decimal? FeePercentage { get { return this.FeePercentageOption.Value; } set { this.FeePercentageOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,8 +114,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetWalletFeeConfig200ResponseData" />
     /// </summary>
-    public class GetWalletFeeConfig200ResponseDataJsonConverter : JsonConverter<GetWalletFeeConfig200ResponseData>
+    public partial class GetWalletFeeConfig200ResponseDataJsonConverter : JsonConverter<GetWalletFeeConfig200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetWalletFeeConfig200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetWalletFeeConfig200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetWalletFeeConfig200ResponseData" />
         /// </summary>

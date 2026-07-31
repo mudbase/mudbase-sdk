@@ -62,7 +62,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>google</example> */
         [JsonPropertyName("provider")]
-        public string? Provider { get { return this.ProviderOption; } set { this.ProviderOption = new(value); } }
+        public string? Provider { get { return this.ProviderOption.Value; } set { this.ProviderOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProviderId
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>google-user-id-123</example> */
         [JsonPropertyName("providerId")]
-        public string? ProviderId { get { return this.ProviderIdOption; } set { this.ProviderIdOption = new(value); } }
+        public string? ProviderId { get { return this.ProviderIdOption.Value; } set { this.ProviderIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Email
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>user@gmail.com</example> */
         [JsonPropertyName("email")]
-        public string? Email { get { return this.EmailOption; } set { this.EmailOption = new(value); } }
+        public string? Email { get { return this.EmailOption.Value; } set { this.EmailOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LinkedAt
@@ -103,7 +103,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets LinkedAt
         /// </summary>
         [JsonPropertyName("linkedAt")]
-        public DateTime? LinkedAt { get { return this.LinkedAtOption; } set { this.LinkedAtOption = new(value); } }
+        public DateTime? LinkedAt { get { return this.LinkedAtOption.Value; } set { this.LinkedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -135,12 +135,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ListOAuthProviders200ResponseProvidersInner" />
     /// </summary>
-    public class ListOAuthProviders200ResponseProvidersInnerJsonConverter : JsonConverter<ListOAuthProviders200ResponseProvidersInner>
+    public partial class ListOAuthProviders200ResponseProvidersInnerJsonConverter : JsonConverter<ListOAuthProviders200ResponseProvidersInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListOAuthProviders200ResponseProvidersInnerJsonConverter" /> class.
+        /// </summary>
+        public ListOAuthProviders200ResponseProvidersInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize LinkedAt
         /// </summary>
-        public static string LinkedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string LinkedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="ListOAuthProviders200ResponseProvidersInner" />

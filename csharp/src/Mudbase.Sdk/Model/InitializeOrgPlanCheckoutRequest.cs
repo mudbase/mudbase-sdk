@@ -215,7 +215,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Yearly &#x3D; 8% discount</value>
         [JsonPropertyName("billingCycle")]
-        public BillingCycleEnum? BillingCycle { get { return this.BillingCycleOption; } set { this.BillingCycleOption = new(value); } }
+        public BillingCycleEnum? BillingCycle { get { return this.BillingCycleOption.Value; } set { this.BillingCycleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RedirectUrl
@@ -229,7 +229,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Override redirect after payment (default FRONTEND_URL/billing/callback)</value>
         [JsonPropertyName("redirectUrl")]
-        public string? RedirectUrl { get { return this.RedirectUrlOption; } set { this.RedirectUrlOption = new(value); } }
+        public string? RedirectUrl { get { return this.RedirectUrlOption.Value; } set { this.RedirectUrlOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -260,8 +260,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InitializeOrgPlanCheckoutRequest" />
     /// </summary>
-    public class InitializeOrgPlanCheckoutRequestJsonConverter : JsonConverter<InitializeOrgPlanCheckoutRequest>
+    public partial class InitializeOrgPlanCheckoutRequestJsonConverter : JsonConverter<InitializeOrgPlanCheckoutRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InitializeOrgPlanCheckoutRequestJsonConverter" /> class.
+        /// </summary>
+        public InitializeOrgPlanCheckoutRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InitializeOrgPlanCheckoutRequest" />
         /// </summary>

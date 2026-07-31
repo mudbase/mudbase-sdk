@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Currency
@@ -78,7 +78,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Currency
         /// </summary>
         [JsonPropertyName("currency")]
-        public string? Currency { get { return this.CurrencyOption; } set { this.CurrencyOption = new(value); } }
+        public string? Currency { get { return this.CurrencyOption.Value; } set { this.CurrencyOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of OrgReceives
@@ -91,7 +91,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets OrgReceives
         /// </summary>
         [JsonPropertyName("orgReceives")]
-        public decimal? OrgReceives { get { return this.OrgReceivesOption; } set { this.OrgReceivesOption = new(value); } }
+        public decimal? OrgReceives { get { return this.OrgReceivesOption.Value; } set { this.OrgReceivesOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformPercent
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformPercent
         /// </summary>
         [JsonPropertyName("platformPercent")]
-        public decimal? PlatformPercent { get { return this.PlatformPercentOption; } set { this.PlatformPercentOption = new(value); } }
+        public decimal? PlatformPercent { get { return this.PlatformPercentOption.Value; } set { this.PlatformPercentOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PlatformFixed
@@ -117,7 +117,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PlatformFixed
         /// </summary>
         [JsonPropertyName("platformFixed")]
-        public decimal? PlatformFixed { get { return this.PlatformFixedOption; } set { this.PlatformFixedOption = new(value); } }
+        public decimal? PlatformFixed { get { return this.PlatformFixedOption.Value; } set { this.PlatformFixedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProcessingFee
@@ -130,7 +130,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProcessingFee
         /// </summary>
         [JsonPropertyName("processingFee")]
-        public decimal? ProcessingFee { get { return this.ProcessingFeeOption; } set { this.ProcessingFeeOption = new(value); } }
+        public decimal? ProcessingFee { get { return this.ProcessingFeeOption.Value; } set { this.ProcessingFeeOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -164,8 +164,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetFeeBreakdown200ResponseData" />
     /// </summary>
-    public class GetFeeBreakdown200ResponseDataJsonConverter : JsonConverter<GetFeeBreakdown200ResponseData>
+    public partial class GetFeeBreakdown200ResponseDataJsonConverter : JsonConverter<GetFeeBreakdown200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetFeeBreakdown200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public GetFeeBreakdown200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetFeeBreakdown200ResponseData" />
         /// </summary>

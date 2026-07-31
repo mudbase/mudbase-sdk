@@ -149,7 +149,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Status
         /// </summary>
         [JsonPropertyName("status")]
-        public StatusEnum? Status { get { return this.StatusOption; } set { this.StatusOption = new(value); } }
+        public StatusEnum? Status { get { return this.StatusOption.Value; } set { this.StatusOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Id
@@ -162,7 +162,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Id
         /// </summary>
         [JsonPropertyName("_id")]
-        public string? Id { get { return this.IdOption; } set { this.IdOption = new(value); } }
+        public string? Id { get { return this.IdOption.Value; } set { this.IdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Project
@@ -175,7 +175,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Project
         /// </summary>
         [JsonPropertyName("project")]
-        public string? Project { get { return this.ProjectOption; } set { this.ProjectOption = new(value); } }
+        public string? Project { get { return this.ProjectOption.Value; } set { this.ProjectOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Description
@@ -188,7 +188,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get { return this.DescriptionOption; } set { this.DescriptionOption = new(value); } }
+        public string? Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Size
@@ -201,7 +201,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Size
         /// </summary>
         [JsonPropertyName("size")]
-        public int? Size { get { return this.SizeOption; } set { this.SizeOption = new(value); } }
+        public int? Size { get { return this.SizeOption.Value; } set { this.SizeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Collections
@@ -214,7 +214,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Collections
         /// </summary>
         [JsonPropertyName("collections")]
-        public List<string>? Collections { get { return this.CollectionsOption; } set { this.CollectionsOption = new(value); } }
+        public List<string>? Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of CreatedAt
@@ -227,7 +227,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         [JsonPropertyName("createdAt")]
-        public DateTime? CreatedAt { get { return this.CreatedAtOption; } set { this.CreatedAtOption = new(value); } }
+        public DateTime? CreatedAt { get { return this.CreatedAtOption.Value; } set { this.CreatedAtOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of EstimatedCompletion
@@ -240,7 +240,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets EstimatedCompletion
         /// </summary>
         [JsonPropertyName("estimatedCompletion")]
-        public DateTime? EstimatedCompletion { get { return this.EstimatedCompletionOption; } set { this.EstimatedCompletionOption = new(value); } }
+        public DateTime? EstimatedCompletion { get { return this.EstimatedCompletionOption.Value; } set { this.EstimatedCompletionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -276,17 +276,27 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="CreateBackup201ResponseBackup" />
     /// </summary>
-    public class CreateBackup201ResponseBackupJsonConverter : JsonConverter<CreateBackup201ResponseBackup>
+    public partial class CreateBackup201ResponseBackupJsonConverter : JsonConverter<CreateBackup201ResponseBackup>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateBackup201ResponseBackupJsonConverter" /> class.
+        /// </summary>
+        public CreateBackup201ResponseBackupJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize CreatedAt
         /// </summary>
-        public static string CreatedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// The format to use to serialize EstimatedCompletion
         /// </summary>
-        public static string EstimatedCompletionFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string EstimatedCompletionFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateBackup201ResponseBackup" />

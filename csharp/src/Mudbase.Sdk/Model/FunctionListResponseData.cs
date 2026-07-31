@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Functions
         /// </summary>
         [JsonPropertyName("functions")]
-        public List<Function>? Functions { get { return this.FunctionsOption; } set { this.FunctionsOption = new(value); } }
+        public List<Function>? Functions { get { return this.FunctionsOption.Value; } set { this.FunctionsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Pagination
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Pagination
         /// </summary>
         [JsonPropertyName("pagination")]
-        public Pagination? Pagination { get { return this.PaginationOption; } set { this.PaginationOption = new(value); } }
+        public Pagination? Pagination { get { return this.PaginationOption.Value; } set { this.PaginationOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="FunctionListResponseData" />
     /// </summary>
-    public class FunctionListResponseDataJsonConverter : JsonConverter<FunctionListResponseData>
+    public partial class FunctionListResponseDataJsonConverter : JsonConverter<FunctionListResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FunctionListResponseDataJsonConverter" /> class.
+        /// </summary>
+        public FunctionListResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="FunctionListResponseData" />
         /// </summary>

@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ApiCalls
         /// </summary>
         [JsonPropertyName("apiCalls")]
-        public decimal? ApiCalls { get { return this.ApiCallsOption; } set { this.ApiCallsOption = new(value); } }
+        public decimal? ApiCalls { get { return this.ApiCallsOption.Value; } set { this.ApiCallsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Storage
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Storage
         /// </summary>
         [JsonPropertyName("storage")]
-        public decimal? Storage { get { return this.StorageOption; } set { this.StorageOption = new(value); } }
+        public decimal? Storage { get { return this.StorageOption.Value; } set { this.StorageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Bandwidth
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Bandwidth
         /// </summary>
         [JsonPropertyName("bandwidth")]
-        public decimal? Bandwidth { get { return this.BandwidthOption; } set { this.BandwidthOption = new(value); } }
+        public decimal? Bandwidth { get { return this.BandwidthOption.Value; } set { this.BandwidthOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UsageStatsResponsePercentages" />
     /// </summary>
-    public class UsageStatsResponsePercentagesJsonConverter : JsonConverter<UsageStatsResponsePercentages>
+    public partial class UsageStatsResponsePercentagesJsonConverter : JsonConverter<UsageStatsResponsePercentages>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UsageStatsResponsePercentagesJsonConverter" /> class.
+        /// </summary>
+        public UsageStatsResponsePercentagesJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UsageStatsResponsePercentages" />
         /// </summary>

@@ -119,7 +119,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Scope
         /// </summary>
         [JsonPropertyName("scope")]
-        public ScopeEnum? Scope { get { return this.ScopeOption; } set { this.ScopeOption = new(value); } }
+        public ScopeEnum? Scope { get { return this.ScopeOption.Value; } set { this.ScopeOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of P50Ms
@@ -132,7 +132,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets P50Ms
         /// </summary>
         [JsonPropertyName("p50Ms")]
-        public int? P50Ms { get { return this.P50MsOption; } set { this.P50MsOption = new(value); } }
+        public int? P50Ms { get { return this.P50MsOption.Value; } set { this.P50MsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of P95Ms
@@ -145,7 +145,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets P95Ms
         /// </summary>
         [JsonPropertyName("p95Ms")]
-        public int? P95Ms { get { return this.P95MsOption; } set { this.P95MsOption = new(value); } }
+        public int? P95Ms { get { return this.P95MsOption.Value; } set { this.P95MsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of P99Ms
@@ -158,7 +158,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets P99Ms
         /// </summary>
         [JsonPropertyName("p99Ms")]
-        public int? P99Ms { get { return this.P99MsOption; } set { this.P99MsOption = new(value); } }
+        public int? P99Ms { get { return this.P99MsOption.Value; } set { this.P99MsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of MeanMs
@@ -171,7 +171,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MeanMs
         /// </summary>
         [JsonPropertyName("meanMs")]
-        public int? MeanMs { get { return this.MeanMsOption; } set { this.MeanMsOption = new(value); } }
+        public int? MeanMs { get { return this.MeanMsOption.Value; } set { this.MeanMsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SamplesApprox
@@ -184,7 +184,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets SamplesApprox
         /// </summary>
         [JsonPropertyName("samplesApprox")]
-        public int? SamplesApprox { get { return this.SamplesApproxOption; } set { this.SamplesApproxOption = new(value); } }
+        public int? SamplesApprox { get { return this.SamplesApproxOption.Value; } set { this.SamplesApproxOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TemplatesTracked
@@ -197,7 +197,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets TemplatesTracked
         /// </summary>
         [JsonPropertyName("templatesTracked")]
-        public int? TemplatesTracked { get { return this.TemplatesTrackedOption; } set { this.TemplatesTrackedOption = new(value); } }
+        public int? TemplatesTracked { get { return this.TemplatesTrackedOption.Value; } set { this.TemplatesTrackedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -232,8 +232,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="DashboardOverviewDataLatencyInstanceRollup" />
     /// </summary>
-    public class DashboardOverviewDataLatencyInstanceRollupJsonConverter : JsonConverter<DashboardOverviewDataLatencyInstanceRollup>
+    public partial class DashboardOverviewDataLatencyInstanceRollupJsonConverter : JsonConverter<DashboardOverviewDataLatencyInstanceRollup>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardOverviewDataLatencyInstanceRollupJsonConverter" /> class.
+        /// </summary>
+        public DashboardOverviewDataLatencyInstanceRollupJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="DashboardOverviewDataLatencyInstanceRollup" />
         /// </summary>

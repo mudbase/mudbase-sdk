@@ -58,7 +58,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>google OAuth configuration updated</example> */
         [JsonPropertyName("message")]
-        public string? Message { get { return this.MessageOption; } set { this.MessageOption = new(value); } }
+        public string? Message { get { return this.MessageOption.Value; } set { this.MessageOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Provider
@@ -71,7 +71,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Provider
         /// </summary>
         [JsonPropertyName("provider")]
-        public ConfigureOAuthProvider200ResponseProvider? Provider { get { return this.ProviderOption; } set { this.ProviderOption = new(value); } }
+        public ConfigureOAuthProvider200ResponseProvider? Provider { get { return this.ProviderOption.Value; } set { this.ProviderOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,8 +101,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConfigureOAuthProvider200Response" />
     /// </summary>
-    public class ConfigureOAuthProvider200ResponseJsonConverter : JsonConverter<ConfigureOAuthProvider200Response>
+    public partial class ConfigureOAuthProvider200ResponseJsonConverter : JsonConverter<ConfigureOAuthProvider200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigureOAuthProvider200ResponseJsonConverter" /> class.
+        /// </summary>
+        public ConfigureOAuthProvider200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConfigureOAuthProvider200Response" />
         /// </summary>

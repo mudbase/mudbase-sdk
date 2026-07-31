@@ -59,7 +59,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Chain
         /// </summary>
         [JsonPropertyName("chain")]
-        public string? Chain { get { return this.ChainOption; } set { this.ChainOption = new(value); } }
+        public string? Chain { get { return this.ChainOption.Value; } set { this.ChainOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Lag
@@ -72,7 +72,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Lag
         /// </summary>
         [JsonPropertyName("lag")]
-        public decimal? Lag { get { return this.LagOption; } set { this.LagOption = new(value); } }
+        public decimal? Lag { get { return this.LagOption.Value; } set { this.LagOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Threshold
@@ -85,7 +85,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Threshold
         /// </summary>
         [JsonPropertyName("threshold")]
-        public decimal? Threshold { get { return this.ThresholdOption; } set { this.ThresholdOption = new(value); } }
+        public decimal? Threshold { get { return this.ThresholdOption.Value; } set { this.ThresholdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,8 +116,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetScannerMetrics200ResponseAlertsInner" />
     /// </summary>
-    public class GetScannerMetrics200ResponseAlertsInnerJsonConverter : JsonConverter<GetScannerMetrics200ResponseAlertsInner>
+    public partial class GetScannerMetrics200ResponseAlertsInnerJsonConverter : JsonConverter<GetScannerMetrics200ResponseAlertsInner>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetScannerMetrics200ResponseAlertsInnerJsonConverter" /> class.
+        /// </summary>
+        public GetScannerMetrics200ResponseAlertsInnerJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="GetScannerMetrics200ResponseAlertsInner" />
         /// </summary>

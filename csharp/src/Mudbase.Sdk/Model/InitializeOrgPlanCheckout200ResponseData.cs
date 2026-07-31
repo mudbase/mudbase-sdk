@@ -66,7 +66,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Payment URL</value>
         [JsonPropertyName("link")]
-        public string? Link { get { return this.LinkOption; } set { this.LinkOption = new(value); } }
+        public string? Link { get { return this.LinkOption.Value; } set { this.LinkOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of TxRef
@@ -80,7 +80,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Reference for verify-payment (mudbase_org_...)</value>
         [JsonPropertyName("txRef")]
-        public string? TxRef { get { return this.TxRefOption; } set { this.TxRefOption = new(value); } }
+        public string? TxRef { get { return this.TxRefOption.Value; } set { this.TxRefOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of ProviderRef
@@ -93,7 +93,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProviderRef
         /// </summary>
         [JsonPropertyName("providerRef")]
-        public string? ProviderRef { get { return this.ProviderRefOption; } set { this.ProviderRefOption = new(value); } }
+        public string? ProviderRef { get { return this.ProviderRefOption.Value; } set { this.ProviderRefOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of BillingCycle
@@ -106,7 +106,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets BillingCycle
         /// </summary>
         [JsonPropertyName("billingCycle")]
-        public string? BillingCycle { get { return this.BillingCycleOption; } set { this.BillingCycleOption = new(value); } }
+        public string? BillingCycle { get { return this.BillingCycleOption.Value; } set { this.BillingCycleOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Amount
@@ -119,7 +119,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Amount
         /// </summary>
         [JsonPropertyName("amount")]
-        public decimal? Amount { get { return this.AmountOption; } set { this.AmountOption = new(value); } }
+        public decimal? Amount { get { return this.AmountOption.Value; } set { this.AmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AmountCents
@@ -132,7 +132,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets AmountCents
         /// </summary>
         [JsonPropertyName("amountCents")]
-        public decimal? AmountCents { get { return this.AmountCentsOption; } set { this.AmountCentsOption = new(value); } }
+        public decimal? AmountCents { get { return this.AmountCentsOption.Value; } set { this.AmountCentsOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -166,8 +166,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InitializeOrgPlanCheckout200ResponseData" />
     /// </summary>
-    public class InitializeOrgPlanCheckout200ResponseDataJsonConverter : JsonConverter<InitializeOrgPlanCheckout200ResponseData>
+    public partial class InitializeOrgPlanCheckout200ResponseDataJsonConverter : JsonConverter<InitializeOrgPlanCheckout200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InitializeOrgPlanCheckout200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public InitializeOrgPlanCheckout200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InitializeOrgPlanCheckout200ResponseData" />
         /// </summary>

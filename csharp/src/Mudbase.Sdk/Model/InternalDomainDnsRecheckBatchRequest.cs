@@ -57,7 +57,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets MaxOrgs
         /// </summary>
         [JsonPropertyName("maxOrgs")]
-        public int? MaxOrgs { get { return this.MaxOrgsOption; } set { this.MaxOrgsOption = new(value); } }
+        public int? MaxOrgs { get { return this.MaxOrgsOption.Value; } set { this.MaxOrgsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of RecheckOlderThanHours
@@ -70,7 +70,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets RecheckOlderThanHours
         /// </summary>
         [JsonPropertyName("recheckOlderThanHours")]
-        public int? RecheckOlderThanHours { get { return this.RecheckOlderThanHoursOption; } set { this.RecheckOlderThanHoursOption = new(value); } }
+        public int? RecheckOlderThanHours { get { return this.RecheckOlderThanHoursOption.Value; } set { this.RecheckOlderThanHoursOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,8 +100,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="InternalDomainDnsRecheckBatchRequest" />
     /// </summary>
-    public class InternalDomainDnsRecheckBatchRequestJsonConverter : JsonConverter<InternalDomainDnsRecheckBatchRequest>
+    public partial class InternalDomainDnsRecheckBatchRequestJsonConverter : JsonConverter<InternalDomainDnsRecheckBatchRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InternalDomainDnsRecheckBatchRequestJsonConverter" /> class.
+        /// </summary>
+        public InternalDomainDnsRecheckBatchRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="InternalDomainDnsRecheckBatchRequest" />
         /// </summary>

@@ -313,7 +313,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Required
         /// </summary>
         [JsonPropertyName("required")]
-        public bool? Required { get { return this.RequiredOption; } set { this.RequiredOption = new(value); } }
+        public bool? Required { get { return this.RequiredOption.Value; } set { this.RequiredOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Unique
@@ -326,7 +326,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Unique
         /// </summary>
         [JsonPropertyName("unique")]
-        public bool? Unique { get { return this.UniqueOption; } set { this.UniqueOption = new(value); } }
+        public bool? Unique { get { return this.UniqueOption.Value; } set { this.UniqueOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Default
@@ -339,7 +339,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Default
         /// </summary>
         [JsonPropertyName("default")]
-        public FieldDefault? Default { get { return this.DefaultOption; } set { this.DefaultOption = new(value); } }
+        public FieldDefault? Default { get { return this.DefaultOption.Value; } set { this.DefaultOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Validation
@@ -352,7 +352,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Validation
         /// </summary>
         [JsonPropertyName("validation")]
-        public Object? Validation { get { return this.ValidationOption; } set { this.ValidationOption = new(value); } }
+        public Object? Validation { get { return this.ValidationOption.Value; } set { this.ValidationOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Ui
@@ -365,7 +365,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Ui
         /// </summary>
         [JsonPropertyName("ui")]
-        public Object? Ui { get { return this.UiOption; } set { this.UiOption = new(value); } }
+        public Object? Ui { get { return this.UiOption.Value; } set { this.UiOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -400,8 +400,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="Field" />
     /// </summary>
-    public class FieldJsonConverter : JsonConverter<Field>
+    public partial class FieldJsonConverter : JsonConverter<Field>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FieldJsonConverter" /> class.
+        /// </summary>
+        public FieldJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="Field" />
         /// </summary>

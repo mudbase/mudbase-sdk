@@ -65,7 +65,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /// <value>Optional; defaults to incrementing stored version</value>
         [JsonPropertyName("keyVersion")]
-        public int? KeyVersion { get { return this.KeyVersionOption; } set { this.KeyVersionOption = new(value); } }
+        public int? KeyVersion { get { return this.KeyVersionOption.Value; } set { this.KeyVersionOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,8 +95,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="PutChatE2eeKeyRequest" />
     /// </summary>
-    public class PutChatE2eeKeyRequestJsonConverter : JsonConverter<PutChatE2eeKeyRequest>
+    public partial class PutChatE2eeKeyRequestJsonConverter : JsonConverter<PutChatE2eeKeyRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PutChatE2eeKeyRequestJsonConverter" /> class.
+        /// </summary>
+        public PutChatE2eeKeyRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="PutChatE2eeKeyRequest" />
         /// </summary>

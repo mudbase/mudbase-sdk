@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Enabled
         /// </summary>
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get { return this.EnabledOption; } set { this.EnabledOption = new(value); } }
+        public bool? Enabled { get { return this.EnabledOption.Value; } set { this.EnabledOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of FeeAmount
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets FeeAmount
         /// </summary>
         [JsonPropertyName("feeAmount")]
-        public decimal? FeeAmount { get { return this.FeeAmountOption; } set { this.FeeAmountOption = new(value); } }
+        public decimal? FeeAmount { get { return this.FeeAmountOption.Value; } set { this.FeeAmountOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PayoutAddress
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PayoutAddress
         /// </summary>
         [JsonPropertyName("payoutAddress")]
-        public string? PayoutAddress { get { return this.PayoutAddressOption; } set { this.PayoutAddressOption = new(value); } }
+        public string? PayoutAddress { get { return this.PayoutAddressOption.Value; } set { this.PayoutAddressOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of PayoutThreshold
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets PayoutThreshold
         /// </summary>
         [JsonPropertyName("payoutThreshold")]
-        public decimal? PayoutThreshold { get { return this.PayoutThresholdOption; } set { this.PayoutThresholdOption = new(value); } }
+        public decimal? PayoutThreshold { get { return this.PayoutThresholdOption.Value; } set { this.PayoutThresholdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,8 +132,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="UpdateCurrencyFeeSettingsRequest" />
     /// </summary>
-    public class UpdateCurrencyFeeSettingsRequestJsonConverter : JsonConverter<UpdateCurrencyFeeSettingsRequest>
+    public partial class UpdateCurrencyFeeSettingsRequestJsonConverter : JsonConverter<UpdateCurrencyFeeSettingsRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateCurrencyFeeSettingsRequestJsonConverter" /> class.
+        /// </summary>
+        public UpdateCurrencyFeeSettingsRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="UpdateCurrencyFeeSettingsRequest" />
         /// </summary>

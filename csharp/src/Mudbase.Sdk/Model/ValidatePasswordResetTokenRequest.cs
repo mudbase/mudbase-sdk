@@ -78,8 +78,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ValidatePasswordResetTokenRequest" />
     /// </summary>
-    public class ValidatePasswordResetTokenRequestJsonConverter : JsonConverter<ValidatePasswordResetTokenRequest>
+    public partial class ValidatePasswordResetTokenRequestJsonConverter : JsonConverter<ValidatePasswordResetTokenRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValidatePasswordResetTokenRequestJsonConverter" /> class.
+        /// </summary>
+        public ValidatePasswordResetTokenRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ValidatePasswordResetTokenRequest" />
         /// </summary>

@@ -62,7 +62,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>false</example> */
         [JsonPropertyName("alreadyErased")]
-        public bool? AlreadyErased { get { return this.AlreadyErasedOption; } set { this.AlreadyErasedOption = new(value); } }
+        public bool? AlreadyErased { get { return this.AlreadyErasedOption.Value; } set { this.AlreadyErasedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SubjectId
@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>685acbe0e129932fbb7a0fc2</example> */
         [JsonPropertyName("subjectId")]
-        public string? SubjectId { get { return this.SubjectIdOption; } set { this.SubjectIdOption = new(value); } }
+        public string? SubjectId { get { return this.SubjectIdOption.Value; } set { this.SubjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Anonymized
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("anonymized")]
-        public bool? Anonymized { get { return this.AnonymizedOption; } set { this.AnonymizedOption = new(value); } }
+        public bool? Anonymized { get { return this.AnonymizedOption.Value; } set { this.AnonymizedOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of SessionsRevoked
@@ -104,7 +104,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>true</example> */
         [JsonPropertyName("sessionsRevoked")]
-        public bool? SessionsRevoked { get { return this.SessionsRevokedOption; } set { this.SessionsRevokedOption = new(value); } }
+        public bool? SessionsRevoked { get { return this.SessionsRevokedOption.Value; } set { this.SessionsRevokedOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,8 +136,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="EraseUserData200ResponseData" />
     /// </summary>
-    public class EraseUserData200ResponseDataJsonConverter : JsonConverter<EraseUserData200ResponseData>
+    public partial class EraseUserData200ResponseDataJsonConverter : JsonConverter<EraseUserData200ResponseData>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EraseUserData200ResponseDataJsonConverter" /> class.
+        /// </summary>
+        public EraseUserData200ResponseDataJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="EraseUserData200ResponseData" />
         /// </summary>

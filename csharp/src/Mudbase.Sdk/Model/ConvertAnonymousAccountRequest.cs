@@ -76,7 +76,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>John</example> */
         [JsonPropertyName("firstName")]
-        public string? FirstName { get { return this.FirstNameOption; } set { this.FirstNameOption = new(value); } }
+        public string? FirstName { get { return this.FirstNameOption.Value; } set { this.FirstNameOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of LastName
@@ -90,7 +90,7 @@ namespace Mudbase.Sdk.Model
         /// </summary>
         /* <example>Doe</example> */
         [JsonPropertyName("lastName")]
-        public string? LastName { get { return this.LastNameOption; } set { this.LastNameOption = new(value); } }
+        public string? LastName { get { return this.LastNameOption.Value; } set { this.LastNameOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -122,8 +122,18 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="ConvertAnonymousAccountRequest" />
     /// </summary>
-    public class ConvertAnonymousAccountRequestJsonConverter : JsonConverter<ConvertAnonymousAccountRequest>
+    public partial class ConvertAnonymousAccountRequestJsonConverter : JsonConverter<ConvertAnonymousAccountRequest>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConvertAnonymousAccountRequestJsonConverter" /> class.
+        /// </summary>
+        public ConvertAnonymousAccountRequestJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// Deserializes json to <see cref="ConvertAnonymousAccountRequest" />
         /// </summary>

@@ -61,7 +61,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets ProjectId
         /// </summary>
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return this.ProjectIdOption; } set { this.ProjectIdOption = new(value); } }
+        public string? ProjectId { get { return this.ProjectIdOption.Value; } set { this.ProjectIdOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Period
@@ -74,7 +74,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Period
         /// </summary>
         [JsonPropertyName("period")]
-        public string? Period { get { return this.PeriodOption; } set { this.PeriodOption = new(value); } }
+        public string? Period { get { return this.PeriodOption.Value; } set { this.PeriodOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of Data
@@ -87,7 +87,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public List<GetHistoricalAnalytics200ResponseDataInner>? Data { get { return this.DataOption; } set { this.DataOption = new(value); } }
+        public List<GetHistoricalAnalytics200ResponseDataInner>? Data { get { return this.DataOption.Value; } set { this.DataOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of GeneratedAt
@@ -100,7 +100,7 @@ namespace Mudbase.Sdk.Model
         /// Gets or Sets GeneratedAt
         /// </summary>
         [JsonPropertyName("generatedAt")]
-        public DateTime? GeneratedAt { get { return this.GeneratedAtOption; } set { this.GeneratedAtOption = new(value); } }
+        public DateTime? GeneratedAt { get { return this.GeneratedAtOption.Value; } set { this.GeneratedAtOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -132,12 +132,22 @@ namespace Mudbase.Sdk.Model
     /// <summary>
     /// A Json converter for type <see cref="GetHistoricalAnalytics200Response" />
     /// </summary>
-    public class GetHistoricalAnalytics200ResponseJsonConverter : JsonConverter<GetHistoricalAnalytics200Response>
+    public partial class GetHistoricalAnalytics200ResponseJsonConverter : JsonConverter<GetHistoricalAnalytics200Response>
     {
+        partial void OnCreated();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetHistoricalAnalytics200ResponseJsonConverter" /> class.
+        /// </summary>
+        public GetHistoricalAnalytics200ResponseJsonConverter()
+        {
+            OnCreated();
+        }
+
         /// <summary>
         /// The format to use to serialize GeneratedAt
         /// </summary>
-        public static string GeneratedAtFormat { get; set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
+        public string GeneratedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK";
 
         /// <summary>
         /// Deserializes json to <see cref="GetHistoricalAnalytics200Response" />

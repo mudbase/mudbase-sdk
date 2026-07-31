@@ -1,5 +1,6 @@
-# CreateRoleRequestCollectionPermissionsValue
+# CollectionPermissionRule
 
+Explicit actions + row-level conditions granted on a collection
 
 ## Properties
 
@@ -11,9 +12,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { CreateRoleRequestCollectionPermissionsValue } from 'mudbase-sdk';
+import { CollectionPermissionRule } from 'mudbase-sdk';
 
-const instance: CreateRoleRequestCollectionPermissionsValue = {
+const instance: CollectionPermissionRule = {
     actions,
     conditions,
 };

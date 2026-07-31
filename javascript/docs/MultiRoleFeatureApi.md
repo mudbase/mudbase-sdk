@@ -348,7 +348,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **registerWithRole**
-> registerWithRole(registerWithRoleRequest)
+> RegisterWithRole201Response registerWithRole(registerWithRoleRequest)
 
 Public endpoint for user registration with a specific role. The path segment must match a role\'s `signupEndpoint` (default starter is `customer`; add more roles via multi-role API). No authentication required - this is a public signup endpoint. 
 
@@ -383,7 +383,7 @@ const { status, data } = await apiInstance.registerWithRole(
 
 ### Return type
 
-void (empty response body)
+**RegisterWithRole201Response**
 
 ### Authorization
 
@@ -392,13 +392,15 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | Registration successful |  -  |
+|**201** | Registration successful. Two response shapes depending on the project\&#39;s &#x60;requireEmailVerification&#x60; setting - see &#x60;requireVerification&#x60; to distinguish them; &#x60;token&#x60;/&#x60;refreshToken&#x60;/&#x60;expiresIn&#x60; are only present when a session was issued immediately. |  -  |
+|**400** | Validation failed, or a user with this email already exists for the project |  -  |
+|**403** | Role requires approval, payment, or KYC before it can be self-assigned |  -  |
 |**404** | Role not found or not enabled |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

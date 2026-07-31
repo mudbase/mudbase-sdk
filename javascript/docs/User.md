@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **fullName** | **string** |  | [optional] [default to undefined]
 **avatar** | **string** |  | [optional] [default to undefined]
 **role** | **string** |  | [optional] [default to undefined]
+**customRole** | **string** | Application-level role slug from the project\&#39;s Multi-Role feature (e.g. \&quot;customer\&quot;, \&quot;seller\&quot;). Null for org-level (org/admin/member/viewer) users who aren\&#39;t project end-users. | [optional] [default to undefined]
+**isAnonymous** | **boolean** | True for a guest session created via POST /api/auth/anonymous that hasn\&#39;t been converted to a full account yet. | [optional] [default to undefined]
 **emailVerified** | **boolean** |  | [optional] [default to undefined]
 **phoneVerified** | **boolean** |  | [optional] [default to undefined]
 **twoFactorEnabled** | **boolean** |  | [optional] [default to undefined]
@@ -33,6 +35,8 @@ const instance: User = {
     fullName,
     avatar,
     role,
+    customRole,
+    isAnonymous,
     emailVerified,
     phoneVerified,
     twoFactorEnabled,

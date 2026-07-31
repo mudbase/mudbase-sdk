@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **firstName** | **string** |  | [default to undefined]
 **lastName** | **string** |  | [default to undefined]
 **projectId** | **string** |  | [default to undefined]
+**agreedToTerms** | **boolean** | Must be &#x60;true&#x60; - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy. | [default to undefined]
 
 ## Example
 
@@ -22,6 +23,7 @@ const instance: RegisterWithRoleRequest = {
     firstName,
     lastName,
     projectId,
+    agreedToTerms,
 };
 ```
 

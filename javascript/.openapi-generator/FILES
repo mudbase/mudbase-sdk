@@ -1,6 +1,5 @@
 .gitignore
 .npmignore
-.openapi-generator-ignore
 README.md
 api.ts
 base.ts
@@ -85,6 +84,8 @@ docs/CheckUserPresence200Response.md
 docs/CheckUserPresence200ResponsePresenceValue.md
 docs/CheckUserPresenceRequest.md
 docs/Collection.md
+docs/CollectionAction.md
+docs/CollectionPermissionRule.md
 docs/CollectionsApi.md
 docs/ComplianceApi.md
 docs/ConfigureOAuthProvider200Response.md
@@ -145,7 +146,6 @@ docs/CreateRole201ResponseRole.md
 docs/CreateRole201ResponseRolePermissionsInner.md
 docs/CreateRoleRequest.md
 docs/CreateRoleRequestCollectionPermissionsValue.md
-docs/CreateRoleRequestCollectionPermissionsValueOneOf.md
 docs/CreateRoleRequestPermissionsInner.md
 docs/CreateWallet201Response.md
 docs/CreateWallet201ResponseData.md
@@ -548,6 +548,9 @@ docs/RegisterLocalUserRequest.md
 docs/RegisterNonCustodialAddressRequest.md
 docs/RegisterRequest.md
 docs/RegisterUser429Response.md
+docs/RegisterWithRole201Response.md
+docs/RegisterWithRole201ResponseRole.md
+docs/RegisterWithRole201ResponseUser.md
 docs/RegisterWithRoleRequest.md
 docs/RemoveParticipantRequest.md
 docs/RemoveReaction200Response.md

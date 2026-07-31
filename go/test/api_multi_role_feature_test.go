@@ -114,9 +114,10 @@ func Test_mudbase_MultiRoleFeatureAPIService(t *testing.T) {
 
 		var role string
 
-		httpRes, err := apiClient.MultiRoleFeatureAPI.RegisterWithRole(context.Background(), role).Execute()
+		resp, httpRes, err := apiClient.MultiRoleFeatureAPI.RegisterWithRole(context.Background(), role).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

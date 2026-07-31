@@ -27,6 +27,8 @@ type RegisterWithRoleRequest struct {
 	FirstName string `json:"firstName"`
 	LastName string `json:"lastName"`
 	ProjectId string `json:"projectId"`
+	// Must be `true` - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy.
+	AgreedToTerms bool `json:"agreedToTerms"`
 }
 
 type _RegisterWithRoleRequest RegisterWithRoleRequest
@@ -35,13 +37,14 @@ type _RegisterWithRoleRequest RegisterWithRoleRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterWithRoleRequest(email string, password string, firstName string, lastName string, projectId string) *RegisterWithRoleRequest {
+func NewRegisterWithRoleRequest(email string, password string, firstName string, lastName string, projectId string, agreedToTerms bool) *RegisterWithRoleRequest {
 	this := RegisterWithRoleRequest{}
 	this.Email = email
 	this.Password = password
 	this.FirstName = firstName
 	this.LastName = lastName
 	this.ProjectId = projectId
+	this.AgreedToTerms = agreedToTerms
 	return &this
 }
 
@@ -173,6 +176,30 @@ func (o *RegisterWithRoleRequest) SetProjectId(v string) {
 	o.ProjectId = v
 }
 
+// GetAgreedToTerms returns the AgreedToTerms field value
+func (o *RegisterWithRoleRequest) GetAgreedToTerms() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AgreedToTerms
+}
+
+// GetAgreedToTermsOk returns a tuple with the AgreedToTerms field value
+// and a boolean to check if the value has been set.
+func (o *RegisterWithRoleRequest) GetAgreedToTermsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AgreedToTerms, true
+}
+
+// SetAgreedToTerms sets field value
+func (o *RegisterWithRoleRequest) SetAgreedToTerms(v bool) {
+	o.AgreedToTerms = v
+}
+
 func (o RegisterWithRoleRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -188,6 +215,7 @@ func (o RegisterWithRoleRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["firstName"] = o.FirstName
 	toSerialize["lastName"] = o.LastName
 	toSerialize["projectId"] = o.ProjectId
+	toSerialize["agreedToTerms"] = o.AgreedToTerms
 	return toSerialize, nil
 }
 
@@ -201,6 +229,7 @@ func (o *RegisterWithRoleRequest) UnmarshalJSON(data []byte) (err error) {
 		"firstName",
 		"lastName",
 		"projectId",
+		"agreedToTerms",
 	}
 
 	allProperties := make(map[string]interface{})

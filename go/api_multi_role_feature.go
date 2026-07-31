@@ -744,7 +744,7 @@ func (r ApiRegisterWithRoleRequest) RegisterWithRoleRequest(registerWithRoleRequ
 	return r
 }
 
-func (r ApiRegisterWithRoleRequest) Execute() (*http.Response, error) {
+func (r ApiRegisterWithRoleRequest) Execute() (*RegisterWithRole201Response, *http.Response, error) {
 	return r.ApiService.RegisterWithRoleExecute(r)
 }
 
@@ -768,16 +768,18 @@ func (a *MultiRoleFeatureAPIService) RegisterWithRole(ctx context.Context, role 
 }
 
 // Execute executes the request
-func (a *MultiRoleFeatureAPIService) RegisterWithRoleExecute(r ApiRegisterWithRoleRequest) (*http.Response, error) {
+//  @return RegisterWithRole201Response
+func (a *MultiRoleFeatureAPIService) RegisterWithRoleExecute(r ApiRegisterWithRoleRequest) (*RegisterWithRole201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *RegisterWithRole201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MultiRoleFeatureAPIService.RegisterWithRole")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/auth/local/signup/{role}"
@@ -787,7 +789,7 @@ func (a *MultiRoleFeatureAPIService) RegisterWithRoleExecute(r ApiRegisterWithRo
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.registerWithRoleRequest == nil {
-		return nil, reportError("registerWithRoleRequest is required and must be specified")
+		return localVarReturnValue, nil, reportError("registerWithRoleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -800,7 +802,7 @@ func (a *MultiRoleFeatureAPIService) RegisterWithRoleExecute(r ApiRegisterWithRo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -811,19 +813,19 @@ func (a *MultiRoleFeatureAPIService) RegisterWithRoleExecute(r ApiRegisterWithRo
 	localVarPostBody = r.registerWithRoleRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -831,10 +833,19 @@ func (a *MultiRoleFeatureAPIService) RegisterWithRoleExecute(r ApiRegisterWithRo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiSimulateAppPermissionsRequest struct {

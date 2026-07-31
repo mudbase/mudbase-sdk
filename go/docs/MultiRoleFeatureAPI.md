@@ -36,7 +36,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -108,7 +108,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -183,7 +183,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -253,7 +253,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -323,7 +323,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -393,7 +393,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -454,7 +454,7 @@ No authorization required
 
 ## RegisterWithRole
 
-> RegisterWithRole(ctx, role).RegisterWithRoleRequest(registerWithRoleRequest).Execute()
+> RegisterWithRole201Response RegisterWithRole(ctx, role).RegisterWithRoleRequest(registerWithRoleRequest).Execute()
 
 Register user with specific role (Local Auth)
 
@@ -469,20 +469,22 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
 	role := "customer" // string | Must match the role's `signupEndpoint` (default `customer`; other values for roles you add).
-	registerWithRoleRequest := *openapiclient.NewRegisterWithRoleRequest("Email_example", "Password_example", "FirstName_example", "LastName_example", "ProjectId_example") // RegisterWithRoleRequest | 
+	registerWithRoleRequest := *openapiclient.NewRegisterWithRoleRequest("Email_example", "Password_example", "FirstName_example", "LastName_example", "ProjectId_example", false) // RegisterWithRoleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.MultiRoleFeatureAPI.RegisterWithRole(context.Background(), role).RegisterWithRoleRequest(registerWithRoleRequest).Execute()
+	resp, r, err := apiClient.MultiRoleFeatureAPI.RegisterWithRole(context.Background(), role).RegisterWithRoleRequest(registerWithRoleRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MultiRoleFeatureAPI.RegisterWithRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `RegisterWithRole`: RegisterWithRole201Response
+	fmt.Fprintf(os.Stdout, "Response from `MultiRoleFeatureAPI.RegisterWithRole`: %v\n", resp)
 }
 ```
 
@@ -506,7 +508,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**RegisterWithRole201Response**](RegisterWithRole201Response.md)
 
 ### Authorization
 
@@ -515,7 +517,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -539,7 +541,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -609,7 +611,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -684,7 +686,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -762,7 +764,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {
@@ -834,7 +836,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	openapiclient "github.com/mudbase/mudbase-sdk/go"
 )
 
 func main() {

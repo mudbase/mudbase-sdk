@@ -5701,6 +5701,7 @@ paths:
                   firstName: Jane
                   lastName: Doe
                   projectId: 685ad30be129932fbb7a1047
+                  agreedToTerms: true
               complete:
                 description: Merges the typical example with optional fields from
                   the schema.
@@ -5711,12 +5712,25 @@ paths:
                   firstName: firstName_example
                   lastName: lastName_example
                   projectId: projectId_example
+                  agreedToTerms: true
             schema:
               $ref: "#/components/schemas/registerWithRole_request"
         required: true
       responses:
         "201":
-          description: Registration successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/registerWithRole_201_response"
+          description: Registration successful. Two response shapes depending on the
+            project's `requireEmailVerification` setting - see `requireVerification`
+            to distinguish them; `token`/`refreshToken`/`expiresIn` are only present
+            when a session was issued immediately.
+        "400":
+          description: "Validation failed, or a user with this email already exists\
+            \ for the project"
+        "403":
+          description: "Role requires approval, payment, or KYC before it can be self-assigned"
         "404":
           description: Role not found or not enabled
       security: []
@@ -25549,8 +25563,10 @@ components:
           emailVerified: true
           twoFactorEnabled: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          isAnonymous: true
           _id: _id
           email: email
+          customRole: customRole
           updatedAt: 2000-01-23T04:56:07.000+00:00
         token: token
         refreshToken: refreshToken
@@ -25588,8 +25604,10 @@ components:
           emailVerified: true
           twoFactorEnabled: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          isAnonymous: true
           _id: _id
           email: email
+          customRole: customRole
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         user:
@@ -25669,8 +25687,10 @@ components:
         emailVerified: true
         twoFactorEnabled: true
         createdAt: 2000-01-23T04:56:07.000+00:00
+        isAnonymous: true
         _id: _id
         email: email
+        customRole: customRole
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         _id:
@@ -25693,6 +25713,16 @@ components:
           - member
           - viewer
           type: string
+        customRole:
+          description: "Application-level role slug from the project's Multi-Role\
+            \ feature (e.g. \"customer\", \"seller\"). Null for org-level (org/admin/member/viewer)\
+            \ users who aren't project end-users."
+          nullable: true
+          type: string
+        isAnonymous:
+          description: True for a guest session created via POST /api/auth/anonymous
+            that hasn't been converted to a full account yet.
+          type: boolean
         emailVerified:
           type: boolean
         phoneVerified:
@@ -30344,6 +30374,29 @@ components:
         requestId:
           type: string
       type: object
+    CollectionAction:
+      description: A single CRUD action grantable on a collection
+      enum:
+      - create
+      - read
+      - update
+      - delete
+      type: string
+    CollectionActionList:
+      description: List of CRUD actions granted on a collection
+      items:
+        $ref: "#/components/schemas/CollectionAction"
+      type: array
+    CollectionPermissionRule:
+      description: Explicit actions + row-level conditions granted on a collection
+      properties:
+        actions:
+          items:
+            $ref: "#/components/schemas/CollectionAction"
+          type: array
+        conditions:
+          type: object
+      type: object
     registerUser_429_response:
       allOf:
       - $ref: "#/components/schemas/Error"
@@ -31017,8 +31070,10 @@ components:
           emailVerified: true
           twoFactorEnabled: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          isAnonymous: true
           _id: _id
           email: email
+          customRole: customRole
           updatedAt: 2000-01-23T04:56:07.000+00:00
         token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
         refreshToken: refreshToken
@@ -31054,8 +31109,10 @@ components:
           emailVerified: true
           twoFactorEnabled: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          isAnonymous: true
           _id: _id
           email: email
+          customRole: customRole
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         user:
@@ -31079,8 +31136,10 @@ components:
           emailVerified: true
           twoFactorEnabled: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          isAnonymous: true
           _id: _id
           email: email
+          customRole: customRole
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         message:
@@ -31141,8 +31200,10 @@ components:
           emailVerified: true
           twoFactorEnabled: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          isAnonymous: true
           _id: _id
           email: email
+          customRole: customRole
           updatedAt: 2000-01-23T04:56:07.000+00:00
         integrations:
         - key: ""
@@ -31562,8 +31623,10 @@ components:
           emailVerified: true
           twoFactorEnabled: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          isAnonymous: true
           _id: _id
           email: email
+          customRole: customRole
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - lastName: lastName
           lastLogin: 2000-01-23T04:56:07.000+00:00
@@ -31579,8 +31642,10 @@ components:
           emailVerified: true
           twoFactorEnabled: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          isAnonymous: true
           _id: _id
           email: email
+          customRole: customRole
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         members:
@@ -31919,8 +31984,10 @@ components:
           emailVerified: true
           twoFactorEnabled: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          isAnonymous: true
           _id: _id
           email: email
+          customRole: customRole
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         message:
@@ -31977,31 +32044,10 @@ components:
         conditions:
           type: object
       type: object
-    createRole_request_collectionPermissions_value_oneOf:
-      properties:
-        actions:
-          items:
-            enum:
-            - create
-            - read
-            - update
-            - delete
-            type: string
-          type: array
-        conditions:
-          type: object
-      type: object
     createRole_request_collectionPermissions_value:
       oneOf:
-      - items:
-          enum:
-          - create
-          - read
-          - update
-          - delete
-          type: string
-        type: array
-      - $ref: "#/components/schemas/createRole_request_collectionPermissions_value_oneOf"
+      - $ref: "#/components/schemas/CollectionActionList"
+      - $ref: "#/components/schemas/CollectionPermissionRule"
     createRole_request:
       properties:
         name:
@@ -32873,12 +32919,99 @@ components:
           type: string
         projectId:
           type: string
+        agreedToTerms:
+          description: Must be `true` - the server rejects the request otherwise.
+            Required to stop a direct API call from creating an account without accepting
+            the Terms of Service and Privacy Policy.
+          type: boolean
       required:
+      - agreedToTerms
       - email
       - firstName
       - lastName
       - password
       - projectId
+      type: object
+    registerWithRole_201_response_user:
+      example:
+        firstName: firstName
+        lastName: lastName
+        emailVerified: true
+        role: role
+        id: id
+        email: email
+        customRole: customRole
+      properties:
+        id:
+          type: string
+        email:
+          format: email
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        customRole:
+          nullable: true
+          type: string
+        emailVerified:
+          type: boolean
+      type: object
+    registerWithRole_201_response_role:
+      example:
+        name: name
+        description: description
+        slug: slug
+      properties:
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+      type: object
+    registerWithRole_201_response:
+      example:
+        expiresIn: 0
+        role:
+          name: name
+          description: description
+          slug: slug
+        requireVerification: true
+        message: message
+        user:
+          firstName: firstName
+          lastName: lastName
+          emailVerified: true
+          role: role
+          id: id
+          email: email
+          customRole: customRole
+        token: token
+        refreshToken: refreshToken
+      properties:
+        message:
+          type: string
+        requireVerification:
+          description: True when the project requires email verification before a
+            session is issued - no token is returned in that case.
+          type: boolean
+        token:
+          description: JWT access token. Absent when requireVerification is true.
+          type: string
+        refreshToken:
+          description: JWT refresh token. Absent when requireVerification is true.
+          type: string
+        expiresIn:
+          description: Access token TTL in seconds. Absent when requireVerification
+            is true.
+          type: integer
+        user:
+          $ref: "#/components/schemas/registerWithRole_201_response_user"
+        role:
+          $ref: "#/components/schemas/registerWithRole_201_response_role"
       type: object
     getOrganizationUsage_200_response_allOf_suborgs_inner:
       example:

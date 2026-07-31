@@ -19,21 +19,21 @@ import (
 
 // CreateRoleRequestCollectionPermissionsValue - struct for CreateRoleRequestCollectionPermissionsValue
 type CreateRoleRequestCollectionPermissionsValue struct {
-	CreateRoleRequestCollectionPermissionsValueOneOf *CreateRoleRequestCollectionPermissionsValueOneOf
-	ArrayOfString *[]string
+	CollectionPermissionRule *CollectionPermissionRule
+	ArrayOfCollectionAction *[]CollectionAction
 }
 
-// CreateRoleRequestCollectionPermissionsValueOneOfAsCreateRoleRequestCollectionPermissionsValue is a convenience function that returns CreateRoleRequestCollectionPermissionsValueOneOf wrapped in CreateRoleRequestCollectionPermissionsValue
-func CreateRoleRequestCollectionPermissionsValueOneOfAsCreateRoleRequestCollectionPermissionsValue(v *CreateRoleRequestCollectionPermissionsValueOneOf) CreateRoleRequestCollectionPermissionsValue {
+// CollectionPermissionRuleAsCreateRoleRequestCollectionPermissionsValue is a convenience function that returns CollectionPermissionRule wrapped in CreateRoleRequestCollectionPermissionsValue
+func CollectionPermissionRuleAsCreateRoleRequestCollectionPermissionsValue(v *CollectionPermissionRule) CreateRoleRequestCollectionPermissionsValue {
 	return CreateRoleRequestCollectionPermissionsValue{
-		CreateRoleRequestCollectionPermissionsValueOneOf: v,
+		CollectionPermissionRule: v,
 	}
 }
 
-// []stringAsCreateRoleRequestCollectionPermissionsValue is a convenience function that returns []string wrapped in CreateRoleRequestCollectionPermissionsValue
-func ArrayOfStringAsCreateRoleRequestCollectionPermissionsValue(v *[]string) CreateRoleRequestCollectionPermissionsValue {
+// []CollectionActionAsCreateRoleRequestCollectionPermissionsValue is a convenience function that returns []CollectionAction wrapped in CreateRoleRequestCollectionPermissionsValue
+func ArrayOfCollectionActionAsCreateRoleRequestCollectionPermissionsValue(v *[]CollectionAction) CreateRoleRequestCollectionPermissionsValue {
 	return CreateRoleRequestCollectionPermissionsValue{
-		ArrayOfString: v,
+		ArrayOfCollectionAction: v,
 	}
 }
 
@@ -42,44 +42,44 @@ func ArrayOfStringAsCreateRoleRequestCollectionPermissionsValue(v *[]string) Cre
 func (dst *CreateRoleRequestCollectionPermissionsValue) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into CreateRoleRequestCollectionPermissionsValueOneOf
-	err = newStrictDecoder(data).Decode(&dst.CreateRoleRequestCollectionPermissionsValueOneOf)
+	// try to unmarshal data into CollectionPermissionRule
+	err = newStrictDecoder(data).Decode(&dst.CollectionPermissionRule)
 	if err == nil {
-		jsonCreateRoleRequestCollectionPermissionsValueOneOf, _ := json.Marshal(dst.CreateRoleRequestCollectionPermissionsValueOneOf)
-		if string(jsonCreateRoleRequestCollectionPermissionsValueOneOf) == "{}" { // empty struct
-			dst.CreateRoleRequestCollectionPermissionsValueOneOf = nil
+		jsonCollectionPermissionRule, _ := json.Marshal(dst.CollectionPermissionRule)
+		if string(jsonCollectionPermissionRule) == "{}" { // empty struct
+			dst.CollectionPermissionRule = nil
 		} else {
-			if err = validator.Validate(dst.CreateRoleRequestCollectionPermissionsValueOneOf); err != nil {
-				dst.CreateRoleRequestCollectionPermissionsValueOneOf = nil
+			if err = validator.Validate(dst.CollectionPermissionRule); err != nil {
+				dst.CollectionPermissionRule = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.CreateRoleRequestCollectionPermissionsValueOneOf = nil
+		dst.CollectionPermissionRule = nil
 	}
 
-	// try to unmarshal data into ArrayOfString
-	err = newStrictDecoder(data).Decode(&dst.ArrayOfString)
+	// try to unmarshal data into ArrayOfCollectionAction
+	err = newStrictDecoder(data).Decode(&dst.ArrayOfCollectionAction)
 	if err == nil {
-		jsonArrayOfString, _ := json.Marshal(dst.ArrayOfString)
-		if string(jsonArrayOfString) == "{}" { // empty struct
-			dst.ArrayOfString = nil
+		jsonArrayOfCollectionAction, _ := json.Marshal(dst.ArrayOfCollectionAction)
+		if string(jsonArrayOfCollectionAction) == "{}" { // empty struct
+			dst.ArrayOfCollectionAction = nil
 		} else {
-			if err = validator.Validate(dst.ArrayOfString); err != nil {
-				dst.ArrayOfString = nil
+			if err = validator.Validate(dst.ArrayOfCollectionAction); err != nil {
+				dst.ArrayOfCollectionAction = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ArrayOfString = nil
+		dst.ArrayOfCollectionAction = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.CreateRoleRequestCollectionPermissionsValueOneOf = nil
-		dst.ArrayOfString = nil
+		dst.CollectionPermissionRule = nil
+		dst.ArrayOfCollectionAction = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateRoleRequestCollectionPermissionsValue)")
 	} else if match == 1 {
@@ -91,12 +91,12 @@ func (dst *CreateRoleRequestCollectionPermissionsValue) UnmarshalJSON(data []byt
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CreateRoleRequestCollectionPermissionsValue) MarshalJSON() ([]byte, error) {
-	if src.CreateRoleRequestCollectionPermissionsValueOneOf != nil {
-		return json.Marshal(&src.CreateRoleRequestCollectionPermissionsValueOneOf)
+	if src.CollectionPermissionRule != nil {
+		return json.Marshal(&src.CollectionPermissionRule)
 	}
 
-	if src.ArrayOfString != nil {
-		return json.Marshal(&src.ArrayOfString)
+	if src.ArrayOfCollectionAction != nil {
+		return json.Marshal(&src.ArrayOfCollectionAction)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -107,12 +107,12 @@ func (obj *CreateRoleRequestCollectionPermissionsValue) GetActualInstance() (int
 	if obj == nil {
 		return nil
 	}
-	if obj.CreateRoleRequestCollectionPermissionsValueOneOf != nil {
-		return obj.CreateRoleRequestCollectionPermissionsValueOneOf
+	if obj.CollectionPermissionRule != nil {
+		return obj.CollectionPermissionRule
 	}
 
-	if obj.ArrayOfString != nil {
-		return obj.ArrayOfString
+	if obj.ArrayOfCollectionAction != nil {
+		return obj.ArrayOfCollectionAction
 	}
 
 	// all schemas are nil
@@ -121,12 +121,12 @@ func (obj *CreateRoleRequestCollectionPermissionsValue) GetActualInstance() (int
 
 // Get the actual instance value
 func (obj CreateRoleRequestCollectionPermissionsValue) GetActualInstanceValue() (interface{}) {
-	if obj.CreateRoleRequestCollectionPermissionsValueOneOf != nil {
-		return *obj.CreateRoleRequestCollectionPermissionsValueOneOf
+	if obj.CollectionPermissionRule != nil {
+		return *obj.CollectionPermissionRule
 	}
 
-	if obj.ArrayOfString != nil {
-		return *obj.ArrayOfString
+	if obj.ArrayOfCollectionAction != nil {
+		return *obj.ArrayOfCollectionAction
 	}
 
 	// all schemas are nil

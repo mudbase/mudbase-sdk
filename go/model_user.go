@@ -28,6 +28,10 @@ type User struct {
 	FullName *string `json:"fullName,omitempty"`
 	Avatar *string `json:"avatar,omitempty"`
 	Role *string `json:"role,omitempty"`
+	// Application-level role slug from the project's Multi-Role feature (e.g. \"customer\", \"seller\"). Null for org-level (org/admin/member/viewer) users who aren't project end-users.
+	CustomRole NullableString `json:"customRole,omitempty"`
+	// True for a guest session created via POST /api/auth/anonymous that hasn't been converted to a full account yet.
+	IsAnonymous *bool `json:"isAnonymous,omitempty"`
 	EmailVerified *bool `json:"emailVerified,omitempty"`
 	PhoneVerified *bool `json:"phoneVerified,omitempty"`
 	TwoFactorEnabled *bool `json:"twoFactorEnabled,omitempty"`
@@ -276,6 +280,80 @@ func (o *User) HasRole() bool {
 // SetRole gets a reference to the given string and assigns it to the Role field.
 func (o *User) SetRole(v string) {
 	o.Role = &v
+}
+
+// GetCustomRole returns the CustomRole field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *User) GetCustomRole() string {
+	if o == nil || IsNil(o.CustomRole.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CustomRole.Get()
+}
+
+// GetCustomRoleOk returns a tuple with the CustomRole field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *User) GetCustomRoleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CustomRole.Get(), o.CustomRole.IsSet()
+}
+
+// HasCustomRole returns a boolean if a field has been set.
+func (o *User) HasCustomRole() bool {
+	if o != nil && o.CustomRole.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomRole gets a reference to the given NullableString and assigns it to the CustomRole field.
+func (o *User) SetCustomRole(v string) {
+	o.CustomRole.Set(&v)
+}
+// SetCustomRoleNil sets the value for CustomRole to be an explicit nil
+func (o *User) SetCustomRoleNil() {
+	o.CustomRole.Set(nil)
+}
+
+// UnsetCustomRole ensures that no value is present for CustomRole, not even an explicit nil
+func (o *User) UnsetCustomRole() {
+	o.CustomRole.Unset()
+}
+
+// GetIsAnonymous returns the IsAnonymous field value if set, zero value otherwise.
+func (o *User) GetIsAnonymous() bool {
+	if o == nil || IsNil(o.IsAnonymous) {
+		var ret bool
+		return ret
+	}
+	return *o.IsAnonymous
+}
+
+// GetIsAnonymousOk returns a tuple with the IsAnonymous field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetIsAnonymousOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsAnonymous) {
+		return nil, false
+	}
+	return o.IsAnonymous, true
+}
+
+// HasIsAnonymous returns a boolean if a field has been set.
+func (o *User) HasIsAnonymous() bool {
+	if o != nil && !IsNil(o.IsAnonymous) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAnonymous gets a reference to the given bool and assigns it to the IsAnonymous field.
+func (o *User) SetIsAnonymous(v bool) {
+	o.IsAnonymous = &v
 }
 
 // GetEmailVerified returns the EmailVerified field value if set, zero value otherwise.
@@ -532,6 +610,12 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
+	}
+	if o.CustomRole.IsSet() {
+		toSerialize["customRole"] = o.CustomRole.Get()
+	}
+	if !IsNil(o.IsAnonymous) {
+		toSerialize["isAnonymous"] = o.IsAnonymous
 	}
 	if !IsNil(o.EmailVerified) {
 		toSerialize["emailVerified"] = o.EmailVerified

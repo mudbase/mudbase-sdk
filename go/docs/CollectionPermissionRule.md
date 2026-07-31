@@ -1,4 +1,4 @@
-# CreateRoleRequestCollectionPermissionsValue
+# CollectionPermissionRule
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCreateRoleRequestCollectionPermissionsValue
+### NewCollectionPermissionRule
 
-`func NewCreateRoleRequestCollectionPermissionsValue() *CreateRoleRequestCollectionPermissionsValue`
+`func NewCollectionPermissionRule() *CollectionPermissionRule`
 
-NewCreateRoleRequestCollectionPermissionsValue instantiates a new CreateRoleRequestCollectionPermissionsValue object
+NewCollectionPermissionRule instantiates a new CollectionPermissionRule object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateRoleRequestCollectionPermissionsValueWithDefaults
+### NewCollectionPermissionRuleWithDefaults
 
-`func NewCreateRoleRequestCollectionPermissionsValueWithDefaults() *CreateRoleRequestCollectionPermissionsValue`
+`func NewCollectionPermissionRuleWithDefaults() *CollectionPermissionRule`
 
-NewCreateRoleRequestCollectionPermissionsValueWithDefaults instantiates a new CreateRoleRequestCollectionPermissionsValue object
+NewCollectionPermissionRuleWithDefaults instantiates a new CollectionPermissionRule object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetActions
 
-`func (o *CreateRoleRequestCollectionPermissionsValue) GetActions() []CollectionAction`
+`func (o *CollectionPermissionRule) GetActions() []CollectionAction`
 
 GetActions returns the Actions field if non-nil, zero value otherwise.
 
 ### GetActionsOk
 
-`func (o *CreateRoleRequestCollectionPermissionsValue) GetActionsOk() (*[]CollectionAction, bool)`
+`func (o *CollectionPermissionRule) GetActionsOk() (*[]CollectionAction, bool)`
 
 GetActionsOk returns a tuple with the Actions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActions
 
-`func (o *CreateRoleRequestCollectionPermissionsValue) SetActions(v []CollectionAction)`
+`func (o *CollectionPermissionRule) SetActions(v []CollectionAction)`
 
 SetActions sets Actions field to given value.
 
 ### HasActions
 
-`func (o *CreateRoleRequestCollectionPermissionsValue) HasActions() bool`
+`func (o *CollectionPermissionRule) HasActions() bool`
 
 HasActions returns a boolean if a field has been set.
 
 ### GetConditions
 
-`func (o *CreateRoleRequestCollectionPermissionsValue) GetConditions() map[string]interface{}`
+`func (o *CollectionPermissionRule) GetConditions() map[string]interface{}`
 
 GetConditions returns the Conditions field if non-nil, zero value otherwise.
 
 ### GetConditionsOk
 
-`func (o *CreateRoleRequestCollectionPermissionsValue) GetConditionsOk() (*map[string]interface{}, bool)`
+`func (o *CollectionPermissionRule) GetConditionsOk() (*map[string]interface{}, bool)`
 
 GetConditionsOk returns a tuple with the Conditions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConditions
 
-`func (o *CreateRoleRequestCollectionPermissionsValue) SetConditions(v map[string]interface{})`
+`func (o *CollectionPermissionRule) SetConditions(v map[string]interface{})`
 
 SetConditions sets Conditions field to given value.
 
 ### HasConditions
 
-`func (o *CreateRoleRequestCollectionPermissionsValue) HasConditions() bool`
+`func (o *CollectionPermissionRule) HasConditions() bool`
 
 HasConditions returns a boolean if a field has been set.
 

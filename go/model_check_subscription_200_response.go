@@ -1,7 +1,7 @@
 /*
 MUDBASESDK
 
-MUDBASE is a scalable, real-time, and secure Backend-as-a-Service (BaaS) platform  designed for modern applications. Built with custom logic, it offers fine-grained  control, extensibility, and enterprise-grade security.  ## Features - 🔐 Multi-provider authentication (30+ OAuth providers) - 📊 Real-time database with collections - 📁 File storage and management - 🔑 API key management with permissions - 🔗 Webhook system with retry logic - ⚡ Serverless functions - 💬 Multi-channel messaging (Push, Email, SMS) - 📈 Usage analytics and monitoring - 🌐 Real-time WebSocket events - 🔍 Full-text search capabilities - 💳 Billing: fiat only for project subscriptions and org BaaS checkout (platform fee split). On-chain billing is not exposed on these APIs (optional `crypto-payment-module/` in repo, not mounted by default). - 📡 Block-based multi-chain wallet monitoring (ETH/UTXO scanners, GetBlock, scanner metrics API) - 🏢 Enterprise / Phase 4: custom domains on Growth, Scale, and Enterprise (TXT DNS at `_mudbase-verify.<hostname>`); `settings.customDomainAddon` is optional (billing/legacy); dedicated DB migration script, periodic DNS recheck job, optional `infrastructureEnvironments[]` and edge/metering fields on `dedicated`.  ## Testing Configurations Below are example configurations for testing in different environments:  ### Development (Localhost) ```json {   \"scheme\": \"http\",   \"base_path\": \"\",   \"host\": \"localhost:5000\",   \"xApiKey\": \"xApiKey\",   \"bearerToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWFjYmUwZTEyOTkzMmZiYjdhMGZjMiIsImVtYWlsIjoibXVkaGF4a3NlcnZpY2VzQGdtYWlsLmNvbSIsImlhdCI6MTc1MDc4MDg5OCwiZXhwIjoxNzUwODY3Mjk4fQ.sfoqzEbCuz5Y8qHkLItzrZZYC823SPT4RbO7Kucqvuc\",   \"userId\": \"685acbe0e129932fbb7a0fc2\",   \"projectId\": \"685ad30be129932fbb7a1047\",   \"collectionId\": \"685ada8fd9416ac02f171abf\",   \"documentId\": \"685ae1210136e73fa1dcaf36\",   \"apikeyId\": \"685ae8a785426b6a4190d5fc\",   \"webhookId\": \"685af3992f9c4c96514247e9\",   \"functionId\": \"685af8b85d73a104065b6a77\",   \"fileId\": \"685af8b85d73a104065b6a77\" }
+MUDBASE is a scalable, real-time, and secure Backend-as-a-Service (BaaS) platform  designed for modern applications. Built with custom logic, it offers fine-grained  control, extensibility, and enterprise-grade security.  ## Features - 🔐 Multi-provider authentication (30+ OAuth providers) - 📊 Real-time database with collections - 📁 File storage and management - 🔑 API key management with permissions - 🔗 Webhook system with retry logic - ⚡ Serverless functions - 💬 Multi-channel messaging (Push, Email, SMS) - 📈 Usage analytics and monitoring - 🌐 Real-time WebSocket events - 🔍 Full-text search capabilities - 💳 Billing: fiat only for project subscriptions and org BaaS checkout (platform fee split). On-chain billing is not exposed on these APIs (optional `crypto-payment-module/` in repo, not mounted by default). - 📡 Block-based multi-chain wallet monitoring (ETH/UTXO scanners, GetBlock, scanner metrics API) - 🏢 Enterprise / Phase 4: custom domains on Growth, Scale, and Enterprise (TXT DNS at `_mudbase-verify.<hostname>`); `settings.customDomainAddon` is optional (billing/legacy); dedicated DB migration script, periodic DNS recheck job, optional `infrastructureEnvironments[]` and edge/metering fields on `dedicated`.  ## Testing Configurations Below are example configurations for testing in different environments:  ### Development (Localhost) ```json {   \"scheme\": \"http\",   \"base_path\": \"\",   \"host\": \"localhost:5000\",   \"xApiKey\": \"xApiKey\",   \"bearerToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWFjYmUwZTEyOTkzMmZiYjdhMGZjMiIsImVtYWlsIjoibXVkaGF4a3NlcnZpY2VzQGdtYWlsLmNvbSIsImlhdCI6MTc1MDc4MDg5OCwiZXhwIjoxNzUwODY3Mjk4fQ.sfoqzEbCuz5Y8qHkLItzrZZYC823SPT4RbO7Kucqvuc\",   \"userId\": \"685acbe0e129932fbb7a0fc2\",   \"projectId\": \"685ad30be129932fbb7a1047\",   \"collectionId\": \"685ada8fd9416ac02f171abf\",   \"documentId\": \"685ae1210136e73fa1dcaf36\",   \"apikeyId\": \"685ae8a785426b6a4190d5fc\",   \"webhookId\": \"685af3992f9c4c96514247e9\",   \"functionId\": \"685af8b85d73a104065b6a77\",   \"fileId\": \"685af8b85d73a104065b6a77\" } 
 
 API version: 1.2.1
 Contact: support@mudbase.dev
@@ -20,8 +20,8 @@ var _ MappedNullable = &CheckSubscription200Response{}
 
 // CheckSubscription200Response struct for CheckSubscription200Response
 type CheckSubscription200Response struct {
-	HasSubscription *bool                                     `json:"hasSubscription,omitempty"`
-	Subscription    *CheckSubscription200ResponseSubscription `json:"subscription,omitempty"`
+	HasSubscription *bool `json:"hasSubscription,omitempty"`
+	Subscription *CheckSubscription200ResponseSubscription `json:"subscription,omitempty"`
 }
 
 // NewCheckSubscription200Response instantiates a new CheckSubscription200Response object
@@ -108,7 +108,7 @@ func (o *CheckSubscription200Response) SetSubscription(v CheckSubscription200Res
 }
 
 func (o CheckSubscription200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -161,3 +161,5 @@ func (v *NullableCheckSubscription200Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

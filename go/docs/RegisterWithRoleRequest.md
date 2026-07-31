@@ -9,12 +9,13 @@ Name | Type | Description | Notes
 **FirstName** | **string** |  | 
 **LastName** | **string** |  | 
 **ProjectId** | **string** |  | 
+**AgreedToTerms** | **bool** | Must be &#x60;true&#x60; - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy. | 
 
 ## Methods
 
 ### NewRegisterWithRoleRequest
 
-`func NewRegisterWithRoleRequest(email string, password string, firstName string, lastName string, projectId string, ) *RegisterWithRoleRequest`
+`func NewRegisterWithRoleRequest(email string, password string, firstName string, lastName string, projectId string, agreedToTerms bool, ) *RegisterWithRoleRequest`
 
 NewRegisterWithRoleRequest instantiates a new RegisterWithRoleRequest object
 This constructor will assign default values to properties that have it defined,
@@ -127,6 +128,26 @@ and a boolean to check if the value has been set.
 `func (o *RegisterWithRoleRequest) SetProjectId(v string)`
 
 SetProjectId sets ProjectId field to given value.
+
+
+### GetAgreedToTerms
+
+`func (o *RegisterWithRoleRequest) GetAgreedToTerms() bool`
+
+GetAgreedToTerms returns the AgreedToTerms field if non-nil, zero value otherwise.
+
+### GetAgreedToTermsOk
+
+`func (o *RegisterWithRoleRequest) GetAgreedToTermsOk() (*bool, bool)`
+
+GetAgreedToTermsOk returns a tuple with the AgreedToTerms field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAgreedToTerms
+
+`func (o *RegisterWithRoleRequest) SetAgreedToTerms(v bool)`
+
+SetAgreedToTerms sets AgreedToTerms field to given value.
 
 
 

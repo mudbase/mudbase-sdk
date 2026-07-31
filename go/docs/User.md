@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **FullName** | Pointer to **string** |  | [optional] 
 **Avatar** | Pointer to **string** |  | [optional] 
 **Role** | Pointer to **string** |  | [optional] 
+**CustomRole** | Pointer to **NullableString** | Application-level role slug from the project&#39;s Multi-Role feature (e.g. \&quot;customer\&quot;, \&quot;seller\&quot;). Null for org-level (org/admin/member/viewer) users who aren&#39;t project end-users. | [optional] 
+**IsAnonymous** | Pointer to **bool** | True for a guest session created via POST /api/auth/anonymous that hasn&#39;t been converted to a full account yet. | [optional] 
 **EmailVerified** | Pointer to **bool** |  | [optional] 
 **PhoneVerified** | Pointer to **bool** |  | [optional] 
 **TwoFactorEnabled** | Pointer to **bool** |  | [optional] 
@@ -212,6 +214,66 @@ SetRole sets Role field to given value.
 `func (o *User) HasRole() bool`
 
 HasRole returns a boolean if a field has been set.
+
+### GetCustomRole
+
+`func (o *User) GetCustomRole() string`
+
+GetCustomRole returns the CustomRole field if non-nil, zero value otherwise.
+
+### GetCustomRoleOk
+
+`func (o *User) GetCustomRoleOk() (*string, bool)`
+
+GetCustomRoleOk returns a tuple with the CustomRole field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomRole
+
+`func (o *User) SetCustomRole(v string)`
+
+SetCustomRole sets CustomRole field to given value.
+
+### HasCustomRole
+
+`func (o *User) HasCustomRole() bool`
+
+HasCustomRole returns a boolean if a field has been set.
+
+### SetCustomRoleNil
+
+`func (o *User) SetCustomRoleNil(b bool)`
+
+ SetCustomRoleNil sets the value for CustomRole to be an explicit nil
+
+### UnsetCustomRole
+`func (o *User) UnsetCustomRole()`
+
+UnsetCustomRole ensures that no value is present for CustomRole, not even an explicit nil
+### GetIsAnonymous
+
+`func (o *User) GetIsAnonymous() bool`
+
+GetIsAnonymous returns the IsAnonymous field if non-nil, zero value otherwise.
+
+### GetIsAnonymousOk
+
+`func (o *User) GetIsAnonymousOk() (*bool, bool)`
+
+GetIsAnonymousOk returns a tuple with the IsAnonymous field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsAnonymous
+
+`func (o *User) SetIsAnonymous(v bool)`
+
+SetIsAnonymous sets IsAnonymous field to given value.
+
+### HasIsAnonymous
+
+`func (o *User) HasIsAnonymous() bool`
+
+HasIsAnonymous returns a boolean if a field has been set.
 
 ### GetEmailVerified
 

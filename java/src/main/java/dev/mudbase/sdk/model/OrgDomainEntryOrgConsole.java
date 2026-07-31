@@ -55,7 +55,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * Org API compact domain row: use **&#x60;dnsRecords&#x60;** for the Mudbase ownership TXT (purpose &#x60;mudbase_ownership&#x60;) and routing CNAME. Omits &#x60;hostnameNormalized&#x60;, &#x60;verificationToken&#x60;, &#x60;dnsTxtHost&#x60;, and &#x60;dnsTxtValue&#x60;. Omits &#x60;cloudflareEdge&#x60; when Cloudflare SaaS is not configured. Optional keys with no value are omitted from JSON responses.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class OrgDomainEntryOrgConsole {
   public static final String SERIALIZED_NAME_ID = "_id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -657,10 +657,7 @@ public class OrgDomainEntryOrgConsole {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

@@ -52,7 +52,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * WebhookStatsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class WebhookStatsResponse {
   public static final String SERIALIZED_NAME_STATUS_STATS = "statusStats";
   @SerializedName(SERIALIZED_NAME_STATUS_STATS)
@@ -181,10 +181,7 @@ public class WebhookStatsResponse {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -227,26 +224,26 @@ public class WebhookStatsResponse {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("statusStats").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `statusStats` to be an array in the JSON string but got `%s`", jsonObj.get("statusStats").toString()));
+      if (jsonObj.get("statusStats") != null) {
+        if (!jsonObj.get("statusStats").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `statusStats` to be an array in the JSON string but got `%s`", jsonObj.get("statusStats").toString()));
+        }
+        JsonArray jsonArraystatusStats = jsonObj.getAsJsonArray("statusStats");
+        // validate the required field `statusStats` (array)
+        for (int i = 0; i < jsonArraystatusStats.size(); i++) {
+          WebhookStatsResponseStatusStatsInner.validateJsonElement(jsonArraystatusStats.get(i));
+        }
       }
-
-      JsonArray jsonArraystatusStats = jsonObj.getAsJsonArray("statusStats");
-      // validate the required field `statusStats` (array)
-      for (int i = 0; i < jsonArraystatusStats.size(); i++) {
-        WebhookStatsResponseStatusStatsInner.validateJsonElement(jsonArraystatusStats.get(i));
-      };
-      // ensure the json data is an array
-      if (!jsonObj.get("eventStats").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `eventStats` to be an array in the JSON string but got `%s`", jsonObj.get("eventStats").toString()));
+      if (jsonObj.get("eventStats") != null) {
+        if (!jsonObj.get("eventStats").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `eventStats` to be an array in the JSON string but got `%s`", jsonObj.get("eventStats").toString()));
+        }
+        JsonArray jsonArrayeventStats = jsonObj.getAsJsonArray("eventStats");
+        // validate the required field `eventStats` (array)
+        for (int i = 0; i < jsonArrayeventStats.size(); i++) {
+          WebhookStatsResponseEventStatsInner.validateJsonElement(jsonArrayeventStats.get(i));
+        }
       }
-
-      JsonArray jsonArrayeventStats = jsonObj.getAsJsonArray("eventStats");
-      // validate the required field `eventStats` (array)
-      for (int i = 0; i < jsonArrayeventStats.size(); i++) {
-        WebhookStatsResponseEventStatsInner.validateJsonElement(jsonArrayeventStats.get(i));
-      };
       if (!jsonObj.get("period").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `period` to be a primitive type in the JSON string but got `%s`", jsonObj.get("period").toString()));
       }

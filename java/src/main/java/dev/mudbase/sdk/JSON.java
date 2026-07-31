@@ -166,6 +166,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CheckUserPresence200ResponsePresenceValue.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CheckUserPresenceRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.Collection.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CollectionPermissionRule.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.ConfigureOAuthProvider200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.ConfigureOAuthProvider200ResponseProvider.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.ConfigureOAuthProviderRequest.CustomTypeAdapterFactory());
@@ -224,7 +225,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CreateRole201ResponseRolePermissionsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CreateRoleRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CreateRoleRequestCollectionPermissionsValue.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CreateRoleRequestCollectionPermissionsValueOneOf.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CreateRoleRequestPermissionsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CreateWallet201Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.CreateWallet201ResponseData.CustomTypeAdapterFactory());
@@ -613,6 +613,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.RegisterNonCustodialAddressRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.RegisterRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.RegisterUser429Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.RegisterWithRole201Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.RegisterWithRole201ResponseRole.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.RegisterWithRole201ResponseUser.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.RegisterWithRoleRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.RemoveParticipantRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new dev.mudbase.sdk.model.RemoveReaction200Response.CustomTypeAdapterFactory());

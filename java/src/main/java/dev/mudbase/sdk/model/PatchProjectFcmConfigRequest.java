@@ -59,7 +59,7 @@ import com.google.gson.JsonParseException;
 
 import dev.mudbase.sdk.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class PatchProjectFcmConfigRequest extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(PatchProjectFcmConfigRequest.class.getName());
 
@@ -206,6 +206,7 @@ public class PatchProjectFcmConfigRequest extends AbstractOpenApiSchema {
      * @return The actual instance of `PatchProjectFcmConfigRequestOneOf`
      * @throws ClassCastException if the instance is not `PatchProjectFcmConfigRequestOneOf`
      */
+    @SuppressWarnings("unchecked")
     public PatchProjectFcmConfigRequestOneOf getPatchProjectFcmConfigRequestOneOf() throws ClassCastException {
         return (PatchProjectFcmConfigRequestOneOf)super.getActualInstance();
     }
@@ -217,6 +218,7 @@ public class PatchProjectFcmConfigRequest extends AbstractOpenApiSchema {
      * @return The actual instance of `PatchProjectFcmConfigRequestOneOf1`
      * @throws ClassCastException if the instance is not `PatchProjectFcmConfigRequestOneOf1`
      */
+    @SuppressWarnings("unchecked")
     public PatchProjectFcmConfigRequestOneOf1 getPatchProjectFcmConfigRequestOneOf1() throws ClassCastException {
         return (PatchProjectFcmConfigRequestOneOf1)super.getActualInstance();
     }

@@ -2,8 +2,8 @@
 
 MUDBASESDK
 - API version: 1.2.1
-  - Build date: 2026-07-30T23:57:43.959467+01:00[Africa/Lagos]
-  - Generator version: 7.19.0
+  - Build date: 2026-07-31T01:41:56.236988+01:00[Africa/Lagos]
+  - Generator version: 7.24.0
 
 MUDBASE is a scalable, real-time, and secure Backend-as-a-Service (BaaS) platform 
 designed for modern applications. Built with custom logic, it offers fine-grained 
@@ -596,6 +596,8 @@ Class | Method | HTTP request | Description
  - [CheckUserPresence200ResponsePresenceValue](docs/CheckUserPresence200ResponsePresenceValue.md)
  - [CheckUserPresenceRequest](docs/CheckUserPresenceRequest.md)
  - [Collection](docs/Collection.md)
+ - [CollectionAction](docs/CollectionAction.md)
+ - [CollectionPermissionRule](docs/CollectionPermissionRule.md)
  - [ConfigureOAuthProvider200Response](docs/ConfigureOAuthProvider200Response.md)
  - [ConfigureOAuthProvider200ResponseProvider](docs/ConfigureOAuthProvider200ResponseProvider.md)
  - [ConfigureOAuthProviderRequest](docs/ConfigureOAuthProviderRequest.md)
@@ -654,7 +656,6 @@ Class | Method | HTTP request | Description
  - [CreateRole201ResponseRolePermissionsInner](docs/CreateRole201ResponseRolePermissionsInner.md)
  - [CreateRoleRequest](docs/CreateRoleRequest.md)
  - [CreateRoleRequestCollectionPermissionsValue](docs/CreateRoleRequestCollectionPermissionsValue.md)
- - [CreateRoleRequestCollectionPermissionsValueOneOf](docs/CreateRoleRequestCollectionPermissionsValueOneOf.md)
  - [CreateRoleRequestPermissionsInner](docs/CreateRoleRequestPermissionsInner.md)
  - [CreateWallet201Response](docs/CreateWallet201Response.md)
  - [CreateWallet201ResponseData](docs/CreateWallet201ResponseData.md)
@@ -1043,6 +1044,9 @@ Class | Method | HTTP request | Description
  - [RegisterNonCustodialAddressRequest](docs/RegisterNonCustodialAddressRequest.md)
  - [RegisterRequest](docs/RegisterRequest.md)
  - [RegisterUser429Response](docs/RegisterUser429Response.md)
+ - [RegisterWithRole201Response](docs/RegisterWithRole201Response.md)
+ - [RegisterWithRole201ResponseRole](docs/RegisterWithRole201ResponseRole.md)
+ - [RegisterWithRole201ResponseUser](docs/RegisterWithRole201ResponseUser.md)
  - [RegisterWithRoleRequest](docs/RegisterWithRoleRequest.md)
  - [RemoveParticipantRequest](docs/RemoveParticipantRequest.md)
  - [RemoveReaction200Response](docs/RemoveReaction200Response.md)

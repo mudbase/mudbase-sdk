@@ -19,7 +19,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import dev.mudbase.sdk.model.CreateRoleRequestCollectionPermissionsValueOneOf;
+import dev.mudbase.sdk.model.CollectionAction;
+import dev.mudbase.sdk.model.CollectionPermissionRule;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +61,7 @@ import com.google.gson.JsonParseException;
 
 import dev.mudbase.sdk.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateRoleRequestCollectionPermissionsValue.class.getName());
 
@@ -73,9 +74,9 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
 
-            final Type typeInstanceListString = new TypeToken<List<String>>(){}.getType();
-            final TypeAdapter<List<String>> adapterListString = (TypeAdapter<List<String>>) gson.getDelegateAdapter(this, TypeToken.get(typeInstanceListString));
-            final TypeAdapter<CreateRoleRequestCollectionPermissionsValueOneOf> adapterCreateRoleRequestCollectionPermissionsValueOneOf = gson.getDelegateAdapter(this, TypeToken.get(CreateRoleRequestCollectionPermissionsValueOneOf.class));
+            final Type typeInstanceListCollectionAction = new TypeToken<List<CollectionAction>>(){}.getType();
+            final TypeAdapter<List<CollectionAction>> adapterListCollectionAction = (TypeAdapter<List<CollectionAction>>) gson.getDelegateAdapter(this, TypeToken.get(typeInstanceListCollectionAction));
+            final TypeAdapter<CollectionPermissionRule> adapterCollectionPermissionRule = gson.getDelegateAdapter(this, TypeToken.get(CollectionPermissionRule.class));
 
             return (TypeAdapter<T>) new TypeAdapter<CreateRoleRequestCollectionPermissionsValue>() {
                 @Override
@@ -85,19 +86,22 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
                         return;
                     }
 
-                    // check if the actual instance is of the type `List<String>`
+                    // check if the actual instance is of the type `List<CollectionAction>`
                     if (value.getActualInstance() instanceof List<?>) {
-                        JsonPrimitive primitive = adapterListString.toJsonTree((List<String>)value.getActualInstance()).getAsJsonPrimitive();
-                        elementAdapter.write(out, primitive);
-                        return;
+                        List<?> list = (List<?>) value.getActualInstance();
+                        if (!list.isEmpty() && list.get(0) instanceof CollectionAction) {
+                            JsonArray array = adapterListCollectionAction.toJsonTree((List<CollectionAction>)value.getActualInstance()).getAsJsonArray();
+                            elementAdapter.write(out, array);
+                            return;
+                        }
                     }
-                    // check if the actual instance is of the type `CreateRoleRequestCollectionPermissionsValueOneOf`
-                    if (value.getActualInstance() instanceof CreateRoleRequestCollectionPermissionsValueOneOf) {
-                        JsonElement element = adapterCreateRoleRequestCollectionPermissionsValueOneOf.toJsonTree((CreateRoleRequestCollectionPermissionsValueOneOf)value.getActualInstance());
+                    // check if the actual instance is of the type `CollectionPermissionRule`
+                    if (value.getActualInstance() instanceof CollectionPermissionRule) {
+                        JsonElement element = adapterCollectionPermissionRule.toJsonTree((CollectionPermissionRule)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: CreateRoleRequestCollectionPermissionsValueOneOf, List<String>");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: CollectionPermissionRule, List<CollectionAction>");
                 }
 
                 @Override
@@ -109,7 +113,7 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
-                    // deserialize List<String>
+                    // deserialize List<CollectionAction>
                     try {
                         // validate the JSON object to see if any exception is thrown
                         if (!jsonElement.isJsonArray()) {
@@ -119,29 +123,27 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
                         JsonArray array = jsonElement.getAsJsonArray();
                         // validate array items
                         for(JsonElement element : array) {
-                            if (!element.getAsJsonPrimitive().isString()) {
-                                throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected array items to be of type String in the JSON string but got `%s`", jsonElement.toString()));
-                            }
+                            CollectionAction.validateJsonElement(element);
                         }
-                        actualAdapter = adapterListString;
+                        actualAdapter = adapterListCollectionAction;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'List<String>'");
+                        log.log(Level.FINER, "Input data matches schema 'List<CollectionAction>'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for List<String> failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'List<String>'", e);
+                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for List<CollectionAction> failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'List<CollectionAction>'", e);
                     }
-                    // deserialize CreateRoleRequestCollectionPermissionsValueOneOf
+                    // deserialize CollectionPermissionRule
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        CreateRoleRequestCollectionPermissionsValueOneOf.validateJsonElement(jsonElement);
-                        actualAdapter = adapterCreateRoleRequestCollectionPermissionsValueOneOf;
+                        CollectionPermissionRule.validateJsonElement(jsonElement);
+                        actualAdapter = adapterCollectionPermissionRule;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'CreateRoleRequestCollectionPermissionsValueOneOf'");
+                        log.log(Level.FINER, "Input data matches schema 'CollectionPermissionRule'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for CreateRoleRequestCollectionPermissionsValueOneOf failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'CreateRoleRequestCollectionPermissionsValueOneOf'", e);
+                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for CollectionPermissionRule failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'CollectionPermissionRule'", e);
                     }
 
                     if (match == 1) {
@@ -169,8 +171,8 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
     }
 
     static {
-        schemas.put("List<String>", List.class);
-        schemas.put("CreateRoleRequestCollectionPermissionsValueOneOf", CreateRoleRequestCollectionPermissionsValueOneOf.class);
+        schemas.put("List<CollectionAction>", List.class);
+        schemas.put("CollectionPermissionRule", CollectionPermissionRule.class);
     }
 
     @Override
@@ -181,7 +183,7 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * CreateRoleRequestCollectionPermissionsValueOneOf, List<String>
+     * CollectionPermissionRule, List&lt;CollectionAction&gt;
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -189,25 +191,25 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
     public void setActualInstance(Object instance) {
         if (instance instanceof List<?>) {
             List<?> list = (List<?>) instance;
-            if (!list.isEmpty() && list.get(0) instanceof String) {
+            if (!list.isEmpty() && list.get(0) instanceof CollectionAction) {
                 super.setActualInstance(instance);
                 return;
             }
         }
 
-        if (instance instanceof CreateRoleRequestCollectionPermissionsValueOneOf) {
+        if (instance instanceof CollectionPermissionRule) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be CreateRoleRequestCollectionPermissionsValueOneOf, List<String>");
+        throw new RuntimeException("Invalid instance type. Must be CollectionPermissionRule, List<CollectionAction>");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * CreateRoleRequestCollectionPermissionsValueOneOf, List<String>
+     * CollectionPermissionRule, List&lt;CollectionAction&gt;
      *
-     * @return The actual instance (CreateRoleRequestCollectionPermissionsValueOneOf, List<String>)
+     * @return The actual instance (CollectionPermissionRule, List&lt;CollectionAction&gt;)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -216,25 +218,27 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
     }
 
     /**
-     * Get the actual instance of `List<String>`. If the actual instance is not `List<String>`,
+     * Get the actual instance of `List&lt;CollectionAction&gt;`. If the actual instance is not `List&lt;CollectionAction&gt;`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `List<String>`
-     * @throws ClassCastException if the instance is not `List<String>`
+     * @return The actual instance of `List&lt;CollectionAction&gt;`
+     * @throws ClassCastException if the instance is not `List&lt;CollectionAction&gt;`
      */
-    public List<String> getListString() throws ClassCastException {
-        return (List<String>)super.getActualInstance();
+    @SuppressWarnings("unchecked")
+    public List<CollectionAction> getListCollectionAction() throws ClassCastException {
+        return (List<CollectionAction>)super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `CreateRoleRequestCollectionPermissionsValueOneOf`. If the actual instance is not `CreateRoleRequestCollectionPermissionsValueOneOf`,
+     * Get the actual instance of `CollectionPermissionRule`. If the actual instance is not `CollectionPermissionRule`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `CreateRoleRequestCollectionPermissionsValueOneOf`
-     * @throws ClassCastException if the instance is not `CreateRoleRequestCollectionPermissionsValueOneOf`
+     * @return The actual instance of `CollectionPermissionRule`
+     * @throws ClassCastException if the instance is not `CollectionPermissionRule`
      */
-    public CreateRoleRequestCollectionPermissionsValueOneOf getCreateRoleRequestCollectionPermissionsValueOneOf() throws ClassCastException {
-        return (CreateRoleRequestCollectionPermissionsValueOneOf)super.getActualInstance();
+    @SuppressWarnings("unchecked")
+    public CollectionPermissionRule getCollectionPermissionRule() throws ClassCastException {
+        return (CollectionPermissionRule)super.getActualInstance();
     }
 
     /**
@@ -247,7 +251,7 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with List<String>
+        // validate the json string with List<CollectionAction>
         try {
             if (!jsonElement.isJsonArray()) {
                 throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected json element to be a array type in the JSON string but got `%s`", jsonElement.toString()));
@@ -255,25 +259,23 @@ public class CreateRoleRequestCollectionPermissionsValue extends AbstractOpenApi
             JsonArray array = jsonElement.getAsJsonArray();
             // validate array items
             for(JsonElement element : array) {
-                if (!element.getAsJsonPrimitive().isString()) {
-                    throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected array items to be of type String in the JSON string but got `%s`", jsonElement.toString()));
-                }
+                CollectionAction.validateJsonElement(element);
             }
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for List<String> failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for List<CollectionAction> failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with CreateRoleRequestCollectionPermissionsValueOneOf
+        // validate the json string with CollectionPermissionRule
         try {
-            CreateRoleRequestCollectionPermissionsValueOneOf.validateJsonElement(jsonElement);
+            CollectionPermissionRule.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for CreateRoleRequestCollectionPermissionsValueOneOf failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for CollectionPermissionRule failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CreateRoleRequestCollectionPermissionsValueOneOf, List<String>. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for CreateRoleRequestCollectionPermissionsValue with oneOf schemas: CollectionPermissionRule, List<CollectionAction>. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

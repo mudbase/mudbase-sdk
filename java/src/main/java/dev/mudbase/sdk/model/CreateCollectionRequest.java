@@ -52,7 +52,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * CreateCollectionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class CreateCollectionRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -233,10 +233,7 @@ public class CreateCollectionRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -285,16 +282,16 @@ public class CreateCollectionRequest {
       if ((jsonObj.get("slug") != null && !jsonObj.get("slug").isJsonNull()) && !jsonObj.get("slug").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `slug` to be a primitive type in the JSON string but got `%s`", jsonObj.get("slug").toString()));
       }
-      // ensure the json data is an array
-      if (!jsonObj.get("fields").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `fields` to be an array in the JSON string but got `%s`", jsonObj.get("fields").toString()));
+      if (jsonObj.get("fields") != null) {
+        if (!jsonObj.get("fields").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `fields` to be an array in the JSON string but got `%s`", jsonObj.get("fields").toString()));
+        }
+        JsonArray jsonArrayfields = jsonObj.getAsJsonArray("fields");
+        // validate the required field `fields` (array)
+        for (int i = 0; i < jsonArrayfields.size(); i++) {
+          Field.validateJsonElement(jsonArrayfields.get(i));
+        }
       }
-
-      JsonArray jsonArrayfields = jsonObj.getAsJsonArray("fields");
-      // validate the required field `fields` (array)
-      for (int i = 0; i < jsonArrayfields.size(); i++) {
-        Field.validateJsonElement(jsonArrayfields.get(i));
-      };
       if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()) {
         JsonArray jsonArraypermissions = jsonObj.getAsJsonArray("permissions");
         if (jsonArraypermissions != null) {

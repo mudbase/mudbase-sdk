@@ -51,7 +51,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * Either &#x60;template&#x60; (with optional &#x60;data&#x60;) or both &#x60;subject&#x60; and &#x60;html&#x60; must be provided. &#x60;to&#x60; may be a string or array of strings. For named templates, **&#x60;data&#x60;** should supply values for &#x60;{{placeholders}}&#x60; (see **Email** tag description for the full list). 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class ProjectEmailSendRequest {
   public static final String SERIALIZED_NAME_TEMPLATE = "template";
   @SerializedName(SERIALIZED_NAME_TEMPLATE)
@@ -328,10 +328,7 @@ public class ProjectEmailSendRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

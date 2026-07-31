@@ -51,7 +51,7 @@ import com.google.gson.JsonParseException;
 
 import dev.mudbase.sdk.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class EmailRequestTo extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(EmailRequestTo.class.getName());
 
@@ -174,7 +174,7 @@ public class EmailRequestTo extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * List<String>, String
+     * List&lt;String&gt;, String
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -198,9 +198,9 @@ public class EmailRequestTo extends AbstractOpenApiSchema {
 
     /**
      * Get the actual instance, which can be the following:
-     * List<String>, String
+     * List&lt;String&gt;, String
      *
-     * @return The actual instance (List<String>, String)
+     * @return The actual instance (List&lt;String&gt;, String)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -215,17 +215,19 @@ public class EmailRequestTo extends AbstractOpenApiSchema {
      * @return The actual instance of `String`
      * @throws ClassCastException if the instance is not `String`
      */
+    @SuppressWarnings("unchecked")
     public String getString() throws ClassCastException {
         return (String)super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `List<String>`. If the actual instance is not `List<String>`,
+     * Get the actual instance of `List&lt;String&gt;`. If the actual instance is not `List&lt;String&gt;`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `List<String>`
-     * @throws ClassCastException if the instance is not `List<String>`
+     * @return The actual instance of `List&lt;String&gt;`
+     * @throws ClassCastException if the instance is not `List&lt;String&gt;`
      */
+    @SuppressWarnings("unchecked")
     public List<String> getListString() throws ClassCastException {
         return (List<String>)super.getActualInstance();
     }

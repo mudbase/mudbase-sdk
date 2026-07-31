@@ -60,7 +60,7 @@ import com.google.gson.JsonParseException;
 
 import dev.mudbase.sdk.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class CreatePlanRequestFeaturesInner extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreatePlanRequestFeaturesInner.class.getName());
 
@@ -209,6 +209,7 @@ public class CreatePlanRequestFeaturesInner extends AbstractOpenApiSchema {
      * @return The actual instance of `String`
      * @throws ClassCastException if the instance is not `String`
      */
+    @SuppressWarnings("unchecked")
     public String getString() throws ClassCastException {
         return (String)super.getActualInstance();
     }
@@ -220,6 +221,7 @@ public class CreatePlanRequestFeaturesInner extends AbstractOpenApiSchema {
      * @return The actual instance of `CreatePlanRequestFeaturesInnerOneOf`
      * @throws ClassCastException if the instance is not `CreatePlanRequestFeaturesInnerOneOf`
      */
+    @SuppressWarnings("unchecked")
     public CreatePlanRequestFeaturesInnerOneOf getCreatePlanRequestFeaturesInnerOneOf() throws ClassCastException {
         return (CreatePlanRequestFeaturesInnerOneOf)super.getActualInstance();
     }

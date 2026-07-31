@@ -36,6 +36,7 @@ import dev.mudbase.sdk.model.GetMultiRoleConfig200Response;
 import dev.mudbase.sdk.model.GetPermissionsMatrix200Response;
 import dev.mudbase.sdk.model.InitiateOAuth404Response;
 import dev.mudbase.sdk.model.InitiateOrgOAuth400Response;
+import dev.mudbase.sdk.model.RegisterWithRole201Response;
 import dev.mudbase.sdk.model.RegisterWithRoleRequest;
 import dev.mudbase.sdk.model.SimulateAppPermissions200Response;
 import dev.mudbase.sdk.model.SimulateAppPermissionsRequest;
@@ -932,7 +933,9 @@ public class MultiRoleFeatureApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Registration successful </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Registration successful. Two response shapes depending on the project&#39;s &#x60;requireEmailVerification&#x60; setting - see &#x60;requireVerification&#x60; to distinguish them; &#x60;token&#x60;/&#x60;refreshToken&#x60;/&#x60;expiresIn&#x60; are only present when a session was issued immediately. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Validation failed, or a user with this email already exists for the project </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Role requires approval, payment, or KYC before it can be self-assigned </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Role not found or not enabled </td><td>  -  </td></tr>
      </table>
      */
@@ -963,6 +966,7 @@ public class MultiRoleFeatureApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1002,17 +1006,21 @@ public class MultiRoleFeatureApi {
      * Public endpoint for user registration with a specific role. The path segment must match a role&#39;s &#x60;signupEndpoint&#x60; (default starter is &#x60;customer&#x60;; add more roles via multi-role API). No authentication required - this is a public signup endpoint. 
      * @param role Must match the role&#39;s &#x60;signupEndpoint&#x60; (default &#x60;customer&#x60;; other values for roles you add). (required)
      * @param registerWithRoleRequest  (required)
+     * @return RegisterWithRole201Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Registration successful </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Registration successful. Two response shapes depending on the project&#39;s &#x60;requireEmailVerification&#x60; setting - see &#x60;requireVerification&#x60; to distinguish them; &#x60;token&#x60;/&#x60;refreshToken&#x60;/&#x60;expiresIn&#x60; are only present when a session was issued immediately. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Validation failed, or a user with this email already exists for the project </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Role requires approval, payment, or KYC before it can be self-assigned </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Role not found or not enabled </td><td>  -  </td></tr>
      </table>
      */
-    public void registerWithRole(@javax.annotation.Nonnull String role, @javax.annotation.Nonnull RegisterWithRoleRequest registerWithRoleRequest) throws ApiException {
-        registerWithRoleWithHttpInfo(role, registerWithRoleRequest);
+    public RegisterWithRole201Response registerWithRole(@javax.annotation.Nonnull String role, @javax.annotation.Nonnull RegisterWithRoleRequest registerWithRoleRequest) throws ApiException {
+        ApiResponse<RegisterWithRole201Response> localVarResp = registerWithRoleWithHttpInfo(role, registerWithRoleRequest);
+        return localVarResp.getData();
     }
 
     /**
@@ -1020,19 +1028,22 @@ public class MultiRoleFeatureApi {
      * Public endpoint for user registration with a specific role. The path segment must match a role&#39;s &#x60;signupEndpoint&#x60; (default starter is &#x60;customer&#x60;; add more roles via multi-role API). No authentication required - this is a public signup endpoint. 
      * @param role Must match the role&#39;s &#x60;signupEndpoint&#x60; (default &#x60;customer&#x60;; other values for roles you add). (required)
      * @param registerWithRoleRequest  (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;RegisterWithRole201Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Registration successful </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Registration successful. Two response shapes depending on the project&#39;s &#x60;requireEmailVerification&#x60; setting - see &#x60;requireVerification&#x60; to distinguish them; &#x60;token&#x60;/&#x60;refreshToken&#x60;/&#x60;expiresIn&#x60; are only present when a session was issued immediately. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Validation failed, or a user with this email already exists for the project </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Role requires approval, payment, or KYC before it can be self-assigned </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Role not found or not enabled </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> registerWithRoleWithHttpInfo(@javax.annotation.Nonnull String role, @javax.annotation.Nonnull RegisterWithRoleRequest registerWithRoleRequest) throws ApiException {
+    public ApiResponse<RegisterWithRole201Response> registerWithRoleWithHttpInfo(@javax.annotation.Nonnull String role, @javax.annotation.Nonnull RegisterWithRoleRequest registerWithRoleRequest) throws ApiException {
         okhttp3.Call localVarCall = registerWithRoleValidateBeforeCall(role, registerWithRoleRequest, null);
-        return localVarApiClient.execute(localVarCall);
+        Type localVarReturnType = new TypeToken<RegisterWithRole201Response>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -1047,14 +1058,17 @@ public class MultiRoleFeatureApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Registration successful </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Registration successful. Two response shapes depending on the project&#39;s &#x60;requireEmailVerification&#x60; setting - see &#x60;requireVerification&#x60; to distinguish them; &#x60;token&#x60;/&#x60;refreshToken&#x60;/&#x60;expiresIn&#x60; are only present when a session was issued immediately. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Validation failed, or a user with this email already exists for the project </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Role requires approval, payment, or KYC before it can be self-assigned </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Role not found or not enabled </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call registerWithRoleAsync(@javax.annotation.Nonnull String role, @javax.annotation.Nonnull RegisterWithRoleRequest registerWithRoleRequest, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call registerWithRoleAsync(@javax.annotation.Nonnull String role, @javax.annotation.Nonnull RegisterWithRoleRequest registerWithRoleRequest, final ApiCallback<RegisterWithRole201Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = registerWithRoleValidateBeforeCall(role, registerWithRoleRequest, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
+        Type localVarReturnType = new TypeToken<RegisterWithRole201Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**

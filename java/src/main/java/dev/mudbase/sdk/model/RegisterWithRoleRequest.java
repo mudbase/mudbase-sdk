@@ -48,7 +48,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * RegisterWithRoleRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class RegisterWithRoleRequest {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
@@ -74,6 +74,11 @@ public class RegisterWithRoleRequest {
   @SerializedName(SERIALIZED_NAME_PROJECT_ID)
   @javax.annotation.Nonnull
   private String projectId;
+
+  public static final String SERIALIZED_NAME_AGREED_TO_TERMS = "agreedToTerms";
+  @SerializedName(SERIALIZED_NAME_AGREED_TO_TERMS)
+  @javax.annotation.Nonnull
+  private Boolean agreedToTerms;
 
   public RegisterWithRoleRequest() {
   }
@@ -173,6 +178,25 @@ public class RegisterWithRoleRequest {
   }
 
 
+  public RegisterWithRoleRequest agreedToTerms(@javax.annotation.Nonnull Boolean agreedToTerms) {
+    this.agreedToTerms = agreedToTerms;
+    return this;
+  }
+
+  /**
+   * Must be &#x60;true&#x60; - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy.
+   * @return agreedToTerms
+   */
+  @javax.annotation.Nonnull
+  public Boolean getAgreedToTerms() {
+    return agreedToTerms;
+  }
+
+  public void setAgreedToTerms(@javax.annotation.Nonnull Boolean agreedToTerms) {
+    this.agreedToTerms = agreedToTerms;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -187,12 +211,13 @@ public class RegisterWithRoleRequest {
         Objects.equals(this.password, registerWithRoleRequest.password) &&
         Objects.equals(this.firstName, registerWithRoleRequest.firstName) &&
         Objects.equals(this.lastName, registerWithRoleRequest.lastName) &&
-        Objects.equals(this.projectId, registerWithRoleRequest.projectId);
+        Objects.equals(this.projectId, registerWithRoleRequest.projectId) &&
+        Objects.equals(this.agreedToTerms, registerWithRoleRequest.agreedToTerms);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, password, firstName, lastName, projectId);
+    return Objects.hash(email, password, firstName, lastName, projectId, agreedToTerms);
   }
 
   @Override
@@ -204,6 +229,7 @@ public class RegisterWithRoleRequest {
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
+    sb.append("    agreedToTerms: ").append(toIndentedString(agreedToTerms)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -213,10 +239,7 @@ public class RegisterWithRoleRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -225,10 +248,10 @@ public class RegisterWithRoleRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("email", "password", "firstName", "lastName", "projectId"));
+    openapiFields = new HashSet<String>(Arrays.asList("email", "password", "firstName", "lastName", "projectId", "agreedToTerms"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("email", "password", "firstName", "lastName", "projectId"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("email", "password", "firstName", "lastName", "projectId", "agreedToTerms"));
   }
 
   /**

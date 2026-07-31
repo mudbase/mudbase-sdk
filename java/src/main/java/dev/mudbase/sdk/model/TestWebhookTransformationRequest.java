@@ -51,7 +51,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * TestWebhookTransformationRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class TestWebhookTransformationRequest {
   public static final String SERIALIZED_NAME_PAYLOAD = "payload";
   @SerializedName(SERIALIZED_NAME_PAYLOAD)
@@ -146,10 +146,7 @@ public class TestWebhookTransformationRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -192,16 +189,16 @@ public class TestWebhookTransformationRequest {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("transformations").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `transformations` to be an array in the JSON string but got `%s`", jsonObj.get("transformations").toString()));
+      if (jsonObj.get("transformations") != null) {
+        if (!jsonObj.get("transformations").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `transformations` to be an array in the JSON string but got `%s`", jsonObj.get("transformations").toString()));
+        }
+        JsonArray jsonArraytransformations = jsonObj.getAsJsonArray("transformations");
+        // validate the required field `transformations` (array)
+        for (int i = 0; i < jsonArraytransformations.size(); i++) {
+          GetWebhookConfig200ResponseDataTransformationsInner.validateJsonElement(jsonArraytransformations.get(i));
+        }
       }
-
-      JsonArray jsonArraytransformations = jsonObj.getAsJsonArray("transformations");
-      // validate the required field `transformations` (array)
-      for (int i = 0; i < jsonArraytransformations.size(); i++) {
-        GetWebhookConfig200ResponseDataTransformationsInner.validateJsonElement(jsonArraytransformations.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -48,7 +48,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * PutChatE2eeKeyRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class PutChatE2eeKeyRequest {
   public static final String SERIALIZED_NAME_IDENTITY_PUBLIC_KEY = "identityPublicKey";
   @SerializedName(SERIALIZED_NAME_IDENTITY_PUBLIC_KEY)
@@ -135,10 +135,7 @@ public class PutChatE2eeKeyRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

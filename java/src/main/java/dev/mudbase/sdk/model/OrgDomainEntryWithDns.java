@@ -55,7 +55,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * Full allowed-domain row (admin and legacy): includes **&#x60;dnsTxtHost&#x60;** / **&#x60;dnsTxtValue&#x60;**, optional Cloudflare SaaS hints (&#x60;cloudflareEdge&#x60;), staff-published step-3 TXT (&#x60;platformDnsVerification&#x60; on the manual path), and unified **&#x60;dnsRecords&#x60;** when the API builds a checklist. **&#x60;routingCnameTarget&#x60;** mirrors Fly **&#x60;dns_requirements.cname&#x60;** when ACME has provisioned, else env fallback. Internal &#x60;cloudflareCustomHostname&#x60; is not returned; use &#x60;cloudflareEdge&#x60;. Fly ACME requires **&#x60;CUSTOM_DOMAIN_FLY_ACME_ENABLED&#x60;** plus **&#x60;FLY_API_TOKEN&#x60;** and app slug; Cloudflare SSL-for-SaaS and Fly ACME cannot both be enabled on the same deployment. Org-facing routes return the compact **&#x60;OrgDomainEntryOrgConsole&#x60;** shape instead (no raw &#x60;verificationToken&#x60; or duplicate TXT keys).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class OrgDomainEntryWithDns {
   public static final String SERIALIZED_NAME_ID = "_id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -761,10 +761,7 @@ public class OrgDomainEntryWithDns {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

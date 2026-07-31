@@ -52,7 +52,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * GetWebhookConfig200ResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class GetWebhookConfig200ResponseData {
   public static final String SERIALIZED_NAME_WEBHOOK_URL = "webhookUrl";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_URL)
@@ -244,10 +244,7 @@ public class GetWebhookConfig200ResponseData {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

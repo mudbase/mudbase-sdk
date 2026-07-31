@@ -23,6 +23,7 @@ import dev.mudbase.sdk.model.OrganizationSummary;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,7 +51,7 @@ import dev.mudbase.sdk.JSON;
 /**
  * User
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-30T23:57:43.959467+01:00[Africa/Lagos]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-31T01:41:56.236988+01:00[Africa/Lagos]", comments = "Generator version: 7.24.0")
 public class User {
   public static final String SERIALIZED_NAME_ID = "_id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -142,6 +143,16 @@ public class User {
   @SerializedName(SERIALIZED_NAME_ROLE)
   @javax.annotation.Nullable
   private RoleEnum role;
+
+  public static final String SERIALIZED_NAME_CUSTOM_ROLE = "customRole";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_ROLE)
+  @javax.annotation.Nullable
+  private String customRole;
+
+  public static final String SERIALIZED_NAME_IS_ANONYMOUS = "isAnonymous";
+  @SerializedName(SERIALIZED_NAME_IS_ANONYMOUS)
+  @javax.annotation.Nullable
+  private Boolean isAnonymous;
 
   public static final String SERIALIZED_NAME_EMAIL_VERIFIED = "emailVerified";
   @SerializedName(SERIALIZED_NAME_EMAIL_VERIFIED)
@@ -314,6 +325,44 @@ public class User {
   }
 
 
+  public User customRole(@javax.annotation.Nullable String customRole) {
+    this.customRole = customRole;
+    return this;
+  }
+
+  /**
+   * Application-level role slug from the project&#39;s Multi-Role feature (e.g. \&quot;customer\&quot;, \&quot;seller\&quot;). Null for org-level (org/admin/member/viewer) users who aren&#39;t project end-users.
+   * @return customRole
+   */
+  @javax.annotation.Nullable
+  public String getCustomRole() {
+    return customRole;
+  }
+
+  public void setCustomRole(@javax.annotation.Nullable String customRole) {
+    this.customRole = customRole;
+  }
+
+
+  public User isAnonymous(@javax.annotation.Nullable Boolean isAnonymous) {
+    this.isAnonymous = isAnonymous;
+    return this;
+  }
+
+  /**
+   * True for a guest session created via POST /api/auth/anonymous that hasn&#39;t been converted to a full account yet.
+   * @return isAnonymous
+   */
+  @javax.annotation.Nullable
+  public Boolean getIsAnonymous() {
+    return isAnonymous;
+  }
+
+  public void setIsAnonymous(@javax.annotation.Nullable Boolean isAnonymous) {
+    this.isAnonymous = isAnonymous;
+  }
+
+
   public User emailVerified(@javax.annotation.Nullable Boolean emailVerified) {
     this.emailVerified = emailVerified;
     return this;
@@ -464,6 +513,8 @@ public class User {
         Objects.equals(this.fullName, user.fullName) &&
         Objects.equals(this.avatar, user.avatar) &&
         Objects.equals(this.role, user.role) &&
+        Objects.equals(this.customRole, user.customRole) &&
+        Objects.equals(this.isAnonymous, user.isAnonymous) &&
         Objects.equals(this.emailVerified, user.emailVerified) &&
         Objects.equals(this.phoneVerified, user.phoneVerified) &&
         Objects.equals(this.twoFactorEnabled, user.twoFactorEnabled) &&
@@ -473,9 +524,20 @@ public class User {
         Objects.equals(this.org, user.org);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, email, firstName, lastName, fullName, avatar, role, emailVerified, phoneVerified, twoFactorEnabled, lastLogin, createdAt, updatedAt, org);
+    return Objects.hash(id, email, firstName, lastName, fullName, avatar, role, customRole, isAnonymous, emailVerified, phoneVerified, twoFactorEnabled, lastLogin, createdAt, updatedAt, org);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -489,6 +551,8 @@ public class User {
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("    avatar: ").append(toIndentedString(avatar)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    customRole: ").append(toIndentedString(customRole)).append("\n");
+    sb.append("    isAnonymous: ").append(toIndentedString(isAnonymous)).append("\n");
     sb.append("    emailVerified: ").append(toIndentedString(emailVerified)).append("\n");
     sb.append("    phoneVerified: ").append(toIndentedString(phoneVerified)).append("\n");
     sb.append("    twoFactorEnabled: ").append(toIndentedString(twoFactorEnabled)).append("\n");
@@ -505,10 +569,7 @@ public class User {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 
@@ -517,7 +578,7 @@ public class User {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("_id", "email", "firstName", "lastName", "fullName", "avatar", "role", "emailVerified", "phoneVerified", "twoFactorEnabled", "lastLogin", "createdAt", "updatedAt", "org"));
+    openapiFields = new HashSet<String>(Arrays.asList("_id", "email", "firstName", "lastName", "fullName", "avatar", "role", "customRole", "isAnonymous", "emailVerified", "phoneVerified", "twoFactorEnabled", "lastLogin", "createdAt", "updatedAt", "org"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -568,6 +629,9 @@ public class User {
       // validate the optional field `role`
       if (jsonObj.get("role") != null && !jsonObj.get("role").isJsonNull()) {
         RoleEnum.validateJsonElement(jsonObj.get("role"));
+      }
+      if ((jsonObj.get("customRole") != null && !jsonObj.get("customRole").isJsonNull()) && !jsonObj.get("customRole").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `customRole` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customRole").toString()));
       }
       // validate the optional field `org`
       if (jsonObj.get("org") != null && !jsonObj.get("org").isJsonNull()) {

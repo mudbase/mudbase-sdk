@@ -14,8 +14,8 @@ require 'mudbase_sdk'
 MudbaseSDK::CreateRoleRequestCollectionPermissionsValue.openapi_one_of
 # =>
 # [
-#   :'Array<String>',
-#   :'CreateRoleRequestCollectionPermissionsValueOneOf'
+#   :'Array<CollectionAction>',
+#   :'CollectionPermissionRule'
 # ]
 ```
 
@@ -29,7 +29,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'mudbase_sdk'
 
 MudbaseSDK::CreateRoleRequestCollectionPermissionsValue.build(data)
-# => #<Array<String>:0x00007fdd4aab02a0>
+# => #<Array<CollectionAction>:0x00007fdd4aab02a0>
 
 MudbaseSDK::CreateRoleRequestCollectionPermissionsValue.build(data_that_doesnt_match)
 # => nil
@@ -43,7 +43,7 @@ MudbaseSDK::CreateRoleRequestCollectionPermissionsValue.build(data_that_doesnt_m
 
 #### Return type
 
-- `Array<String>`
-- `CreateRoleRequestCollectionPermissionsValueOneOf`
+- `Array<CollectionAction>`
+- `CollectionPermissionRule`
 - `nil` (if no type matches)
 

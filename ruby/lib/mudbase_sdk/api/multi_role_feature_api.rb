@@ -450,10 +450,10 @@ module MudbaseSDK
     # @param role [String] Must match the role&#39;s &#x60;signupEndpoint&#x60; (default &#x60;customer&#x60;; other values for roles you add).
     # @param register_with_role_request [RegisterWithRoleRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [RegisterWithRole201Response]
     def register_with_role(role, register_with_role_request, opts = {})
-      register_with_role_with_http_info(role, register_with_role_request, opts)
-      nil
+      data, _status_code, _headers = register_with_role_with_http_info(role, register_with_role_request, opts)
+      data
     end
 
     # Register user with specific role (Local Auth)
@@ -461,7 +461,7 @@ module MudbaseSDK
     # @param role [String] Must match the role&#39;s &#x60;signupEndpoint&#x60; (default &#x60;customer&#x60;; other values for roles you add).
     # @param register_with_role_request [RegisterWithRoleRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    # @return [Array<(RegisterWithRole201Response, Integer, Hash)>] RegisterWithRole201Response data, response status code and response headers
     def register_with_role_with_http_info(role, register_with_role_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: MultiRoleFeatureApi.register_with_role ...'
@@ -482,6 +482,8 @@ module MudbaseSDK
 
       # header parameters
       header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
       # HTTP header 'Content-Type'
       content_type = @api_client.select_header_content_type(['application/json'])
       if !content_type.nil?
@@ -495,7 +497,7 @@ module MudbaseSDK
       post_body = opts[:debug_body] || @api_client.object_to_http_body(register_with_role_request)
 
       # return_type
-      return_type = opts[:debug_return_type]
+      return_type = opts[:debug_return_type] || 'RegisterWithRole201Response'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || []

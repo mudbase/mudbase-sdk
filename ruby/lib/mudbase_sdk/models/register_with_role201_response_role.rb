@@ -14,29 +14,19 @@ require 'date'
 require 'time'
 
 module MudbaseSDK
-  class RegisterWithRoleRequest < ApiModelBase
-    attr_accessor :email
+  class RegisterWithRole201ResponseRole < ApiModelBase
+    attr_accessor :slug
 
-    attr_accessor :password
+    attr_accessor :name
 
-    attr_accessor :first_name
-
-    attr_accessor :last_name
-
-    attr_accessor :project_id
-
-    # Must be `true` - the server rejects the request otherwise. Required to stop a direct API call from creating an account without accepting the Terms of Service and Privacy Policy.
-    attr_accessor :agreed_to_terms
+    attr_accessor :description
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'email' => :'email',
-        :'password' => :'password',
-        :'first_name' => :'firstName',
-        :'last_name' => :'lastName',
-        :'project_id' => :'projectId',
-        :'agreed_to_terms' => :'agreedToTerms'
+        :'slug' => :'slug',
+        :'name' => :'name',
+        :'description' => :'description'
       }
     end
 
@@ -53,12 +43,9 @@ module MudbaseSDK
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'email' => :'String',
-        :'password' => :'String',
-        :'first_name' => :'String',
-        :'last_name' => :'String',
-        :'project_id' => :'String',
-        :'agreed_to_terms' => :'Boolean'
+        :'slug' => :'String',
+        :'name' => :'String',
+        :'description' => :'String'
       }
     end
 
@@ -72,52 +59,28 @@ module MudbaseSDK
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MudbaseSDK::RegisterWithRoleRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MudbaseSDK::RegisterWithRole201ResponseRole` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MudbaseSDK::RegisterWithRoleRequest`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MudbaseSDK::RegisterWithRole201ResponseRole`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'email')
-        self.email = attributes[:'email']
-      else
-        self.email = nil
+      if attributes.key?(:'slug')
+        self.slug = attributes[:'slug']
       end
 
-      if attributes.key?(:'password')
-        self.password = attributes[:'password']
-      else
-        self.password = nil
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'first_name')
-        self.first_name = attributes[:'first_name']
-      else
-        self.first_name = nil
-      end
-
-      if attributes.key?(:'last_name')
-        self.last_name = attributes[:'last_name']
-      else
-        self.last_name = nil
-      end
-
-      if attributes.key?(:'project_id')
-        self.project_id = attributes[:'project_id']
-      else
-        self.project_id = nil
-      end
-
-      if attributes.key?(:'agreed_to_terms')
-        self.agreed_to_terms = attributes[:'agreed_to_terms']
-      else
-        self.agreed_to_terms = nil
+      if attributes.key?(:'description')
+        self.description = attributes[:'description']
       end
     end
 
@@ -126,30 +89,6 @@ module MudbaseSDK
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @email.nil?
-        invalid_properties.push('invalid value for "email", email cannot be nil.')
-      end
-
-      if @password.nil?
-        invalid_properties.push('invalid value for "password", password cannot be nil.')
-      end
-
-      if @first_name.nil?
-        invalid_properties.push('invalid value for "first_name", first_name cannot be nil.')
-      end
-
-      if @last_name.nil?
-        invalid_properties.push('invalid value for "last_name", last_name cannot be nil.')
-      end
-
-      if @project_id.nil?
-        invalid_properties.push('invalid value for "project_id", project_id cannot be nil.')
-      end
-
-      if @agreed_to_terms.nil?
-        invalid_properties.push('invalid value for "agreed_to_terms", agreed_to_terms cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -157,73 +96,7 @@ module MudbaseSDK
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @email.nil?
-      return false if @password.nil?
-      return false if @first_name.nil?
-      return false if @last_name.nil?
-      return false if @project_id.nil?
-      return false if @agreed_to_terms.nil?
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] email Value to be assigned
-    def email=(email)
-      if email.nil?
-        fail ArgumentError, 'email cannot be nil'
-      end
-
-      @email = email
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] password Value to be assigned
-    def password=(password)
-      if password.nil?
-        fail ArgumentError, 'password cannot be nil'
-      end
-
-      @password = password
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] first_name Value to be assigned
-    def first_name=(first_name)
-      if first_name.nil?
-        fail ArgumentError, 'first_name cannot be nil'
-      end
-
-      @first_name = first_name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] last_name Value to be assigned
-    def last_name=(last_name)
-      if last_name.nil?
-        fail ArgumentError, 'last_name cannot be nil'
-      end
-
-      @last_name = last_name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] project_id Value to be assigned
-    def project_id=(project_id)
-      if project_id.nil?
-        fail ArgumentError, 'project_id cannot be nil'
-      end
-
-      @project_id = project_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] agreed_to_terms Value to be assigned
-    def agreed_to_terms=(agreed_to_terms)
-      if agreed_to_terms.nil?
-        fail ArgumentError, 'agreed_to_terms cannot be nil'
-      end
-
-      @agreed_to_terms = agreed_to_terms
     end
 
     # Checks equality by comparing each attribute.
@@ -231,12 +104,9 @@ module MudbaseSDK
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          email == o.email &&
-          password == o.password &&
-          first_name == o.first_name &&
-          last_name == o.last_name &&
-          project_id == o.project_id &&
-          agreed_to_terms == o.agreed_to_terms
+          slug == o.slug &&
+          name == o.name &&
+          description == o.description
     end
 
     # @see the `==` method
@@ -248,7 +118,7 @@ module MudbaseSDK
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email, password, first_name, last_name, project_id, agreed_to_terms].hash
+      [slug, name, description].hash
     end
 
     # Builds the object from hash

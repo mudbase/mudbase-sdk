@@ -29,6 +29,12 @@ module MudbaseSDK
 
     attr_accessor :role
 
+    # Application-level role slug from the project's Multi-Role feature (e.g. \"customer\", \"seller\"). Null for org-level (org/admin/member/viewer) users who aren't project end-users.
+    attr_accessor :custom_role
+
+    # True for a guest session created via POST /api/auth/anonymous that hasn't been converted to a full account yet.
+    attr_accessor :is_anonymous
+
     attr_accessor :email_verified
 
     attr_accessor :phone_verified
@@ -75,6 +81,8 @@ module MudbaseSDK
         :'full_name' => :'fullName',
         :'avatar' => :'avatar',
         :'role' => :'role',
+        :'custom_role' => :'customRole',
+        :'is_anonymous' => :'isAnonymous',
         :'email_verified' => :'emailVerified',
         :'phone_verified' => :'phoneVerified',
         :'two_factor_enabled' => :'twoFactorEnabled',
@@ -105,6 +113,8 @@ module MudbaseSDK
         :'full_name' => :'String',
         :'avatar' => :'String',
         :'role' => :'String',
+        :'custom_role' => :'String',
+        :'is_anonymous' => :'Boolean',
         :'email_verified' => :'Boolean',
         :'phone_verified' => :'Boolean',
         :'two_factor_enabled' => :'Boolean',
@@ -118,6 +128,7 @@ module MudbaseSDK
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'custom_role',
       ])
     end
 
@@ -163,6 +174,14 @@ module MudbaseSDK
 
       if attributes.key?(:'role')
         self.role = attributes[:'role']
+      end
+
+      if attributes.key?(:'custom_role')
+        self.custom_role = attributes[:'custom_role']
+      end
+
+      if attributes.key?(:'is_anonymous')
+        self.is_anonymous = attributes[:'is_anonymous']
       end
 
       if attributes.key?(:'email_verified')
@@ -233,6 +252,8 @@ module MudbaseSDK
           full_name == o.full_name &&
           avatar == o.avatar &&
           role == o.role &&
+          custom_role == o.custom_role &&
+          is_anonymous == o.is_anonymous &&
           email_verified == o.email_verified &&
           phone_verified == o.phone_verified &&
           two_factor_enabled == o.two_factor_enabled &&
@@ -251,7 +272,7 @@ module MudbaseSDK
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [_id, email, first_name, last_name, full_name, avatar, role, email_verified, phone_verified, two_factor_enabled, last_login, created_at, updated_at, org].hash
+      [_id, email, first_name, last_name, full_name, avatar, role, custom_role, is_anonymous, email_verified, phone_verified, two_factor_enabled, last_login, created_at, updated_at, org].hash
     end
 
     # Builds the object from hash

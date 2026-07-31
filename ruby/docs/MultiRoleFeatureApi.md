@@ -457,7 +457,7 @@ No authorization required
 
 ## register_with_role
 
-> register_with_role(role, register_with_role_request)
+> <RegisterWithRole201Response> register_with_role(role, register_with_role_request)
 
 Register user with specific role (Local Auth)
 
@@ -471,11 +471,12 @@ require 'mudbase_sdk'
 
 api_instance = MudbaseSDK::MultiRoleFeatureApi.new
 role = 'customer' # String | Must match the role's `signupEndpoint` (default `customer`; other values for roles you add).
-register_with_role_request = MudbaseSDK::RegisterWithRoleRequest.new({email: 'email_example', password: 'password_example', first_name: 'first_name_example', last_name: 'last_name_example', project_id: 'project_id_example'}) # RegisterWithRoleRequest | 
+register_with_role_request = MudbaseSDK::RegisterWithRoleRequest.new({email: 'email_example', password: 'password_example', first_name: 'first_name_example', last_name: 'last_name_example', project_id: 'project_id_example', agreed_to_terms: false}) # RegisterWithRoleRequest | 
 
 begin
   # Register user with specific role (Local Auth)
-  api_instance.register_with_role(role, register_with_role_request)
+  result = api_instance.register_with_role(role, register_with_role_request)
+  p result
 rescue MudbaseSDK::ApiError => e
   puts "Error when calling MultiRoleFeatureApi->register_with_role: #{e}"
 end
@@ -483,9 +484,9 @@ end
 
 #### Using the register_with_role_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> register_with_role_with_http_info(role, register_with_role_request)
+> <Array(<RegisterWithRole201Response>, Integer, Hash)> register_with_role_with_http_info(role, register_with_role_request)
 
 ```ruby
 begin
@@ -493,7 +494,7 @@ begin
   data, status_code, headers = api_instance.register_with_role_with_http_info(role, register_with_role_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <RegisterWithRole201Response>
 rescue MudbaseSDK::ApiError => e
   puts "Error when calling MultiRoleFeatureApi->register_with_role_with_http_info: #{e}"
 end
@@ -508,7 +509,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**RegisterWithRole201Response**](RegisterWithRole201Response.md)
 
 ### Authorization
 
@@ -517,7 +518,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 
 ## simulate_app_permissions

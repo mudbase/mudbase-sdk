@@ -169,6 +169,12 @@ namespace Mudbase.Sdk.Model
             Option<string?> id = default;
             Option<DateTime?> createdAt = default;
             Option<DateTime?> updatedAt = default;
+            // SDK bug fix: the generated switch previously discarded every property outside
+            // _id/createdAt/updatedAt instead of routing it into AdditionalProperties, so every
+            // collection-specific field (the entire point of this "document from a collection"
+            // model) silently vanished on every list read. additionalProperties: true is already
+            // declared correctly in openapi.yaml; this converter just never honored it.
+            Dictionary<string, JsonElement>? additionalProperties = null;
 
             while (utf8JsonReader.Read())
             {
@@ -195,6 +201,8 @@ namespace Mudbase.Sdk.Model
                             updatedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
+                            additionalProperties ??= new Dictionary<string, JsonElement>();
+                            additionalProperties[localVarJsonPropertyName!] = JsonElement.ParseValue(ref utf8JsonReader);
                             break;
                     }
                 }
@@ -209,7 +217,13 @@ namespace Mudbase.Sdk.Model
             if (updatedAt.IsSet && updatedAt.Value == null)
                 throw new ArgumentNullException(nameof(updatedAt), "Property is not nullable for class DataListResponseDataInner.");
 
-            return new DataListResponseDataInner(id, createdAt, updatedAt);
+            DataListResponseDataInner result = new DataListResponseDataInner(id, createdAt, updatedAt);
+            if (additionalProperties != null)
+            {
+                foreach (KeyValuePair<string, JsonElement> kvp in additionalProperties)
+                    result.AdditionalProperties[kvp.Key] = kvp.Value;
+            }
+            return result;
         }
 
         /// <summary>
@@ -247,6 +261,12 @@ namespace Mudbase.Sdk.Model
 
             if (dataListResponseDataInner.UpdatedAtOption.IsSet)
                 writer.WriteString("updatedAt", dataListResponseDataInner.UpdatedAtOption.Value!.Value.ToString(UpdatedAtFormat));
+
+            foreach (KeyValuePair<string, JsonElement> kvp in dataListResponseDataInner.AdditionalProperties)
+            {
+                writer.WritePropertyName(kvp.Key);
+                kvp.Value.WriteTo(writer);
+            }
         }
     }
 }
